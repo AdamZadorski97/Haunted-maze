@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ThirdParty Assets/PolygonHorrorMansion/Scenes/Demo_01.unity
+    path: Assets/Scenes/Demo_01.unity
     guid: dda52f1b21df39c459a6b2eafa31df9d
   m_configObjects: {}
