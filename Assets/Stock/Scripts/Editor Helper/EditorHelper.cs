@@ -14,11 +14,8 @@ public class EditorHelper : OdinEditorWindow
     private bool showPath;
     private bool showInteractiveItems;
     
-    public GameObject floorPrefab;
-    public Vector2 gridSize;
 
-    public GameObject wallPrefab;
-    public int wallLenght;
+ 
 
     [MenuItem("EditorTools/OpenTools")]
     private static void OpenWindow()
@@ -27,7 +24,7 @@ public class EditorHelper : OdinEditorWindow
     }
 
     [Button("Spawn Grid")]
-    private void SpawnFloorGrid()
+    private void SpawnFloorGrid(Vector2 gridSize, GameObject floorPrefab)
     {
         GameObject floorParrent = new GameObject("Floor Parrent");
        
@@ -41,7 +38,7 @@ public class EditorHelper : OdinEditorWindow
         }
     }
     [Button("Spawn Wall")]
-    private void SpawnWall()
+    private void SpawnWall(float wallLenght, GameObject wallPrefab)
     {
         GameObject wallParrent = new GameObject("Wall Parrent");
 
@@ -53,7 +50,7 @@ public class EditorHelper : OdinEditorWindow
     }
 
     [Button("Spawn Room")]
-    private void SpawnRoom()
+    private void SpawnRoom(Vector2 gridSize, GameObject wallPrefab, GameObject floorPrefab)
     {
         GameObject room = new GameObject("Room Parrent");
 
