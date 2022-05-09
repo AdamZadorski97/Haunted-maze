@@ -23,6 +23,29 @@ public class EditorHelper : OdinEditorWindow
         GetWindow<EditorHelper>().Show();
     }
 
+   [ButtonGroup("Rotate Object")] [Button("Left")]
+    private void TurnLeft()
+    {
+        Selection.activeTransform.transform.eulerAngles += new Vector3(0,-90,0);
+    }
+    [ButtonGroup("Rotate Object")][Button("Right")]
+    private void TurnRight()
+    {
+        Selection.activeTransform.transform.eulerAngles += new Vector3(0, 90, 0);
+    }
+    [ButtonGroup("Rotate Object")] [Button("Front")]
+    private void TurnFront()
+    {
+        Selection.activeTransform.transform.eulerAngles += new Vector3(-90, 0, 0);
+    }
+    [ButtonGroup("Rotate Object")][Button("Back")]
+    private void TurnBack()
+    {
+        Selection.activeTransform.transform.eulerAngles += new Vector3(90, 0, 0);
+    }
+
+
+
     [Button("Spawn Grid")]
     private void SpawnFloorGrid(Vector2 gridSize, GameObject floorPrefab)
     {
