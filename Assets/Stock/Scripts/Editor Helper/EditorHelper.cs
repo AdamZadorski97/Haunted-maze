@@ -55,7 +55,8 @@ public class EditorHelper : OdinEditorWindow
         {
             for (int y = 0; y < gridSize.y; y++)
             {
-                GameObject instantiadtedGrid = Instantiate(floorPrefab, floorParrent.transform);
+     
+                GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(floorPrefab, floorParrent.transform) as GameObject;
                 instantiadtedGrid.transform.position = new Vector3(x * 2.5f, 0, y * 2.5f);
             }
         }
@@ -67,7 +68,7 @@ public class EditorHelper : OdinEditorWindow
 
             for (int i = 0; i < wallLenght; i++)
             {
-                GameObject instantiadtedGrid = Instantiate(wallPrefab, wallParrent.transform);
+                GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
                 instantiadtedGrid.transform.position = new Vector3(i * 2.5f, 0, 0);
             }
     }
@@ -84,7 +85,7 @@ public class EditorHelper : OdinEditorWindow
         {
             for (int y = 0; y < gridSize.y; y++)
             {
-                GameObject instantiadtedGrid = Instantiate(floorPrefab, floorParrent.transform);
+                GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(floorPrefab, floorParrent.transform) as GameObject;
                 instantiadtedGrid.transform.position = new Vector3(x * 2.5f, 0, y * 2.5f);
             }
         }
@@ -93,47 +94,31 @@ public class EditorHelper : OdinEditorWindow
         wallParrent.transform.SetParent(room.transform);
         for (int i = 0; i < gridSize.y; i++)
         {
-            GameObject instantiadtedGrid = Instantiate(wallPrefab, wallParrent.transform);
+            GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
             instantiadtedGrid.transform.position = new Vector3(-2.5f, 0, i * 2.5f);
             instantiadtedGrid.transform.eulerAngles = new Vector3(0, 90, 0);
         }
 
         for (int i = 0; i < gridSize.y; i++)
         {
-            GameObject instantiadtedGrid = Instantiate(wallPrefab, wallParrent.transform);
+            GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
             instantiadtedGrid.transform.position = new Vector3((gridSize.x * 2.5f) - 2.5f, 0, i * 2.5f);
             instantiadtedGrid.transform.eulerAngles = new Vector3(0, 90, 0);
         }
 
         for (int i = 0; i < gridSize.x; i++)
         {
-            GameObject instantiadtedGrid = Instantiate(wallPrefab, wallParrent.transform);
+            GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
             instantiadtedGrid.transform.position = new Vector3((i * 2.5f), 0, 0);
             instantiadtedGrid.transform.eulerAngles = new Vector3(0, 0, 0);
         }
 
         for (int i = 0; i < gridSize.x; i++)
         {
-            GameObject instantiadtedGrid = Instantiate(wallPrefab, wallParrent.transform);
+            GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
             instantiadtedGrid.transform.position = new Vector3((i * 2.5f), 0, gridSize.y * 2.5f);
             instantiadtedGrid.transform.eulerAngles = new Vector3(0, 0, 0);
         }
-
-        //for (int i = 0; i < gridSize.y; i++)
-        //{
-        //    GameObject instantiadtedGrid = Instantiate(wallPrefab, wallParrent.transform);
-        //    instantiadtedGrid.transform.position = new Vector3(0, 0, (i * 2.5f) + 2.5f);
-        //    instantiadtedGrid.transform.eulerAngles = new Vector3(0, 90, 0);
-        //}
-
-        //for (int i = 0; i < gridSize.y; i++)
-        //{
-        //    GameObject instantiadtedGrid = Instantiate(wallPrefab, wallParrent.transform);
-        //    instantiadtedGrid.transform.position = new Vector3(1* gridSize.y, 0, (i * 2.5f) + 2.5f);
-        //    instantiadtedGrid.transform.eulerAngles = new Vector3(0, 90, 0);
-        //}
-
-
     }
 
 
