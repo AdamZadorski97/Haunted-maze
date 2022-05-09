@@ -33,6 +33,11 @@ public class PlayerPicker : MonoBehaviour
             playerController.StopAllCoroutines();
             playerController.enabled = false;
         }
-            
+
+        if (other.GetComponent<EndSceneController>())
+        {
+            other.GetComponent<EndSceneController>().EndScene();
+        }
+
     }
 }
