@@ -111,6 +111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 65716885057057730}
+  showPath: 0
+  mapVisualization: {fileID: 4520532296483504358}
 --- !u!1 &4520532296483504358
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +131,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2858180619270085342
 Transform:
   m_ObjectHideFlags: 0

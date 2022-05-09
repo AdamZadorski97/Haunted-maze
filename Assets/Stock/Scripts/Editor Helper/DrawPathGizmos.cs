@@ -6,7 +6,12 @@ public class DrawPathGizmos : MonoBehaviour
 {
     public BoxCollider boxCollider;
     public bool showPath;
-   
+    public GameObject mapVisualization;
+    public void Start()
+    {
+        mapVisualization.SetActive(true);
+    }
+
     private void OnDrawGizmos()
     {
         if (boxCollider != null && showPath)
