@@ -123,11 +123,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2890325725724380235}
   m_LocalRotation: {x: -0, y: -0.27777824, z: -0, w: 0.96064526}
-  m_LocalPosition: {x: 0.059985638, y: -0.007989645, z: -0.3367281}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 0.008997798, y: -0.0011984706, z: -0.05050969}
+  m_LocalScale: {x: 0.7500001, y: 0.75, z: 0.7500001}
   m_Children: []
-  m_Father: {fileID: 499351504392431716}
-  m_RootOrder: 1
+  m_Father: {fileID: 1930962368103073136}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -32.255, z: 0}
 --- !u!33 &8809401539404761297
 MeshFilter:
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 7718581122182256053}
   - component: {fileID: 6463261497029014993}
   m_Layer: 2
-  m_Name: Cube
+  m_Name: 'Interactive Point '
   m_TagString: Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,7 +210,6 @@ Transform:
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children:
   - {fileID: 1930962368103073136}
-  - {fileID: 4181492330280893123}
   m_Father: {fileID: 4926025588815940}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -288,6 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd1e13e52b367154d8c5349b4593d134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InteractivePointMesh: {fileID: 1929269052353772548}
 --- !u!1001 &1928368024018961484
 PrefabInstance:
   m_ObjectHideFlags: 0
