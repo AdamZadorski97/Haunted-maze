@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class EndSceneController : MonoBehaviour
 {
+    public int levelToLoad;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,7 @@ public class EndSceneController : MonoBehaviour
 
     public void EndScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(levelToLoad);
 
     }
 }
