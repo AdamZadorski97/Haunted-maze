@@ -5,11 +5,18 @@ using UnityEngine;
 public class DrawPathGizmos : MonoBehaviour
 {
     public BoxCollider boxCollider;
+    public MeshRenderer meshRenderer;
     public bool showPath;
     public GameObject mapVisualization;
+    public bool isWall;
     public void Start()
     {
         mapVisualization.SetActive(true);
+    }
+
+    public void SwitchMeshRenderer(bool state)
+    {
+        meshRenderer.enabled = state;
     }
 
     private void OnDrawGizmos()

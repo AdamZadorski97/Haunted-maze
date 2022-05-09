@@ -111,8 +111,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 65716885057057730}
+  meshRenderer: {fileID: 23043019516810472}
   showPath: 0
   mapVisualization: {fileID: 4520532296483504358}
+  isWall: 1
 --- !u!1 &4520532296483504358
 GameObject:
   m_ObjectHideFlags: 0

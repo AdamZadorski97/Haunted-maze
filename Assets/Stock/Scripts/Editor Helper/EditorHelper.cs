@@ -8,10 +8,12 @@ using System.IO;
 using UnityEngine.Experimental.Rendering.Universal;
 using System;
 using DG.Tweening;
+using UnityEngine.AI;
 
 public class EditorHelper : OdinEditorWindow
 {
     private bool showPath;
+    private bool showWalls;
     private bool showInteractiveItems;
     
 
@@ -147,6 +149,31 @@ public class EditorHelper : OdinEditorWindow
         foreach (var item in components)
         {
             item.showPath = showPath;
+        }
+    }
+
+    [Button("Switch Wall Mesh Renderer")]
+    private void SwitchWallMeshRenderer()
+    {
+        if (showWalls) showWalls = false; else showWalls = true;
+
+        DrawPathGizmos[] components = GameObject.FindObjectsOfType<DrawPathGizmos>();
+        foreach (var item in components)
+        {
+            if (item.isWall)
+                item.SwitchMeshRenderer(showWalls);
+        }
+    }
+
+    [Button("Bake Navmesh")]
+    private void BakeNavmesh()
+    {
+      
+        NavMeshSurface[] components = GameObject.FindObjectsOfType<NavMeshSurface>();
+        foreach (var item in components)
+        {
+            item.BuildNavMesh();
+               
         }
     }
 }
