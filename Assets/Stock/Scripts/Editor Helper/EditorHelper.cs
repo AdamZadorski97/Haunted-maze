@@ -91,7 +91,9 @@ public class EditorHelper : OdinEditorWindow
     private void SpawnRoom(
         Vector2 gridSize,
         bool isCorridor,
+        bool useWindows,
         GameObject wallPrefab,
+         GameObject windowPrefab,
         GameObject floorPrefab,
         GameObject ceilingPrefab,
       [Title("Celling")][HorizontalGroup("Maze spawner")][PreviewField(70, ObjectFieldAlignment.Left)] Material ceilingMatTop,
@@ -120,6 +122,7 @@ public class EditorHelper : OdinEditorWindow
         ceilingParrent.transform.SetParent(room.transform);
         for (int x = 0; x < gridSize.x; x++)
         {
+
             for (int y = 0; y < gridSize.y; y++)
             {
                 GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(ceilingPrefab, ceilingParrent.transform) as GameObject;
@@ -132,7 +135,17 @@ public class EditorHelper : OdinEditorWindow
         wallParrent.transform.SetParent(room.transform);
         for (int i = 0; i < gridSize.y; i++)
         {
-            GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
+            GameObject tempWall = null;
+            if (i % 2 == 0 && useWindows)
+            {
+                tempWall = windowPrefab;
+            }
+            else
+            {
+                tempWall = wallPrefab;
+            }
+
+            GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(tempWall, wallParrent.transform) as GameObject;
             instantiadtedGrid.transform.position = new Vector3(-2.5f, 0, 2.5f + i * 2.5f);
             instantiadtedGrid.transform.eulerAngles = new Vector3(0, -90, 0);
             SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, outSideMaterial);
@@ -140,7 +153,17 @@ public class EditorHelper : OdinEditorWindow
 
         for (int i = 0; i < gridSize.y; i++)
         {
-            GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
+            GameObject tempWall = null;
+            if (i % 2 == 0 &&  useWindows)
+            {
+                tempWall = windowPrefab;
+            }
+            else
+            {
+                tempWall = wallPrefab;
+            }
+
+            GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(tempWall, wallParrent.transform) as GameObject;
             instantiadtedGrid.transform.position = new Vector3((gridSize.x * 2.5f) - 2.5f, 0, i * 2.5f);
             instantiadtedGrid.transform.eulerAngles = new Vector3(0, 90, 0);
             SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, outSideMaterial);
@@ -150,7 +173,16 @@ public class EditorHelper : OdinEditorWindow
         {
             for (int i = 0; i < gridSize.x; i++)
             {
-                GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
+                GameObject tempWall = null;
+                if (i % 2 == 0 && useWindows)
+                {
+                    tempWall = windowPrefab;
+                }
+                else
+                {
+                    tempWall = wallPrefab;
+                }
+                GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(tempWall, wallParrent.transform) as GameObject;
                 instantiadtedGrid.transform.position = new Vector3((-2.5f + i * 2.5f), 0, 0);
                 instantiadtedGrid.transform.eulerAngles = new Vector3(0, 180, 0);
                 SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, outSideMaterial);
@@ -158,10 +190,19 @@ public class EditorHelper : OdinEditorWindow
 
             for (int i = 0; i < gridSize.x; i++)
             {
-                GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
-                instantiadtedGrid.transform.position = new Vector3((i * 2.5f), 0, gridSize.y * 2.5f);
-                instantiadtedGrid.transform.eulerAngles = new Vector3(0, 0, 0);
-                SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, outSideMaterial);
+                GameObject tempWall = null;
+                if (i % 2 == 0 && useWindows)
+                {
+                    tempWall = windowPrefab;
+                }
+                else
+                {
+                    tempWall = wallPrefab;
+                }
+                GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(tempWall, wallParrent.transform) as GameObject;
+                instantiadtedGrid.transform.position = new Vector3(-2.5f + (i * 2.5f), 0, gridSize.y * 2.5f);
+                instantiadtedGrid.transform.eulerAngles = new Vector3(0, 180, 0);
+                SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), outSideMaterial, insideMaterial);
             }
         }
     }

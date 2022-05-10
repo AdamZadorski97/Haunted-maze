@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 65779073861318406}
   - component: {fileID: 6210612874821333418}
   m_Layer: 9
-  m_Name: SM_Bld_Wall_Window_05
+  m_Name: Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1585853954554862}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: -1}
   m_Children:
   - {fileID: 4261719046593026}
   - {fileID: 6704978784658322081}
@@ -63,8 +63,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2fef6f06e43ff95489928c404d209550, type: 2}
-  - {fileID: 2100000, guid: 57a73f980ada5774b82109faf4ba4222, type: 2}
+  - {fileID: 2100000, guid: be8f3ce2658689f4d956304996d6b5fa, type: 2}
+  - {fileID: 2100000, guid: 2627589275652a64eab2948c366daab8, type: 2}
   - {fileID: 2100000, guid: 6ef71fb53ed68fd4180e64d11bb0de5b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -112,7 +112,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 65779073861318406}
+  meshRenderer: {fileID: 23596113223047002}
+  showPath: 0
+  mapVisualization: {fileID: 3539612975906773378}
+  isWall: 0
 --- !u!1 &1986070866990994
 GameObject:
   m_ObjectHideFlags: 0
