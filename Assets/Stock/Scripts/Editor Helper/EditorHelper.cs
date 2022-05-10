@@ -264,8 +264,7 @@ public class EditorHelper : OdinEditorWindow
         }
     }
 
-
-    [TitleGroup("Players")]
+    [TitleGroup("Player")]
     [Button("Setup Player")]
     private void SetupPlayer()
     {
@@ -275,5 +274,27 @@ public class EditorHelper : OdinEditorWindow
             item.SnapToGround();
         }
     }
+
+    [TitleGroup("Player")]
+    [Button("Find Player")]
+
+    private void FindPlayer()
+    {
+
+        var view = SceneView.lastActiveSceneView;
+        if (view != null)
+        {
+            view.orthographic = false;
+            var target = new GameObject();
+            var player = GameObject.FindObjectOfType<PlayerController>().transform;
+            target.transform.position = player.position + (player.forward * -3) + new Vector3(0,5,0) ;
+            target.transform.rotation = player.rotation;
+            target.transform.eulerAngles -=  new Vector3(-45,0 , 0);
+            Selection.activeObject = player.gameObject;
+            view.AlignViewToObject(target.transform);
+            GameObject.DestroyImmediate(target);
+        }
+    }
+
 }
 #endif
