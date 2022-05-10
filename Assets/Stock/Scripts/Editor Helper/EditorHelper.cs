@@ -86,7 +86,18 @@ public class EditorHelper : OdinEditorWindow
     }
     [VerticalGroup("Maze spawner")]
     [Button("Spawn Room")]
-    private void SpawnRoom(Vector2 gridSize, GameObject wallPrefab, GameObject floorPrefab, [PreviewField(70, ObjectFieldAlignment.Center)] Material insideMaterial, [PreviewField(70, ObjectFieldAlignment.Center)] Material outSideMaterial, [PreviewField(70, ObjectFieldAlignment.Center)] Material floorMatBottom, [PreviewField(70, ObjectFieldAlignment.Center)] Material floorMatTop)
+    private void SpawnRoom(
+        Vector2 gridSize,
+        GameObject wallPrefab,
+        GameObject floorPrefab,
+        GameObject ceilingPrefab,
+        [PreviewField(70, ObjectFieldAlignment.Center)] Material insideMaterial,
+        [PreviewField(70, ObjectFieldAlignment.Center)] Material outSideMaterial,
+        [PreviewField(70, ObjectFieldAlignment.Center)] Material floorMatBottom,
+        [PreviewField(70, ObjectFieldAlignment.Center)] Material floorMatTop,
+        [PreviewField(70, ObjectFieldAlignment.Center)] Material ceilingMatBottom,
+        [PreviewField(70, ObjectFieldAlignment.Center)] Material ceilingMatTop
+        )
     {
         GameObject room = new GameObject("Room Parrent");
 
@@ -100,6 +111,18 @@ public class EditorHelper : OdinEditorWindow
                 GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(floorPrefab, floorParrent.transform) as GameObject;
                 instantiadtedGrid.transform.position = new Vector3(x * 2.5f, 0, y * 2.5f);
                 SetFloorMaterial(instantiadtedGrid.GetComponent<FloorController>(), floorMatBottom, floorMatTop);
+            }
+        }
+
+        GameObject ceilingParrent = new GameObject("Ceiling Parrent");
+        ceilingParrent.transform.SetParent(room.transform);
+        for (int x = 0; x < gridSize.x; x++)
+        {
+            for (int y = 0; y < gridSize.y; y++)
+            {
+                GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(ceilingPrefab, ceilingParrent.transform) as GameObject;
+                instantiadtedGrid.transform.position = new Vector3(x * 2.5f, 3f, y * 2.5f);
+                SetCeilingMaterial(instantiadtedGrid.GetComponent<CeilingController>(), ceilingMatBottom, ceilingMatTop);
             }
         }
 
@@ -137,6 +160,15 @@ public class EditorHelper : OdinEditorWindow
             SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, outSideMaterial);
         }
     }
+
+
+    private void SetCeilingMaterial(CeilingController ceilingController, Material ceilingMatBottom, Material ceilingMatTop)
+    {
+        ceilingController.ceilingMatBottom = ceilingMatBottom;
+        ceilingController.ceilingMatTop = ceilingMatTop;
+        ceilingController.ChangeFloorMaterial();
+    }
+
 
     private void SetFloorMaterial(FloorController floorController, Material floorMatBottom, Material floorMatTop)
     {
