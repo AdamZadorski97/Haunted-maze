@@ -12,18 +12,21 @@ public class FloorController : MonoBehaviour
 
     [AssetList(Path = "/ThirdParty Assets/PolygonHorrorMansion/Materials/Building")]
     [PreviewField(150, ObjectFieldAlignment.Center)]
-    [HorizontalGroup("Floor Material")]
     [OnValueChanged("ChangeFloorMaterial")]
     public Material FloorMatTop;
 
     [AssetList(Path = "/ThirdParty Assets/PolygonHorrorMansion/Materials/Building")]
     [PreviewField(150, ObjectFieldAlignment.Center)]
-    [HorizontalGroup("Floor Material")]
+
     [OnValueChanged("ChangeFloorMaterial")]
     public Material FloorMatBottom;
 
 
 
+    public void SwitchMeshRenderer(bool state)
+    {
+        meshRenderer.enabled = state;
+    }
 
     public void SwitchPoint(bool state)
     {

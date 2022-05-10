@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class PlayerController : MonoBehaviour
 {
+  
+    public bool canMove = false;
     public float speed;
     public float rotationSpeed;
     public NavMeshAgent navMeshAgent;
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip turnAround;
     public float minDistanceToTurn = 0.3f;
     public float raycastOffset;
+    public LayerMask floorLayermask;
     public void Update()
     {
         MoveController();
@@ -28,6 +31,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
+        SnapToGround();
         StartCoroutine(Footstep());
     }
     public void StopPlaySound()
@@ -53,7 +57,18 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
+    public void SnapToGround()
+    {
+        RaycastHit groundHit;
+        if (Physics.Raycast(transform.position + new Vector3(0,1,0), transform.TransformDirection(Vector3.down), out groundHit, Mathf.Infinity, floorLayermask))
+        {
+            transform.position = groundHit.transform.position + new Vector3(groundHit.transform.GetComponent<BoxCollider>().center.x,0, groundHit.transform.GetComponent<BoxCollider>().center.z);
+            
+            
+            navMeshAgent.enabled = true;
+            canMove = true;
+        }
+    }
 
     public void Move()
     {
@@ -243,16 +258,6 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-
-
-
-
-
-
-
-
-
-
         navMeshAgent.Move(transform.forward * speed * Time.deltaTime);
     }
 

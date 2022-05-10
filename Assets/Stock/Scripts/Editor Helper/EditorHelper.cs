@@ -13,8 +13,10 @@ using UnityEngine.AI;
 public class EditorHelper : OdinEditorWindow
 {
     private bool showPath;
-    private bool showWalls;
     private bool showCeiling;
+    private bool showWalls;
+    private bool showFloor;
+
     private bool showiInteractivePoints;
 
 
@@ -25,28 +27,29 @@ public class EditorHelper : OdinEditorWindow
         GetWindow<EditorHelper>().Show();
     }
 
-    [HorizontalGroup("ForwardRotation", 150f, marginLeft: 75)]
+ [PropertySpace]
     [Title("Rotation")]
-
     [HorizontalGroup("ForwardRotation", 80f, marginLeft: 40)]
     [Button("Front", ButtonStyle.Box)]
     private void TurnFront()
     {
         Selection.activeTransform.transform.eulerAngles += new Vector3(-90, 0, 0);
     }
+    [PropertySpace]
     [HorizontalGroup("SideRotation", 80f)]
     [Button("Left", ButtonStyle.Box)]
     private void TurnLeft()
     {
         Selection.activeTransform.transform.eulerAngles += new Vector3(0, -90, 0);
     }
+    [PropertySpace]
     [HorizontalGroup("SideRotation", 80f)]
     [Button("Right", ButtonStyle.Box)]
     private void TurnRight()
     {
         Selection.activeTransform.transform.eulerAngles += new Vector3(0, 90, 0);
     }
-  
+    [PropertySpace]
     [HorizontalGroup("BackRotation", 80f, marginLeft: 40)]
     [Button("Back", ButtonStyle.Box)]
     private void TurnBack()
@@ -95,10 +98,7 @@ public class EditorHelper : OdinEditorWindow
       [Title("Wall")][HorizontalGroup("Maze spawner")][PreviewField(70, ObjectFieldAlignment.Left)] Material insideMaterial,
        [PreviewField(70, ObjectFieldAlignment.Left)] Material outSideMaterial,
       [Title("Floor")][HorizontalGroup("Maze spawner")][PreviewField(70, ObjectFieldAlignment.Left)] Material floorMatTop,
-       [PreviewField(70, ObjectFieldAlignment.Left)] Material floorMatBottom
-
-
-        )
+       [PreviewField(70, ObjectFieldAlignment.Left)] Material floorMatBottom)
     {
         GameObject room = new GameObject("Room Parrent");
 
@@ -185,34 +185,21 @@ public class EditorHelper : OdinEditorWindow
         wallController.ChangeWallMaterial();
     }
 
-
-
-
-    [Button("Show Interactive Items")]
-    private void ShowInteractiveItems()
+    [TitleGroup("Ceiling")]
+    [Button("Switch Ceiling Mesh Renderer")]
+    private void SwitchCeilingMeshRenderer()
     {
-        if (showiInteractivePoints) showiInteractivePoints = false; else showiInteractivePoints = true;
+        if (showCeiling) showCeiling = false; else showCeiling = true;
 
-        FloorController[] components = GameObject.FindObjectsOfType<FloorController>();
+        CeilingController[] components = GameObject.FindObjectsOfType<CeilingController>();
         foreach (var item in components)
         {
-            item.SwitchPoint(showiInteractivePoints);
+            item.SwitchMeshRenderer(showCeiling);
         }
     }
 
-    [Button("Show Maze Colliders")]
-    private void ShowMazeColliders()
-    {
-        if (showPath) showPath = false; else showPath = true;
-
-        WallController[] components = GameObject.FindObjectsOfType<WallController>();
-        foreach (var item in components)
-        {
-            item.showPath = showPath;
-        }
-    }
-
-    [Button("Switch Wall Mesh Renderer")]
+    [TitleGroup("Walls")]
+    [Button("Show Wall Mesh Renderer")]
     private void SwitchWallMeshRenderer()
     {
         if (showWalls) showWalls = false; else showWalls = true;
@@ -224,19 +211,33 @@ public class EditorHelper : OdinEditorWindow
                 item.SwitchMeshRenderer(showWalls);
         }
     }
-
-    [Button("Switch Ceiling Mesh Renderer")]
-    private void SwitchCeilingMeshRenderer()
+    [TitleGroup("Walls")]
+    [Button("Show Wall Colliders")]
+    private void ShowMazeColliders()
     {
-        if (showCeiling) showCeiling = false; else showCeiling = true;
+        if (showPath) showPath = false; else showPath = true;
 
-        CeilingController[] components = GameObject.FindObjectsOfType<CeilingController>();
+        WallController[] components = GameObject.FindObjectsOfType<WallController>();
         foreach (var item in components)
         {
-                item.SwitchMeshRenderer(showCeiling);
+            item.showPath = showPath;
         }
     }
 
+    [TitleGroup("Floor")]
+    [Button("Show Floor Mesh Renderer")]
+    private void ShowFloorMeshRenderer()
+    {
+        if (showFloor) showFloor = false; else showFloor = true;
+
+        FloorController[] components = GameObject.FindObjectsOfType<FloorController>();
+        foreach (var item in components)
+        {
+            item.SwitchMeshRenderer(showFloor);
+        }
+    }
+
+    [TitleGroup("Floor")]
     [Button("Bake Navmesh")]
     private void BakeNavmesh()
     {
@@ -248,6 +249,31 @@ public class EditorHelper : OdinEditorWindow
 
         }
         Selection.objects = components;
+    }
+
+    [TitleGroup("Interactive Items")]
+    [Button("Show Points")]
+    private void ShowInteractiveItems()
+    {
+        if (showiInteractivePoints) showiInteractivePoints = false; else showiInteractivePoints = true;
+
+        FloorController[] components = GameObject.FindObjectsOfType<FloorController>();
+        foreach (var item in components)
+        {
+            item.SwitchPoint(showiInteractivePoints);
+        }
+    }
+
+
+    [TitleGroup("Players")]
+    [Button("Setup Player")]
+    private void SetupPlayer()
+    {
+        PlayerController[] components = GameObject.FindObjectsOfType<PlayerController>();
+        foreach (var item in components)
+        {
+            item.SnapToGround();
+        }
     }
 }
 #endif
