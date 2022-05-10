@@ -8,8 +8,23 @@ public class FloorController : MonoBehaviour
     [OnValueChanged("SwitchPoint")]
     public bool interactivePointsIsOn;
     public GameObject interactivePoint;
+    public MeshRenderer meshRenderer;
 
-   
+    [AssetList(Path = "/ThirdParty Assets/PolygonHorrorMansion/Materials/Building")]
+    [PreviewField(150, ObjectFieldAlignment.Center)]
+    [HorizontalGroup("Floor Material")]
+    [OnValueChanged("ChangeFloorMaterial")]
+    public Material FloorMatTop;
+
+    [AssetList(Path = "/ThirdParty Assets/PolygonHorrorMansion/Materials/Building")]
+    [PreviewField(150, ObjectFieldAlignment.Center)]
+    [HorizontalGroup("Floor Material")]
+    [OnValueChanged("ChangeFloorMaterial")]
+    public Material FloorMatBottom;
+
+
+
+
     public void SwitchPoint(bool state)
     {
         if(interactivePointsIsOn)
@@ -20,5 +35,12 @@ public class FloorController : MonoBehaviour
         {
             interactivePoint.SetActive(false);
         }
+    }
+    public void ChangeFloorMaterial()
+    {
+        Material[] material = meshRenderer.materials;
+        material[0] = FloorMatBottom;
+        material[1] = FloorMatTop;
+        meshRenderer.materials = material;
     }
 }

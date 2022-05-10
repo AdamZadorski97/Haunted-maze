@@ -112,6 +112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactivePointsIsOn: 1
   interactivePoint: {fileID: 5369871196849302526}
+  meshRenderer: {fileID: 23212418257165108}
+  FloorMat0: {fileID: 0}
 --- !u!1001 &4942618488314751893
 PrefabInstance:
   m_ObjectHideFlags: 0

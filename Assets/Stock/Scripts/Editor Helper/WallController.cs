@@ -40,9 +40,7 @@ public class WallController : MonoBehaviour
 
     public void ChangeWallMaterial()
     {
-        Debug.Log("x");
         Material[] material = meshRenderer.materials;
-    
         material[0] = WallMat0;
         material[1] = WallMat1;
         meshRenderer.materials = material;

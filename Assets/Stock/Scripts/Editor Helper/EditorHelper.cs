@@ -86,7 +86,7 @@ public class EditorHelper : OdinEditorWindow
     }
     [VerticalGroup("Maze spawner")]
     [Button("Spawn Room")]
-    private void SpawnRoom(Vector2 gridSize, GameObject wallPrefab, GameObject floorPrefab, Material insideMaterial, Material outSideMaterial)
+    private void SpawnRoom(Vector2 gridSize, GameObject wallPrefab, GameObject floorPrefab, [PreviewField(70, ObjectFieldAlignment.Center)] Material insideMaterial, [PreviewField(70, ObjectFieldAlignment.Center)] Material outSideMaterial, [PreviewField(70, ObjectFieldAlignment.Center)] Material floorMatBottom, [PreviewField(70, ObjectFieldAlignment.Center)] Material floorMatTop)
     {
         GameObject room = new GameObject("Room Parrent");
 
@@ -99,6 +99,7 @@ public class EditorHelper : OdinEditorWindow
             {
                 GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(floorPrefab, floorParrent.transform) as GameObject;
                 instantiadtedGrid.transform.position = new Vector3(x * 2.5f, 0, y * 2.5f);
+                SetFloorMaterial(instantiadtedGrid.GetComponent<FloorController>(), floorMatBottom, floorMatTop);
             }
         }
 
@@ -107,11 +108,9 @@ public class EditorHelper : OdinEditorWindow
         for (int i = 0; i < gridSize.y; i++)
         {
             GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
-            instantiadtedGrid.transform.position = new Vector3(-2.5f, 0,2.5f + i * 2.5f);
+            instantiadtedGrid.transform.position = new Vector3(-2.5f, 0, 2.5f + i * 2.5f);
             instantiadtedGrid.transform.eulerAngles = new Vector3(0, -90, 0);
-            instantiadtedGrid.GetComponent<WallController>().WallMat0 = insideMaterial;
-            instantiadtedGrid.GetComponent<WallController>().WallMat1 = outSideMaterial;
-            instantiadtedGrid.GetComponent<WallController>().ChangeWallMaterial();
+            SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, outSideMaterial);
         }
 
         for (int i = 0; i < gridSize.y; i++)
@@ -119,9 +118,7 @@ public class EditorHelper : OdinEditorWindow
             GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
             instantiadtedGrid.transform.position = new Vector3((gridSize.x * 2.5f) - 2.5f, 0, i * 2.5f);
             instantiadtedGrid.transform.eulerAngles = new Vector3(0, 90, 0);
-            instantiadtedGrid.GetComponent<WallController>().WallMat0 = insideMaterial;
-            instantiadtedGrid.GetComponent<WallController>().WallMat1 = outSideMaterial;
-            instantiadtedGrid.GetComponent<WallController>().ChangeWallMaterial();
+            SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, outSideMaterial);
         }
 
         for (int i = 0; i < gridSize.x; i++)
@@ -129,9 +126,7 @@ public class EditorHelper : OdinEditorWindow
             GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
             instantiadtedGrid.transform.position = new Vector3((-2.5f + i * 2.5f), 0, 0);
             instantiadtedGrid.transform.eulerAngles = new Vector3(0, 180, 0);
-            instantiadtedGrid.GetComponent<WallController>().WallMat0 = insideMaterial;
-            instantiadtedGrid.GetComponent<WallController>().WallMat1 = outSideMaterial;
-            instantiadtedGrid.GetComponent<WallController>().ChangeWallMaterial();
+            SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, outSideMaterial);
         }
 
         for (int i = 0; i < gridSize.x; i++)
@@ -139,13 +134,23 @@ public class EditorHelper : OdinEditorWindow
             GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
             instantiadtedGrid.transform.position = new Vector3((i * 2.5f), 0, gridSize.y * 2.5f);
             instantiadtedGrid.transform.eulerAngles = new Vector3(0, 0, 0);
-            instantiadtedGrid.GetComponent<WallController>().WallMat0 = insideMaterial;
-            instantiadtedGrid.GetComponent<WallController>().WallMat1 = outSideMaterial;
-            instantiadtedGrid.GetComponent<WallController>().ChangeWallMaterial();
+            SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, outSideMaterial);
         }
     }
 
+    private void SetFloorMaterial(FloorController floorController, Material floorMatBottom, Material floorMatTop)
+    {
+        floorController.FloorMatBottom = floorMatBottom;
+        floorController.FloorMatTop = floorMatTop;
+        floorController.ChangeFloorMaterial();
+    }
 
+    private void SetWallMaterials(WallController wallController, Material insideMaterial, Material outSideMaterial)
+    {
+        wallController.WallMat0 = insideMaterial;
+        wallController.WallMat1 = outSideMaterial;
+        wallController.ChangeWallMaterial();
+    }
 
 
 
