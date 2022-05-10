@@ -14,10 +14,9 @@ public class EditorHelper : OdinEditorWindow
 {
     private bool showPath;
     private bool showWalls;
-    private bool showInteractiveItems;
-    
+    private bool showiInteractivePoints;
 
- 
+
 
     [MenuItem("EditorTools/OpenTools")]
     private static void OpenWindow()
@@ -25,58 +24,69 @@ public class EditorHelper : OdinEditorWindow
         GetWindow<EditorHelper>().Show();
     }
 
-   [ButtonGroup("Rotate Object")] [Button("Left")]
+
+    [Title("Object rotation")]
+    [HideInInspector, PropertySpace]
+    private int xyz;
+
+
+    [HorizontalGroup("SideRotation")]
+    [Button("Left")]
     private void TurnLeft()
     {
-        Selection.activeTransform.transform.eulerAngles += new Vector3(0,-90,0);
+        Selection.activeTransform.transform.eulerAngles += new Vector3(0, -90, 0);
     }
-    [ButtonGroup("Rotate Object")][Button("Right")]
+    [HorizontalGroup("SideRotation")]
+    [Button("Right")]
     private void TurnRight()
     {
         Selection.activeTransform.transform.eulerAngles += new Vector3(0, 90, 0);
     }
-    [ButtonGroup("Rotate Object")] [Button("Front")]
+    [HorizontalGroup("ForwardRotation")]
+    [Button("Front")]
     private void TurnFront()
     {
         Selection.activeTransform.transform.eulerAngles += new Vector3(-90, 0, 0);
     }
-    [ButtonGroup("Rotate Object")][Button("Back")]
+    [HorizontalGroup("ForwardRotation")]
+    [Button("Back")]
     private void TurnBack()
     {
         Selection.activeTransform.transform.eulerAngles += new Vector3(90, 0, 0);
     }
 
-
-
+    [Title("Maze spawner")]
+    [VerticalGroup("Maze spawner")]
     [Button("Spawn Grid")]
     private void SpawnFloorGrid(Vector2 gridSize, GameObject floorPrefab)
     {
         GameObject floorParrent = new GameObject("Floor Parrent");
-       
+
         for (int x = 0; x < gridSize.x; x++)
         {
             for (int y = 0; y < gridSize.y; y++)
             {
-     
+
                 GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(floorPrefab, floorParrent.transform) as GameObject;
                 instantiadtedGrid.transform.position = new Vector3(x * 2.5f, 0, y * 2.5f);
             }
         }
     }
+    [VerticalGroup("Maze spawner")]
     [Button("Spawn Wall")]
     private void SpawnWall(float wallLenght, GameObject wallPrefab)
     {
         GameObject wallParrent = new GameObject("Wall Parrent");
 
-            for (int i = 0; i < wallLenght; i++)
-            {
-                GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
-                instantiadtedGrid.transform.position = new Vector3(i * 2.5f, 0, 0);
-            }
+        for (int i = 0; i < wallLenght; i++)
+        {
+            GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
+            instantiadtedGrid.transform.position = new Vector3(i * 2.5f, 0, 0);
+        }
     }
-
+    [VerticalGroup("Maze spawner")]
     [Button("Spawn Room")]
-    private void SpawnRoom(Vector2 gridSize, GameObject wallPrefab, GameObject floorPrefab)
+    private void SpawnRoom(Vector2 gridSize, GameObject wallPrefab, GameObject floorPrefab, Material insideMaterial, Material outSideMaterial)
     {
         GameObject room = new GameObject("Room Parrent");
 
@@ -97,8 +107,11 @@ public class EditorHelper : OdinEditorWindow
         for (int i = 0; i < gridSize.y; i++)
         {
             GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
-            instantiadtedGrid.transform.position = new Vector3(-2.5f, 0, i * 2.5f);
-            instantiadtedGrid.transform.eulerAngles = new Vector3(0, 90, 0);
+            instantiadtedGrid.transform.position = new Vector3(-2.5f, 0,2.5f + i * 2.5f);
+            instantiadtedGrid.transform.eulerAngles = new Vector3(0, -90, 0);
+            instantiadtedGrid.GetComponent<WallController>().WallMat0 = insideMaterial;
+            instantiadtedGrid.GetComponent<WallController>().WallMat1 = outSideMaterial;
+            instantiadtedGrid.GetComponent<WallController>().ChangeWallMaterial();
         }
 
         for (int i = 0; i < gridSize.y; i++)
@@ -106,13 +119,19 @@ public class EditorHelper : OdinEditorWindow
             GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
             instantiadtedGrid.transform.position = new Vector3((gridSize.x * 2.5f) - 2.5f, 0, i * 2.5f);
             instantiadtedGrid.transform.eulerAngles = new Vector3(0, 90, 0);
+            instantiadtedGrid.GetComponent<WallController>().WallMat0 = insideMaterial;
+            instantiadtedGrid.GetComponent<WallController>().WallMat1 = outSideMaterial;
+            instantiadtedGrid.GetComponent<WallController>().ChangeWallMaterial();
         }
 
         for (int i = 0; i < gridSize.x; i++)
         {
             GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
-            instantiadtedGrid.transform.position = new Vector3((i * 2.5f), 0, 0);
-            instantiadtedGrid.transform.eulerAngles = new Vector3(0, 0, 0);
+            instantiadtedGrid.transform.position = new Vector3((-2.5f + i * 2.5f), 0, 0);
+            instantiadtedGrid.transform.eulerAngles = new Vector3(0, 180, 0);
+            instantiadtedGrid.GetComponent<WallController>().WallMat0 = insideMaterial;
+            instantiadtedGrid.GetComponent<WallController>().WallMat1 = outSideMaterial;
+            instantiadtedGrid.GetComponent<WallController>().ChangeWallMaterial();
         }
 
         for (int i = 0; i < gridSize.x; i++)
@@ -120,6 +139,9 @@ public class EditorHelper : OdinEditorWindow
             GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
             instantiadtedGrid.transform.position = new Vector3((i * 2.5f), 0, gridSize.y * 2.5f);
             instantiadtedGrid.transform.eulerAngles = new Vector3(0, 0, 0);
+            instantiadtedGrid.GetComponent<WallController>().WallMat0 = insideMaterial;
+            instantiadtedGrid.GetComponent<WallController>().WallMat1 = outSideMaterial;
+            instantiadtedGrid.GetComponent<WallController>().ChangeWallMaterial();
         }
     }
 
@@ -131,12 +153,12 @@ public class EditorHelper : OdinEditorWindow
     [Button("Show Interactive Items")]
     private void ShowInteractiveItems()
     {
-        if (showInteractiveItems) showInteractiveItems = false; else showInteractiveItems = true;
+        if (showiInteractivePoints) showiInteractivePoints = false; else showiInteractivePoints = true;
 
-        PickablePoint[] components = GameObject.FindObjectsOfType<PickablePoint>();
+        FloorController[] components = GameObject.FindObjectsOfType<FloorController>();
         foreach (var item in components)
         {
-            item.InteractivePointMesh.SetActive(showInteractiveItems);
+            item.SwitchPoint(showiInteractivePoints);
         }
     }
 
@@ -145,7 +167,7 @@ public class EditorHelper : OdinEditorWindow
     {
         if (showPath) showPath = false; else showPath = true;
 
-        DrawPathGizmos[] components = GameObject.FindObjectsOfType<DrawPathGizmos>();
+        WallController[] components = GameObject.FindObjectsOfType<WallController>();
         foreach (var item in components)
         {
             item.showPath = showPath;
@@ -157,7 +179,7 @@ public class EditorHelper : OdinEditorWindow
     {
         if (showWalls) showWalls = false; else showWalls = true;
 
-        DrawPathGizmos[] components = GameObject.FindObjectsOfType<DrawPathGizmos>();
+        WallController[] components = GameObject.FindObjectsOfType<WallController>();
         foreach (var item in components)
         {
             if (item.isWall)
@@ -168,13 +190,14 @@ public class EditorHelper : OdinEditorWindow
     [Button("Bake Navmesh")]
     private void BakeNavmesh()
     {
-      
+
         NavMeshSurface[] components = GameObject.FindObjectsOfType<NavMeshSurface>();
         foreach (var item in components)
         {
             item.BuildNavMesh();
-               
+
         }
+        Selection.objects = components;
     }
 }
 #endif
