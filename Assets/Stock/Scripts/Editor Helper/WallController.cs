@@ -9,13 +9,11 @@ public class WallController : MonoBehaviour
  
     [AssetList(Path = "/ThirdParty Assets/PolygonHorrorMansion/Materials/Building")]
     [PreviewField(150, ObjectFieldAlignment.Center)]
-    [HorizontalGroup("Wall Material")]
     [OnValueChanged("ChangeWallMaterial")]
     public Material WallMat0;
 
     [AssetList(Path = "/ThirdParty Assets/PolygonHorrorMansion/Materials/Building")]
     [PreviewField(150, ObjectFieldAlignment.Center)]
-    [HorizontalGroup("Wall Material")]
     [OnValueChanged("ChangeWallMaterial")]
     public Material WallMat1;
 
