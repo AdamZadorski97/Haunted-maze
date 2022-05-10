@@ -20,7 +20,10 @@ public class CeilingController : MonoBehaviour
     [OnValueChanged("ChangeFloorMaterial")]
     public Material ceilingMatBottom;
 
-
+    public void SwitchMeshRenderer(bool state)
+    {
+        meshRenderer.enabled = state;
+    }
     public void ChangeFloorMaterial()
     {
         Material[] material = meshRenderer.materials;

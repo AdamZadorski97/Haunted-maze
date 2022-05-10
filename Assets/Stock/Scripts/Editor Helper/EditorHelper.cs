@@ -14,6 +14,7 @@ public class EditorHelper : OdinEditorWindow
 {
     private bool showPath;
     private bool showWalls;
+    private bool showCeiling;
     private bool showiInteractivePoints;
 
 
@@ -24,32 +25,30 @@ public class EditorHelper : OdinEditorWindow
         GetWindow<EditorHelper>().Show();
     }
 
+    [HorizontalGroup("ForwardRotation", 150f, marginLeft: 75)]
+    [Title("Rotation")]
 
-    [Title("Object rotation")]
-    [HideInInspector, PropertySpace]
-    private int xyz;
-
-
-    [HorizontalGroup("SideRotation")]
-    [Button("Left")]
-    private void TurnLeft()
-    {
-        Selection.activeTransform.transform.eulerAngles += new Vector3(0, -90, 0);
-    }
-    [HorizontalGroup("SideRotation")]
-    [Button("Right")]
-    private void TurnRight()
-    {
-        Selection.activeTransform.transform.eulerAngles += new Vector3(0, 90, 0);
-    }
-    [HorizontalGroup("ForwardRotation")]
-    [Button("Front")]
+    [HorizontalGroup("ForwardRotation", 80f, marginLeft: 40)]
+    [Button("Front", ButtonStyle.Box)]
     private void TurnFront()
     {
         Selection.activeTransform.transform.eulerAngles += new Vector3(-90, 0, 0);
     }
-    [HorizontalGroup("ForwardRotation")]
-    [Button("Back")]
+    [HorizontalGroup("SideRotation", 80f)]
+    [Button("Left", ButtonStyle.Box)]
+    private void TurnLeft()
+    {
+        Selection.activeTransform.transform.eulerAngles += new Vector3(0, -90, 0);
+    }
+    [HorizontalGroup("SideRotation", 80f)]
+    [Button("Right", ButtonStyle.Box)]
+    private void TurnRight()
+    {
+        Selection.activeTransform.transform.eulerAngles += new Vector3(0, 90, 0);
+    }
+  
+    [HorizontalGroup("BackRotation", 80f, marginLeft: 40)]
+    [Button("Back", ButtonStyle.Box)]
     private void TurnBack()
     {
         Selection.activeTransform.transform.eulerAngles += new Vector3(90, 0, 0);
@@ -57,7 +56,7 @@ public class EditorHelper : OdinEditorWindow
 
     [Title("Maze spawner")]
     [VerticalGroup("Maze spawner")]
-    [Button("Spawn Grid")]
+    [Button("Spawn floor")]
     private void SpawnFloorGrid(Vector2 gridSize, GameObject floorPrefab)
     {
         GameObject floorParrent = new GameObject("Floor Parrent");
@@ -91,12 +90,14 @@ public class EditorHelper : OdinEditorWindow
         GameObject wallPrefab,
         GameObject floorPrefab,
         GameObject ceilingPrefab,
-        [PreviewField(70, ObjectFieldAlignment.Center)] Material insideMaterial,
-        [PreviewField(70, ObjectFieldAlignment.Center)] Material outSideMaterial,
-        [PreviewField(70, ObjectFieldAlignment.Center)] Material floorMatBottom,
-        [PreviewField(70, ObjectFieldAlignment.Center)] Material floorMatTop,
-        [PreviewField(70, ObjectFieldAlignment.Center)] Material ceilingMatBottom,
-        [PreviewField(70, ObjectFieldAlignment.Center)] Material ceilingMatTop
+      [Title("Celling")][HorizontalGroup("Maze spawner")][PreviewField(70, ObjectFieldAlignment.Left)] Material ceilingMatTop,
+       [PreviewField(70, ObjectFieldAlignment.Left)] Material ceilingMatBottom,
+      [Title("Wall")][HorizontalGroup("Maze spawner")][PreviewField(70, ObjectFieldAlignment.Left)] Material insideMaterial,
+       [PreviewField(70, ObjectFieldAlignment.Left)] Material outSideMaterial,
+      [Title("Floor")][HorizontalGroup("Maze spawner")][PreviewField(70, ObjectFieldAlignment.Left)] Material floorMatTop,
+       [PreviewField(70, ObjectFieldAlignment.Left)] Material floorMatBottom
+
+
         )
     {
         GameObject room = new GameObject("Room Parrent");
@@ -221,6 +222,18 @@ public class EditorHelper : OdinEditorWindow
         {
             if (item.isWall)
                 item.SwitchMeshRenderer(showWalls);
+        }
+    }
+
+    [Button("Switch Ceiling Mesh Renderer")]
+    private void SwitchCeilingMeshRenderer()
+    {
+        if (showCeiling) showCeiling = false; else showCeiling = true;
+
+        CeilingController[] components = GameObject.FindObjectsOfType<CeilingController>();
+        foreach (var item in components)
+        {
+                item.SwitchMeshRenderer(showCeiling);
         }
     }
 
