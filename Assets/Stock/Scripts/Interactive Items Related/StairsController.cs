@@ -4,16 +4,18 @@ using UnityEngine;
 using DG.Tweening;
 public class StairsController : MonoBehaviour
 {
+    public AnimationCurve moveDownSpeedCurve;
+    public AnimationCurve moveUpSpeedCurve;
+    public float timeToReachDestination = 2;
     public Transform TriggerDown;
     public Transform TriggerUp;
-    public float activeTime;
     public bool isActive;
 
     public void OnTriggerUpEnter(Transform objectToTween)
     {
         if (isActive)
         {
-            objectToTween.DOMove(TriggerDown.position, 1);
+            objectToTween.DOMove(TriggerDown.position, timeToReachDestination).SetEase(moveDownSpeedCurve);
             StartCoroutine(DeactiveTime(objectToTween.gameObject));
         }
            
@@ -22,7 +24,7 @@ public class StairsController : MonoBehaviour
     {
         if (isActive)
         {
-            objectToTween.DOMove(TriggerUp.position, 1);
+            objectToTween.DOMove(TriggerUp.position, timeToReachDestination).SetEase(moveUpSpeedCurve);
             StartCoroutine(DeactiveTime(objectToTween.gameObject));
          
         }
@@ -39,7 +41,7 @@ public class StairsController : MonoBehaviour
 
 
         isActive = false;
-        yield return new WaitForSeconds(1.01f);
+        yield return new WaitForSeconds(timeToReachDestination+0.1f);
         isActive = true;
 
         if (objectToTween.GetComponent<PlayerController>())
