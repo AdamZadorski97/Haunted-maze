@@ -38,6 +38,9 @@ public class PlayerPicker : MonoBehaviour
         {
             other.GetComponent<EndSceneController>().EndScene();
         }
-
+        if (other.GetComponent<HintTriggerController>())
+        {
+            other.GetComponent<HintTriggerController>().OnHintTriggerEnter();
+        }
     }
 }

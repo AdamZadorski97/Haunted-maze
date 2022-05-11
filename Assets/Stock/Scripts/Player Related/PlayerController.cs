@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using DG.Tweening;
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoSingleton<PlayerController>
 {
-  
+    public static PlayerController _Instance { get; private set; }
     public bool canMove = false;
     public float speed;
     public float rotationSpeed;
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     public void Update()
     {
         SwipeControll();
-
+        if(canMove)
         MoveController(); 
         
     }
@@ -144,6 +144,14 @@ public class PlayerController : MonoBehaviour
             canMove = true;
         }
     }
+
+    public void SwitchMovement(bool state)
+    {
+        canMove = state;
+        navMeshAgent.enabled = state;
+    }
+
+
 
     public void Move()
     {
