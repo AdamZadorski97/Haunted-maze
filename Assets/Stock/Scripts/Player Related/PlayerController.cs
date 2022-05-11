@@ -24,11 +24,86 @@ public class PlayerController : MonoBehaviour
     public float minDistanceToTurn = 0.3f;
     public float raycastOffset;
     public LayerMask floorLayermask;
+    public SwipeController swipeController;
+    string inst = null;
     public void Update()
     {
-        MoveController();
+        SwipeControll();
 
+        MoveController(); 
+        
     }
+
+    public void SwipeControll()
+    {
+        if (swipeController.SwipeLeft)
+        {
+            Debug.Log("SwipeLeft");
+            StopCoroutine(inst);
+            inst = "Left";
+            StartCoroutine(RememberLastSwipe("Left"));
+        }
+      
+        if (swipeController.SwipeRight)
+        {
+            Debug.Log("SwipeRight");
+            StopCoroutine(inst);
+            inst = "Right";
+            StartCoroutine(RememberLastSwipe("Right"));
+        }
+         
+        if (swipeController.SwipeUp)
+        {
+            Debug.Log("SwipeUp");
+            StopCoroutine(inst);
+            inst = "Up";
+            StartCoroutine(RememberLastSwipe("Up"));
+        }
+            
+        if (swipeController.SwipeDown)
+        {
+            Debug.Log("SwipeDown");
+            StopCoroutine(inst);
+            inst = "Down";
+            StartCoroutine(RememberLastSwipe("Down"));
+        }
+           
+        if (swipeController.Tap)
+        {
+            StopCoroutine(inst);
+            inst = "Tap";
+            StartCoroutine(RememberLastSwipe("Tap"));
+        }
+         
+    }
+    IEnumerator  RememberLastSwipe(string direction)
+    {
+        moveLeft = false;
+        moveRight = false;
+        moveBack = false;
+        Debug.Log("Swipe Direction " + direction);
+        if (direction == "Left")
+        {
+            moveLeft = true;
+        }
+        if(direction == "Right")
+        {
+            moveRight = true;
+        }
+        if (direction == "Up")
+        {
+
+        }
+        if (direction == "Down")
+        {
+            moveBack = true;
+        }
+        yield return new WaitForSeconds(1);
+    }
+
+
+
+
     private void Start()
     {
         SnapToGround();
@@ -230,6 +305,9 @@ public class PlayerController : MonoBehaviour
 
             if (moveLeft && CheckCanTurnLeft())
             {
+                moveLeft = false;
+                moveRight = false;
+                moveBack = false;
                 Debug.Log("can turn Left");
                 canTurnTimer = 0.2f;
                 transform.Rotate(new Vector3(0, -90, 0), Space.World);
@@ -238,6 +316,9 @@ public class PlayerController : MonoBehaviour
             }
             if (moveRight && CheckCanTurnRight())
             {
+                moveLeft = false;
+                moveRight = false;
+                moveBack = false;
                 Debug.Log("can turn Left");
                 canTurnTimer = 0.2f;
                 transform.Rotate(new Vector3(0, 90, 0), Space.World);
@@ -249,6 +330,9 @@ public class PlayerController : MonoBehaviour
             {
                 if (!CheckCanTurnLeft() && !CheckCanTurnRight())
                 {
+                    moveLeft = false;
+                    moveRight = false;
+                    moveBack = false;
                     Debug.Log("can turn Back");
                     canTurnTimer = 0.2f;
                     transform.Rotate(new Vector3(0, 180, 0), Space.World);
