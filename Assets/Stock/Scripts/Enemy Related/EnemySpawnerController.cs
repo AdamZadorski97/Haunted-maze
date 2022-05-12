@@ -73,6 +73,8 @@ public class EnemySpawnerController : MonoBehaviour
                 EnemyController spawnedEnemy = Instantiate(enemiesPrefabs[0], enemiesParrent);
                 spawnedEnemies.Add(spawnedEnemy);
                 spawnedEnemy.transform.position = newEnemyPosition;
+                spawnedEnemy.endPoint = playerController.transform ;
+                spawnedEnemy.EnableNavMesh();
                 canSpawn = false;
                 break;
             }
@@ -103,6 +105,8 @@ public class EnemySpawnerController : MonoBehaviour
         RaycastHit groundHit;
         if (Physics.Raycast(posToCheck + new Vector3(0, 1, 0), Vector3.down, out groundHit, Mathf.Infinity, floorLayermask))
         {
+            newEnemyPosition = groundHit.transform.position + new Vector3(groundHit.transform.GetComponent<BoxCollider>().center.x,  groundHit.transform.GetComponent<BoxCollider>().center.z);
+        
             return true;
         }
         else return false;
