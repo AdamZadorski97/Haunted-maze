@@ -28,9 +28,9 @@ public class EditorHelper : OdinEditorWindow
     [TabGroup("Tabs", "Room Builder")] public GameObject floorPrefab;
     [TabGroup("Tabs", "Room Builder")] public GameObject ceilingPrefab;
 
- 
-   
-    [TabGroup("Tabs", "Room Builder")]  [PreviewField(70, ObjectFieldAlignment.Left)] public Material ceilingMatBottom;
+
+
+    [TabGroup("Tabs", "Room Builder")] [PreviewField(70, ObjectFieldAlignment.Left)] public Material ceilingMatBottom;
     [TabGroup("Tabs", "Room Builder")] public bool isDoubleMaterialCelling = false;
     [TabGroup("Tabs", "Room Builder")] [ShowIf("isDoubleMaterialCelling")] [Title("Celling")] [PreviewField(70, ObjectFieldAlignment.Left)] public Material ceilingMatTop;
 
@@ -263,12 +263,176 @@ public class EditorHelper : OdinEditorWindow
         }
     }
 
+    [TabGroup("Tabs", "Room Builder")]
+    [Button("Spawn Donut")]
+    private void SpawnDonut()
+    {
+        GameObject room = new GameObject("Room Parrent");
+
+
+        GameObject floorParrent = new GameObject("Floor Parrent");
+        floorParrent.transform.SetParent(room.transform);
+        for (int x = 0; x < gridSize.x; x++)
+        {
+            for (int y = 0; y < gridSize.y; y++)
+            {
+                GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(floorPrefab, floorParrent.transform) as GameObject;
+                instantiadtedGrid.transform.position = new Vector3(x * 2.5f, 0, y * 2.5f);
+                if (floorMatBottom != null || floorMatTop != null)
+                    SetFloorMaterial(instantiadtedGrid.GetComponent<FloorController>(), floorMatBottom, floorMatTop);
+            }
+        }
+
+        GameObject ceilingParrent = new GameObject("Ceiling Parrent");
+        ceilingParrent.transform.SetParent(room.transform);
+        for (int x = 0; x < gridSize.x; x++)
+        {
+
+            for (int y = 0; y < gridSize.y; y++)
+            {
+                GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(ceilingPrefab, ceilingParrent.transform) as GameObject;
+                instantiadtedGrid.transform.position = new Vector3(x * 2.5f, 3f, y * 2.5f);
+                if (ceilingMatBottom != null || ceilingMatTop != null)
+                    SetCeilingMaterial(instantiadtedGrid.GetComponent<CeilingController>(), ceilingMatBottom, ceilingMatTop);
+            }
+        }
+
+        GameObject wallParrent = new GameObject("Wall Parrent");
+        wallParrent.transform.SetParent(room.transform);
+        for (int i = 0; i < gridSize.y; i++)
+        {
+            GameObject tempWall = null;
+            if (i % 2 == 0 && useWindows)
+            {
+                tempWall = windowPrefab;
+            }
+            else
+            {
+                tempWall = wallPrefab;
+            }
+
+            GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(tempWall, wallParrent.transform) as GameObject;
+            instantiadtedGrid.transform.position = new Vector3(-2.5f, 0, 2.5f + i * 2.5f);
+            instantiadtedGrid.transform.eulerAngles = new Vector3(0, -90, 0);
+            if (insideMaterial != null || outSideMaterial != null)
+                SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, outSideMaterial);
+        }
+
+        for (int i = 1; i < gridSize.y - 1; i++)
+        {
+            GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
+            instantiadtedGrid.transform.position = new Vector3(0f, 0, 2.5f + i * 2.5f);
+            instantiadtedGrid.transform.eulerAngles = new Vector3(0, -90, 0);
+            if (insideMaterial != null || outSideMaterial != null)
+                SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, insideMaterial);
+        }
+
+        for (int i = 1; i < gridSize.y - 1; i++)
+        {
+            GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
+            instantiadtedGrid.transform.position = new Vector3((gridSize.x * 2.5f) - 5f, 0, i * 2.5f);
+            instantiadtedGrid.transform.eulerAngles = new Vector3(0, 90, 0);
+            if (insideMaterial != null || outSideMaterial != null)
+                SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, insideMaterial);
+        }
+
+
+        for (int i = 0; i < gridSize.y; i++)
+        {
+            GameObject tempWall = null;
+            if (i % 2 == 0 && useWindows)
+            {
+                tempWall = windowPrefab;
+            }
+            else
+            {
+                tempWall = wallPrefab;
+            }
+
+            GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(tempWall, wallParrent.transform) as GameObject;
+            instantiadtedGrid.transform.position = new Vector3((gridSize.x * 2.5f) - 2.5f, 0, i * 2.5f);
+            instantiadtedGrid.transform.eulerAngles = new Vector3(0, 90, 0);
+            if (insideMaterial != null || outSideMaterial != null)
+                SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, outSideMaterial);
+        }
+
+        if (!isCorridor)
+        {
+            for (int i = 0; i < gridSize.x; i++)
+            {
+                GameObject tempWall = null;
+                if (i % 2 == 0 && useWindows)
+                {
+                    tempWall = windowPrefab;
+                }
+                else
+                {
+                    tempWall = wallPrefab;
+                }
+                GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(tempWall, wallParrent.transform) as GameObject;
+                instantiadtedGrid.transform.position = new Vector3((-2.5f + i * 2.5f), 0, 0);
+                instantiadtedGrid.transform.eulerAngles = new Vector3(0, 180, 0);
+                if (insideMaterial != null || outSideMaterial != null)
+                    SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, outSideMaterial);
+            }
+
+            for (int i = 0; i < gridSize.x; i++)
+            {
+                GameObject tempWall = null;
+                if (i % 2 == 0 && useWindows)
+                {
+                    tempWall = windowPrefab;
+                }
+                else
+                {
+                    tempWall = wallPrefab;
+                }
+                GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(tempWall, wallParrent.transform) as GameObject;
+                instantiadtedGrid.transform.position = new Vector3((i * 2.5f), 0, gridSize.y * 2.5f);
+                instantiadtedGrid.transform.eulerAngles = new Vector3(0, 0, 0);
+                if (outSideMaterial != null || insideMaterial != null)
+                    SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, outSideMaterial);
+            }
+
+            for (int i = 1; i < gridSize.x - 1; i++)
+            {
+                GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
+                instantiadtedGrid.transform.position = new Vector3((i * 2.5f), 0, (gridSize.y * 2.5f) - 2.5f);
+                instantiadtedGrid.transform.eulerAngles = new Vector3(0, 0, 0);
+                if (outSideMaterial != null || insideMaterial != null)
+                    SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, insideMaterial);
+            }
+
+            for (int i = 1; i < gridSize.x - 1; i++)
+            {
+                GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
+                instantiadtedGrid.transform.position = new Vector3((-2.5f + i * 2.5f), 0, 2.5f);
+                instantiadtedGrid.transform.eulerAngles = new Vector3(0, 180, 0);
+                if (insideMaterial != null || outSideMaterial != null)
+                    SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, insideMaterial);
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void SetCeilingMaterial(CeilingController ceilingController, Material ceilingMatBottom, Material ceilingMatTop)
     {
         ceilingController.ceilingMatBottom = ceilingMatBottom;
-        if(isDoubleMaterialCelling)
-        ceilingController.ceilingMatTop = ceilingMatTop;
+        if (isDoubleMaterialCelling)
+            ceilingController.ceilingMatTop = ceilingMatTop;
         ceilingController.ChangeFloorMaterial();
     }
 
@@ -284,8 +448,8 @@ public class EditorHelper : OdinEditorWindow
     private void SetWallMaterials(WallController wallController, Material insideMaterial, Material outSideMaterial)
     {
         wallController.WallMat0 = insideMaterial;
-        if(isDoubleMaterialWall)
-        wallController.WallMat1 = outSideMaterial;
+        if (isDoubleMaterialWall)
+            wallController.WallMat1 = outSideMaterial;
         wallController.ChangeWallMaterial();
     }
 
