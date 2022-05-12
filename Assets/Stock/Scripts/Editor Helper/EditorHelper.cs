@@ -20,7 +20,7 @@ public class EditorHelper : OdinEditorWindow
 
 
 
-    [TabGroup("Tabs","Room Builder")] public Vector2Int gridSize = new Vector2Int(5,5);
+    [TabGroup("Tabs", "Room Builder")] public Vector2Int gridSize = new Vector2Int(5, 5);
     [TabGroup("Tabs", "Room Builder")] public bool isCorridor;
     [TabGroup("Tabs", "Room Builder")] public bool useWindows;
     [TabGroup("Tabs", "Room Builder")] public GameObject wallPrefab;
@@ -28,15 +28,20 @@ public class EditorHelper : OdinEditorWindow
     [TabGroup("Tabs", "Room Builder")] public GameObject floorPrefab;
     [TabGroup("Tabs", "Room Builder")] public GameObject ceilingPrefab;
 
-    [TabGroup("Tabs", "Room Builder")] [Title("Celling")] [PreviewField(70, ObjectFieldAlignment.Left)] public Material ceilingMatTop;
-    [TabGroup("Tabs", "Room Builder")] [PreviewField(70, ObjectFieldAlignment.Left)] public Material ceilingMatBottom;
+ 
+   
+    [TabGroup("Tabs", "Room Builder")]  [PreviewField(70, ObjectFieldAlignment.Left)] public Material ceilingMatBottom;
+    [TabGroup("Tabs", "Room Builder")] public bool isDoubleMaterialCelling = false;
+    [TabGroup("Tabs", "Room Builder")] [ShowIf("isDoubleMaterialCelling")] [Title("Celling")] [PreviewField(70, ObjectFieldAlignment.Left)] public Material ceilingMatTop;
 
     [TabGroup("Tabs", "Room Builder")] [Title("Wall")] [PreviewField(70, ObjectFieldAlignment.Left)] public Material insideMaterial;
-    [TabGroup("Tabs", "Room Builder")] [PreviewField(70, ObjectFieldAlignment.Left)] public Material outSideMaterial;
+    [TabGroup("Tabs", "Room Builder")] public bool isDoubleMaterialWall = false;
+    [TabGroup("Tabs", "Room Builder")] [ShowIf("isDoubleMaterialWall")] [PreviewField(70, ObjectFieldAlignment.Left)] public Material outSideMaterial;
 
 
     [TabGroup("Tabs", "Room Builder")] [Title("Floor")] [PreviewField(70, ObjectFieldAlignment.Left)] public Material floorMatTop;
-    [TabGroup("Tabs", "Room Builder")] [PreviewField(70, ObjectFieldAlignment.Left)] public Material floorMatBottom;
+    [TabGroup("Tabs", "Room Builder")] public bool isDoubleMaterialFloor = false;
+    [TabGroup("Tabs", "Room Builder")] [ShowIf("isDoubleMaterialFloor")] [PreviewField(70, ObjectFieldAlignment.Left)] public Material floorMatBottom;
 
     [MenuItem("EditorTools/OpenTools")]
     private static void OpenWindow()
@@ -44,8 +49,8 @@ public class EditorHelper : OdinEditorWindow
         GetWindow<EditorHelper>().Show();
     }
 
-    
-    
+
+
     [Button]
     [TabGroup("Tabs", "Transform")]
     [BoxGroup("Tabs/Transform/Rotation")]
@@ -59,7 +64,7 @@ public class EditorHelper : OdinEditorWindow
     public float rotationDegrees = 90;
 
     [Button]
-   [HorizontalGroup("Tabs/Transform/Rotation/b")]
+    [HorizontalGroup("Tabs/Transform/Rotation/b")]
 
     private void TurnLeft()
     {
@@ -87,7 +92,7 @@ public class EditorHelper : OdinEditorWindow
 
     [HorizontalGroup("Tabs/Transform/Snap/d")]
     public LayerMask floorLayermask;
-    
+
     [Button]
     [HorizontalGroup("Tabs/Transform/Snap/g")]
     private void SnapToGround()
@@ -262,6 +267,7 @@ public class EditorHelper : OdinEditorWindow
     private void SetCeilingMaterial(CeilingController ceilingController, Material ceilingMatBottom, Material ceilingMatTop)
     {
         ceilingController.ceilingMatBottom = ceilingMatBottom;
+        if(isDoubleMaterialCelling)
         ceilingController.ceilingMatTop = ceilingMatTop;
         ceilingController.ChangeFloorMaterial();
     }
@@ -269,7 +275,8 @@ public class EditorHelper : OdinEditorWindow
 
     private void SetFloorMaterial(FloorController floorController, Material floorMatBottom, Material floorMatTop)
     {
-        floorController.FloorMatBottom = floorMatBottom;
+        if (isDoubleMaterialCelling)
+            floorController.FloorMatBottom = floorMatBottom;
         floorController.FloorMatTop = floorMatTop;
         floorController.ChangeFloorMaterial();
     }
@@ -277,6 +284,7 @@ public class EditorHelper : OdinEditorWindow
     private void SetWallMaterials(WallController wallController, Material insideMaterial, Material outSideMaterial)
     {
         wallController.WallMat0 = insideMaterial;
+        if(isDoubleMaterialWall)
         wallController.WallMat1 = outSideMaterial;
         wallController.ChangeWallMaterial();
     }
@@ -389,6 +397,6 @@ public class EditorHelper : OdinEditorWindow
         }
     }
 
-  
+
 }
 #endif
