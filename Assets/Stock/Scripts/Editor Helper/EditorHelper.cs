@@ -255,10 +255,10 @@ public class EditorHelper : OdinEditorWindow
                     tempWall = wallPrefab;
                 }
                 GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(tempWall, wallParrent.transform) as GameObject;
-                instantiadtedGrid.transform.position = new Vector3(-2.5f + (i * 2.5f), 0, gridSize.y * 2.5f);
-                instantiadtedGrid.transform.eulerAngles = new Vector3(0, 180, 0);
+                instantiadtedGrid.transform.position = new Vector3((i * 2.5f), 0, gridSize.y * 2.5f);
+                instantiadtedGrid.transform.eulerAngles = new Vector3(0, 0, 0);
                 if (outSideMaterial != null || insideMaterial != null)
-                    SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), outSideMaterial, insideMaterial);
+                    SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, outSideMaterial);
             }
         }
     }
