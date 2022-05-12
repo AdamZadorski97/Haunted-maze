@@ -16,10 +16,26 @@ public class EditorHelper : OdinEditorWindow
     private bool showCeiling;
     private bool showWalls;
     private bool showFloor;
-
     private bool showiInteractivePoints;
 
 
+
+    [TabGroup("Tabs","Room Builder")] public Vector2 gridSize = new Vector2(5,5);
+    [TabGroup("Tabs", "Room Builder")] public bool isCorridor;
+    [TabGroup("Tabs", "Room Builder")] public bool useWindows;
+    [TabGroup("Tabs", "Room Builder")] public GameObject wallPrefab;
+    [TabGroup("Tabs", "Room Builder")] public GameObject windowPrefab;
+    [TabGroup("Tabs", "Room Builder")] public GameObject floorPrefab;
+    [TabGroup("Tabs", "Room Builder")] public GameObject ceilingPrefab;
+    [TabGroup("Tabs", "Room Builder")] [Title("Celling")] [PreviewField(70, ObjectFieldAlignment.Left)] public Material ceilingMatTop;
+    [TabGroup("Tabs", "Room Builder")] [PreviewField(70, ObjectFieldAlignment.Left)] public Material ceilingMatBottom;
+
+    [TabGroup("Tabs", "Room Builder")] [Title("Wall")] [PreviewField(70, ObjectFieldAlignment.Left)] public Material insideMaterial;
+    [TabGroup("Tabs", "Room Builder")] [PreviewField(70, ObjectFieldAlignment.Left)] public Material outSideMaterial;
+
+
+    [TabGroup("Tabs", "Room Builder")] [Title("Floor")] [PreviewField(70, ObjectFieldAlignment.Left)] public Material floorMatTop;
+    [TabGroup("Tabs", "Room Builder")] [PreviewField(70, ObjectFieldAlignment.Left)] public Material floorMatBottom;
 
     [MenuItem("EditorTools/OpenTools")]
     private static void OpenWindow()
@@ -27,81 +43,85 @@ public class EditorHelper : OdinEditorWindow
         GetWindow<EditorHelper>().Show();
     }
 
-    [PropertySpace]
-    [Title("Rotation")]
-    [HorizontalGroup("ForwardRotation", 80f, marginLeft: 40)]
-    [Button("Front", ButtonStyle.Box)]
+    
+    
+    [Button]
+    [TabGroup("Tabs", "Transform")]
+    [BoxGroup("Tabs/Transform/Rotation")]
+
+    [HorizontalGroup("Tabs/Transform/Rotation/x")]
     private void TurnFront()
     {
-        Selection.activeTransform.transform.eulerAngles += new Vector3(-90, 0, 0);
+        Selection.activeTransform.transform.eulerAngles += new Vector3(-rotationDegrees, 0, 0);
     }
-    [PropertySpace]
-    [HorizontalGroup("SideRotation", 80f)]
-    [Button("Left", ButtonStyle.Box)]
+    [BoxGroup("Tabs/Transform/Rotation")]
+    public float rotationDegrees = 90;
+
+    [Button]
+   [HorizontalGroup("Tabs/Transform/Rotation/b")]
+
     private void TurnLeft()
     {
-        Selection.activeTransform.transform.eulerAngles += new Vector3(0, -90, 0);
+        Selection.activeTransform.transform.eulerAngles += new Vector3(0, -rotationDegrees, 0);
     }
-    [PropertySpace]
-    [HorizontalGroup("SideRotation", 80f)]
-    [Button("Right", ButtonStyle.Box)]
+
+
+    [Button]
+    [HorizontalGroup("Tabs/Transform/Rotation/b")]
     private void TurnRight()
     {
-        Selection.activeTransform.transform.eulerAngles += new Vector3(0, 90, 0);
+        Selection.activeTransform.transform.eulerAngles += new Vector3(0, rotationDegrees, 0);
     }
-    [PropertySpace]
-    [HorizontalGroup("BackRotation", 80f, marginLeft: 40)]
-    [Button("Back", ButtonStyle.Box)]
+
+
+    [Button]
+    [HorizontalGroup("Tabs/Transform/Rotation/c")]
+
     private void TurnBack()
     {
-        Selection.activeTransform.transform.eulerAngles += new Vector3(90, 0, 0);
+        Selection.activeTransform.transform.eulerAngles += new Vector3(rotationDegrees, 0, 0);
     }
 
-    [Title("Maze spawner")]
-    [VerticalGroup("Maze spawner")]
-    [Button("Spawn floor")]
-    private void SpawnFloorGrid(Vector2 gridSize, GameObject floorPrefab)
+    [BoxGroup("Tabs/Transform/Snap")]
+
+    [HorizontalGroup("Tabs/Transform/Snap/d")]
+    public LayerMask floorLayermask;
+    
+    [Button]
+    [HorizontalGroup("Tabs/Transform/Snap/g")]
+    private void SnapToGround()
     {
-        GameObject floorParrent = new GameObject("Floor Parrent");
-
-        for (int x = 0; x < gridSize.x; x++)
+        RaycastHit groundHit;
+        Transform objectToSnap = Selection.activeTransform.transform;
+        if (Physics.Raycast(objectToSnap.position, Vector3.down, out groundHit, Mathf.Infinity, floorLayermask))
         {
-            for (int y = 0; y < gridSize.y; y++)
-            {
-
-                GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(floorPrefab, floorParrent.transform) as GameObject;
-                instantiadtedGrid.transform.position = new Vector3(x * 2.5f, 0, y * 2.5f);
-            }
+            objectToSnap.position = groundHit.point;
+        }
+        else
+        {
+            Debug.Log("No floor detected");
         }
     }
-    [VerticalGroup("Maze spawner")]
-    [Button("Spawn Wall")]
-    private void SpawnWall(float wallLenght, GameObject wallPrefab)
+    [Button]
+    [HorizontalGroup("Tabs/Transform/Snap/h")]
+    private void SnapToCeiling()
     {
-        GameObject wallParrent = new GameObject("Wall Parrent");
-
-        for (int i = 0; i < wallLenght; i++)
+        RaycastHit groundHit;
+        Transform objectToSnap = Selection.activeTransform.transform;
+        if (Physics.Raycast(objectToSnap.position, Vector3.up, out groundHit, Mathf.Infinity, floorLayermask))
         {
-            GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(wallPrefab, wallParrent.transform) as GameObject;
-            instantiadtedGrid.transform.position = new Vector3(i * 2.5f, 0, 0);
+            objectToSnap.position = groundHit.point;
+        }
+        else
+        {
+            Debug.Log("No Ceiling detected");
         }
     }
-    [VerticalGroup("Maze spawner")]
+
+
+    [TabGroup("Tabs", "Room Builder")]
     [Button("Spawn Room")]
-    private void SpawnRoom(
-        Vector2 gridSize,
-        bool isCorridor,
-        bool useWindows,
-        GameObject wallPrefab,
-         GameObject windowPrefab,
-        GameObject floorPrefab,
-        GameObject ceilingPrefab,
-      [Title("Celling")][HorizontalGroup("Maze spawner")][PreviewField(70, ObjectFieldAlignment.Left)] Material ceilingMatTop,
-       [PreviewField(70, ObjectFieldAlignment.Left)] Material ceilingMatBottom,
-      [Title("Wall")][HorizontalGroup("Maze spawner")][PreviewField(70, ObjectFieldAlignment.Left)] Material insideMaterial,
-       [PreviewField(70, ObjectFieldAlignment.Left)] Material outSideMaterial,
-      [Title("Floor")][HorizontalGroup("Maze spawner")][PreviewField(70, ObjectFieldAlignment.Left)] Material floorMatTop,
-       [PreviewField(70, ObjectFieldAlignment.Left)] Material floorMatBottom)
+    private void SpawnRoom()
     {
         GameObject room = new GameObject("Room Parrent");
 
@@ -114,7 +134,8 @@ public class EditorHelper : OdinEditorWindow
             {
                 GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(floorPrefab, floorParrent.transform) as GameObject;
                 instantiadtedGrid.transform.position = new Vector3(x * 2.5f, 0, y * 2.5f);
-                SetFloorMaterial(instantiadtedGrid.GetComponent<FloorController>(), floorMatBottom, floorMatTop);
+                if (floorMatBottom != null || floorMatTop != null)
+                    SetFloorMaterial(instantiadtedGrid.GetComponent<FloorController>(), floorMatBottom, floorMatTop);
             }
         }
 
@@ -127,7 +148,8 @@ public class EditorHelper : OdinEditorWindow
             {
                 GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(ceilingPrefab, ceilingParrent.transform) as GameObject;
                 instantiadtedGrid.transform.position = new Vector3(x * 2.5f, 3f, y * 2.5f);
-                SetCeilingMaterial(instantiadtedGrid.GetComponent<CeilingController>(), ceilingMatBottom, ceilingMatTop);
+                if (ceilingMatBottom != null || ceilingMatTop != null)
+                    SetCeilingMaterial(instantiadtedGrid.GetComponent<CeilingController>(), ceilingMatBottom, ceilingMatTop);
             }
         }
 
@@ -148,13 +170,14 @@ public class EditorHelper : OdinEditorWindow
             GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(tempWall, wallParrent.transform) as GameObject;
             instantiadtedGrid.transform.position = new Vector3(-2.5f, 0, 2.5f + i * 2.5f);
             instantiadtedGrid.transform.eulerAngles = new Vector3(0, -90, 0);
-            SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, outSideMaterial);
+            if (insideMaterial != null || outSideMaterial != null)
+                SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, outSideMaterial);
         }
 
         for (int i = 0; i < gridSize.y; i++)
         {
             GameObject tempWall = null;
-            if (i % 2 == 0 &&  useWindows)
+            if (i % 2 == 0 && useWindows)
             {
                 tempWall = windowPrefab;
             }
@@ -166,7 +189,8 @@ public class EditorHelper : OdinEditorWindow
             GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(tempWall, wallParrent.transform) as GameObject;
             instantiadtedGrid.transform.position = new Vector3((gridSize.x * 2.5f) - 2.5f, 0, i * 2.5f);
             instantiadtedGrid.transform.eulerAngles = new Vector3(0, 90, 0);
-            SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, outSideMaterial);
+            if (insideMaterial != null || outSideMaterial != null)
+                SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, outSideMaterial);
         }
 
         if (!isCorridor)
@@ -185,7 +209,8 @@ public class EditorHelper : OdinEditorWindow
                 GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(tempWall, wallParrent.transform) as GameObject;
                 instantiadtedGrid.transform.position = new Vector3((-2.5f + i * 2.5f), 0, 0);
                 instantiadtedGrid.transform.eulerAngles = new Vector3(0, 180, 0);
-                SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, outSideMaterial);
+                if (insideMaterial != null || outSideMaterial != null)
+                    SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), insideMaterial, outSideMaterial);
             }
 
             for (int i = 0; i < gridSize.x; i++)
@@ -202,7 +227,8 @@ public class EditorHelper : OdinEditorWindow
                 GameObject instantiadtedGrid = PrefabUtility.InstantiatePrefab(tempWall, wallParrent.transform) as GameObject;
                 instantiadtedGrid.transform.position = new Vector3(-2.5f + (i * 2.5f), 0, gridSize.y * 2.5f);
                 instantiadtedGrid.transform.eulerAngles = new Vector3(0, 180, 0);
-                SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), outSideMaterial, insideMaterial);
+                if (outSideMaterial != null || insideMaterial != null)
+                    SetWallMaterials(instantiadtedGrid.GetComponent<WallController>(), outSideMaterial, insideMaterial);
             }
         }
     }
@@ -230,7 +256,7 @@ public class EditorHelper : OdinEditorWindow
         wallController.ChangeWallMaterial();
     }
 
-    [TitleGroup("Ceiling")]
+    [TabGroup("Tabs", "Visibility")]
     [Button("Switch Ceiling Mesh Renderer")]
     private void SwitchCeilingMeshRenderer()
     {
@@ -243,7 +269,7 @@ public class EditorHelper : OdinEditorWindow
         }
     }
 
-    [TitleGroup("Walls")]
+    [TabGroup("Tabs", "Visibility")]
     [Button("Show Wall Mesh Renderer")]
     private void SwitchWallMeshRenderer()
     {
@@ -256,7 +282,7 @@ public class EditorHelper : OdinEditorWindow
                 item.SwitchMeshRenderer(showWalls);
         }
     }
-    [TitleGroup("Walls")]
+    [TabGroup("Tabs", "Visibility")]
     [Button("Show Wall Colliders")]
     private void ShowMazeColliders()
     {
@@ -268,8 +294,7 @@ public class EditorHelper : OdinEditorWindow
             item.showPath = showPath;
         }
     }
-
-    [TitleGroup("Floor")]
+    [TabGroup("Tabs", "Visibility")]
     [Button("Show Floor Mesh Renderer")]
     private void ShowFloorMeshRenderer()
     {
@@ -282,7 +307,7 @@ public class EditorHelper : OdinEditorWindow
         }
     }
 
-    [TitleGroup("Floor")]
+    [TabGroup("Tabs", "Room Builder")]
     [Button("Bake Navmesh")]
     private void BakeNavmesh()
     {
@@ -295,8 +320,7 @@ public class EditorHelper : OdinEditorWindow
         }
         Selection.objects = components;
     }
-
-    [TitleGroup("Interactive Items")]
+    [TabGroup("Tabs", "Visibility")]
     [Button("Show Points")]
     private void ShowInteractiveItems()
     {
@@ -308,8 +332,7 @@ public class EditorHelper : OdinEditorWindow
             item.SwitchPoint(showiInteractivePoints);
         }
     }
-
-    [TitleGroup("Player")]
+    [TabGroup("Tabs", "Player")]
     [Button("Setup Player")]
     private void SetupPlayer()
     {
@@ -320,7 +343,7 @@ public class EditorHelper : OdinEditorWindow
         }
     }
 
-    [TitleGroup("Player")]
+    [TabGroup("Tabs", "Player")]
     [Button("Find Player")]
 
     private void FindPlayer()
@@ -341,5 +364,6 @@ public class EditorHelper : OdinEditorWindow
         }
     }
 
+  
 }
 #endif
