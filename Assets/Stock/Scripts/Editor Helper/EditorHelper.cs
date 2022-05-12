@@ -20,13 +20,14 @@ public class EditorHelper : OdinEditorWindow
 
 
 
-    [TabGroup("Tabs","Room Builder")] public Vector2 gridSize = new Vector2(5,5);
+    [TabGroup("Tabs","Room Builder")] public Vector2Int gridSize = new Vector2Int(5,5);
     [TabGroup("Tabs", "Room Builder")] public bool isCorridor;
     [TabGroup("Tabs", "Room Builder")] public bool useWindows;
     [TabGroup("Tabs", "Room Builder")] public GameObject wallPrefab;
     [TabGroup("Tabs", "Room Builder")] public GameObject windowPrefab;
     [TabGroup("Tabs", "Room Builder")] public GameObject floorPrefab;
     [TabGroup("Tabs", "Room Builder")] public GameObject ceilingPrefab;
+
     [TabGroup("Tabs", "Room Builder")] [Title("Celling")] [PreviewField(70, ObjectFieldAlignment.Left)] public Material ceilingMatTop;
     [TabGroup("Tabs", "Room Builder")] [PreviewField(70, ObjectFieldAlignment.Left)] public Material ceilingMatBottom;
 
@@ -117,6 +118,30 @@ public class EditorHelper : OdinEditorWindow
             Debug.Log("No Ceiling detected");
         }
     }
+
+    [TabGroup("Tabs", "Room Builder")]
+    [Button("SetupWithDefaults")]
+    private void SetupWithDefault()
+    {
+        wallPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Stock/Prefabs/Building/Wall.prefab", typeof(GameObject));
+        floorPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Stock/Prefabs/Building/Floor.prefab", typeof(GameObject));
+        ceilingPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Stock/Prefabs/Building/Ceiling.prefab", typeof(GameObject));
+        windowPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Stock/Prefabs/Building/Window.prefab", typeof(GameObject));
+
+        floorMatTop = (Material)AssetDatabase.LoadAssetAtPath("Assets/ThirdParty Assets/PolygonHorrorMansion/Materials/Building/Wood_02.mat", typeof(Material));
+        floorMatBottom = (Material)AssetDatabase.LoadAssetAtPath("Assets/ThirdParty Assets/PolygonHorrorMansion/Materials/Building/Wood_Fancy_01.mat", typeof(Material));
+
+        insideMaterial = (Material)AssetDatabase.LoadAssetAtPath("Assets/ThirdParty Assets/PolygonHorrorMansion/Materials/Building/Horror_Wall_03.mat", typeof(Material));
+        outSideMaterial = (Material)AssetDatabase.LoadAssetAtPath("Assets/ThirdParty Assets/PolygonHorrorMansion/Materials/Building/Weatherboard_01.mat", typeof(Material));
+
+        ceilingMatTop = (Material)AssetDatabase.LoadAssetAtPath("Assets/ThirdParty Assets/PolygonHorrorMansion/Materials/Building/Wood_01.mat", typeof(Material));
+        ceilingMatBottom = (Material)AssetDatabase.LoadAssetAtPath("Assets/ThirdParty Assets/PolygonHorrorMansion/Materials/Building/Wood_Fancy_01.mat", typeof(Material));
+
+
+    }
+
+
+
 
 
     [TabGroup("Tabs", "Room Builder")]
