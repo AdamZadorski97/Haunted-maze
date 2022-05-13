@@ -26,6 +26,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     public LayerMask floorLayermask;
     public SwipeController swipeController;
     string inst = null;
+    public LayerMask wallLayermask;
     public void Update()
     {
         SwipeControll();
@@ -165,10 +166,10 @@ public class PlayerController : MonoSingleton<PlayerController>
                 if (forwardHit.distance < minDistanceToTurn)
                 {
                     RaycastHit RightRaycast;
-                    if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out RightRaycast, Mathf.Infinity)) { }
+                    if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out RightRaycast, Mathf.Infinity, wallLayermask)) { }
 
                     RaycastHit LeftRaycast;
-                    if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out LeftRaycast, Mathf.Infinity)) { }
+                    if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out LeftRaycast, Mathf.Infinity, wallLayermask)) { }
 
                     if (LeftRaycast.distance < minDistanceToTurn && RightRaycast.distance < minDistanceToTurn)
                     {
@@ -202,7 +203,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         {
             RaycastHit hit1;
 
-            if (Physics.Raycast(transform.position + transform.forward * (raycastOffset), transform.TransformDirection(Vector3.left), out hit1, Mathf.Infinity))
+            if (Physics.Raycast(transform.position + transform.forward * (raycastOffset), transform.TransformDirection(Vector3.left), out hit1, Mathf.Infinity, wallLayermask))
             {
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * hit1.distance, Color.yellow);
                 if (moveLeft)
@@ -224,7 +225,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
             RaycastHit hit2;
 
-            if (Physics.Raycast(transform.position + transform.forward * (raycastOffset), transform.TransformDirection(Vector3.right), out hit2, Mathf.Infinity))
+            if (Physics.Raycast(transform.position + transform.forward * (raycastOffset), transform.TransformDirection(Vector3.right), out hit2, Mathf.Infinity, wallLayermask))
             {
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hit2.distance, Color.yellow);
                 if (moveRight)
@@ -244,7 +245,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
             RaycastHit hitBack;
             if (moveBack)
-                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out hitBack, Mathf.Infinity))
+                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out hitBack, Mathf.Infinity, wallLayermask))
                 {
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.back) * hitBack.distance, Color.yellow);
 
@@ -385,7 +386,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         Debug.DrawRay(startPosition.position, direction * rayLenght, raycastColor);
 
         RaycastHit hit;
-        if (Physics.Raycast(startPosition.position, direction, out hit, Mathf.Infinity))
+        if (Physics.Raycast(startPosition.position, direction, out hit, Mathf.Infinity, wallLayermask))
         {
             return hit.distance;
         }
