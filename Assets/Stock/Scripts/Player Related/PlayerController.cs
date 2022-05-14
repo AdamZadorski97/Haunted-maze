@@ -154,117 +154,18 @@ public class PlayerController : MonoSingleton<PlayerController>
 
 
 
-    public void Move()
+    public bool wallRaycast()
     {
-        if (CanTurn())
+        if (GetHitPointDistance(frontMiddleRaycastStarPoint, frontMiddleRaycastStarPoint.TransformDirection(Vector3.forward), 75, Color.blue) < minDistanceToTurn)
         {
-            RaycastHit forwardHit;
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out forwardHit, Mathf.Infinity))
-            {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * forwardHit.distance, Color.red);
-
-                if (forwardHit.distance < minDistanceToTurn)
-                {
-                    RaycastHit RightRaycast;
-                    if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out RightRaycast, Mathf.Infinity, wallLayermask)) { }
-
-                    RaycastHit LeftRaycast;
-                    if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out LeftRaycast, Mathf.Infinity, wallLayermask)) { }
-
-                    if (LeftRaycast.distance < minDistanceToTurn && RightRaycast.distance < minDistanceToTurn)
-                    {
-                        canTurnTimer = 0.2f;
-                        transform.Rotate(new Vector3(0, 180, 0), Space.World);
-                        audioSource.PlayOneShot(turnAround);
-                        return;
-                    }
-
-                    if (LeftRaycast.distance > 2f)
-                    {
-                        canTurnTimer = 0.2f;
-                        audioSource.PlayOneShot(turnAround);
-                        transform.Rotate(new Vector3(0, -90, 0), Space.World);
-                        return;
-                    }
-
-                    if (RightRaycast.distance > 2f)
-                    {
-                        canTurnTimer = 0.2f;
-                        audioSource.PlayOneShot(turnAround);
-                        transform.Rotate(new Vector3(0, 90, 0), Space.World);
-                        return;
-                    }
-
-                    return;
-                }
-            }
+                return true;
         }
-        if (CanTurn())
-        {
-            RaycastHit hit1;
-
-            if (Physics.Raycast(transform.position + transform.forward * (raycastOffset), transform.TransformDirection(Vector3.left), out hit1, Mathf.Infinity, wallLayermask))
-            {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * hit1.distance, Color.yellow);
-                if (moveLeft)
-                    if (hit1.distance > 2f)
-                    {
-                        canTurnTimer = 0;
-                        var turnSequence = DOTween.Sequence();
-                        turnSequence.AppendInterval(0.035f);
-                        turnSequence.AppendCallback(() =>
-                        {
-                            audioSource.PlayOneShot(turnAround);
-                            transform.Rotate(new Vector3(0, -90, 0), Space.World);
-                            return;
-                        });
-
-                    }
-            }
-
-
-            RaycastHit hit2;
-
-            if (Physics.Raycast(transform.position + transform.forward * (raycastOffset), transform.TransformDirection(Vector3.right), out hit2, Mathf.Infinity, wallLayermask))
-            {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hit2.distance, Color.yellow);
-                if (moveRight)
-                    if (hit2.distance > 2f)
-                    {
-                        canTurnTimer = 0;
-                        var turnSequence = DOTween.Sequence();
-                        turnSequence.AppendInterval(0.02f);
-                        turnSequence.AppendCallback(() =>
-                        {
-                            audioSource.PlayOneShot(turnAround);
-                            transform.Rotate(new Vector3(0, 90, 0), Space.World);
-                            return;
-                        });
-                    }
-            }
-
-            RaycastHit hitBack;
-            if (moveBack)
-                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out hitBack, Mathf.Infinity, wallLayermask))
-                {
-                    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.back) * hitBack.distance, Color.yellow);
-
-                    if (hitBack.distance > 2f)
-                    {
-                        canTurnTimer = 0;
-                        var turnSequence = DOTween.Sequence();
-                        turnSequence.AppendInterval(0.02f);
-                        turnSequence.AppendCallback(() =>
-                        {
-                            audioSource.PlayOneShot(turnAround);
-                            transform.Rotate(new Vector3(0, 180, 0), Space.World);
-                            return;
-                        });
-                    }
-                }
-        }
-
+    
+       
+        return false;
     }
+
+
 
 
     public Transform frontMiddleRaycastStarPoint;
@@ -279,38 +180,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         {
 
 
-            if (GetHitPointDistance(frontMiddleRaycastStarPoint, frontMiddleRaycastStarPoint.TransformDirection(Vector3.forward), 50, Color.blue) < minDistanceToTurn)
-            {
-                Debug.Log("Wall in front");
-
-                if (CheckCanTurnLeft())
-                {
-                    Debug.Log("can turn Left");
-                    canTurnTimer = 0.2f;
-                    transform.Rotate(new Vector3(0, -90, 0), Space.World);
-                    audioSource.PlayOneShot(turnAround);
-                    return;
-                }
-                if (CheckCanTurnRight())
-                {
-                    Debug.Log("can turn Right");
-                    canTurnTimer = 0.2f;
-                    audioSource.PlayOneShot(turnAround);
-                    transform.Rotate(new Vector3(0, 90, 0), Space.World);
-                    return;
-                }
-
-                if (!CheckCanTurnLeft() && !CheckCanTurnRight())
-                {
-                    Debug.Log("can turn Back");
-                    canTurnTimer = 0.2f;
-                    transform.Rotate(new Vector3(0, 180, 0), Space.World);
-                    audioSource.PlayOneShot(turnAround);
-                    return;
-                }
-                Debug.Log("can' turn");
-
-            }
+           
 
             if (moveLeft && CheckCanTurnLeft())
             {
@@ -351,6 +221,7 @@ public class PlayerController : MonoSingleton<PlayerController>
             }
 
         }
+    if(!wallRaycast())
         navMeshAgent.Move(transform.forward * speed * Time.deltaTime);
     }
 
