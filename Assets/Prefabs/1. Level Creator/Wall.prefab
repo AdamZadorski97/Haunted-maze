@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4979240818478456}
+  - component: {fileID: 1909312601727925338}
   - component: {fileID: 33647764566956368}
   - component: {fileID: 23043019516810472}
   - component: {fileID: 65716885057057730}
-  - component: {fileID: 1909312601727925338}
   m_Layer: 9
   m_Name: Wall
   m_TagString: Untagged
@@ -27,8 +27,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1145669422213042}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4861728234577647734}
@@ -36,6 +36,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1909312601727925338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145669422213042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frontMesh: {fileID: 0}
+  frontMeshRenderer: 0
+  frontMaterial: {fileID: 0}
+  backMesh: {fileID: 0}
+  backMeshRenderer: 0
+  backMaterial: {fileID: 0}
+  boxCollider: {fileID: 65716885057057730}
+  showPath: 0
+  mapVisualization: {fileID: 4520532296483504358}
+  isWall: 1
+  frontMeshrenderer: {fileID: 527213438609968672}
+  backMeshrenderer: {fileID: 23043019516810472}
+  frontMeshFilter: {fileID: 6542282481029617091}
+  backMeshFilter: {fileID: 33647764566956368}
 --- !u!33 &33647764566956368
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -98,25 +124,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.9708781, y: 3.0057428, z: 1.4084287}
   m_Center: {x: -1.2499957, y: 1.5028714, z: 1.0054179e-12}
---- !u!114 &1909312601727925338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1145669422213042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WallMat0: {fileID: 0}
-  WallMat1: {fileID: 0}
-  boxCollider: {fileID: 65716885057057730}
-  meshRenderer: {fileID: 23043019516810472}
-  showPath: 0
-  mapVisualization: {fileID: 4520532296483504358}
-  isWall: 1
 --- !u!1 &4520532296483504358
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,7 +137,7 @@ GameObject:
   - component: {fileID: 8280950417672590638}
   - component: {fileID: 4101478311000739145}
   m_Layer: 7
-  m_Name: Cube
+  m_Name: Map Visualization
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,7 +233,7 @@ GameObject:
   - component: {fileID: 5599106385164154863}
   - component: {fileID: 307389334105528222}
   m_Layer: 9
-  m_Name: Wall
+  m_Name: FrontWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -320,10 +327,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WallMat0: {fileID: 0}
-  WallMat1: {fileID: 0}
+  frontMesh: {fileID: 0}
+  frontMeshRenderer: 0
+  frontMaterial: {fileID: 0}
+  backMesh: {fileID: 0}
+  backMeshRenderer: 0
+  backMaterial: {fileID: 0}
   boxCollider: {fileID: 5599106385164154863}
-  meshRenderer: {fileID: 527213438609968672}
   showPath: 0
   mapVisualization: {fileID: 4520532296483504358}
   isWall: 1
+  frontMeshrenderer: {fileID: 0}
+  backMeshrenderer: {fileID: 0}
+  frontMeshFilter: {fileID: 0}
+  backMeshFilter: {fileID: 0}

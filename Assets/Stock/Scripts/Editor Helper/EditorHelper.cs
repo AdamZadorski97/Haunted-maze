@@ -447,10 +447,11 @@ public class EditorHelper : OdinEditorWindow
 
     private void SetWallMaterials(WallController wallController, Material insideMaterial, Material outSideMaterial)
     {
-        wallController.WallMat0 = insideMaterial;
+        wallController.frontMaterial = insideMaterial;
         if (isDoubleMaterialWall)
-            wallController.WallMat1 = outSideMaterial;
-        wallController.ChangeWallMaterial();
+            wallController.backMaterial = outSideMaterial;
+        wallController.ChangeFrontMaterial();
+        wallController.ChangeBackMaterial();
     }
 
     [TabGroup("Tabs", "Visibility")]

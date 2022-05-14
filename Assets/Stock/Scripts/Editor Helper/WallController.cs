@@ -6,25 +6,66 @@ using UnityEngine;
 
 public class WallController : MonoBehaviour
 {
- 
-    [AssetList(Path = "/ThirdParty Assets/PolygonHorrorMansion/Materials/Building")]
-    [PreviewField(150, ObjectFieldAlignment.Center)]
-    [OnValueChanged("ChangeWallMaterial")]
-    public Material WallMat0;
 
+
+    [TabGroup("Front")]
+    [OnValueChanged("SwitchFrontMesh")]
+    public Mesh frontMesh;
+    [TabGroup("Front")]
+    [OnValueChanged("SwitchFrontMeshRenderer")]
+    public bool frontMeshRenderer;
+    [TabGroup("Front")]
     [AssetList(Path = "/ThirdParty Assets/PolygonHorrorMansion/Materials/Building")]
-    [PreviewField(150, ObjectFieldAlignment.Center)]
-    [OnValueChanged("ChangeWallMaterial")]
-    public Material WallMat1;
+    [PreviewField(75, ObjectFieldAlignment.Center)]
+    [OnValueChanged("ChangeFrontMaterial")]
+    public Material frontMaterial;
+
+
+    [TabGroup("Back")]
+    [OnValueChanged("SwitchBackMesh")]
+    public Mesh backMesh;
+    [TabGroup("Back")]
+    [OnValueChanged("SwitchBackMeshRenderer")]
+    public bool backMeshRenderer;
+    [TabGroup("Back")]
+    [AssetList(Path = "/ThirdParty Assets/PolygonHorrorMansion/Materials/Building")]
+    [PreviewField(75, ObjectFieldAlignment.Center)]
+    [OnValueChanged("ChangeBackMaterial")]
+   
+    
+    
+    
+    public Material backMaterial;
 
     public BoxCollider boxCollider;
-    public MeshRenderer meshRenderer;
     public bool showPath;
     public GameObject mapVisualization;
     public bool isWall;
 
+    public MeshRenderer frontMeshrenderer;
+    public MeshRenderer backMeshrenderer;
+
+    public MeshFilter frontMeshFilter;
+    public MeshFilter backMeshFilter;
+
+    private void SwitchFrontMesh()
+    {
+        frontMeshFilter.mesh = frontMesh;
+    }
+    private void SwitchBackMesh()
+    {
+        backMeshFilter.mesh = backMesh;
+    }
 
 
+    private void SwitchFrontMeshRenderer()
+    {
+        frontMeshrenderer.enabled = frontMeshRenderer;
+    }
+    private void SwitchBackMeshRenderer()
+    {
+        backMeshrenderer.enabled = backMeshRenderer;
+    }
 
     public void Start()
     {
@@ -33,16 +74,25 @@ public class WallController : MonoBehaviour
 
     public void SwitchMeshRenderer(bool state)
     {
-        meshRenderer.enabled = state;
+        frontMeshrenderer.enabled = state;
+        backMeshrenderer.enabled = state;
     }
 
-    public void ChangeWallMaterial()
+    public void ChangeFrontMaterial()
     {
-        Material[] material = meshRenderer.materials;
-        material[0] = WallMat0;
-        material[1] = WallMat1;
-        meshRenderer.materials = material;
+        Material[] material = frontMeshrenderer.materials;
+        material[0] = frontMaterial;
+        frontMeshrenderer.materials = material;
     }
+
+    public void ChangeBackMaterial()
+    {
+        Material[] material = backMeshrenderer.materials;
+        material[0] = backMaterial;
+        backMeshrenderer.materials = material;
+    }
+
+
 
     private void OnDrawGizmos()
     {
