@@ -170,8 +170,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 10362}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &10362
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -425,75 +430,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5909574}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &14901675
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1693301377}
-    m_Modifications:
-    - target: {fileID: 3786970003534939994, guid: 8778c24843f54db46b45e239dd64a245, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5385750168631361620, guid: 8778c24843f54db46b45e239dd64a245, type: 3}
-      propertyPath: endPoint
-      value: 
-      objectReference: {fileID: 2131551810}
-    - target: {fileID: 5385750168631361621, guid: 8778c24843f54db46b45e239dd64a245, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5385750168631361621, guid: 8778c24843f54db46b45e239dd64a245, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 75.679
-      objectReference: {fileID: 0}
-    - target: {fileID: 5385750168631361621, guid: 8778c24843f54db46b45e239dd64a245, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 24.517
-      objectReference: {fileID: 0}
-    - target: {fileID: 5385750168631361621, guid: 8778c24843f54db46b45e239dd64a245, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 55.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5385750168631361621, guid: 8778c24843f54db46b45e239dd64a245, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5385750168631361621, guid: 8778c24843f54db46b45e239dd64a245, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5385750168631361621, guid: 8778c24843f54db46b45e239dd64a245, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5385750168631361621, guid: 8778c24843f54db46b45e239dd64a245, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5385750168631361621, guid: 8778c24843f54db46b45e239dd64a245, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5385750168631361621, guid: 8778c24843f54db46b45e239dd64a245, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5385750168631361621, guid: 8778c24843f54db46b45e239dd64a245, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5385750168631361630, guid: 8778c24843f54db46b45e239dd64a245, type: 3}
-      propertyPath: m_Name
-      value: Enemy in hat
-      objectReference: {fileID: 0}
-    - target: {fileID: 5385750168631361630, guid: 8778c24843f54db46b45e239dd64a245, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8778c24843f54db46b45e239dd64a245, type: 3}
 --- !u!1 &18536846
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,8 +1065,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 77581515}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &77581515
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1941,8 +1882,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 110268848}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &110268848
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2457,8 +2403,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 158015434}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &158015434
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2971,8 +2922,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 193683283}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &193683283
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3396,7 +3352,7 @@ Transform:
   - {fileID: 838675295}
   - {fileID: 381690609}
   m_Father: {fileID: 392279773}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &210212758
 GameObject:
@@ -3445,8 +3401,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 210212761}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &210212761
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3806,17 +3767,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 392279773}
     m_Modifications:
+    - target: {fileID: 455519515, guid: 5a50a2db2added746b7e71a694cc8193, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1010135798112794689, guid: 5a50a2db2added746b7e71a694cc8193, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.276
       objectReference: {fileID: 0}
     - target: {fileID: 1010135798112794689, guid: 5a50a2db2added746b7e71a694cc8193, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.731001
+      value: 1.5780001
       objectReference: {fileID: 0}
     - target: {fileID: 1010135798112794689, guid: 5a50a2db2added746b7e71a694cc8193, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.4220024
+      value: 2.2940001
       objectReference: {fileID: 0}
     - target: {fileID: 1010135798112794689, guid: 5a50a2db2added746b7e71a694cc8193, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4404,8 +4369,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 250766243}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &250766243
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4903,7 +4873,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 392279773}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &292645955
 GameObject:
@@ -4952,8 +4922,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 292645958}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &292645958
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5556,8 +5531,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 318519782}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &318519782
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6081,8 +6061,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 344389090}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &344389090
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6644,8 +6629,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 391806951}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &391806951
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6738,7 +6728,6 @@ Transform:
   m_Children:
   - {fileID: 346425093}
   - {fileID: 980161027}
-  - {fileID: 1693301377}
   - {fileID: 589010274}
   - {fileID: 286298202}
   - {fileID: 209015274}
@@ -6904,8 +6893,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 395709003}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &395709003
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7615,8 +7609,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 439172902}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &439172902
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8327,8 +8326,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 502996967}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &502996967
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8832,8 +8836,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 534487947}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &534487947
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8944,8 +8953,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 540678816}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &540678816
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9321,8 +9335,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 547075802}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &547075802
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10065,7 +10084,7 @@ Transform:
   - {fileID: 1345851165}
   - {fileID: 1089745520}
   m_Father: {fileID: 392279773}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &592811447
 GameObject:
@@ -10114,8 +10133,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 592811450}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &592811450
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10226,8 +10250,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 599157890}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &599157890
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10521,8 +10550,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 612417108}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &612417108
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10776,11 +10810,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634422202}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &637631373 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5385750168631361621, guid: 8778c24843f54db46b45e239dd64a245, type: 3}
-  m_PrefabInstance: {fileID: 14901675}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &639309130
 GameObject:
   m_ObjectHideFlags: 0
@@ -10828,8 +10857,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 639309133}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &639309133
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11626,8 +11660,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 673684289}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &673684289
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11738,8 +11777,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 679576636}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &679576636
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11907,8 +11951,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 689215919}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &689215919
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12019,8 +12068,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 690051313}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &690051313
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12336,8 +12390,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 703791320}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &703791320
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12448,8 +12507,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 706390039}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &706390039
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12839,8 +12903,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 730916611}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &730916611
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13046,8 +13115,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 732539802}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &732539802
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13502,8 +13576,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 765022680}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &765022680
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13614,8 +13693,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 768110453}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &768110453
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13902,8 +13986,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 782130988}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &782130988
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14220,8 +14309,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 799430668}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &799430668
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14332,8 +14426,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 801759967}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &801759967
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14717,8 +14816,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 814798412}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &814798412
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14939,8 +15043,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 831431295}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &831431295
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15539,8 +15648,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 877572678}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &877572678
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15914,8 +16028,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 897903186}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &897903186
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16026,8 +16145,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 903651464}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &903651464
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16138,8 +16262,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 908873035}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &908873035
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16471,8 +16600,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 936339385}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &936339385
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16583,8 +16717,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 938977969}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &938977969
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16958,8 +17097,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 971876290}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &971876290
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17181,8 +17325,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 976364357}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &976364357
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17368,6 +17517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeb4f617aeab8a34bb3e2a9a678f9859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelToLoad: 0
 --- !u!1 &991600977
 GameObject:
   m_ObjectHideFlags: 0
@@ -17829,8 +17979,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1039919081}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1039919081
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18043,8 +18198,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1043738625}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1043738625
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18360,8 +18520,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1066963288}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1066963288
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18553,8 +18718,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1077487589}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1077487589
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18952,8 +19122,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1104657289}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1104657289
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19064,8 +19239,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1110534760}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1110534760
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20023,8 +20203,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1163675313}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1163675313
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20135,8 +20320,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1164121996}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1164121996
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20652,8 +20842,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1188981069}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1188981069
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20859,8 +21054,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1193035192}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1193035192
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22488,8 +22688,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1319508441}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1319508441
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22695,8 +22900,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1326448728}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1326448728
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22917,8 +23127,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1334921721}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1334921721
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23965,8 +24180,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1396539766}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1396539766
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24863,8 +25083,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1496656678}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1496656678
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25316,7 +25541,7 @@ Transform:
   - {fileID: 355684821}
   - {fileID: 509619578}
   m_Father: {fileID: 392279773}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1519218972
 MonoBehaviour:
@@ -25505,8 +25730,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1555895751}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1555895751
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25698,8 +25928,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1572879578}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1572879578
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25810,8 +26045,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1576034001}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1576034001
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26175,6 +26415,67 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1601535920}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1615375334
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7155194995318746489, guid: 164fc47e65ad76f488a45730c87af0c6, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155194995318746489, guid: 164fc47e65ad76f488a45730c87af0c6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.542526
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155194995318746489, guid: 164fc47e65ad76f488a45730c87af0c6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155194995318746489, guid: 164fc47e65ad76f488a45730c87af0c6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 25.691917
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155194995318746489, guid: 164fc47e65ad76f488a45730c87af0c6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155194995318746489, guid: 164fc47e65ad76f488a45730c87af0c6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155194995318746489, guid: 164fc47e65ad76f488a45730c87af0c6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155194995318746489, guid: 164fc47e65ad76f488a45730c87af0c6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155194995318746489, guid: 164fc47e65ad76f488a45730c87af0c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155194995318746489, guid: 164fc47e65ad76f488a45730c87af0c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155194995318746489, guid: 164fc47e65ad76f488a45730c87af0c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155194995318746493, guid: 164fc47e65ad76f488a45730c87af0c6, type: 3}
+      propertyPath: lockPlayerMovement
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155194995318746494, guid: 164fc47e65ad76f488a45730c87af0c6, type: 3}
+      propertyPath: m_Name
+      value: Interactive Hint
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 164fc47e65ad76f488a45730c87af0c6, type: 3}
 --- !u!1 &1615885584
 GameObject:
   m_ObjectHideFlags: 0
@@ -26414,8 +26715,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1637814324}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1637814324
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26636,8 +26942,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1645956897}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1645956897
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27322,8 +27633,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1683012153}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1683012153
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27387,37 +27703,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1683012150}
   m_Mesh: {fileID: 4300000, guid: bf66c996903e9c7438f58ae109090762, type: 3}
---- !u!1 &1693301376
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1693301377}
-  m_Layer: 0
-  m_Name: Enemies
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1693301377
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1693301376}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -51.942616, y: -23.37608, z: -10.809298}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 637631373}
-  m_Father: {fileID: 392279773}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1706065761
 GameObject:
   m_ObjectHideFlags: 0
@@ -27465,8 +27750,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1706065764}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1706065764
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27988,8 +28278,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1731523310}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1731523310
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28100,8 +28395,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1737467721}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1737467721
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28307,8 +28607,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1758373239}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1758373239
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28801,8 +29106,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1799974593}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1799974593
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30016,8 +30326,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1924740912}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1924740912
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30333,8 +30648,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1945508707}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1945508707
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30637,8 +30957,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1951205726}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1951205726
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31081,8 +31406,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 1968372141}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &1968372141
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32076,8 +32406,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 2034343430}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &2034343430
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32283,8 +32618,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e798b06c88c71c41acc8d3f409a09e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallMat0: {fileID: 0}
+  WallMat1: {fileID: 0}
   boxCollider: {fileID: 2036185668}
+  meshRenderer: {fileID: 0}
   showPath: 0
+  mapVisualization: {fileID: 0}
+  isWall: 0
 --- !u!65 &2036185668
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33245,8 +33585,3 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2128949229}
   m_Mesh: {fileID: 4300000, guid: 360793794a9f9b94d818b76313a24e98, type: 3}
---- !u!4 &2131551810 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1010135799765994902, guid: 5a50a2db2added746b7e71a694cc8193, type: 3}
-  m_PrefabInstance: {fileID: 234813329}
-  m_PrefabAsset: {fileID: 0}
