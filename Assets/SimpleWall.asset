@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c97bfd0412f0234b89969f7c5216959, type: 3}
+  m_Name: SimpleWall
+  m_EditorClassIdentifier: 
+  objectName: tree
+  mesh: {fileID: 4300000, guid: 0015d5d487e6b4c51b6be43a47511ed9, type: 3}
+  materials:
+  - {fileID: 2541457280464432744, guid: b247458cf6b47944ebc3e141ada4047a, type: 3}
+  boxCollidersSizes:
+  - {x: 20, y: 10, z: 0}
+  boxCollidersOffset:
+  - {x: 0, y: 0, z: 0}
