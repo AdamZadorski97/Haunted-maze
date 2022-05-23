@@ -88,8 +88,7 @@ public class NewWallController : MonoBehaviour
 
 
 
-
-    [HorizontalGroup("Rotate")]
+    [HorizontalGroup("mesh/b/Rotate")]
     [Button(ButtonSizes.Large)]
     public void RotateLeft()
     {
@@ -97,14 +96,32 @@ public class NewWallController : MonoBehaviour
     }
 
 
-    [HorizontalGroup("Rotate")]
+    [HorizontalGroup("mesh/b/Rotate")]
     [Button(ButtonSizes.Large)]
     public void RotateRight()
     {
         transform.eulerAngles += new Vector3(0, 90, 0);
     }
 
-    [HorizontalGroup("Clone")]
+
+    [Button(ButtonSizes.Large)]
+
+    public void CloneUpAndSelect()
+    {
+        Debug.Log(this.transform.rotation);
+        var currentEluers = this.transform.rotation;
+        GameObject clone = PrefabUtility.InstantiatePrefab((GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/1. Level Creator/WallController.prefab", typeof(GameObject)), null) as GameObject;
+        clone.transform.position = transform.position + (transform.up * 3f);
+        clone.transform.rotation = currentEluers;
+        clone.GetComponent<NewWallController>().currentData = currentData;
+        clone.GetComponent<NewWallController>().ChangeProporties();
+        clone.GetComponent<NewWallController>().CreateData();
+        Selection.activeObject = clone;
+    }
+
+
+
+    [VerticalGroup("mesh/a")]
     [Button(ButtonSizes.Large)]
 
     public void CloneLeftAndSelect()
@@ -116,9 +133,14 @@ public class NewWallController : MonoBehaviour
         clone.transform.rotation = currentEluers;
         clone.GetComponent<NewWallController>().currentData = currentData;
         clone.GetComponent<NewWallController>().ChangeProporties();
+        clone.GetComponent<NewWallController>().CreateData();
         Selection.activeObject = clone;
     }
-    [HorizontalGroup("Clone")]
+
+
+
+
+    [VerticalGroup("mesh/c")]
     [Button(ButtonSizes.Large)]
 
     public void CloneRightAndSelect()
@@ -130,7 +152,8 @@ public class NewWallController : MonoBehaviour
         clone.transform.rotation = currentEluers;
         clone.GetComponent<NewWallController>().currentData = currentData;
         clone.GetComponent<NewWallController>().ChangeProporties();
-        Selection.activeObject = clone;
+        clone.GetComponent<NewWallController>().CreateData();
+       Selection.activeObject = clone;
     }
 
 
