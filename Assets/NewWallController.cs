@@ -17,21 +17,24 @@ public class NewWallController : MonoBehaviour
 
 
     [HideLabel]
+    [Title("Previous", TitleAlignment =TitleAlignments.Centered)]
     [HorizontalGroup("mesh")]
     [VerticalGroup("mesh/a")]
-    [PreviewField(150)]
+    [PreviewField(150, ObjectFieldAlignment.Center)]
     public Object previouspreviewField;
 
     [HideLabel]
+    [Title("Current", TitleAlignment = TitleAlignments.Centered)]
     [HorizontalGroup("mesh")]
     [VerticalGroup("mesh/b")]
-    [PreviewField(150)]
+    [PreviewField(150, ObjectFieldAlignment.Center)]
     public Object currentpreviewField;
 
     [HideLabel]
+    [Title("Next", TitleAlignment = TitleAlignments.Centered)]
     [HorizontalGroup("mesh")]
     [VerticalGroup("mesh/c")]
-    [PreviewField(150)]
+    [PreviewField(150, ObjectFieldAlignment.Center)]
     public Object nextpreviewField;
 
 
@@ -41,7 +44,7 @@ public class NewWallController : MonoBehaviour
 
 
 
-    [InfoBox("@returnPrevoiusName()")]
+    [Title("@returnPrevoiusName()")]
     
     [VerticalGroup("mesh/a")]
     [Button(ButtonSizes.Large)]
@@ -64,7 +67,7 @@ public class NewWallController : MonoBehaviour
         }
     }
 
-    [InfoBox("@returnNextName()")]
+    [Title("@returnNextName()")]
     [VerticalGroup("mesh/c")]
     [Button(ButtonSizes.Large)]
     public void NextPattern()
@@ -87,7 +90,7 @@ public class NewWallController : MonoBehaviour
     }
 
 
-
+  
     [HorizontalGroup("mesh/b/Rotate")]
     [Button(ButtonSizes.Large)]
     public void RotateLeft()
