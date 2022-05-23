@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 [CreateAssetMenu(menuName = "Camera Proporties")]
 public class WallData : ScriptableObject
 {
+    [VerticalGroup("row1")]
     public string objectName;
-    public Mesh mesh;
-    public List<Material> materials = new List<Material>();
 
-    public List<Vector3> boxCollidersSizes = new List<Vector3>();
-    public List<Vector3> boxCollidersOffset = new List<Vector3>();
+    [VerticalGroup("row1")]
+    [PreviewField(100)]
+    public Mesh mesh;
+   
+    [PreviewField(100)]
+    public List<Material> materials = new List<Material>();
+    [VerticalGroup("row2")]
+    public List<Vector3> boxCollidersCenter = new List<Vector3>();
+    [VerticalGroup("row2")]
+    public List<Vector3> boxCollidersSize = new List<Vector3>();
     
 
 }

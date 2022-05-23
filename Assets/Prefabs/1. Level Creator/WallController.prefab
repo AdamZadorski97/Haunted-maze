@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5294751862900003843}
   - component: {fileID: 8635339463927851905}
-  - component: {fileID: 1320955553924754006}
   m_Layer: 0
   m_Name: WallController
   m_TagString: Untagged
@@ -44,20 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef43ee83d3bf4c44882300bcb5c99f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallController: {fileID: 7752012550993393131}
   wallData:
+  - {fileID: 11400000, guid: 39ed4573a8734fa4a965002f0f988d16, type: 2}
   - {fileID: 11400000, guid: 2f3ffa6517eeb554182baea31f7b63da, type: 2}
+  - {fileID: 11400000, guid: 47d5861a6d883c94bbe683cd7886096e, type: 2}
+  - {fileID: 11400000, guid: 8a0cc4efe0b2ae24497df4c23be04baa, type: 2}
+  - {fileID: 11400000, guid: 139dd06922f28354c85b5ae987d3f2ec, type: 2}
+  - {fileID: 11400000, guid: ad7f8741e6a60e343b7fa1e16399c68f, type: 2}
+  - {fileID: 11400000, guid: ce19ca886b253cd41a0ba2ae2d045804, type: 2}
+  - {fileID: 11400000, guid: 734940e9d747bf645891c203f76a37e3, type: 2}
+  - {fileID: 11400000, guid: b8df26b6a84706b4d91e2a40f1cb4b8d, type: 2}
   currentData: 1
-  dataParrent: {fileID: 5294751862900003843}
---- !u!65 &1320955553924754006
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7752012550993393131}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
