@@ -16,27 +16,39 @@ public class NewWallController : MonoBehaviour
     public int currentData = 0;
 
 
+    [HideLabel]
     [HorizontalGroup("mesh")]
-    [PreviewField(100)]
+    [VerticalGroup("mesh/a")]
+    [PreviewField(150)]
     public Object previouspreviewField;
+
+    [HideLabel]
     [HorizontalGroup("mesh")]
-    [PreviewField(100)]
+    [VerticalGroup("mesh/b")]
+    [PreviewField(150)]
+    public Object currentpreviewField;
+
+    [HideLabel]
+    [HorizontalGroup("mesh")]
+    [VerticalGroup("mesh/c")]
+    [PreviewField(150)]
     public Object nextpreviewField;
-  
 
 
 
 
 
-  
+
+
 
     [InfoBox("@returnPrevoiusName()")]
-    [HorizontalGroup("Pattern")]
+    
+    [VerticalGroup("mesh/a")]
     [Button(ButtonSizes.Large)]
     public void PreviousPattern()
     {
 
-        if (currentData < 0)
+        if (currentData <= 0)
         {
             currentData = wallData.Count - 1;
             CreateData();
@@ -53,11 +65,11 @@ public class NewWallController : MonoBehaviour
     }
 
     [InfoBox("@returnNextName()")]
-    [HorizontalGroup("Pattern")]
+    [VerticalGroup("mesh/c")]
     [Button(ButtonSizes.Large)]
     public void NextPattern()
     {
-       
+
         if (currentData == wallData.Count - 1)
         {
             currentData = 0;
@@ -74,7 +86,7 @@ public class NewWallController : MonoBehaviour
         }
     }
 
- 
+
 
 
     [HorizontalGroup("Rotate")]
@@ -121,7 +133,7 @@ public class NewWallController : MonoBehaviour
         Selection.activeObject = clone;
     }
 
-  
+
 
 
     public void ChangeProporties()
@@ -198,15 +210,20 @@ public class NewWallController : MonoBehaviour
     public int returnPrevoiusNumber()
     {
         if (currentData - 1 < 0)
-            return currentData;
+        {
+            return wallData.Count - 1;
+        }
         else
+        {
             return currentData - 1;
+        }
+
     }
     public int returnNextNumber()
     {
         if (currentData == wallData.Count - 1)
         {
-            return currentData;
+            return 0;
         }
         else
         {
@@ -216,7 +233,69 @@ public class NewWallController : MonoBehaviour
 
     private void CreateData()
     {
-        previouspreviewField = wallData[returnPrevoiusNumber()].mesh;
-        nextpreviewField = wallData[returnNextNumber()].mesh;
+
+
+        GameObject previousmyGameObject = new GameObject();
+        previousmyGameObject.name = "Obvious Name";
+
+        MeshFilter meshFilter = previousmyGameObject.AddComponent<MeshFilter>();
+        meshFilter.mesh = wallData[returnPrevoiusNumber()].mesh;
+        MeshRenderer meshRenderer = previousmyGameObject.AddComponent<MeshRenderer>();
+
+
+        Material[] material = new Material[wallData[returnPrevoiusNumber()].materials.Count];
+        for (int i = 0; i < wallData[returnPrevoiusNumber()].materials.Count; i++)
+        {
+            material[i] = wallData[returnPrevoiusNumber()].materials[i];
+        }
+        meshRenderer.materials = material;
+
+        previousmyGameObject.hideFlags = HideFlags.HideInHierarchy;
+
+
+
+
+        GameObject nextGameObject = new GameObject();
+        nextGameObject.name = "Obvious Name";
+
+        MeshFilter meshFilter2 = nextGameObject.AddComponent<MeshFilter>();
+        meshFilter2.mesh = wallData[returnNextNumber()].mesh;
+        MeshRenderer meshRenderer2 = nextGameObject.AddComponent<MeshRenderer>();
+
+
+        Material[] material2 = new Material[wallData[returnNextNumber()].materials.Count];
+        for (int i = 0; i < wallData[returnNextNumber()].materials.Count; i++)
+        {
+            material2[i] = wallData[returnNextNumber()].materials[i];
+        }
+        meshRenderer2.materials = material2;
+
+        nextGameObject.hideFlags = HideFlags.HideInHierarchy;
+
+        previouspreviewField = previousmyGameObject;
+        nextpreviewField = nextGameObject;
+
+
+        GameObject currentGameObject = new GameObject();
+        nextGameObject.name = "Obvious Name";
+
+        MeshFilter meshFilter3= currentGameObject.AddComponent<MeshFilter>();
+        meshFilter3.mesh = wallData[currentData].mesh;
+        MeshRenderer meshRenderer3 = currentGameObject.AddComponent<MeshRenderer>();
+
+
+        Material[] material3 = new Material[wallData[currentData].materials.Count];
+        for (int i = 0; i < wallData[currentData].materials.Count; i++)
+        {
+            material3[i] = wallData[currentData].materials[i];
+        }
+        meshRenderer3.materials = material3;
+
+        currentGameObject.hideFlags = HideFlags.HideInHierarchy;
+
+        previouspreviewField = previousmyGameObject;
+        nextpreviewField = nextGameObject;
+        currentpreviewField = currentGameObject;
+
     }
 }
