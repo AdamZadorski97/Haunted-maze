@@ -15,46 +15,70 @@ public class NewWallController : MonoBehaviour
     [OnValueChanged("ChangeProporties")]
     public int currentData = 0;
 
-    [HorizontalGroup("Pattern")]
-    [Button]
-    public void NextPattern()
-    {
-        if (currentData == wallData.Count - 1)
-        {
-            currentData = 0;
-            ChangeProporties();
-            return;
-        }
-        if (currentData < wallData.Count)
-        {
-            currentData++;
-            ChangeProporties();
-            return;
-        }
-    }
 
+    [HorizontalGroup("mesh")]
+    [PreviewField(100)]
+    public Object previouspreviewField;
+    [HorizontalGroup("mesh")]
+    [PreviewField(100)]
+    public Object nextpreviewField;
+  
+
+
+
+
+
+  
+
+    [InfoBox("@returnPrevoiusName()")]
     [HorizontalGroup("Pattern")]
-    [Button]
+    [Button(ButtonSizes.Large)]
     public void PreviousPattern()
     {
 
         if (currentData < 0)
         {
             currentData = wallData.Count - 1;
+            CreateData();
             ChangeProporties();
             return;
         }
         if (currentData > 0)
         {
             currentData--;
+            CreateData();
             ChangeProporties();
             return;
         }
     }
 
+    [InfoBox("@returnNextName()")]
+    [HorizontalGroup("Pattern")]
+    [Button(ButtonSizes.Large)]
+    public void NextPattern()
+    {
+       
+        if (currentData == wallData.Count - 1)
+        {
+            currentData = 0;
+            ChangeProporties();
+            CreateData();
+            return;
+        }
+        if (currentData < wallData.Count)
+        {
+            currentData++;
+            ChangeProporties();
+            CreateData();
+            return;
+        }
+    }
+
+ 
+
 
     [HorizontalGroup("Rotate")]
-    [Button]
+    [Button(ButtonSizes.Large)]
     public void RotateLeft()
     {
         transform.eulerAngles += new Vector3(0, -90, 0);
@@ -62,14 +86,14 @@ public class NewWallController : MonoBehaviour
 
 
     [HorizontalGroup("Rotate")]
-    [Button]
+    [Button(ButtonSizes.Large)]
     public void RotateRight()
     {
         transform.eulerAngles += new Vector3(0, 90, 0);
     }
 
     [HorizontalGroup("Clone")]
-    [Button]
+    [Button(ButtonSizes.Large)]
 
     public void CloneLeftAndSelect()
     {
@@ -83,7 +107,7 @@ public class NewWallController : MonoBehaviour
         Selection.activeObject = clone;
     }
     [HorizontalGroup("Clone")]
-    [Button]
+    [Button(ButtonSizes.Large)]
 
     public void CloneRightAndSelect()
     {
@@ -149,5 +173,50 @@ public class NewWallController : MonoBehaviour
             material[i] = wallData.materials[i];
         }
         meshRenderer.materials = material;
+    }
+
+
+    public string returnPrevoiusName()
+    {
+        if (currentData - 1 < 0)
+            return wallData[currentData].name;
+        else
+            return wallData[currentData - 1].name;
+    }
+    public string returnNextName()
+    {
+        if (currentData == wallData.Count - 1)
+        {
+            return wallData[currentData].name;
+        }
+        else
+        {
+            return wallData[currentData + 1].name;
+        }
+    }
+
+    public int returnPrevoiusNumber()
+    {
+        if (currentData - 1 < 0)
+            return currentData;
+        else
+            return currentData - 1;
+    }
+    public int returnNextNumber()
+    {
+        if (currentData == wallData.Count - 1)
+        {
+            return currentData;
+        }
+        else
+        {
+            return currentData + 1;
+        }
+    }
+
+    private void CreateData()
+    {
+        previouspreviewField = wallData[returnPrevoiusNumber()].mesh;
+        nextpreviewField = wallData[returnNextNumber()].mesh;
     }
 }
