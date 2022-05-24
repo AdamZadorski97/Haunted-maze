@@ -58,3 +58,5 @@ MonoBehaviour:
   previouspreviewField: {fileID: 0}
   currentpreviewField: {fileID: 0}
   nextpreviewField: {fileID: 0}
+  prefabVizualize: {fileID: 7705964182357580097, guid: 2372f745b340d9d46a631b61c9eb5570, type: 3}
+  instantiatedVizualize: {fileID: 0}
