@@ -9,6 +9,9 @@ using Unity.EditorCoroutines.Editor;
 public class NewWallController : MonoBehaviour
 {
     public GameObject wallController;
+    public GameObject prefabVizualize;
+    public GameObject instantiatedVizualize;
+
     [TableList(ShowIndexLabels = true)]
     public List<WallData> wallData = new List<WallData>();
 
@@ -17,7 +20,7 @@ public class NewWallController : MonoBehaviour
 
 
     [HideLabel]
-    [Title("Previous", TitleAlignment =TitleAlignments.Centered)]
+    [Title("Previous", TitleAlignment = TitleAlignments.Centered)]
     [HorizontalGroup("mesh")]
     [VerticalGroup("mesh/a")]
     [PreviewField(150, ObjectFieldAlignment.Center)]
@@ -42,10 +45,8 @@ public class NewWallController : MonoBehaviour
 
 
 
-
-
     [Title("@returnPrevoiusName()")]
-    
+
     [VerticalGroup("mesh/a")]
     [Button(ButtonSizes.Large)]
     public void PreviousPattern()
@@ -90,7 +91,7 @@ public class NewWallController : MonoBehaviour
     }
 
 
-  
+
     [HorizontalGroup("mesh/b/Rotate")]
     [Button(ButtonSizes.Large)]
     public void RotateLeft()
@@ -156,7 +157,7 @@ public class NewWallController : MonoBehaviour
         clone.GetComponent<NewWallController>().currentData = currentData;
         clone.GetComponent<NewWallController>().ChangeProporties();
         clone.GetComponent<NewWallController>().CreateData();
-       Selection.activeObject = clone;
+        Selection.activeObject = clone;
     }
 
 
@@ -211,6 +212,11 @@ public class NewWallController : MonoBehaviour
             material[i] = wallData.materials[i];
         }
         meshRenderer.materials = material;
+
+        instantiatedVizualize = Instantiate(prefabVizualize, transform);
+        instantiatedVizualize.transform.rotation = transform.rotation;
+        instantiatedVizualize.transform.localPosition = new Vector3(-1.25f, 3, 0);
+
     }
 
 
@@ -305,7 +311,7 @@ public class NewWallController : MonoBehaviour
         GameObject currentGameObject = new GameObject();
         nextGameObject.name = "Obvious Name";
 
-        MeshFilter meshFilter3= currentGameObject.AddComponent<MeshFilter>();
+        MeshFilter meshFilter3 = currentGameObject.AddComponent<MeshFilter>();
         meshFilter3.mesh = wallData[currentData].mesh;
         MeshRenderer meshRenderer3 = currentGameObject.AddComponent<MeshRenderer>();
 

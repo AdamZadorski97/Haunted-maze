@@ -207,7 +207,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
             if (moveBack)
             {
-                if (!CheckCanTurnLeft() && !CheckCanTurnRight())
+              //  if (!CheckCanTurnLeft() && !CheckCanTurnRight())
                 {
                     moveLeft = false;
                     moveRight = false;
