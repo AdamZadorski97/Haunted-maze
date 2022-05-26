@@ -8,8 +8,10 @@ using Unity.EditorCoroutines.Editor;
 [ExecuteInEditMode]
 public class NewWallController : MonoBehaviour
 {
+    [HideInInspector] public bool showPath = false;
     public GameObject wallController;
     public GameObject prefabVizualize;
+    [HideInInspector] public List<BoxCollider> boxColliders = new List<BoxCollider>();
     public GameObject instantiatedVizualize;
 
     [TableList(ShowIndexLabels = true)]
@@ -162,19 +164,15 @@ public class NewWallController : MonoBehaviour
 
 
 
-
     public void ChangeProporties()
     {
         gameObject.name = $"WallController {wallData[currentData].name}";
-
-
         var children = new List<GameObject>();
+        boxColliders.Clear();
         foreach (Transform child in transform) children.Add(child.gameObject);
         children.ForEach(child => DestroyImmediate(child));
-
         InstantiateWallWithData(wallData[currentData]);
     }
-
 
 
 
@@ -202,6 +200,7 @@ public class NewWallController : MonoBehaviour
             boxcolliderObject.layer = LayerMask.NameToLayer("Wall");
             var boxcolliderRotation = this.transform.rotation;
             boxcolliderObject.transform.rotation = boxcolliderRotation;
+            boxColliders.Add(boxCollider);
         }
 
 
@@ -329,5 +328,19 @@ public class NewWallController : MonoBehaviour
         nextpreviewField = nextGameObject;
         currentpreviewField = currentGameObject;
 
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        if (showPath)
+        {
+            for (int i = 0; i < boxColliders.Count; i++)
+            {
+                Gizmos.color = new Color(1, 0, 0, 0.5f);
+                Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);
+                Gizmos.DrawCube(Vector3.zero + boxColliders[i].center, boxColliders[i].size);
+            }
+        }
     }
 }
