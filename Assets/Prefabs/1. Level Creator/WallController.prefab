@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallController: {fileID: 7752012550993393131}
+  prefabVizualize: {fileID: 7705964182357580097, guid: 2372f745b340d9d46a631b61c9eb5570, type: 3}
+  instantiatedVizualize: {fileID: 0}
   wallData:
   - {fileID: 11400000, guid: 39ed4573a8734fa4a965002f0f988d16, type: 2}
   - {fileID: 11400000, guid: 8a0cc4efe0b2ae24497df4c23be04baa, type: 2}
@@ -54,9 +56,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ce19ca886b253cd41a0ba2ae2d045804, type: 2}
   - {fileID: 11400000, guid: 734940e9d747bf645891c203f76a37e3, type: 2}
   - {fileID: 11400000, guid: b8df26b6a84706b4d91e2a40f1cb4b8d, type: 2}
+  - {fileID: 11400000, guid: 86f4ae3574616d34498539baff3fea3f, type: 2}
+  - {fileID: 11400000, guid: 9ef9d800a9df86d4cb1c4d9e48e831ac, type: 2}
   currentData: 8
   previouspreviewField: {fileID: 0}
   currentpreviewField: {fileID: 0}
   nextpreviewField: {fileID: 0}
-  prefabVizualize: {fileID: 7705964182357580097, guid: 2372f745b340d9d46a631b61c9eb5570, type: 3}
-  instantiatedVizualize: {fileID: 0}
