@@ -135,6 +135,20 @@ public class EditorHelper : OdinEditorWindow
         }
     }
 
+    [TabGroup("Tabs", "Room Builder")]
+    [Button("Bake Navmesh")]
+    private void BakeNavmesh()
+    {
+
+        NavMeshSurface[] components = GameObject.FindObjectsOfType<NavMeshSurface>();
+        foreach (var item in components)
+        {
+            item.BuildNavMesh();
+
+        }
+        Selection.objects = components;
+    }
+
     [TabGroup("Tabs", "Visibility")]
     [Button("Show Wall Colliders")]
     private void ShowMazeColliders()
@@ -506,19 +520,7 @@ public class EditorHelper : OdinEditorWindow
     //    }
     //}
 
-    //[TabGroup("Tabs", "Room Builder")]
-    //[Button("Bake Navmesh")]
-    //private void BakeNavmesh()
-    //{
 
-    //    NavMeshSurface[] components = GameObject.FindObjectsOfType<NavMeshSurface>();
-    //    foreach (var item in components)
-    //    {
-    //        item.BuildNavMesh();
-
-    //    }
-    //    Selection.objects = components;
-    //}
     //[TabGroup("Tabs", "Visibility")]
     //[Button("Show Points")]
     //private void ShowInteractiveItems()
