@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class SwipeController : MonoBehaviour
 {
-    private bool tap, swipeLeft, swipeRight, swipeUp, swipeDown;
+    public bool tap;
+    private bool swipeLeft, swipeRight, swipeUp, swipeDown;
     private bool isDraging = false;
     private Vector2 startTouch, swipeDelta;
-
+    private Vector2 endTouch;
+    public float startTouchTime;
+    public float endTouchTime;
     private void Update()
     {
         tap = swipeLeft = swipeRight = swipeUp = swipeDown = false;
@@ -15,13 +18,20 @@ public class SwipeController : MonoBehaviour
         #region Standolone Inputs
         if (Input.GetMouseButtonDown(0))
         {
-            tap = true;
             isDraging = true;
             startTouch = Input.mousePosition;
+            startTouchTime = Time.time;
+         
         }
         else if (Input.GetMouseButtonUp(0))
         {
             isDraging = false;
+            endTouchTime = Time.time;
+            var difference = endTouchTime - startTouchTime;
+            endTouch = Input.mousePosition;
+            Debug.Log("difference" + difference);
+            if (difference < 0.25f && Vector2.Distance(endTouch, startTouch)<100)
+                tap = true;
             Reset();
         }
         #endregion
@@ -32,11 +42,18 @@ public class SwipeController : MonoBehaviour
             if(Input.touches[0].phase == TouchPhase.Began)
             {
                 isDraging = true;
-                tap = true;
                 startTouch = Input.touches[0].position;
+                startTouchTime = Time.time;
             }
             else if(Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled)
             {
+
+                endTouchTime = Time.time;
+                var difference = endTouchTime - startTouchTime;
+                Debug.Log("difference" + difference);
+                endTouch = Input.touches[0].position;
+                if (difference < 0.25f && Vector2.Distance(endTouch, startTouch) < 100)
+                    tap = true;
                 isDraging = false;
                 Reset();
             }
@@ -54,7 +71,7 @@ public class SwipeController : MonoBehaviour
 
       
 
-        if(swipeDelta.magnitude >125)
+            if (swipeDelta.magnitude >125)
         {
             float x = swipeDelta.x;
             float y = swipeDelta.y;
