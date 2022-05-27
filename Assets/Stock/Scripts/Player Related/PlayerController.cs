@@ -9,6 +9,8 @@ public class PlayerController : MonoSingleton<PlayerController>
     public static PlayerController _Instance { get; private set; }
     public bool canMove = false;
     public float speed;
+    public float turnBackSpeed;
+    public AnimationCurve turnBackCurve;
     public float rotationSpeed;
     public NavMeshAgent navMeshAgent;
     public bool moveLeft;
@@ -27,6 +29,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     public SwipeController swipeController;
     string inst = null;
     public LayerMask wallLayermask;
+
     public void Update()
     {
         SwipeControll();
@@ -214,7 +217,10 @@ public class PlayerController : MonoSingleton<PlayerController>
                     moveBack = false;
                     Debug.Log("can turn Back");
                     canTurnTimer = 0.2f;
-                    transform.Rotate(new Vector3(0, 180, 0), Space.World);
+                    var sequence = DOTween.Sequence();
+                    sequence.AppendCallback(() => canMove = false);
+                    sequence.Append(transform.DOLocalRotate(new Vector3(0, 180, 0), turnBackSpeed, RotateMode.LocalAxisAdd).SetEase(turnBackCurve));
+                    sequence.AppendCallback(() => canMove = true);
                     audioSource.PlayOneShot(turnAround);
                     return;
                 }
