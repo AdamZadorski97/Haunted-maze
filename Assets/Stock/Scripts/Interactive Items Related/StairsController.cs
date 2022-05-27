@@ -10,7 +10,7 @@ public class StairsController : MonoBehaviour
     public Transform TriggerDown;
     public Transform TriggerUp;
     public bool isActive;
-
+    public float timeToActivateTrigger = 0.1f;
     public void OnTriggerUpEnter(Transform objectToTween)
     {
         if (isActive)
@@ -41,7 +41,7 @@ public class StairsController : MonoBehaviour
 
 
         isActive = false;
-        yield return new WaitForSeconds(timeToReachDestination+0.1f);
+        yield return new WaitForSeconds(timeToReachDestination+ timeToActivateTrigger);
         isActive = true;
 
         if (objectToTween.GetComponent<PlayerController>())

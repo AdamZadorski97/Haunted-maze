@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7600733019168920351}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.326, y: 3.268, z: -3.006}
+  m_LocalPosition: {x: -1.326, y: 0.54, z: -3.006}
   m_LocalScale: {x: 2.5926, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7600733019851283806}
@@ -244,7 +244,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7600733019851283807}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 14.93, y: 0, z: 2.6727886}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -296,12 +296,12 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 0.5710216
+      outSlope: 0.5710216
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.17083333
     - serializedVersion: 3
       time: 1
       value: 1
@@ -327,7 +327,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1749073135804816, guid: 4db39c98c0b370a438f90e996aa49a06, type: 3}
       propertyPath: m_Name
-      value: SM_Bld_Steps_01 (1)
+      value: Stairs
       objectReference: {fileID: 0}
     - target: {fileID: 1749073135804816, guid: 4db39c98c0b370a438f90e996aa49a06, type: 3}
       propertyPath: m_Layer
@@ -343,11 +343,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4488633580682090, guid: 4db39c98c0b370a438f90e996aa49a06, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 4488633580682090, guid: 4db39c98c0b370a438f90e996aa49a06, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 4488633580682090, guid: 4db39c98c0b370a438f90e996aa49a06, type: 3}
       propertyPath: m_LocalRotation.w
@@ -377,6 +377,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23414797143269268, guid: 4db39c98c0b370a438f90e996aa49a06, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6ef71fb53ed68fd4180e64d11bb0de5b, type: 2}
+    - target: {fileID: 64427054160351200, guid: 4db39c98c0b370a438f90e996aa49a06, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4104380202958562290, guid: a0e100df6bc118547a092bce8fb92415, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4db39c98c0b370a438f90e996aa49a06, type: 3}
 --- !u!4 &7598918417617962679 stripped
