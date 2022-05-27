@@ -411,6 +411,7 @@ MonoBehaviour:
   - {fileID: 0}
   enemiesPrefabs:
   - {fileID: 5385750168631361620, guid: 8778c24843f54db46b45e239dd64a245, type: 3}
+  floorControllers: []
   SpawningFrequency: []
   enemiesParrent: {fileID: 609525615}
   middleOfMap: {fileID: 424409439}
