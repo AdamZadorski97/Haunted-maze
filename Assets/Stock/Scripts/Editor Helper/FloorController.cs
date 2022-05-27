@@ -15,6 +15,14 @@ public class FloorController : MonoBehaviour
         meshRenderer.enabled = state;
     }
 
+
+
+    public void Start()
+    {
+        if (transform.position.y != 0)
+            SwitchPoint(false);
+    }
+
     public void SwitchPoint(bool state)
     {
         if(interactivePointsIsOn)
@@ -26,4 +34,5 @@ public class FloorController : MonoBehaviour
             interactivePoint.SetActive(false);
         }
     }
+
 }
