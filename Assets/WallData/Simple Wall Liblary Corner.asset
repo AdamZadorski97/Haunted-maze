@@ -23,10 +23,13 @@ MonoBehaviour:
   meshMapScale:
   - {x: 2.5, y: 0.1, z: 0.2}
   - {x: 2.5, y: 0.1, z: 0.2}
+  - {x: 2.5, y: 0.1, z: 0.2}
   meshMapPosition:
   - {x: -1.25, y: 3, z: 0}
   - {x: -2.5, y: 3, z: -1.25}
+  - {x: -1.25, y: 3, z: -2.5}
   meshMapRotation:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 90, z: 0}
+  - {x: 0, y: 0, z: 0}
   meshMapMaterial: {fileID: 2100000, guid: 944408d726257054c92ca5e6e5021a24, type: 2}

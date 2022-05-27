@@ -94,8 +94,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 0.014882624}
+  m_Center: {x: 4.8701684e-15, y: 0, z: 0.4925587}
 --- !u!114 &7600733019168920353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDownTrigger: 0
   stairsController: {fileID: 7600733019851283809}
+  destinationFloor: 0
 --- !u!1 &7600733019689156124
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,8 +205,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 0}
+  m_Center: {x: 7.813032e-16, y: 0, z: -0.2757545}
 --- !u!114 &7600733019689156126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDownTrigger: 1
   stairsController: {fileID: 7600733019851283809}
+  destinationFloor: 0
 --- !u!1 &7600733019851283807
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,6 +320,7 @@ MonoBehaviour:
   TriggerDown: {fileID: 7600733019689156127}
   TriggerUp: {fileID: 7600733019168920350}
   isActive: 1
+  timeToActivateTrigger: 0.1
 --- !u!1001 &7600733020060958173
 PrefabInstance:
   m_ObjectHideFlags: 0
