@@ -13,21 +13,19 @@ public class StairsController : MonoBehaviour
     public float timeToActivateTrigger = 0.1f;
     public void OnTriggerUpEnter(Transform objectToTween)
     {
-        if (isActive)
-        {
+      
             objectToTween.DOMove(TriggerDown.position, timeToReachDestination).SetEase(moveDownSpeedCurve);
             StartCoroutine(DeactiveTime(objectToTween.gameObject));
-        }
+      
            
     }
     public void OnTriggerDownEnter(Transform objectToTween)
     {
-        if (isActive)
-        {
+       
             objectToTween.DOMove(TriggerUp.position, timeToReachDestination).SetEase(moveUpSpeedCurve);
             StartCoroutine(DeactiveTime(objectToTween.gameObject));
          
-        }
+        
           
     }
 

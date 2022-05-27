@@ -10,8 +10,8 @@ public class NewWallController : MonoBehaviour
 {
     [HideInInspector] public bool showPath = false;
     public GameObject wallController;
-    public GameObject prefabVizualize;
-    [HideInInspector] public List<BoxCollider> boxColliders = new List<BoxCollider>();
+     public List<GameObject> mapLines = new List<GameObject>();
+     public List<BoxCollider> boxColliders = new List<BoxCollider>();
  
 
     [TableList(ShowIndexLabels = true)]
@@ -162,13 +162,17 @@ public class NewWallController : MonoBehaviour
         Selection.activeObject = clone;
     }
 
-
+    private void Start()
+    {
+        ChangeProporties();
+    }
 
     public void ChangeProporties()
     {
         gameObject.name = $"WallController {wallData[currentData].name}";
         var children = new List<GameObject>();
         boxColliders.Clear();
+        mapLines.Clear();
         foreach (Transform child in transform) children.Add(child.gameObject);
         children.ForEach(child => DestroyImmediate(child));
         InstantiateWallWithData(wallData[currentData]);
@@ -225,12 +229,13 @@ public class NewWallController : MonoBehaviour
             boxcolliderObject.transform.localScale = wallData.meshMapScale[i];
             boxcolliderObject.transform.localRotation = Quaternion.Euler(wallData.meshMapRotation[i]);
             boxcolliderObject.GetComponent<MeshRenderer>().material = wallData.meshMapMaterial;
+            mapLines.Add(boxcolliderObject);
         }
 
         //    instantiatedVizualize = Instantiate(prefabVizualize, transform);
         //instantiatedVizualize.transform.rotation = transform.rotation;
         //instantiatedVizualize.transform.localPosition = new Vector3(-1.25f, 3, 0);
-
+        EditorUtility.SetDirty(transform.gameObject);
     }
 
 
