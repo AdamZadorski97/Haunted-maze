@@ -7,8 +7,9 @@ public class EnemyController : MonoBehaviour
 {
     public NavMeshAgent navMeshAgent;
     public Transform endPoint;
-
-
+    public Animator animator;
+    public CapsuleCollider capsuleCollider;
+    public GameObject mapVisualize;
 
     public void Start()
     {
@@ -24,12 +25,22 @@ public class EnemyController : MonoBehaviour
             sequence.AppendInterval(1);
         }
         sequence.AppendCallback(()=>UpdatePlayerPos());
-  
     }
     public void EnableNavMesh()
     {
         StartCoroutine(EnableNavmeshDelay());
     }
+    public void OnDie()
+    {
+        animator.SetTrigger("Die");
+        capsuleCollider.enabled = false;
+        mapVisualize.SetActive(false);
+        Destroy(this.gameObject, 1f);
+    }
+
+
+
+
     IEnumerator EnableNavmeshDelay()
     {
         yield return new WaitForSeconds(1);

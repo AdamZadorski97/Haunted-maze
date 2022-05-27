@@ -31,6 +31,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     string inst = null;
     public LayerMask wallLayermask;
     public LayerMask enemyLayermask;
+    public Animator gunAnimator;
     public void Update()
     {
         SwipeControll();
@@ -43,15 +44,15 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public void Shoot()
     {
-
+        gunAnimator.SetTrigger("Shoot");
         audioSource.PlayOneShot(shootSound);
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 1000, enemyLayermask))
             {
-                if(hit.transform.gameObject !=null)
+                if (hit.transform.GetComponent<EnemyController>())
                 {
-                    Debug.Log("Good Shot");
-                    Destroy(hit.transform.gameObject);
+              
+                   hit.transform.GetComponent<EnemyController>().OnDie();
                 }
             }
         
