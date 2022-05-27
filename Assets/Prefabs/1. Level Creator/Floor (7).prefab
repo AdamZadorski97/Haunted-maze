@@ -159,7 +159,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 250629d701bb5274a9d48ee7c8ddecaa, type: 2}
+  - {fileID: 2100000, guid: 0c3a48029ad54a44fb2aee8d7e2b2609, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -196,8 +196,6 @@ MonoBehaviour:
   interactivePointsIsOn: 1
   interactivePoint: {fileID: 3565764299149706194}
   meshRenderer: {fileID: 8911437606051640088}
-  FloorMatTop: {fileID: 0}
-  FloorMatBottom: {fileID: 0}
 --- !u!65 &2906511638961853281
 BoxCollider:
   m_ObjectHideFlags: 0
