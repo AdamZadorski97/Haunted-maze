@@ -101,7 +101,8 @@ public class EditorHelper : OdinEditorWindow
         Transform objectToSnap = Selection.activeTransform.transform;
         if (Physics.Raycast(objectToSnap.position, Vector3.down, out groundHit, Mathf.Infinity, floorLayermask))
         {
-            objectToSnap.position = groundHit.point;
+            if(groundHit.transform.GetComponent<FloorController>())
+            objectToSnap.position = groundHit.transform.position;
         }
         else
         {
@@ -124,11 +125,7 @@ public class EditorHelper : OdinEditorWindow
         }
     }
 
-    private void Awake()
-    {
-        UpdateWallsData();
-    }
-
+  
 
     [TabGroup("Tabs", "Room Builder")]
     [Button]
