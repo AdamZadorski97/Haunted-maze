@@ -101,7 +101,8 @@ public class EditorHelper : OdinEditorWindow
         Transform objectToSnap = Selection.activeTransform.transform;
         if (Physics.Raycast(objectToSnap.position, Vector3.down, out groundHit, Mathf.Infinity, floorLayermask))
         {
-            objectToSnap.position = groundHit.point;
+            if(groundHit.transform.GetComponent<FloorController>())
+            objectToSnap.position = groundHit.transform.position;
         }
         else
         {
@@ -123,6 +124,8 @@ public class EditorHelper : OdinEditorWindow
             Debug.Log("No Ceiling detected");
         }
     }
+
+  
 
     [TabGroup("Tabs", "Room Builder")]
     [Button]
@@ -162,7 +165,26 @@ public class EditorHelper : OdinEditorWindow
         }
     }
 
-
+    [TabGroup("Tabs", "Visibility")]
+    [Button("Show Wall Colliders")]
+    private void HideFloor(int number)
+    {
+        NewWallController[] components = GameObject.FindObjectsOfType<NewWallController>();
+        foreach (var item in components)
+        {
+            if(item.transform.position.y == number*3)
+            {
+               foreach(GameObject mapLine in item.mapLines)
+                {
+                    if (mapLine.activeSelf)
+                        mapLine.SetActive(false);
+                    else
+                        mapLine.SetActive(true);
+                }
+            }
+             
+        }
+    }
 
 
 

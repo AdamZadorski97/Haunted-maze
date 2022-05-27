@@ -21,12 +21,14 @@ public class PopupController : MonoSingleton<PopupController>
 
   
 
-    public void OpenPopup(string title, string constents, Sprite icon, string conditionToClose, bool lockPlayerMovement)
+    public void OpenPopup(string title,float titleFontSize, string constents,float constentsFontSize, Sprite icon, string conditionToClose, bool lockPlayerMovement)
     {
         PlayerController.Instance.SwitchMovement(lockPlayerMovement);
         canvasGroup.DOFade(1, openingCanvasAnimationTime).SetEase(openingCanvasAnimationTimeCurve);
         if (title != "") popupTitle.text = title;
+        if (title != "") popupTitle.fontSize = titleFontSize;
         if (constents != "") popupContents.text = constents;
+        if (title != "") popupContents.fontSize = constentsFontSize;
         if (icon != null) popupIcon.sprite = icon; else popupIcon.sprite = null;
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;

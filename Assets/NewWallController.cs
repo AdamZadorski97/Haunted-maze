@@ -10,9 +10,9 @@ public class NewWallController : MonoBehaviour
 {
     [HideInInspector] public bool showPath = false;
     public GameObject wallController;
-    public GameObject prefabVizualize;
-    [HideInInspector] public List<BoxCollider> boxColliders = new List<BoxCollider>();
-    public GameObject instantiatedVizualize;
+     public List<GameObject> mapLines = new List<GameObject>();
+     public List<BoxCollider> boxColliders = new List<BoxCollider>();
+ 
 
     [TableList(ShowIndexLabels = true)]
     public List<WallData> wallData = new List<WallData>();
@@ -162,13 +162,17 @@ public class NewWallController : MonoBehaviour
         Selection.activeObject = clone;
     }
 
-
+    private void Start()
+    {
+        ChangeProporties();
+    }
 
     public void ChangeProporties()
     {
         gameObject.name = $"WallController {wallData[currentData].name}";
         var children = new List<GameObject>();
         boxColliders.Clear();
+        mapLines.Clear();
         foreach (Transform child in transform) children.Add(child.gameObject);
         children.ForEach(child => DestroyImmediate(child));
         InstantiateWallWithData(wallData[currentData]);
@@ -182,12 +186,17 @@ public class NewWallController : MonoBehaviour
         meshRendererObject.transform.SetParent(transform);
         meshRendererObject.transform.localPosition = Vector3.zero;
         meshRendererObject.name = "MeshRenderer";
+       
+        //MeshFilter
         MeshFilter meshFilter = meshRendererObject.AddComponent<MeshFilter>();
         meshFilter.mesh = wallData.mesh;
+
+        //MeshRenderer
         MeshRenderer meshRenderer = meshRendererObject.AddComponent<MeshRenderer>();
         var currentEluers = this.transform.rotation;
         meshFilter.transform.rotation = currentEluers;
 
+        //BoxColliders
         for (int i = 0; i < wallData.boxCollidersCenter.Count; i++)
         {
             GameObject boxcolliderObject = new GameObject();
@@ -203,8 +212,7 @@ public class NewWallController : MonoBehaviour
             boxColliders.Add(boxCollider);
         }
 
-
-
+        //Material
         Material[] material = new Material[wallData.materials.Count];
         for (int i = 0; i < wallData.materials.Count; i++)
         {
@@ -212,10 +220,22 @@ public class NewWallController : MonoBehaviour
         }
         meshRenderer.materials = material;
 
-        instantiatedVizualize = Instantiate(prefabVizualize, transform);
-        instantiatedVizualize.transform.rotation = transform.rotation;
-        instantiatedVizualize.transform.localPosition = new Vector3(-1.25f, 3, 0);
+        for (int i = 0; i < wallData.meshMapPosition.Count; i++)
+        {
+            GameObject boxcolliderObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            boxcolliderObject.gameObject.layer = LayerMask.NameToLayer("Point");
+            boxcolliderObject.transform.SetParent(transform);
+            boxcolliderObject.transform.localPosition = wallData.meshMapPosition[i];
+            boxcolliderObject.transform.localScale = wallData.meshMapScale[i];
+            boxcolliderObject.transform.localRotation = Quaternion.Euler(wallData.meshMapRotation[i]);
+            boxcolliderObject.GetComponent<MeshRenderer>().material = wallData.meshMapMaterial;
+            mapLines.Add(boxcolliderObject);
+        }
 
+        //    instantiatedVizualize = Instantiate(prefabVizualize, transform);
+        //instantiatedVizualize.transform.rotation = transform.rotation;
+        //instantiatedVizualize.transform.localPosition = new Vector3(-1.25f, 3, 0);
+        EditorUtility.SetDirty(transform.gameObject);
     }
 
 

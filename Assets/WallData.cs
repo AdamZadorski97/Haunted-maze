@@ -18,6 +18,13 @@ public class WallData : ScriptableObject
     public List<Vector3> boxCollidersCenter = new List<Vector3>();
     [VerticalGroup("row2")]
     public List<Vector3> boxCollidersSize = new List<Vector3>();
-    
 
+    [VerticalGroup("row3")]
+    public List<Vector3> meshMapScale = new List<Vector3>();
+    [VerticalGroup("row3")]
+    public List<Vector3> meshMapPosition = new List<Vector3>();
+    [VerticalGroup("row3")]
+    public List<Vector3> meshMapRotation = new List<Vector3>();
+    [VerticalGroup("row4")]
+    public Material meshMapMaterial;
 }
