@@ -32,30 +32,31 @@ public class PlayerController : MonoSingleton<PlayerController>
     public LayerMask wallLayermask;
     public LayerMask enemyLayermask;
     public Animator gunAnimator;
+    public ParticleSystem gunParticleSystem;
     public void Update()
     {
         SwipeControll();
-        if(canMove)
-        MoveController(); 
-        
+        if (canMove)
+            MoveController();
+
     }
 
- 
+
 
     public void Shoot()
     {
+        gunParticleSystem.Play();
         gunAnimator.SetTrigger("Shoot");
         audioSource.PlayOneShot(shootSound);
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 1000, enemyLayermask))
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 1000, enemyLayermask))
+        {
+            if (hit.transform.GetComponent<EnemyController>())
             {
-                if (hit.transform.GetComponent<EnemyController>())
-                {
-              
-                   hit.transform.GetComponent<EnemyController>().OnDie();
-                }
+                hit.transform.GetComponent<EnemyController>().OnDie();
             }
-        
+        }
+
         Debug.Log("Miss Shot");
     }
 
@@ -70,7 +71,7 @@ public class PlayerController : MonoSingleton<PlayerController>
             inst = "Left";
             StartCoroutine(RememberLastSwipe("Left"));
         }
-      
+
         if (swipeController.SwipeRight)
         {
             Debug.Log("SwipeRight");
@@ -78,7 +79,7 @@ public class PlayerController : MonoSingleton<PlayerController>
             inst = "Right";
             StartCoroutine(RememberLastSwipe("Right"));
         }
-         
+
         if (swipeController.SwipeUp)
         {
             Debug.Log("SwipeUp");
@@ -86,7 +87,7 @@ public class PlayerController : MonoSingleton<PlayerController>
             inst = "Up";
             StartCoroutine(RememberLastSwipe("Up"));
         }
-            
+
         if (swipeController.SwipeDown)
         {
             Debug.Log("SwipeDown");
@@ -103,7 +104,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         }
 
     }
-    IEnumerator  RememberLastSwipe(string direction)
+    IEnumerator RememberLastSwipe(string direction)
     {
         moveLeft = false;
         moveRight = false;
@@ -113,7 +114,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         {
             moveLeft = true;
         }
-        if(direction == "Right")
+        if (direction == "Right")
         {
             moveRight = true;
         }
@@ -162,11 +163,11 @@ public class PlayerController : MonoSingleton<PlayerController>
     public void SnapToGround()
     {
         RaycastHit groundHit;
-        if (Physics.Raycast(transform.position + new Vector3(0,1,0), transform.TransformDirection(Vector3.down), out groundHit, Mathf.Infinity, floorLayermask))
+        if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), transform.TransformDirection(Vector3.down), out groundHit, Mathf.Infinity, floorLayermask))
         {
-            transform.position = groundHit.transform.position + new Vector3(groundHit.transform.GetComponent<BoxCollider>().center.x,navMeshAgent.baseOffset, groundHit.transform.GetComponent<BoxCollider>().center.z);
-            
-            
+            transform.position = groundHit.transform.position + new Vector3(groundHit.transform.GetComponent<BoxCollider>().center.x, navMeshAgent.baseOffset, groundHit.transform.GetComponent<BoxCollider>().center.z);
+
+
             navMeshAgent.enabled = true;
             canMove = true;
         }
@@ -184,10 +185,10 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         if (GetHitPointDistance(frontMiddleRaycastStarPoint, frontMiddleRaycastStarPoint.TransformDirection(Vector3.forward), 75, Color.blue) < minDistanceToTurn)
         {
-                return true;
+            return true;
         }
-    
-       
+
+
         return false;
     }
 
@@ -229,7 +230,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
             if (moveBack)
             {
-              //  if (!CheckCanTurnLeft() && !CheckCanTurnRight())
+                //  if (!CheckCanTurnLeft() && !CheckCanTurnRight())
                 {
                     moveLeft = false;
                     moveRight = false;
@@ -246,8 +247,8 @@ public class PlayerController : MonoSingleton<PlayerController>
             }
 
         }
-    if(!wallRaycast())
-        navMeshAgent.Move(transform.forward * speed * Time.deltaTime);
+        if (!wallRaycast())
+            navMeshAgent.Move(transform.forward * speed * Time.deltaTime);
     }
 
 
@@ -275,7 +276,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     }
 
 
- 
+
 
     public float GetHitPointDistance(Transform startPosition, Vector3 direction, float rayLenght, Color raycastColor)
     {
