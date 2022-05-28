@@ -48,8 +48,19 @@ public class StairsTrigger : MonoBehaviour
                         mapLine.SetActive(true);
                 }
             }
-
         }
+        FloorController[] floorControllers = GameObject.FindObjectsOfType<FloorController>();
+       
+        foreach (var item in floorControllers)
+        {
+            if (item.transform.position.y == number * 3)
+            {
+                if(item.interactivePoint!=null)
+                item.interactivePoint.SetActive(true);
+            }
+        }
+
+
     }
     private void HideFloor(int number)
     {
@@ -64,6 +75,15 @@ public class StairsTrigger : MonoBehaviour
                 }
             }
 
+        }
+        FloorController[] floorControllers = GameObject.FindObjectsOfType<FloorController>();
+        foreach (var item in floorControllers)
+        {
+            if (item.transform.position.y == number * 3)
+            {
+                if (item.interactivePoint != null)
+                    item.interactivePoint.SetActive(false);
+            }
         }
     }
 }

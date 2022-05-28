@@ -23,13 +23,15 @@ public class PlayerController : MonoSingleton<PlayerController>
     public AudioClip footstep1;
     public AudioClip footstep2;
     public AudioClip turnAround;
+    public AudioClip shootSound;
     public float minDistanceToTurn = 0.3f;
     public float raycastOffset;
     public LayerMask floorLayermask;
     public SwipeController swipeController;
     string inst = null;
     public LayerMask wallLayermask;
-
+    public LayerMask enemyLayermask;
+    public Animator gunAnimator;
     public void Update()
     {
         SwipeControll();
@@ -37,6 +39,27 @@ public class PlayerController : MonoSingleton<PlayerController>
         MoveController(); 
         
     }
+
+ 
+
+    public void Shoot()
+    {
+        gunAnimator.SetTrigger("Shoot");
+        audioSource.PlayOneShot(shootSound);
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 1000, enemyLayermask))
+            {
+                if (hit.transform.GetComponent<EnemyController>())
+                {
+              
+                   hit.transform.GetComponent<EnemyController>().OnDie();
+                }
+            }
+        
+        Debug.Log("Miss Shot");
+    }
+
+
 
     public void SwipeControll()
     {
@@ -71,14 +94,14 @@ public class PlayerController : MonoSingleton<PlayerController>
             inst = "Down";
             StartCoroutine(RememberLastSwipe("Down"));
         }
-           
+
         if (swipeController.Tap)
         {
             StopCoroutine(inst);
-            inst = "Tap";
-            StartCoroutine(RememberLastSwipe("Tap"));
+            swipeController.tap = false;
+            Shoot();
         }
-         
+
     }
     IEnumerator  RememberLastSwipe(string direction)
     {
@@ -181,10 +204,6 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         if (CanTurn())
         {
-
-
-           
-
             if (moveLeft && CheckCanTurnLeft())
             {
                 moveLeft = false;
@@ -256,7 +275,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     }
 
 
-
+ 
 
     public float GetHitPointDistance(Transform startPosition, Vector3 direction, float rayLenght, Color raycastColor)
     {

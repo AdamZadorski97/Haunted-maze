@@ -7,9 +7,10 @@ public class EnemySpawnerController : MonoBehaviour
 {
     public List<EnemyController> spawnedEnemies = new List<EnemyController>();
     public List<EnemyController> enemiesPrefabs = new List<EnemyController>();
-
+    public FloorController[] floorControllers;
     public List<float> SpawningFrequency = new List<float>();
 
+    
     public Transform enemiesParrent;
     public Transform middleOfMap;
     public float maxSpawnPointFromMiddleX;
@@ -26,6 +27,8 @@ public class EnemySpawnerController : MonoBehaviour
 
     void Start()
     {
+
+        GetFloorList();
         StartCoroutine(SpawnObject(delayAndSpawnRate));
     }
 
@@ -44,7 +47,7 @@ public class EnemySpawnerController : MonoBehaviour
             {
                 spawnCountdown += delayAndSpawnRate;
                 SpawnEnemy();
-               // StartCoroutine(SpawnObject(delayAndSpawnRate));
+                // StartCoroutine(SpawnObject(delayAndSpawnRate));
             }
 
             // Should the spawn rate increase?
@@ -73,20 +76,22 @@ public class EnemySpawnerController : MonoBehaviour
                 EnemyController spawnedEnemy = Instantiate(enemiesPrefabs[0], enemiesParrent);
                 spawnedEnemies.Add(spawnedEnemy);
                 spawnedEnemy.transform.position = newEnemyPosition;
-                spawnedEnemy.endPoint = playerController.transform ;
+                spawnedEnemy.endPoint = playerController.transform;
                 spawnedEnemy.EnableNavMesh();
                 canSpawn = false;
                 break;
             }
         }
     }
-
+    public void GetFloorList()
+    {
+        floorControllers = GameObject.FindObjectsOfType<FloorController>();
+    }
     private void CheckCanSpawnEnemy()
     {
-        Vector3 middleOfMapPosition = middleOfMap.position;
-        Vector3 checkPosition = middleOfMapPosition +
-            new Vector3(Random.Range(-maxSpawnPointFromMiddleX, maxSpawnPointFromMiddleX),
-            0, Random.Range(-maxSpawnPointFromMiddleZ, maxSpawnPointFromMiddleZ));
+        
+        FloorController floorController = floorControllers[(int)Random.Range(0, floorControllers.Length - 1)];
+        Vector3 checkPosition = floorController.transform.position + new Vector3(1, 0, 1);
 
         if (Vector3.Distance(checkPosition, playerController.transform.position) < minDistanceFromPlayer)
         {
@@ -105,8 +110,8 @@ public class EnemySpawnerController : MonoBehaviour
         RaycastHit groundHit;
         if (Physics.Raycast(posToCheck + new Vector3(0, 1, 0), Vector3.down, out groundHit, Mathf.Infinity, floorLayermask))
         {
-            newEnemyPosition = groundHit.transform.position + new Vector3(groundHit.transform.GetComponent<BoxCollider>().center.x,  groundHit.transform.GetComponent<BoxCollider>().center.z);
-        
+            newEnemyPosition = groundHit.transform.position + new Vector3(groundHit.transform.GetComponent<BoxCollider>().center.x, groundHit.transform.GetComponent<BoxCollider>().center.z);
+
             return true;
         }
         else return false;

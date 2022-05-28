@@ -165,10 +165,23 @@ public class NewWallController : MonoBehaviour
     private void Start()
     {
         ChangeProporties();
+        StartCoroutine(TurnOffMapVizualize());
+    }
+    IEnumerator TurnOffMapVizualize()
+    {
+        yield return new WaitForEndOfFrame();
+        if (transform.position.y != 0)
+        {
+            foreach (GameObject mapLine in mapLines)
+            {
+                    mapLine.SetActive(false);
+            }
+        }
     }
 
     public void ChangeProporties()
     {
+
         gameObject.name = $"WallController {wallData[currentData].name}";
         var children = new List<GameObject>();
         boxColliders.Clear();

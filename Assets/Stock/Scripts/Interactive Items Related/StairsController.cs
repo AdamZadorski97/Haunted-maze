@@ -16,17 +16,12 @@ public class StairsController : MonoBehaviour
       
             objectToTween.DOMove(TriggerDown.position, timeToReachDestination).SetEase(moveDownSpeedCurve);
             StartCoroutine(DeactiveTime(objectToTween.gameObject));
-      
-           
     }
     public void OnTriggerDownEnter(Transform objectToTween)
     {
        
             objectToTween.DOMove(TriggerUp.position, timeToReachDestination).SetEase(moveUpSpeedCurve);
             StartCoroutine(DeactiveTime(objectToTween.gameObject));
-         
-        
-          
     }
 
     IEnumerator DeactiveTime(GameObject objectToTween)
