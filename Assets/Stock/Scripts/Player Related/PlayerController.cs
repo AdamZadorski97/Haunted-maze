@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using DG.Tweening;
+using Cinemachine;
 public class PlayerController : MonoSingleton<PlayerController>
 {
     public static PlayerController _Instance { get; private set; }
@@ -11,6 +12,8 @@ public class PlayerController : MonoSingleton<PlayerController>
     public float speed;
     public float turnBackSpeed;
     public AnimationCurve turnBackCurve;
+    public float turnSideSpeed;
+    public AnimationCurve turnSideCurve;
     public float rotationSpeed;
     public NavMeshAgent navMeshAgent;
     public bool moveLeft;
@@ -33,6 +36,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     public LayerMask enemyLayermask;
     public Animator gunAnimator;
     public ParticleSystem gunParticleSystem;
+    public CinemachineImpulseSource cinemachineImpulseSource;
     public void Update()
     {
         SwipeControll();
@@ -45,6 +49,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public void Shoot()
     {
+        cinemachineImpulseSource.GenerateImpulse();
         gunParticleSystem.Play();
         gunAnimator.SetTrigger("Shoot");
         audioSource.PlayOneShot(shootSound);
@@ -212,7 +217,10 @@ public class PlayerController : MonoSingleton<PlayerController>
                 moveBack = false;
                 Debug.Log("can turn Left");
                 canTurnTimer = 0.2f;
-                transform.Rotate(new Vector3(0, -90, 0), Space.World);
+                var sequence = DOTween.Sequence();
+                sequence.AppendCallback(() => canMove = false);
+                sequence.Append(transform.DOLocalRotate(new Vector3(0, -90, 0), turnSideSpeed, RotateMode.LocalAxisAdd).SetEase(turnSideCurve));
+                sequence.AppendCallback(() => canMove = true);
                 audioSource.PlayOneShot(turnAround);
                 return;
             }
@@ -223,7 +231,10 @@ public class PlayerController : MonoSingleton<PlayerController>
                 moveBack = false;
                 Debug.Log("can turn Left");
                 canTurnTimer = 0.2f;
-                transform.Rotate(new Vector3(0, 90, 0), Space.World);
+                var sequence = DOTween.Sequence();
+                sequence.AppendCallback(() => canMove = false);
+                sequence.Append(transform.DOLocalRotate(new Vector3(0, 90, 0), turnSideSpeed, RotateMode.LocalAxisAdd).SetEase(turnSideCurve));
+                sequence.AppendCallback(() => canMove = true);
                 audioSource.PlayOneShot(turnAround);
                 return;
             }

@@ -21,7 +21,7 @@ public class PlayerPicker : MonoBehaviour
         {
             points++;
             audioSource.PlayOneShot(pickupSound);
-            other.transform.DOMove(pickerPoint.position, 0.2f);
+            other.transform.DOMove(pickerPoint.position + new Vector3(0,0.5f,0), 0.2f);
             other.transform.DOScale(Vector3.zero, 0.2f);
             Destroy(other.gameObject, 0.2f);
             counterText.text = $"{points}/470";

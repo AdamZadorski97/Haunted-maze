@@ -10,13 +10,15 @@ public class EnemyController : MonoBehaviour
     public Animator animator;
     public CapsuleCollider capsuleCollider;
     public GameObject mapVisualize;
-
+    public bool isDead;
     public void Start()
     {
        
     }
     private void UpdatePlayerPos()
     {
+        if (isDead)
+            return;
         var sequence = DOTween.Sequence();
 
         if (endPoint!=null)
@@ -32,10 +34,12 @@ public class EnemyController : MonoBehaviour
     }
     public void OnDie()
     {
+        isDead = true;
         animator.SetTrigger("Die");
         capsuleCollider.enabled = false;
         mapVisualize.SetActive(false);
-        Destroy(this.gameObject, 1f);
+        navMeshAgent.enabled = false;
+        Destroy(this.gameObject, 2f);
     }
 
 
