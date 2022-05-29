@@ -10,7 +10,9 @@ public class LevelManager : MonoSingleton<LevelManager>
     public List<FloorController> floorControllers = new List<FloorController>();
     public List<WallController> wallControllers = new List<WallController>();
     public List<PickablePoint> pickablePoints = new List<PickablePoint>();
-
+    public EnemySpawnerController enemySpawner;
+  
+    public int currentPlayerFloor;
     public int currentLevelMoneyCollected;
     public int moneyToUnlockKey;
     public GameObject NextLevelKey;
@@ -45,10 +47,10 @@ public class LevelManager : MonoSingleton<LevelManager>
 
     public void ShowFloor(int number)
     {
-    
+        currentPlayerFloor = number;
         foreach (var item in wallControllers)
         {
-            if (item.transform.position.y == number * 3)
+            if (Mathf.Round(item.transform.position.y) == number * 3)
             {
                 foreach (GameObject mapLine in item.mapLines)
                 {
@@ -58,10 +60,17 @@ public class LevelManager : MonoSingleton<LevelManager>
         }
         foreach (var item in floorControllers)
         {
-            if (item.transform.position.y == number * 3)
+            if (Mathf.Round(item.transform.position.y) == number * 3)
             {
                 if (item.interactivePoint != null)
                     item.interactivePoint.SetActive(true);
+            }
+        }
+        foreach (var item in enemySpawner.spawnedEnemies)
+        {
+            if (Mathf.Round(item.transform.position.y) == (number * 3))
+            {
+                item.gameObject.SetActive(true);
             }
         }
 
@@ -72,7 +81,7 @@ public class LevelManager : MonoSingleton<LevelManager>
    
         foreach (var item in wallControllers)
         {
-            if (item.transform.position.y == number * 3)
+            if (Mathf.Round(item.transform.position.y) == number * 3)
             {
                 foreach (GameObject mapLine in item.mapLines)
                 {
@@ -82,10 +91,18 @@ public class LevelManager : MonoSingleton<LevelManager>
         }
         foreach (var item in floorControllers)
         {
-            if (item.transform.position.y == number * 3)
+            if (Mathf.Round(item.transform.position.y) == number * 3)
             {
                 if (item.interactivePoint != null)
                     item.interactivePoint.SetActive(false);
+            }
+        }
+
+        foreach (var item in enemySpawner.spawnedEnemies)
+        {
+            if (Mathf.Round(item.transform.position.y) == (number * 3))
+            {
+                item.gameObject.SetActive(false);
             }
         }
     }

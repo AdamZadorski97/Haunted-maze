@@ -67,7 +67,7 @@ public class EnemySpawnerController : MonoBehaviour
     public void SpawnEnemy()
     {
         int counter = 0;
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 150; i++)
         {
             counter++;
             CheckCanSpawnEnemy();
@@ -93,6 +93,11 @@ public class EnemySpawnerController : MonoBehaviour
         
         FloorController floorController = floorControllers[(int)Random.Range(0, floorControllers.Length - 1)];
         Vector3 checkPosition = floorController.transform.position + new Vector3(1, 0, 1);
+
+        if(floorController.transform.position.y  != LevelManager.Instance.currentPlayerFloor * 3)
+        {
+            return;
+        }    
 
         if (Vector3.Distance(checkPosition, playerController.transform.position) < minDistanceFromPlayer)
         {

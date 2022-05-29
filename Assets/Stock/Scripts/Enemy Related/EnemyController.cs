@@ -14,8 +14,17 @@ public class EnemyController : MonoBehaviour
     public bool isDead;
     public void Start()
     {
-       
+        if (Mathf.Round(transform.position.y) != 3 * LevelManager.Instance.currentPlayerFloor)
+            gameObject.SetActive(false);
+
     }
+
+    private void OnEnable()
+    {
+        StartCoroutine(EnableNavmeshDelay());
+    }
+
+
     private void UpdatePlayerPos()
     {
         if (isDead)

@@ -14,6 +14,7 @@ public class StairsTrigger : MonoBehaviour
     {
         if (other.GetComponent<PlayerPicker>() && stairsController.isActive)
         {
+            Debug.Log("Enter");
             SwitchFloor();
             if (isDownTrigger)
             {
