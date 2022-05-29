@@ -59,7 +59,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         cinemachineImpulseSource.GenerateImpulse();
         gunParticleSystem.Play();
-        gunAnimator.SetTrigger("Shoot");
+        gunAnimator.SetTrigger("Shoot"+ Random.Range(1,4));
         audioSource.PlayOneShot(shootSound);
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 1000, enemyLayermask))
