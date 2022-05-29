@@ -78,6 +78,7 @@ public class EnemySpawnerController : MonoBehaviour
                 spawnedEnemy.transform.position = newEnemyPosition;
                 spawnedEnemy.endPoint = playerController.transform;
                 spawnedEnemy.EnableNavMesh();
+                spawnedEnemy.enemySpawnerController = this;
                 canSpawn = false;
                 break;
             }

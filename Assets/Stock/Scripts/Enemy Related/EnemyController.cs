@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     public Animator animator;
     public CapsuleCollider capsuleCollider;
     public GameObject mapVisualize;
+    public EnemySpawnerController enemySpawnerController;
     public bool isDead;
     public void Start()
     {
@@ -34,6 +35,7 @@ public class EnemyController : MonoBehaviour
     }
     public void OnDie()
     {
+        enemySpawnerController.spawnedEnemies.Remove(this);
         isDead = true;
         animator.SetTrigger("Die");
         capsuleCollider.enabled = false;
