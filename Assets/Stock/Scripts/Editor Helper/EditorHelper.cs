@@ -131,7 +131,7 @@ public class EditorHelper : OdinEditorWindow
     [Button]
     private void UpdateWallsData()
     {
-        NewWallController[] components = GameObject.FindObjectsOfType<NewWallController>();
+        WallController[] components = GameObject.FindObjectsOfType<WallController>();
         foreach (var item in components)
         {
             item.ChangeProporties();
@@ -158,7 +158,7 @@ public class EditorHelper : OdinEditorWindow
     {
         if (showPath) showPath = false; else showPath = true;
 
-        NewWallController[] components = GameObject.FindObjectsOfType<NewWallController>();
+        WallController[] components = GameObject.FindObjectsOfType<WallController>();
         foreach (var item in components)
         {
             item.showPath = showPath;
@@ -169,7 +169,7 @@ public class EditorHelper : OdinEditorWindow
     [Button("Show Wall Colliders")]
     private void HideFloor(int number)
     {
-        NewWallController[] components = GameObject.FindObjectsOfType<NewWallController>();
+        WallController[] components = GameObject.FindObjectsOfType<WallController>();
         foreach (var item in components)
         {
             if(item.transform.position.y == number*3)

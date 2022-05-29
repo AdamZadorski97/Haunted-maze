@@ -6,7 +6,7 @@ using UnityEditor;
 using Unity.EditorCoroutines.Editor;
 
 [ExecuteInEditMode]
-public class NewWallController : MonoBehaviour
+public class WallController : MonoBehaviour
 {
     [HideInInspector] public bool showPath = false;
     public GameObject wallController;
@@ -119,9 +119,9 @@ public class NewWallController : MonoBehaviour
         GameObject clone = PrefabUtility.InstantiatePrefab((GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/1. Level Creator/WallController.prefab", typeof(GameObject)), null) as GameObject;
         clone.transform.position = transform.position + (transform.up * 3f);
         clone.transform.rotation = currentEluers;
-        clone.GetComponent<NewWallController>().currentData = currentData;
-        clone.GetComponent<NewWallController>().ChangeProporties();
-        clone.GetComponent<NewWallController>().CreateData();
+        clone.GetComponent<WallController>().currentData = currentData;
+        clone.GetComponent<WallController>().ChangeProporties();
+        clone.GetComponent<WallController>().CreateData();
         Selection.activeObject = clone;
     }
 
@@ -137,9 +137,9 @@ public class NewWallController : MonoBehaviour
         GameObject clone = PrefabUtility.InstantiatePrefab((GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/1. Level Creator/WallController.prefab", typeof(GameObject)), null) as GameObject;
         clone.transform.position = transform.position + (transform.right * 2.5f);
         clone.transform.rotation = currentEluers;
-        clone.GetComponent<NewWallController>().currentData = currentData;
-        clone.GetComponent<NewWallController>().ChangeProporties();
-        clone.GetComponent<NewWallController>().CreateData();
+        clone.GetComponent<WallController>().currentData = currentData;
+        clone.GetComponent<WallController>().ChangeProporties();
+        clone.GetComponent<WallController>().CreateData();
         Selection.activeObject = clone;
     }
 
@@ -156,9 +156,9 @@ public class NewWallController : MonoBehaviour
         GameObject clone = PrefabUtility.InstantiatePrefab((GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/1. Level Creator/WallController.prefab", typeof(GameObject)), null) as GameObject;
         clone.transform.position = transform.position + (-transform.right * 2.5f);
         clone.transform.rotation = currentEluers;
-        clone.GetComponent<NewWallController>().currentData = currentData;
-        clone.GetComponent<NewWallController>().ChangeProporties();
-        clone.GetComponent<NewWallController>().CreateData();
+        clone.GetComponent<WallController>().currentData = currentData;
+        clone.GetComponent<WallController>().ChangeProporties();
+        clone.GetComponent<WallController>().CreateData();
         Selection.activeObject = clone;
     }
 

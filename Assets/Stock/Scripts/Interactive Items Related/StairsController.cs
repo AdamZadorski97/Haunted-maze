@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Cinemachine;
+
 public class StairsController : MonoBehaviour
 {
     public AnimationCurve moveDownSpeedCurve;
@@ -30,6 +32,7 @@ public class StairsController : MonoBehaviour
         {
             objectToTween.GetComponent<PlayerController>().navMeshAgent.enabled = false;
             objectToTween.GetComponent<PlayerController>().enabled = false;
+            SwitchPlayerCameraFalse();
         }
 
 
@@ -41,6 +44,23 @@ public class StairsController : MonoBehaviour
         {
             objectToTween.GetComponent<PlayerController>().navMeshAgent.enabled = true;
             objectToTween.GetComponent<PlayerController>().enabled = true;
+            SwitchPlayerCameraTrue();
         }
+    }
+
+
+
+
+    public void SwitchPlayerCameraFalse()
+    {
+        PlayerController.Instance.cinemachineVirtualCamera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
+        PlayerController.Instance.cinemachineVirtualCamera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 0;
+        PlayerController.Instance.cinemachineVirtualCamera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
+    }
+    public void SwitchPlayerCameraTrue()
+    {
+        PlayerController.Instance.cinemachineVirtualCamera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 1;
+        PlayerController.Instance.cinemachineVirtualCamera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 1;
+        PlayerController.Instance.cinemachineVirtualCamera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
     }
 }

@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,58 +33,8 @@ public class StairsTrigger : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            HideFloor(i);
+            LevelManager.Instance.HideFloor(i);
         }
-        ShowFloor(destinationFloor);
-    }
-    private void ShowFloor(int number)
-    {
-        NewWallController[] components = GameObject.FindObjectsOfType<NewWallController>();
-        foreach (var item in components)
-        {
-            if (item.transform.position.y == number * 3)
-            {
-                foreach (GameObject mapLine in item.mapLines)
-                {
-                        mapLine.SetActive(true);
-                }
-            }
-        }
-        FloorController[] floorControllers = GameObject.FindObjectsOfType<FloorController>();
-       
-        foreach (var item in floorControllers)
-        {
-            if (item.transform.position.y == number * 3)
-            {
-                if(item.interactivePoint!=null)
-                item.interactivePoint.SetActive(true);
-            }
-        }
-
-
-    }
-    private void HideFloor(int number)
-    {
-        NewWallController[] components = GameObject.FindObjectsOfType<NewWallController>();
-        foreach (var item in components)
-        {
-            if (item.transform.position.y == number * 3)
-            {
-                foreach (GameObject mapLine in item.mapLines)
-                {
-                    mapLine.SetActive(false);
-                }
-            }
-
-        }
-        FloorController[] floorControllers = GameObject.FindObjectsOfType<FloorController>();
-        foreach (var item in floorControllers)
-        {
-            if (item.transform.position.y == number * 3)
-            {
-                if (item.interactivePoint != null)
-                    item.interactivePoint.SetActive(false);
-            }
-        }
+       LevelManager.Instance.ShowFloor(destinationFloor);
     }
 }

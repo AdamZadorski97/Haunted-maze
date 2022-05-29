@@ -37,6 +37,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     public Animator gunAnimator;
     public ParticleSystem gunParticleSystem;
     public CinemachineImpulseSource cinemachineImpulseSource;
+    public CinemachineVirtualCamera cinemachineVirtualCamera;
     public void Update()
     {
         SwipeControll();
