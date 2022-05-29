@@ -8,36 +8,43 @@ using Cinemachine;
 public class PlayerController : MonoSingleton<PlayerController>
 {
     public static PlayerController _Instance { get; private set; }
-    public bool canMove = false;
-    public float speed;
-    public float turnBackSpeed;
-    public AnimationCurve turnBackCurve;
-    public float turnSideSpeed;
-    public AnimationCurve turnSideCurve;
-    public float rotationSpeed;
-    public NavMeshAgent navMeshAgent;
-    public bool moveLeft;
-    public bool moveRight;
-    public bool moveBack;
-    public float canTurnTimer;
-    public float canTurnMaxTime;
-    public float interval;
-    public AudioSource audioSource;
-    public AudioClip footstep1;
-    public AudioClip footstep2;
-    public AudioClip turnAround;
-    public AudioClip shootSound;
-    public float minDistanceToTurn = 0.3f;
-    public float raycastOffset;
-    public LayerMask floorLayermask;
-    public SwipeController swipeController;
-    string inst = null;
-    public LayerMask wallLayermask;
-    public LayerMask enemyLayermask;
-    public Animator gunAnimator;
-    public ParticleSystem gunParticleSystem;
-    public CinemachineImpulseSource cinemachineImpulseSource;
-    public CinemachineVirtualCamera cinemachineVirtualCamera;
+    [SerializeField] private bool canMove = false;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float turnBackSpeed;
+    [SerializeField] private AnimationCurve turnBackCurve;
+    [SerializeField] private float turnSideSpeed;
+    [SerializeField] private AnimationCurve turnSideCurve;
+    [SerializeField] private float rotationSpeed;
+
+
+    [SerializeField] private float canTurnTimer;
+    [SerializeField] private float canTurnMaxTime;
+
+    [SerializeField] private float footStepInterval;
+
+    [SerializeField] private AudioClip footstep1;
+    [SerializeField] private AudioClip footstep2;
+    [SerializeField] private AudioClip turnAround;
+    [SerializeField] private AudioClip shootSound;
+
+    [SerializeField] private float minDistanceToTurn = 0.3f;
+    [SerializeField] private float raycastOffset;
+    [SerializeField] private SwipeController swipeController;
+    [SerializeField] private LayerMask floorLayermask;
+    [SerializeField] private LayerMask wallLayermask;
+    [SerializeField] private LayerMask enemyLayermask;
+
+    [SerializeField] private NavMeshAgent navMeshAgent;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private Animator gunAnimator;
+    [SerializeField] private ParticleSystem gunParticleSystem;
+    [SerializeField] private CinemachineImpulseSource cinemachineImpulseSource;
+    [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
+
+    [HideInInspector] public bool moveLeft;
+    [HideInInspector] public bool moveRight;
+    [HideInInspector] public bool moveBack;
+    private string inst = null;
     public void Update()
     {
         SwipeControll();
@@ -149,9 +156,9 @@ public class PlayerController : MonoSingleton<PlayerController>
     }
     IEnumerator Footstep()
     {
-        yield return new WaitForSeconds(interval);
+        yield return new WaitForSeconds(footStepInterval);
         audioSource.PlayOneShot(footstep1);
-        yield return new WaitForSeconds(interval);
+        yield return new WaitForSeconds(footStepInterval);
         audioSource.PlayOneShot(footstep2);
         StartCoroutine(Footstep());
     }
@@ -260,7 +267,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
         }
         if (!wallRaycast())
-            navMeshAgent.Move(transform.forward * speed * Time.deltaTime);
+            navMeshAgent.Move(transform.forward * moveSpeed * Time.deltaTime);
     }
 
 
@@ -317,5 +324,9 @@ public class PlayerController : MonoSingleton<PlayerController>
         cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 1;
         cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 1;
         cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
+    }
+    public void SwitchNavMeshAgent(bool state)
+    {
+        navMeshAgent.enabled = state;
     }
 }

@@ -31,7 +31,7 @@ public class StairsController : MonoBehaviour
     {
         if (objectToTween.GetComponent<PlayerController>())
         {
-            objectToTween.GetComponent<PlayerController>().navMeshAgent.enabled = false;
+            objectToTween.GetComponent<PlayerController>().SwitchNavMeshAgent(false);
             objectToTween.GetComponent<PlayerController>().enabled = false;
             PlayerController.Instance.SwitchPlayerCameraFalse();
         }
@@ -43,7 +43,7 @@ public class StairsController : MonoBehaviour
 
         if (objectToTween.GetComponent<PlayerController>())
         {
-            objectToTween.GetComponent<PlayerController>().navMeshAgent.enabled = true;
+            objectToTween.GetComponent<PlayerController>().SwitchNavMeshAgent(true);
             objectToTween.GetComponent<PlayerController>().enabled = true;
             PlayerController.Instance.SwitchPlayerCameraTrue();
         }

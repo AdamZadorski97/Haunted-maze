@@ -2119,7 +2119,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010135798112794690}
-  m_LocalRotation: {x: 1e-45, y: -1e-45, z: -0, w: 1}
+  m_LocalRotation: {x: 4e-45, y: -4e-45, z: -0, w: 1}
   m_LocalPosition: {x: -1.25, y: 1.3659999, z: 4.255}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4119,7 +4119,6 @@ GameObject:
   - component: {fileID: 1010135799179854539}
   - component: {fileID: 1010135799179854536}
   - component: {fileID: 1010135799179854537}
-  - component: {fileID: 1010135799179854538}
   m_Layer: 7
   m_Name: Arrow Box Right
   m_TagString: Untagged
@@ -4192,19 +4191,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1010135799179854538
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1010135799179854540}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1010135799230599460
 GameObject:
   m_ObjectHideFlags: 0
@@ -5163,7 +5149,6 @@ GameObject:
   - component: {fileID: 1010135799666417290}
   - component: {fileID: 1010135799666417335}
   - component: {fileID: 1010135799666417288}
-  - component: {fileID: 1010135799666417289}
   m_Layer: 7
   m_Name: Arrow Box Left
   m_TagString: Untagged
@@ -5236,19 +5221,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1010135799666417289
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1010135799666417291}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1010135799746593584
 GameObject:
   m_ObjectHideFlags: 0
@@ -5467,7 +5439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canMove: 1
-  speed: 3.5
+  moveSpeed: 3
   turnBackSpeed: 0.3
   turnBackCurve:
     serializedVersion: 2
@@ -5537,34 +5509,34 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   rotationSpeed: 1
-  navMeshAgent: {fileID: 1010135799765994901}
-  moveLeft: 0
-  moveRight: 0
-  moveBack: 0
   canTurnTimer: 1
   canTurnMaxTime: 0.6
-  interval: 0.3
-  audioSource: {fileID: 1010135799765994899}
+  footStepInterval: 0.3
   footstep1: {fileID: 8300000, guid: 1711705fe9b4414498067213aa0c6311, type: 3}
   footstep2: {fileID: 8300000, guid: dfb2e5dfc75e33a4a96c0235d28d958d, type: 3}
   turnAround: {fileID: 8300000, guid: 73e7e914e9caa474cb97cd8dd0045144, type: 3}
   shootSound: {fileID: 8300000, guid: 896cc296c2b64e444adbcdb88a8461f3, type: 3}
   minDistanceToTurn: 0.5
   raycastOffset: -0.2
+  swipeController: {fileID: 18316642647453131}
   floorLayermask:
     serializedVersion: 2
     m_Bits: 256
-  swipeController: {fileID: 18316642647453131}
   wallLayermask:
     serializedVersion: 2
     m_Bits: 512
   enemyLayermask:
     serializedVersion: 2
     m_Bits: 64
+  navMeshAgent: {fileID: 1010135799765994901}
+  audioSource: {fileID: 1010135799765994899}
   gunAnimator: {fileID: 3166861030737910102}
   gunParticleSystem: {fileID: 1749411033276724249}
   cinemachineImpulseSource: {fileID: 1997820625}
   cinemachineVirtualCamera: {fileID: 1010135798711828000}
+  moveLeft: 0
+  moveRight: 0
+  moveBack: 0
   frontMiddleRaycastStarPoint: {fileID: 1010135798205652695}
   frontLeftRaycastStarPoint: {fileID: 1010135798864022939}
   frontRightRaycastStarPoint: {fileID: 1010135798076559655}
