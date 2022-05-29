@@ -8,6 +8,6 @@ public class PointRotation : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.Rotate(new Vector3(0,1,0), speed);
+        transform.Rotate(new Vector3(0,0,1), speed);
     }
 }
