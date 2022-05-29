@@ -2119,7 +2119,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010135798112794690}
-  m_LocalRotation: {x: 1e-45, y: -1e-45, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.25, y: 1.3659999, z: 4.255}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2154,7 +2154,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 23.64
-  field of view: 139
+  field of view: 140
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -3268,7 +3268,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010135798711828002}
-  m_LocalRotation: {x: 3e-45, y: -3e-45, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3298,7 +3298,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 1010135799448408439}
   m_Follow: {fileID: 1010135799448408439}
   m_Lens:
-    FieldOfView: 139
+    FieldOfView: 140
     OrthographicSize: 5
     NearClipPlane: 0.1
     FarClipPlane: 23.64
@@ -4093,10 +4093,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
   m_LookaheadTime: 0
-  m_LookaheadSmoothing: 0
+  m_LookaheadSmoothing: 17
   m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0
-  m_VerticalDamping: 0
+  m_HorizontalDamping: 1
+  m_VerticalDamping: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_DeadZoneWidth: 0
@@ -4118,15 +4118,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 1
+  m_BindingMode: 3
   m_FollowOffset: {x: 0, y: 0, z: -0.1}
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 0
+  m_XDamping: 0
+  m_YDamping: 0
+  m_ZDamping: 0.5
   m_AngularDampingMode: 0
-  m_PitchDamping: 0
-  m_YawDamping: 0.2
-  m_RollDamping: 0
+  m_PitchDamping: 0.25
+  m_YawDamping: 0.25
+  m_RollDamping: 0.25
   m_AngularDamping: 0
 --- !u!1 &1010135799179854540
 GameObject:
@@ -4623,7 +4623,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7909927578275450126}
+  - {fileID: 1797977591869945496}
   - {fileID: 1010135799230599459}
   m_Father: {fileID: 1010135799765994902}
   m_RootOrder: 0
@@ -5465,28 +5465,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.0016197441
-      value: -0.0023498535
-      inSlope: 1.1243587
-      outSlope: 1.1243587
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.07119648
-    - serializedVersion: 3
-      time: 0.11269938
-      value: 0.101915255
-      inSlope: 1.701391
-      outSlope: 1.701391
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.05664535
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -5494,33 +5485,24 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  turnSideSpeed: 0.25
+  turnSideSpeed: 0.12
   turnSideCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.0016197441
-      value: -0.0023498535
-      inSlope: 1.1243587
-      outSlope: 1.1243587
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.07119648
-    - serializedVersion: 3
-      time: 0.11269938
-      value: 0.101915255
-      inSlope: 1.701391
-      outSlope: 1.701391
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.05664535
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -5554,9 +5536,11 @@ MonoBehaviour:
   gunParticleSystem: {fileID: 1749411033276724249}
   cinemachineImpulseSource: {fileID: 1997820625}
   cinemachineVirtualCamera: {fileID: 1010135798711828000}
+  cameraPivot: {fileID: 1797977591869945496}
   moveLeft: 0
   moveRight: 0
   moveBack: 0
+  closestEnemy: {fileID: 0}
   frontMiddleRaycastStarPoint: {fileID: 1010135798205652695}
   frontLeftRaycastStarPoint: {fileID: 1010135798864022939}
   frontRightRaycastStarPoint: {fileID: 1010135798076559655}
@@ -6347,6 +6331,38 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1 &3604715261839853036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1797977591869945496}
+  m_Layer: 0
+  m_Name: WeaponPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1797977591869945496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3604715261839853036}
+  m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
+  m_LocalPosition: {x: 0.1697, y: -0.3332, z: -0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7909927578275450126}
+  m_Father: {fileID: 1010135799448408439}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 40, y: 0, z: 0}
 --- !u!1 &3839779201823350672
 GameObject:
   m_ObjectHideFlags: 0
@@ -7122,7 +7138,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 2
-    m_TransformParent: {fileID: 1010135799448408439}
+    m_TransformParent: {fileID: 1797977591869945496}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 4d804124c0cd51e4b8b0976417cdbffd, type: 3}
       propertyPath: m_RootOrder
@@ -7130,31 +7146,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4d804124c0cd51e4b8b0976417cdbffd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.2408
+      value: 0.037190735
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4d804124c0cd51e4b8b0976417cdbffd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.3268
+      value: 0.0803125
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4d804124c0cd51e4b8b0976417cdbffd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.4885
+      value: 0.3839872
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4d804124c0cd51e4b8b0976417cdbffd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.995438
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4d804124c0cd51e4b8b0976417cdbffd, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.025739172
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4d804124c0cd51e4b8b0976417cdbffd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.08895083
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4d804124c0cd51e4b8b0976417cdbffd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.022989687
+      value: -2.3283064e-10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4d804124c0cd51e4b8b0976417cdbffd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7176,6 +7192,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5a6886867db25c2469aad74e2ad9524b, type: 2}
+    - target: {fileID: -2339543461987503314, guid: 4d804124c0cd51e4b8b0976417cdbffd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 17e7e78f0dd7e634bb72ca7df91afdea, type: 2}
     - target: {fileID: -1928264305085921817, guid: 4d804124c0cd51e4b8b0976417cdbffd, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

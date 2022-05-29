@@ -40,6 +40,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     [SerializeField] private ParticleSystem gunParticleSystem;
     [SerializeField] private CinemachineImpulseSource cinemachineImpulseSource;
     [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
+    public Transform cameraPivot;
 
     [HideInInspector] public bool moveLeft;
     [HideInInspector] public bool moveRight;
@@ -51,7 +52,99 @@ public class PlayerController : MonoSingleton<PlayerController>
         if (canMove)
             MoveController();
 
+
+        LookAtClosestEnemy();
     }
+    public void LookAtClosestEnemy()
+    {
+        RaycastHit hit;
+
+        if (LevelManager.Instance.enemySpawner.spawnedEnemies.Count > 0)
+        {
+            if (IsEnemyVisible())
+            {
+                
+                Vector3 dir = closestEnemy.transform.position - cameraPivot.position;
+                Quaternion lookRot = Quaternion.LookRotation(dir);
+                lookRot.x = 0; lookRot.z = 0;
+                cameraPivot.rotation = Quaternion.Slerp(cameraPivot.rotation, lookRot, 6 * Time.deltaTime);
+            }
+            else
+            {
+                float xLerp = Mathf.LerpAngle(cameraPivot.localEulerAngles.x, 40, 3 * Time.deltaTime);
+                float yLerp = Mathf.LerpAngle(cameraPivot.localEulerAngles.y, 0, 3 * Time.deltaTime);
+                float zLerp = Mathf.LerpAngle(cameraPivot.localEulerAngles.z, 0, 3 * Time.deltaTime);
+                Vector3 Lerped = new Vector3(xLerp, yLerp, zLerp);
+                cameraPivot.localEulerAngles = Lerped;
+            }
+        }
+        else
+        {
+            float xLerp = Mathf.LerpAngle(cameraPivot.localEulerAngles.x, 40, 3 * Time.deltaTime);
+            float yLerp = Mathf.LerpAngle(cameraPivot.localEulerAngles.y, 0, 3 * Time.deltaTime);
+            float zLerp = Mathf.LerpAngle(cameraPivot.localEulerAngles.z, 0, 3 * Time.deltaTime);
+            Vector3 Lerped = new Vector3(xLerp, yLerp, zLerp);
+            cameraPivot.localEulerAngles = Lerped;
+        }
+    }
+
+    public Transform closestEnemy;
+    public bool IsEnemyVisible()
+    {
+        Debug.DrawRay(transform.position, transform.TransformDirection((Vector3.forward) + new Vector3(0.25f, 0, 0)) * 5);
+        Debug.DrawRay(transform.position, transform.TransformDirection((Vector3.forward) - new Vector3(0.25f, 0, 0)) * 5);
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10);
+
+        RaycastHit hitRight;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) + new Vector3(0.3f, 0, 0), out hitRight, 8, enemyLayermask))
+        {
+            closestEnemy = hitRight.transform;
+            return true;
+        }
+
+        RaycastHit hitLeft;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) - new Vector3(0.3f, 0, 0), out hitLeft, 8, enemyLayermask))
+        {
+            closestEnemy = hitLeft.transform;
+            return true;
+        }
+
+        RaycastHit hitFront;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hitFront, 10, enemyLayermask))
+        {
+            closestEnemy = hitFront.transform;
+            return true;
+        }
+     
+        closestEnemy = null;
+        return false;
+    }
+
+
+
+
+
+
+
+
+    //public Transform GetClosestEnemy()
+    //{
+    //    Transform bestTarget = null;
+    //    float closestDistanceSqr = Mathf.Infinity;
+    //    Vector3 currentPosition = transform.position;
+    //    for (int i = 0; i < LevelManager.Instance.enemySpawner.spawnedEnemies.Count; i++)
+    //    {
+    //        Vector3 directionToTarget = LevelManager.Instance.enemySpawner.spawnedEnemies[i].transform.position - currentPosition;
+    //        float dSqrToTarget = directionToTarget.sqrMagnitude;
+    //        if (dSqrToTarget < closestDistanceSqr)
+    //        {
+    //            closestDistanceSqr = dSqrToTarget;
+    //            bestTarget = LevelManager.Instance.enemySpawner.spawnedEnemies[i].transform;
+    //        }
+    //    }
+
+    //    return bestTarget;
+    //}
 
 
 
@@ -59,14 +152,13 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         cinemachineImpulseSource.GenerateImpulse();
         gunParticleSystem.Play();
-        gunAnimator.SetTrigger("Shoot"+ Random.Range(1,4));
+        gunAnimator.SetTrigger("Shoot" + Random.Range(1, 4));
         audioSource.PlayOneShot(shootSound);
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 1000, enemyLayermask))
+        if (IsEnemyVisible())
         {
-            if (hit.transform.GetComponent<EnemyController>())
+            if (closestEnemy.GetComponent<EnemyController>())
             {
-                hit.transform.GetComponent<EnemyController>().OnDie();
+                closestEnemy.GetComponent<EnemyController>().OnDie();
             }
         }
 
@@ -157,8 +249,10 @@ public class PlayerController : MonoSingleton<PlayerController>
     IEnumerator Footstep()
     {
         yield return new WaitForSeconds(footStepInterval);
-        audioSource.PlayOneShot(footstep1);
+        if (!wallRaycast())
+            audioSource.PlayOneShot(footstep1);
         yield return new WaitForSeconds(footStepInterval);
+        if(!wallRaycast())
         audioSource.PlayOneShot(footstep2);
         StartCoroutine(Footstep());
     }
