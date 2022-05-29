@@ -34,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 499351504392431716}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33508443983393882
 MeshFilter:
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactivePointsIsOn: 1
-  interactivePoint: {fileID: 5369871196849302526}
+  interactivePoint: {fileID: 919132149155446097, guid: 887f28c4e3985894b9ca592dd0cdf047, type: 3}
   meshRenderer: {fileID: 23212418257165108}
 --- !u!65 &6030247558054902605
 BoxCollider:
@@ -255,6 +255,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2100273116438126148, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
+      propertyPath: InteractivePointMesh
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: 887f28c4e3985894b9ca592dd0cdf047, type: 3}
     - target: {fileID: 3425653757276519968, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
       propertyPath: m_Size.y
       value: 9.97858
@@ -336,11 +340,6 @@ Transform:
 --- !u!4 &1930962368103073136 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6799201067774586597, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
-  m_PrefabInstance: {fileID: 4942618488314751893}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5369871196849302526 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1013917073699143787, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
   m_PrefabInstance: {fileID: 4942618488314751893}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8482908370446712843
