@@ -10,9 +10,9 @@ public class WallController : MonoBehaviour
 {
     [HideInInspector] public bool showPath = false;
     public GameObject wallController;
-     public List<GameObject> mapLines = new List<GameObject>();
-     public List<BoxCollider> boxColliders = new List<BoxCollider>();
- 
+    public List<GameObject> mapLines = new List<GameObject>();
+    public List<BoxCollider> boxColliders = new List<BoxCollider>();
+
 
     [TableList(ShowIndexLabels = true)]
     public List<WallData> wallData = new List<WallData>();
@@ -174,7 +174,7 @@ public class WallController : MonoBehaviour
         {
             foreach (GameObject mapLine in mapLines)
             {
-                    mapLine.SetActive(false);
+                mapLine.SetActive(false);
             }
         }
     }
@@ -182,11 +182,16 @@ public class WallController : MonoBehaviour
     public void ChangeProporties()
     {
 
-        gameObject.name = $"WallController {wallData[currentData].name}";
+        //gameObject.name = $"WallController {wallData[currentData].name}";
         var children = new List<GameObject>();
         boxColliders.Clear();
         mapLines.Clear();
-        foreach (Transform child in transform) children.Add(child.gameObject);
+        foreach (Transform child in transform)
+        {
+            if(child.name!="UnDestroyable")
+            children.Add(child.gameObject);
+        }
+        
         children.ForEach(child => DestroyImmediate(child));
         InstantiateWallWithData(wallData[currentData]);
     }
@@ -199,7 +204,7 @@ public class WallController : MonoBehaviour
         meshRendererObject.transform.SetParent(transform);
         meshRendererObject.transform.localPosition = Vector3.zero;
         meshRendererObject.name = "MeshRenderer";
-       
+
         //MeshFilter
         MeshFilter meshFilter = meshRendererObject.AddComponent<MeshFilter>();
         meshFilter.mesh = wallData.mesh;
