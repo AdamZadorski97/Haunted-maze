@@ -5536,7 +5536,8 @@ MonoBehaviour:
   gunParticleSystem: {fileID: 0}
   cinemachineImpulseSource: {fileID: 1997820625}
   cinemachineVirtualCamera: {fileID: 1010135798711828000}
-  cameraPivot: {fileID: 1797977591869945496}
+  weaponPivot: {fileID: 1797977591869945496}
+  cameraPivot: {fileID: 1010135799448408439}
   moveLeft: 0
   moveRight: 0
   moveBack: 0
