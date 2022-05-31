@@ -102,26 +102,26 @@ public class PlayerController : MonoSingleton<PlayerController>
     public Transform closestEnemy;
     public bool IsEnemyVisible()
     {
-        Debug.DrawRay(transform.position, transform.TransformDirection((Vector3.forward) + new Vector3(0.25f, 0, 0)) * 5);
-        Debug.DrawRay(transform.position, transform.TransformDirection((Vector3.forward) - new Vector3(0.25f, 0, 0)) * 5);
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10);
+        Debug.DrawRay(cameraPivot.position, cameraPivot.TransformDirection((Vector3.forward) + new Vector3(0.25f, 0, 0)) * 5);
+        Debug.DrawRay(cameraPivot.position, cameraPivot.TransformDirection((Vector3.forward) - new Vector3(0.25f, 0, 0)) * 5);
+        Debug.DrawRay(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) * 10);
 
         RaycastHit hitRight;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) + new Vector3(0.3f, 0, 0), out hitRight, 8, enemyLayermask))
+        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) + new Vector3(0.3f, 0, 0), out hitRight, 8, enemyLayermask))
         {
             closestEnemy = hitRight.transform;
             return true;
         }
 
         RaycastHit hitLeft;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) - new Vector3(0.3f, 0, 0), out hitLeft, 8, enemyLayermask))
+        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) - new Vector3(0.3f, 0, 0), out hitLeft, 8, enemyLayermask))
         {
             closestEnemy = hitLeft.transform;
             return true;
         }
 
         RaycastHit hitFront;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hitFront, 10, enemyLayermask))
+        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward), out hitFront, 10, enemyLayermask))
         {
             closestEnemy = hitFront.transform;
             return true;

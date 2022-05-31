@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 610179588170670918, guid: 851832ed0e096f04d846bfb90ed45a43, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3ade3504b79ecfe4ab7ebb9648e914b2, type: 2}
     - target: {fileID: 5294751862900003843, guid: 851832ed0e096f04d846bfb90ed45a43, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -64,9 +68,13 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7562882024723436537, guid: 851832ed0e096f04d846bfb90ed45a43, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3ade3504b79ecfe4ab7ebb9648e914b2, type: 2}
     - target: {fileID: 7752012550993393131, guid: 851832ed0e096f04d846bfb90ed45a43, type: 3}
       propertyPath: m_Name
-      value: FasadaKolumny1
+      value: FasadaKolumny
       objectReference: {fileID: 0}
     - target: {fileID: 8635339463927851905, guid: 851832ed0e096f04d846bfb90ed45a43, type: 3}
       propertyPath: mapLines.Array.size

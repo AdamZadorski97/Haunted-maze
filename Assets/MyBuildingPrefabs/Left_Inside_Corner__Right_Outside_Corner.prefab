@@ -286,7 +286,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4723538f687ea834288415cb6f81b32b, type: 2}
+  - {fileID: 2100000, guid: 3ade3504b79ecfe4ab7ebb9648e914b2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -366,7 +366,7 @@ PrefabInstance:
       objectReference: {fileID: 4527902444427117152, guid: a0e100df6bc118547a092bce8fb92415, type: 3}
     - target: {fileID: 7752012550993393131, guid: 851832ed0e096f04d846bfb90ed45a43, type: 3}
       propertyPath: m_Name
-      value: WallController Simple Wall Liblary Wallpaper With Desk
+      value: Left_Inside_Corner__Right_Outside_Corner
       objectReference: {fileID: 0}
     - target: {fileID: 8635339463927851905, guid: 851832ed0e096f04d846bfb90ed45a43, type: 3}
       propertyPath: currentData

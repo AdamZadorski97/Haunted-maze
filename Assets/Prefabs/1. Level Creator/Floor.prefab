@@ -187,22 +187,6 @@ PrefabInstance:
       propertyPath: InitialModule.startLifetime.scalar
       value: 0.6
       objectReference: {fileID: 0}
-    - target: {fileID: 5096196516234111045, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.a
-      value: 0.2901961
-      objectReference: {fileID: 0}
-    - target: {fileID: 5096196516234111045, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5096196516234111045, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.75950825
-      objectReference: {fileID: 0}
-    - target: {fileID: 5096196516234111045, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5099798428283036231, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
       propertyPath: simulationSpeed
       value: 0.5
