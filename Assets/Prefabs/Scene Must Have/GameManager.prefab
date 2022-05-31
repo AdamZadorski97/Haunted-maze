@@ -2119,7 +2119,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010135798112794690}
-  m_LocalRotation: {x: -1e-45, y: 1e-45, z: -0, w: 1}
+  m_LocalRotation: {x: -1e-45, y: 4e-45, z: -0, w: 1}
   m_LocalPosition: {x: -1.2499967, y: 1.3659999, z: 4.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5462,7 +5462,7 @@ MonoBehaviour:
   moveSpeed: 3
   turnBackSpeed: 0.3
   beforeTurnSideAngle: 75
-  beforeTurnSideSpeed: 0.3
+  beforeTurnSideSpeed: 0.2
   beforeTurnSideCurve:
     serializedVersion: 2
     m_Curve:
@@ -5589,6 +5589,7 @@ MonoBehaviour:
   cinemachineVirtualCamera: {fileID: 1010135798711828000}
   weaponPivot: {fileID: 1797977591869945496}
   cameraPivot: {fileID: 1010135799448408439}
+  ammunition: 0
   moveLeft: 0
   moveRight: 0
   moveBack: 0
@@ -6408,7 +6409,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3604715261839853036}
   m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: 0.1697, y: -0.3332, z: -0.1}
+  m_LocalPosition: {x: 0.1697, y: -0.274, z: -0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
