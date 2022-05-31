@@ -48,7 +48,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
     public Transform weaponPivot;
     public Transform cameraPivot;
-
+    public int ammunition;
     [HideInInspector] public bool moveLeft;
     [HideInInspector] public bool moveRight;
     [HideInInspector] public bool moveBack;
@@ -69,6 +69,19 @@ public class PlayerController : MonoSingleton<PlayerController>
     public void LookAtClosestEnemy()
     {
         RaycastHit hit;
+
+        if(ammunition<=0)
+        {
+            float xLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.x, 0, 3 * Time.deltaTime);
+            float yLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.y, 0, 3 * Time.deltaTime);
+            float zLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.z, 0, 3 * Time.deltaTime);
+            Vector3 Lerped = new Vector3(xLerp, yLerp, zLerp);
+            weaponPivot.localEulerAngles = Lerped;
+            return;
+        }
+
+
+
 
         if (LevelManager.Instance.enemySpawner.spawnedEnemies.Count > 0)
         {
@@ -163,8 +176,15 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         cinemachineImpulseSource.GenerateImpulse();
         gunParticleSystem.Play();
+        if(ammunition>0)
         gunAnimator.SetTrigger("Shoot" + Random.Range(1, 4));
         audioSource.PlayOneShot(shootSound);
+        ammunition--;
+        if (ammunition <= 0)
+            StartCoroutine(Reload());
+
+
+
         if (IsEnemyVisible())
         {
             if (closestEnemy.GetComponent<EnemyController>())
@@ -174,6 +194,14 @@ public class PlayerController : MonoSingleton<PlayerController>
         }
 
     
+    }
+
+    IEnumerator Reload()
+    {
+        yield return new WaitForSeconds(0.25f);
+        gunAnimator.SetTrigger("Reload");
+        yield return new WaitForSeconds(1f);
+        ammunition = 10;
     }
 
 
@@ -319,7 +347,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     public Transform frontRightRaycastStarPoint;
     public Transform backLeftRaycastStarPoint;
     public Transform backRightRaycastStarPoint;
-
+    public Sequence turnSequence;
     public void MoveController()
     {
         if (CanTurn())
@@ -330,19 +358,22 @@ public class PlayerController : MonoSingleton<PlayerController>
                 moveLeft = false;
                 moveRight = false;
                 moveBack = false;
-     
+                if (turnSequence != null)
+                {
+                    turnSequence.Kill();
+                }
                 turnEnd = false;
                 Debug.Log("MoveLeft false");
 ;                canTurnTimer = 0.2f;
-                var sequence = DOTween.Sequence();
-                sequence.AppendCallback(() => canMove = false);
-                sequence.Append(transform.DOLocalRotate(new Vector3(0, -90, 0), turnSideSpeed, RotateMode.LocalAxisAdd).SetEase(turnSideCurve));
-                sequence.AppendCallback(() => canMove = true);
-                sequence.Append(cameraPivot.DOLocalRotate(new Vector3(0, 0, 0), turnSideSpeed).SetEase(turnSideCurve));
-             
-                sequence.AppendCallback(() => turnEnd = true);
-        
-                sequence.AppendCallback(() => Debug.Log("moveLeft true"));
+                turnSequence = DOTween.Sequence();
+                turnSequence.AppendCallback(() => canMove = false);
+                turnSequence.Append(transform.DOLocalRotate(new Vector3(0, -90, 0), turnSideSpeed, RotateMode.LocalAxisAdd).SetEase(turnSideCurve));
+                turnSequence.AppendCallback(() => canMove = true);
+                turnSequence.Append(cameraPivot.DOLocalRotate(new Vector3(0, 0, 0), turnSideSpeed).SetEase(turnSideCurve));
+
+                turnSequence.AppendCallback(() => turnEnd = true);
+
+                turnSequence.AppendCallback(() => Debug.Log("moveLeft true"));
 
                 return;
             }
@@ -352,15 +383,18 @@ public class PlayerController : MonoSingleton<PlayerController>
                 moveRight = false;
                 moveBack = false;
                 turnEnd = false;
-              
+                if (turnSequence != null)
+                {
+                    turnSequence.Kill();
+                }
                 canTurnTimer = 0.2f;
-                var sequence = DOTween.Sequence();
-                sequence.AppendCallback(() => canMove = false);
-                sequence.Append(transform.DOLocalRotate(new Vector3(0, 90, 0), turnSideSpeed, RotateMode.LocalAxisAdd).SetEase(turnSideCurve));
-                sequence.AppendCallback(() => canMove = true);
-                sequence.Append(cameraPivot.DOLocalRotate(new Vector3(0, 0, 0), turnSideSpeed).SetEase(turnSideCurve));
-          
-                sequence.AppendCallback(() => turnEnd = true);
+                turnSequence = DOTween.Sequence();
+                turnSequence.AppendCallback(() => canMove = false);
+                turnSequence.Append(transform.DOLocalRotate(new Vector3(0, 90, 0), turnSideSpeed, RotateMode.LocalAxisAdd).SetEase(turnSideCurve));
+                turnSequence.AppendCallback(() => canMove = true);
+                turnSequence.Append(cameraPivot.DOLocalRotate(new Vector3(0, 0, 0), turnSideSpeed).SetEase(turnSideCurve));
+
+                turnSequence.AppendCallback(() => turnEnd = true);
                 return;
             }
 
@@ -372,15 +406,18 @@ public class PlayerController : MonoSingleton<PlayerController>
                     moveRight = false;
                     moveBack = false;
                     turnEnd = false;
-                
-                    canTurnTimer = 0.2f;
-                    var sequence = DOTween.Sequence();
-                    sequence.AppendCallback(() => canMove = false);
-                    sequence.Append(transform.DOLocalRotate(new Vector3(0, 180, 0), turnBackSpeed, RotateMode.LocalAxisAdd).SetEase(turnBackCurve));
-                    sequence.AppendCallback(() => canMove = true);
-                    sequence.Append(cameraPivot.DOLocalRotate(new Vector3(0, 0, 0), turnBackSpeed).SetEase(turnBackCurve));
-                
-                    sequence.AppendCallback(() => turnEnd = true);
+                   if(turnSequence!= null)
+                    {
+                        turnSequence.Kill();
+                    }
+                        canTurnTimer = 0.2f;
+                    turnSequence = DOTween.Sequence();
+                    turnSequence.AppendCallback(() => canMove = false);
+                    turnSequence.Append(transform.DOLocalRotate(new Vector3(0, 180, 0), turnBackSpeed, RotateMode.LocalAxisAdd).SetEase(turnBackCurve));
+                    turnSequence.AppendCallback(() => canMove = true);
+                    turnSequence.Append(cameraPivot.DOLocalRotate(new Vector3(0, 0, 0), turnBackSpeed).SetEase(turnBackCurve));
+
+                    turnSequence.AppendCallback(() => turnEnd = true);
 
                     return;
                 }
@@ -393,6 +430,10 @@ public class PlayerController : MonoSingleton<PlayerController>
         }
         else
         {
+            if (turnSequence != null)
+            {
+                turnSequence.Kill();
+            }
             cameraPivot.localEulerAngles = Vector3.zero;
         }
       
