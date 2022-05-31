@@ -40,6 +40,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     [SerializeField] private ParticleSystem gunParticleSystem;
     [SerializeField] private CinemachineImpulseSource cinemachineImpulseSource;
     [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
+    public Transform weaponPivot;
     public Transform cameraPivot;
 
     [HideInInspector] public bool moveLeft;
@@ -64,27 +65,27 @@ public class PlayerController : MonoSingleton<PlayerController>
             if (IsEnemyVisible())
             {
                 
-                Vector3 dir = closestEnemy.transform.position - cameraPivot.position;
+                Vector3 dir = closestEnemy.transform.position - weaponPivot.position;
                 Quaternion lookRot = Quaternion.LookRotation(dir);
                 lookRot.x = 0; lookRot.z = 0;
-                cameraPivot.rotation = Quaternion.Slerp(cameraPivot.rotation, lookRot, 6 * Time.deltaTime);
+                weaponPivot.rotation = Quaternion.Slerp(weaponPivot.rotation, lookRot, 6 * Time.deltaTime);
             }
             else
             {
-                float xLerp = Mathf.LerpAngle(cameraPivot.localEulerAngles.x, 40, 3 * Time.deltaTime);
-                float yLerp = Mathf.LerpAngle(cameraPivot.localEulerAngles.y, 0, 3 * Time.deltaTime);
-                float zLerp = Mathf.LerpAngle(cameraPivot.localEulerAngles.z, 0, 3 * Time.deltaTime);
+                float xLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.x, 40, 3 * Time.deltaTime);
+                float yLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.y, 0, 3 * Time.deltaTime);
+                float zLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.z, 0, 3 * Time.deltaTime);
                 Vector3 Lerped = new Vector3(xLerp, yLerp, zLerp);
-                cameraPivot.localEulerAngles = Lerped;
+                weaponPivot.localEulerAngles = Lerped;
             }
         }
         else
         {
-            float xLerp = Mathf.LerpAngle(cameraPivot.localEulerAngles.x, 40, 3 * Time.deltaTime);
-            float yLerp = Mathf.LerpAngle(cameraPivot.localEulerAngles.y, 0, 3 * Time.deltaTime);
-            float zLerp = Mathf.LerpAngle(cameraPivot.localEulerAngles.z, 0, 3 * Time.deltaTime);
+            float xLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.x, 40, 3 * Time.deltaTime);
+            float yLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.y, 0, 3 * Time.deltaTime);
+            float zLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.z, 0, 3 * Time.deltaTime);
             Vector3 Lerped = new Vector3(xLerp, yLerp, zLerp);
-            cameraPivot.localEulerAngles = Lerped;
+            weaponPivot.localEulerAngles = Lerped;
         }
     }
 
@@ -217,10 +218,12 @@ public class PlayerController : MonoSingleton<PlayerController>
         Debug.Log("Swipe Direction " + direction);
         if (direction == "Left")
         {
+           cameraPivot.DOLocalRotate(new Vector3(0, -20, 0), 0.5f);
             moveLeft = true;
         }
         if (direction == "Right")
         {
+            cameraPivot.DOLocalRotate(new Vector3(0, 20, 0), 0.5f);
             moveRight = true;
         }
         if (direction == "Up")
@@ -323,6 +326,7 @@ public class PlayerController : MonoSingleton<PlayerController>
                 sequence.AppendCallback(() => canMove = false);
                 sequence.Append(transform.DOLocalRotate(new Vector3(0, -90, 0), turnSideSpeed, RotateMode.LocalAxisAdd).SetEase(turnSideCurve));
                 sequence.AppendCallback(() => canMove = true);
+                sequence.Append(cameraPivot.DOLocalRotate(new Vector3(0, 0, 0), 0.5f));
                 audioSource.PlayOneShot(turnAround);
                 return;
             }
@@ -337,6 +341,7 @@ public class PlayerController : MonoSingleton<PlayerController>
                 sequence.AppendCallback(() => canMove = false);
                 sequence.Append(transform.DOLocalRotate(new Vector3(0, 90, 0), turnSideSpeed, RotateMode.LocalAxisAdd).SetEase(turnSideCurve));
                 sequence.AppendCallback(() => canMove = true);
+                sequence.Append(cameraPivot.DOLocalRotate(new Vector3(0, 0, 0), 0.5f));
                 audioSource.PlayOneShot(turnAround);
                 return;
             }
