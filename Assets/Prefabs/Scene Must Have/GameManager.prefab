@@ -5461,6 +5461,21 @@ MonoBehaviour:
   canMove: 1
   moveSpeed: 3
   turnBackSpeed: 0.3
+  beforeTurnSideAngle: 0
+  beforeTurnSideSpeed: 0
+  beforeTurnSideCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  beforeBackDefaultSpeed: 0
+  turnDefaultSideCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   turnBackCurve:
     serializedVersion: 2
     m_Curve:
@@ -5541,6 +5556,7 @@ MonoBehaviour:
   moveLeft: 0
   moveRight: 0
   moveBack: 0
+  turnEnd: 0
   closestEnemy: {fileID: 0}
   frontMiddleRaycastStarPoint: {fileID: 1010135798205652695}
   frontLeftRaycastStarPoint: {fileID: 1010135798864022939}

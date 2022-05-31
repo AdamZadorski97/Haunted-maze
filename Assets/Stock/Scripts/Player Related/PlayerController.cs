@@ -11,6 +11,12 @@ public class PlayerController : MonoSingleton<PlayerController>
     [SerializeField] private bool canMove = false;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float turnBackSpeed;
+    [SerializeField] private float beforeTurnSideAngle;
+    [SerializeField] private float beforeTurnSideSpeed;
+    [SerializeField] private AnimationCurve beforeTurnSideCurve;
+    [SerializeField] private float beforeBackDefaultSpeed;
+    [SerializeField] private AnimationCurve turnDefaultSideCurve;
+
     [SerializeField] private AnimationCurve turnBackCurve;
     [SerializeField] private float turnSideSpeed;
     [SerializeField] private AnimationCurve turnSideCurve;
@@ -46,6 +52,10 @@ public class PlayerController : MonoSingleton<PlayerController>
     [HideInInspector] public bool moveLeft;
     [HideInInspector] public bool moveRight;
     [HideInInspector] public bool moveBack;
+
+    public bool turnEnd;
+
+
     private string inst = null;
     public void Update()
     {
@@ -64,7 +74,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         {
             if (IsEnemyVisible())
             {
-                
+
                 Vector3 dir = closestEnemy.transform.position - weaponPivot.position;
                 Quaternion lookRot = Quaternion.LookRotation(dir);
                 lookRot.x = 0; lookRot.z = 0;
@@ -116,7 +126,7 @@ public class PlayerController : MonoSingleton<PlayerController>
             closestEnemy = hitFront.transform;
             return true;
         }
-     
+
         closestEnemy = null;
         return false;
     }
@@ -163,40 +173,40 @@ public class PlayerController : MonoSingleton<PlayerController>
             }
         }
 
-        Debug.Log("Miss Shot");
+    
     }
 
 
 
     public void SwipeControll()
     {
-        if (swipeController.SwipeLeft)
+        if (swipeController.SwipeLeft && turnEnd)
         {
-            Debug.Log("SwipeLeft");
+          
             StopCoroutine(inst);
             inst = "Left";
             StartCoroutine(RememberLastSwipe("Left"));
         }
 
-        if (swipeController.SwipeRight)
+        if (swipeController.SwipeRight && turnEnd)
         {
-            Debug.Log("SwipeRight");
+           
             StopCoroutine(inst);
             inst = "Right";
             StartCoroutine(RememberLastSwipe("Right"));
         }
 
-        if (swipeController.SwipeUp)
+        if (swipeController.SwipeUp && turnEnd)
         {
-            Debug.Log("SwipeUp");
+           
             StopCoroutine(inst);
             inst = "Up";
             StartCoroutine(RememberLastSwipe("Up"));
         }
 
-        if (swipeController.SwipeDown)
+        if (swipeController.SwipeDown && turnEnd)
         {
-            Debug.Log("SwipeDown");
+            
             StopCoroutine(inst);
             inst = "Down";
             StartCoroutine(RememberLastSwipe("Down"));
@@ -212,25 +222,24 @@ public class PlayerController : MonoSingleton<PlayerController>
     }
     IEnumerator RememberLastSwipe(string direction)
     {
-        moveLeft = false;
-        moveRight = false;
-        moveBack = false;
-        Debug.Log("Swipe Direction " + direction);
-        if (direction == "Left")
+ 
+        if (direction == "Left" && turnEnd)
         {
-           cameraPivot.DOLocalRotate(new Vector3(0, -20, 0), 0.5f);
+            if(!wallRaycast())
+            cameraPivot.DOLocalRotate(new Vector3(0, -beforeTurnSideAngle, 0), beforeTurnSideSpeed).SetEase(beforeTurnSideCurve);
             moveLeft = true;
         }
-        if (direction == "Right")
+        if (direction == "Right" && turnEnd)
         {
-            cameraPivot.DOLocalRotate(new Vector3(0, 20, 0), 0.5f);
+            if (!wallRaycast())
+                cameraPivot.DOLocalRotate(new Vector3(0, beforeTurnSideAngle, 0), beforeTurnSideSpeed).SetEase(beforeTurnSideCurve);
             moveRight = true;
         }
         if (direction == "Up")
         {
 
         }
-        if (direction == "Down")
+        if (direction == "Down" && turnEnd)
         {
             moveBack = true;
         }
@@ -255,8 +264,8 @@ public class PlayerController : MonoSingleton<PlayerController>
         if (!wallRaycast())
             audioSource.PlayOneShot(footstep1);
         yield return new WaitForSeconds(footStepInterval);
-        if(!wallRaycast())
-        audioSource.PlayOneShot(footstep2);
+        if (!wallRaycast())
+            audioSource.PlayOneShot(footstep2);
         StartCoroutine(Footstep());
     }
 
@@ -315,34 +324,43 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         if (CanTurn())
         {
-            if (moveLeft && CheckCanTurnLeft())
+            if (moveLeft && CheckCanTurnLeft() && turnEnd)
             {
+
                 moveLeft = false;
                 moveRight = false;
                 moveBack = false;
-                Debug.Log("can turn Left");
-                canTurnTimer = 0.2f;
+     
+                turnEnd = false;
+                Debug.Log("MoveLeft false");
+;                canTurnTimer = 0.2f;
                 var sequence = DOTween.Sequence();
                 sequence.AppendCallback(() => canMove = false);
                 sequence.Append(transform.DOLocalRotate(new Vector3(0, -90, 0), turnSideSpeed, RotateMode.LocalAxisAdd).SetEase(turnSideCurve));
                 sequence.AppendCallback(() => canMove = true);
-                sequence.Append(cameraPivot.DOLocalRotate(new Vector3(0, 0, 0), 0.5f));
-                audioSource.PlayOneShot(turnAround);
+                sequence.Append(cameraPivot.DOLocalRotate(new Vector3(0, 0, 0), turnSideSpeed).SetEase(turnSideCurve));
+             
+                sequence.AppendCallback(() => turnEnd = true);
+        
+                sequence.AppendCallback(() => Debug.Log("moveLeft true"));
+
                 return;
             }
-            if (moveRight && CheckCanTurnRight())
+            if (moveRight && CheckCanTurnRight() && turnEnd)
             {
                 moveLeft = false;
                 moveRight = false;
                 moveBack = false;
-                Debug.Log("can turn Left");
+                turnEnd = false;
+              
                 canTurnTimer = 0.2f;
                 var sequence = DOTween.Sequence();
                 sequence.AppendCallback(() => canMove = false);
                 sequence.Append(transform.DOLocalRotate(new Vector3(0, 90, 0), turnSideSpeed, RotateMode.LocalAxisAdd).SetEase(turnSideCurve));
                 sequence.AppendCallback(() => canMove = true);
-                sequence.Append(cameraPivot.DOLocalRotate(new Vector3(0, 0, 0), 0.5f));
-                audioSource.PlayOneShot(turnAround);
+                sequence.Append(cameraPivot.DOLocalRotate(new Vector3(0, 0, 0), turnSideSpeed).SetEase(turnSideCurve));
+          
+                sequence.AppendCallback(() => turnEnd = true);
                 return;
             }
 
@@ -353,20 +371,31 @@ public class PlayerController : MonoSingleton<PlayerController>
                     moveLeft = false;
                     moveRight = false;
                     moveBack = false;
-                    Debug.Log("can turn Back");
+                    turnEnd = false;
+                
                     canTurnTimer = 0.2f;
                     var sequence = DOTween.Sequence();
                     sequence.AppendCallback(() => canMove = false);
                     sequence.Append(transform.DOLocalRotate(new Vector3(0, 180, 0), turnBackSpeed, RotateMode.LocalAxisAdd).SetEase(turnBackCurve));
                     sequence.AppendCallback(() => canMove = true);
-                    audioSource.PlayOneShot(turnAround);
+                    sequence.Append(cameraPivot.DOLocalRotate(new Vector3(0, 0, 0), turnBackSpeed).SetEase(turnBackCurve));
+                
+                    sequence.AppendCallback(() => turnEnd = true);
+
                     return;
                 }
             }
 
         }
         if (!wallRaycast())
+        {
             navMeshAgent.Move(transform.forward * moveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            cameraPivot.localEulerAngles = Vector3.zero;
+        }
+      
     }
 
 
