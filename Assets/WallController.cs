@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+#if UNITY_EDITOR
 using UnityEditor;
+
 using Unity.EditorCoroutines.Editor;
 
 [ExecuteInEditMode]
+#endif
 public class WallController : MonoBehaviour
 {
+
     [HideInInspector] public bool showPath = false;
     public GameObject wallController;
     public List<GameObject> mapLines = new List<GameObject>();
@@ -46,11 +50,12 @@ public class WallController : MonoBehaviour
 
 
 
-
+#if UNITY_EDITOR
     [Title("@returnPrevoiusName()")]
 
     [VerticalGroup("mesh/a")]
     [Button(ButtonSizes.Large)]
+
     public void PreviousPattern()
     {
 
@@ -192,7 +197,10 @@ public class WallController : MonoBehaviour
             children.Add(child.gameObject);
         }
         
-        children.ForEach(child => DestroyImmediate(child));
+        children.ForEach(child => {
+            if (!PrefabUtility.GetPrefabObject(child) != null)
+                DestroyImmediate(child);
+            });
         InstantiateWallWithData(wallData[currentData]);
     }
 
@@ -213,7 +221,8 @@ public class WallController : MonoBehaviour
         MeshRenderer meshRenderer = meshRendererObject.AddComponent<MeshRenderer>();
         var currentEluers = this.transform.rotation;
         meshFilter.transform.rotation = currentEluers;
-
+        var flags = StaticEditorFlags.ContributeGI | StaticEditorFlags.OccluderStatic | StaticEditorFlags.OccludeeStatic | StaticEditorFlags.BatchingStatic | StaticEditorFlags.BatchingStatic | StaticEditorFlags.ReflectionProbeStatic;
+        GameObjectUtility.SetStaticEditorFlags(meshFilter.gameObject, flags);
         //BoxColliders
         for (int i = 0; i < wallData.boxCollidersCenter.Count; i++)
         {
@@ -319,7 +328,7 @@ public class WallController : MonoBehaviour
         }
         meshRenderer.materials = material;
 
-        previousmyGameObject.hideFlags = HideFlags.HideInHierarchy;
+        //previousmyGameObject.hideFlags = HideFlags.HideInHierarchy;
 
 
 
@@ -381,4 +390,6 @@ public class WallController : MonoBehaviour
             }
         }
     }
+#endif
 }
+

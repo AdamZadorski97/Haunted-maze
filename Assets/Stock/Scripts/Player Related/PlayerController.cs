@@ -271,7 +271,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         {
             moveBack = true;
         }
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
     }
 
 
