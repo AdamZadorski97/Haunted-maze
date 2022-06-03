@@ -328,6 +328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef43ee83d3bf4c44882300bcb5c99f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useBoxCollider: 1
+  useMapVisualize: 1
   showPath: 0
   wallController: {fileID: 7752012550993393131}
   mapLines:

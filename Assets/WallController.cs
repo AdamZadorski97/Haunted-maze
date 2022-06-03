@@ -6,12 +6,13 @@ using Sirenix.OdinInspector;
 using UnityEditor;
 
 using Unity.EditorCoroutines.Editor;
-
+[SelectionBase]
 [ExecuteInEditMode]
 #endif
 public class WallController : MonoBehaviour
 {
-
+    [SerializeField] private bool useBoxCollider;
+    [SerializeField] private bool useMapVisualize;
     [HideInInspector] public bool showPath = false;
     public GameObject wallController;
     public List<GameObject> mapLines = new List<GameObject>();
@@ -198,8 +199,9 @@ public class WallController : MonoBehaviour
         }
         
         children.ForEach(child => {
-            if (!PrefabUtility.GetPrefabObject(child) != null)
-                DestroyImmediate(child);
+            bool isPrefabInstance = PrefabUtility.GetPrefabParent(child) != null && PrefabUtility.GetPrefabObject(child.transform) != null;
+           if(!isPrefabInstance)
+            DestroyImmediate(child);
             });
         InstantiateWallWithData(wallData[currentData]);
     }
@@ -224,21 +226,24 @@ public class WallController : MonoBehaviour
         var flags = StaticEditorFlags.ContributeGI | StaticEditorFlags.OccluderStatic | StaticEditorFlags.OccludeeStatic | StaticEditorFlags.BatchingStatic | StaticEditorFlags.BatchingStatic | StaticEditorFlags.ReflectionProbeStatic;
         GameObjectUtility.SetStaticEditorFlags(meshFilter.gameObject, flags);
         //BoxColliders
-        for (int i = 0; i < wallData.boxCollidersCenter.Count; i++)
-        {
-            GameObject boxcolliderObject = new GameObject();
-            BoxCollider boxCollider = boxcolliderObject.AddComponent<BoxCollider>();
-            boxCollider.transform.SetParent(transform);
-            boxcolliderObject.transform.localPosition = Vector3.zero;
-            boxCollider.size = wallData.boxCollidersSize[i];
-            boxCollider.center = wallData.boxCollidersCenter[i];
-            boxcolliderObject.name = $"BoxCollider{i}";
-            boxcolliderObject.layer = LayerMask.NameToLayer("Wall");
-            var boxcolliderRotation = this.transform.rotation;
-            boxcolliderObject.transform.rotation = boxcolliderRotation;
-            boxColliders.Add(boxCollider);
-        }
 
+        if (useBoxCollider)
+        {
+            for (int i = 0; i < wallData.boxCollidersCenter.Count; i++)
+            {
+                GameObject boxcolliderObject = new GameObject();
+                BoxCollider boxCollider = boxcolliderObject.AddComponent<BoxCollider>();
+                boxCollider.transform.SetParent(transform);
+                boxcolliderObject.transform.localPosition = Vector3.zero;
+                boxCollider.size = wallData.boxCollidersSize[i];
+                boxCollider.center = wallData.boxCollidersCenter[i];
+                boxcolliderObject.name = $"BoxCollider{i}";
+                boxcolliderObject.layer = LayerMask.NameToLayer("Wall");
+                var boxcolliderRotation = this.transform.rotation;
+                boxcolliderObject.transform.rotation = boxcolliderRotation;
+                boxColliders.Add(boxCollider);
+            }
+        }
         //Material
         Material[] material = new Material[wallData.materials.Count];
         for (int i = 0; i < wallData.materials.Count; i++)
@@ -247,16 +252,20 @@ public class WallController : MonoBehaviour
         }
         meshRenderer.materials = material;
 
-        for (int i = 0; i < wallData.meshMapPosition.Count; i++)
+        if (useMapVisualize)
         {
-            GameObject boxcolliderObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            boxcolliderObject.gameObject.layer = LayerMask.NameToLayer("Point");
-            boxcolliderObject.transform.SetParent(transform);
-            boxcolliderObject.transform.localPosition = wallData.meshMapPosition[i];
-            boxcolliderObject.transform.localScale = wallData.meshMapScale[i];
-            boxcolliderObject.transform.localRotation = Quaternion.Euler(wallData.meshMapRotation[i]);
-            boxcolliderObject.GetComponent<MeshRenderer>().material = wallData.meshMapMaterial;
-            mapLines.Add(boxcolliderObject);
+            for (int i = 0; i < wallData.meshMapPosition.Count; i++)
+            {
+                GameObject boxcolliderObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                boxcolliderObject.gameObject.layer = LayerMask.NameToLayer("Point");
+                boxcolliderObject.transform.SetParent(transform);
+                boxcolliderObject.transform.localPosition = wallData.meshMapPosition[i];
+                boxcolliderObject.transform.localScale = wallData.meshMapScale[i];
+                boxcolliderObject.transform.localRotation = Quaternion.Euler(wallData.meshMapRotation[i]);
+                boxcolliderObject.GetComponent<MeshRenderer>().material = wallData.meshMapMaterial;
+              
+               mapLines.Add(boxcolliderObject);
+            }
         }
 
         //    instantiatedVizualize = Instantiate(prefabVizualize, transform);
