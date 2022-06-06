@@ -18,6 +18,10 @@ public class WallController : MonoBehaviour
     public List<GameObject> mapLines = new List<GameObject>();
     public List<BoxCollider> boxColliders = new List<BoxCollider>();
 
+    [OnValueChanged("ChangeProporties")]
+    public Vector2Int materialOffset = new Vector2Int(0, 0);
+    [OnValueChanged("ChangeProporties")]
+    public Vector2Int materialTiling = new Vector2Int(0, 0);
 
     [TableList(ShowIndexLabels = true)]
     public List<WallData> wallData = new List<WallData>();
@@ -75,6 +79,9 @@ public class WallController : MonoBehaviour
             return;
         }
     }
+
+
+
 
     [Title("@returnNextName()")]
     [VerticalGroup("mesh/c")]
@@ -194,15 +201,16 @@ public class WallController : MonoBehaviour
         mapLines.Clear();
         foreach (Transform child in transform)
         {
-            if(child.name!="UnDestroyable")
-            children.Add(child.gameObject);
+            if (child.name != "UnDestroyable")
+                children.Add(child.gameObject);
         }
-        
-        children.ForEach(child => {
+
+        children.ForEach(child =>
+        {
             bool isPrefabInstance = PrefabUtility.GetPrefabParent(child) != null && PrefabUtility.GetPrefabObject(child.transform) != null;
-           if(!isPrefabInstance)
-            DestroyImmediate(child);
-            });
+            if (!isPrefabInstance)
+                DestroyImmediate(child);
+        });
         InstantiateWallWithData(wallData[currentData]);
     }
 
@@ -249,8 +257,16 @@ public class WallController : MonoBehaviour
         for (int i = 0; i < wallData.materials.Count; i++)
         {
             material[i] = wallData.materials[i];
+
         }
-        meshRenderer.materials = material;
+
+
+
+        meshRenderer.sharedMaterials = material;
+        meshRenderer.material.SetTextureOffset("_BaseMap", ((Vector2)materialOffset * 0.2f));
+        meshRenderer.material.mainTextureScale = materialTiling;
+
+
 
         if (useMapVisualize)
         {
@@ -263,8 +279,8 @@ public class WallController : MonoBehaviour
                 boxcolliderObject.transform.localScale = wallData.meshMapScale[i];
                 boxcolliderObject.transform.localRotation = Quaternion.Euler(wallData.meshMapRotation[i]);
                 boxcolliderObject.GetComponent<MeshRenderer>().material = wallData.meshMapMaterial;
-              
-               mapLines.Add(boxcolliderObject);
+
+                mapLines.Add(boxcolliderObject);
             }
         }
 
