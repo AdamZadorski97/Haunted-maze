@@ -19,7 +19,11 @@ public class WallController : MonoBehaviour
     public List<BoxCollider> boxColliders = new List<BoxCollider>();
 
     [OnValueChanged("ChangeProporties")]
-    public Vector2Int materialOffset = new Vector2Int(0, 0);
+    [Range(0.0f, 5.0f)]
+    public int materialOffsetX;
+    [OnValueChanged("ChangeProporties")]
+    [Range(0.0f, 5.0f)]
+    public int materialOffsetY;
     [OnValueChanged("ChangeProporties")]
     public Vector2Int materialTiling = new Vector2Int(0, 0);
 
@@ -263,7 +267,7 @@ public class WallController : MonoBehaviour
 
 
         meshRenderer.sharedMaterials = material;
-        meshRenderer.material.SetTextureOffset("_BaseMap", ((Vector2)materialOffset * 0.2f));
+        meshRenderer.material.SetTextureOffset("_BaseMap", new Vector2(materialOffsetX * 0.2f, materialOffsetY * 0.2f));
         meshRenderer.material.mainTextureScale = materialTiling;
 
 
