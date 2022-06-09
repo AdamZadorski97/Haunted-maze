@@ -1714,6 +1714,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9144366287339705941, guid: 64e2cc2e55d585744b8270c29df85818, type: 3}
+      propertyPath: materialOffsetX
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144366287339705941, guid: 64e2cc2e55d585744b8270c29df85818, type: 3}
       propertyPath: mapLines.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1910,6 +1914,10 @@ PrefabInstance:
     - target: {fileID: 8635339463927851905, guid: 851832ed0e096f04d846bfb90ed45a43, type: 3}
       propertyPath: currentData
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8635339463927851905, guid: 851832ed0e096f04d846bfb90ed45a43, type: 3}
+      propertyPath: materialOffsetX
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8635339463927851905, guid: 851832ed0e096f04d846bfb90ed45a43, type: 3}
       propertyPath: mapLines.Array.size

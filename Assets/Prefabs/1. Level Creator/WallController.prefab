@@ -336,6 +336,9 @@ MonoBehaviour:
   - {fileID: 0}
   boxColliders:
   - {fileID: 0}
+  materialOffsetX: 2
+  materialOffsetY: 0
+  materialTiling: {x: 1, y: 1}
   wallData:
   - {fileID: 11400000, guid: 47d5861a6d883c94bbe683cd7886096e, type: 2}
   - {fileID: 11400000, guid: 2f3ffa6517eeb554182baea31f7b63da, type: 2}
