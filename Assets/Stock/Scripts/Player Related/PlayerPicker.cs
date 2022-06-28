@@ -13,6 +13,10 @@ public class PlayerPicker : MonoBehaviour
     public AudioSource audioSource;
     public int points;
     public PlayerController playerController;
+    public float pointLightIntencity;
+    public float pointLightIntencityTime;
+    public AnimationCurve pointLightIntencityCurve;
+    [SerializeField] private Light moneyPointLight;
     public void OnTriggerEnter(Collider other)
     {
      
@@ -25,6 +29,9 @@ public class PlayerPicker : MonoBehaviour
             other.transform.DOScale(Vector3.zero, 0.2f);
             Destroy(other.gameObject, 0.2f);
             counterText.text = $"{points}/470";
+            Sequence pointSequence = DOTween.Sequence();
+            pointSequence.Append(moneyPointLight.DOIntensity(pointLightIntencity, pointLightIntencityTime).SetEase(pointLightIntencityCurve));
+            pointSequence.Append(moneyPointLight.DOIntensity(0, pointLightIntencityTime).SetEase(pointLightIntencityCurve));
         }
 
         if(other.GetComponent<EnemyController>())
