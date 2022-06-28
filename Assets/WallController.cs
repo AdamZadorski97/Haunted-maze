@@ -181,7 +181,7 @@ public class WallController : MonoBehaviour
 
     private void Start()
     {
-        ChangeProporties();
+        //ChangeProporties();
         StartCoroutine(TurnOffMapVizualize());
     }
     IEnumerator TurnOffMapVizualize()
@@ -267,7 +267,7 @@ public class WallController : MonoBehaviour
 
 
         meshRenderer.sharedMaterials = material;
-        meshRenderer.material.SetTextureOffset("_BaseMap", new Vector2(materialOffsetX * 0.2f, materialOffsetY * 0.2f));
+        meshRenderer.material.SetTextureOffset("_BaseMap", new Vector2(materialOffsetX * 0.333f, materialOffsetY * 0.333f));
         meshRenderer.material.mainTextureScale = materialTiling;
 
 
