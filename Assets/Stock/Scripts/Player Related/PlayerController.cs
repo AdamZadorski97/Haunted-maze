@@ -248,32 +248,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         }
 
     }
-    IEnumerator RememberLastSwipe(string direction)
-    {
- 
-        if (direction == "Left" && turnEnd)
-        {
-            if(!wallRaycast())
-            cameraPivot.DOLocalRotate(new Vector3(0, -beforeTurnSideAngle, 0), beforeTurnSideSpeed).SetEase(beforeTurnSideCurve);
-            moveLeft = true;
-        }
-        if (direction == "Right" && turnEnd)
-        {
-            if (!wallRaycast())
-                cameraPivot.DOLocalRotate(new Vector3(0, beforeTurnSideAngle, 0), beforeTurnSideSpeed).SetEase(beforeTurnSideCurve);
-            moveRight = true;
-        }
-        if (direction == "Up")
-        {
-
-        }
-        if (direction == "Down" && turnEnd)
-        {
-            moveBack = true;
-        }
-        yield return new WaitForSeconds(0.1f);
-    }
-
+    
 
 
 
@@ -348,13 +323,61 @@ public class PlayerController : MonoSingleton<PlayerController>
     public Transform backLeftRaycastStarPoint;
     public Transform backRightRaycastStarPoint;
     public Sequence turnSequence;
+    public Sequence firstTurn;
+    IEnumerator RememberLastSwipe(string direction)
+    {
+
+        if (direction == "Left" && turnEnd)
+        {
+     
+         
+            if (!wallRaycast())
+            {
+                firstTurn = DOTween.Sequence();
+                Debug.Log("Turn1");
+                firstTurn.Append( cameraPivot.DOLocalRotate(new Vector3(0, -beforeTurnSideAngle, 0), beforeTurnSideSpeed).SetEase(beforeTurnSideCurve));
+            }
+            yield return new WaitForSeconds(0.01f);
+            moveLeft = true;
+        }
+        if (direction == "Right" && turnEnd)
+        {
+         
+        
+            if (!wallRaycast())
+            {
+                firstTurn = DOTween.Sequence();
+                Debug.Log("Turn1");
+                firstTurn.Append(cameraPivot.DOLocalRotate(new Vector3(0, beforeTurnSideAngle, 0), beforeTurnSideSpeed).SetEase(beforeTurnSideCurve));
+            }
+            yield return new WaitForSeconds(0.01f);
+            moveRight = true;
+   
+        }
+        if (direction == "Up")
+        {
+
+        }
+        if (direction == "Down" && turnEnd)
+        {
+            moveBack = true;
+        }
+        yield return new WaitForSeconds(0.1f);
+    }
+
+
+
+
     public void MoveController()
     {
         if (CanTurn())
         {
             if (moveLeft && CheckCanTurnLeft() && turnEnd)
             {
-
+                if (firstTurn != null)
+                {
+                    firstTurn.Kill();
+                }
                 moveLeft = false;
                 moveRight = false;
                 moveBack = false;
@@ -369,6 +392,7 @@ public class PlayerController : MonoSingleton<PlayerController>
                 turnSequence.AppendCallback(() => canMove = false);
                 turnSequence.Append(transform.DOLocalRotate(new Vector3(0, -90, 0), turnSideSpeed, RotateMode.LocalAxisAdd).SetEase(turnSideCurve));
                 turnSequence.AppendCallback(() => canMove = true);
+                turnSequence.AppendCallback(() => Debug.Log("Turn2"));
                 turnSequence.Append(cameraPivot.DOLocalRotate(new Vector3(0, 0, 0), turnSideSpeed).SetEase(turnSideCurve));
 
                 turnSequence.AppendCallback(() => turnEnd = true);
@@ -379,6 +403,10 @@ public class PlayerController : MonoSingleton<PlayerController>
             }
             if (moveRight && CheckCanTurnRight() && turnEnd)
             {
+                if (firstTurn != null)
+                {
+                    firstTurn.Kill();
+                }
                 moveLeft = false;
                 moveRight = false;
                 moveBack = false;
@@ -392,6 +420,7 @@ public class PlayerController : MonoSingleton<PlayerController>
                 turnSequence.AppendCallback(() => canMove = false);
                 turnSequence.Append(transform.DOLocalRotate(new Vector3(0, 90, 0), turnSideSpeed, RotateMode.LocalAxisAdd).SetEase(turnSideCurve));
                 turnSequence.AppendCallback(() => canMove = true);
+                turnSequence.AppendCallback(() => Debug.Log("Turn2"));
                 turnSequence.Append(cameraPivot.DOLocalRotate(new Vector3(0, 0, 0), turnSideSpeed).SetEase(turnSideCurve));
 
                 turnSequence.AppendCallback(() => turnEnd = true);
