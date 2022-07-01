@@ -31,7 +31,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties:
-    - '#BAKERY{"meshName":["MuseumInfoProp6","MuseumInfoPropBorder","MuseumInfoProp1","MuseumInfoPropStandBorder","MuseumInfoPropStand","MuseumInfoProp8","MuseumInfoProp4","MuseumInfoProp3","MuseumInfoProp2","MuseumInfoProp9","MuseumInfoProp10","MuseumInfoProp5","MuseumInfoProp7","Area1_EvolutionElement4","Area1_EvolutionElement3","Area1_EvolutionElement2","Area1_EvolutionElement1","Area1_Evolution4","Area1_Evolution3","Area1_Evolution5","Area1_Evolution1","Area1_Evolution2"],"padding":[256,256,237,256,256,256,237,237,237,256,256,237,256,53,147,256,210,68,67,68,63,62],"unwrapper":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}'
+    - '#BAKERY{"meshName":["MuseumInfoProp6","MuseumInfoPropBorder","MuseumInfoProp1","MuseumInfoPropStandBorder","MuseumInfoPropStand","MuseumInfoProp8","MuseumInfoProp4","MuseumInfoProp3","MuseumInfoProp2","MuseumInfoProp9","MuseumInfoProp10","MuseumInfoProp5","MuseumInfoProp7","Area1_EvolutionElement4","Area1_EvolutionElement3","Area1_EvolutionElement2","Area1_EvolutionElement1","Area1_Evolution4","Area1_Evolution3","Area1_Evolution5","Area1_Evolution1","Area1_Evolution2"],"padding":[157,103,79,112,138,156,79,79,79,157,152,79,157,17,49,95,70,22,22,22,21,20],"unwrapper":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}'
     clipAnimations: []
     isReadable: 0
   meshes:

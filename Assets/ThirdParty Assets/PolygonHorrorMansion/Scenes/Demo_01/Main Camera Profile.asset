@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   color:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 1}
@@ -55,10 +55,10 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.453
+    m_Value: 0.228
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.317
+    m_Value: 0.875
   rounded:
     m_OverrideState: 0
     m_Value: 0
@@ -92,13 +92,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.52
+    m_Value: 0.45
   intensity:
     m_OverrideState: 1
-    m_Value: 2.51
+    m_Value: 0.74
   scatter:
     m_OverrideState: 0
     m_Value: 0.7
@@ -160,13 +160,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
   m_Name: ColorAdjustments
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: -0.75
+    m_Value: 0.12
   contrast:
     m_OverrideState: 1
-    m_Value: 18.1
+    m_Value: 37.2
   colorFilter:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
@@ -175,4 +175,4 @@ MonoBehaviour:
     m_Value: -180
   saturation:
     m_OverrideState: 1
-    m_Value: 21.3
+    m_Value: 22.4
