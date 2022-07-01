@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using TMPro;
 public class LevelManager : MonoSingleton<LevelManager>
 {
     public static LevelManager _Instance { get; private set; }
@@ -17,12 +17,27 @@ public class LevelManager : MonoSingleton<LevelManager>
     public int moneyToUnlockKey;
     public GameObject NextLevelKey;
 
+    public TMP_Text fpsCounterText;
+    public float fps;
+    public void Start()
+    {
+        Application.targetFrameRate = 300;
+        InvokeRepeating("GetFPS", 1, 1);
+    }
+
     private void Awake()
     {
         floorControllers = GameObject.FindObjectsOfType<FloorController>().ToList();
         wallControllers = GameObject.FindObjectsOfType<WallController>().ToList();
         pickablePoints = GameObject.FindObjectsOfType<PickablePoint>().ToList();
     }
+
+    public void GetFPS()
+    {
+        fps = (int)(1f / Time.unscaledDeltaTime);
+        fpsCounterText.text = fps + "fps";
+    }
+
 
 
     public void OnMoneyCollect(int value)

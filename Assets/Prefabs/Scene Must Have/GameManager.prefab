@@ -3416,7 +3416,7 @@ MonoBehaviour:
     FieldOfView: 140
     OrthographicSize: 5
     NearClipPlane: 0.1
-    FarClipPlane: 23.64
+    FarClipPlane: 21
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -4175,6 +4175,8 @@ MonoBehaviour:
   currentLevelMoneyCollected: 0
   moneyToUnlockKey: 0
   NextLevelKey: {fileID: 0}
+  fpsCounterText: {fileID: 0}
+  fps: 0
 --- !u!1 &1010135799167528545
 GameObject:
   m_ObjectHideFlags: 0
