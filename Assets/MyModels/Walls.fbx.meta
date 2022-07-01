@@ -30,7 +30,8 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    extraUserProperties: []
+    extraUserProperties:
+    - '#BAKERY{"meshName":["Wall.Library.Strip.InsideCorner.Left","Wall.Library.Strip.Straight","Wall.Library.Strip.InsideCorner.Right","Wall.Library.Strip.OutsideCorner.Right","Wall.Library.Strip.OutsideCorner.Left","Wall.Library.Strip.OutsideSideCorner","Wall.Library.Strip.OutsideCorner.Double","Wall.Library.Strip.OutsideCorner.LeftMakarena","Wall.Library.Strip.OutsideCorner.RightMakarena"],"padding":[256,256,256,247,247,256,237,182,182],"unwrapper":[0,0,0,0,0,0,0,0,0]}'
     clipAnimations: []
     isReadable: 0
   meshes:
