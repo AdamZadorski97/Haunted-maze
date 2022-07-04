@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 558a8e2b6826cf840aae193990ba9f2e, type: 3}
   m_Name: ShadowsMidtonesHighlights
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   shadows:
     m_OverrideState: 1
     m_Value: {x: 0.9797762, y: 1, z: 0.99298966, w: 0.14162801}
@@ -55,7 +55,7 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.228
+    m_Value: 0.293
   smoothness:
     m_OverrideState: 1
     m_Value: 0.875
@@ -98,7 +98,7 @@ MonoBehaviour:
     m_Value: 0.45
   intensity:
     m_OverrideState: 1
-    m_Value: 0.74
+    m_Value: 0.6
   scatter:
     m_OverrideState: 0
     m_Value: 0.7
@@ -166,13 +166,13 @@ MonoBehaviour:
     m_Value: 0.12
   contrast:
     m_OverrideState: 1
-    m_Value: 37.2
+    m_Value: 82.8
   colorFilter:
-    m_OverrideState: 0
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_OverrideState: 1
+    m_Value: {r: 0.8537736, g: 0.9273575, b: 1, a: 1}
   hueShift:
     m_OverrideState: 0
     m_Value: -180
   saturation:
     m_OverrideState: 1
-    m_Value: 22.4
+    m_Value: 39.4
