@@ -7,15 +7,18 @@ public class DataManager : MonoBehaviour
     private int ammunitionMagazine = 10;
     private int ammunition;
     private int collectedPoints;
-    private int currentPointsMultipler;
+    private int currentMultipler;
     private int allLevelPointsAmount;
     private List<GameObject> pickablePointsGameObjects = new List<GameObject>();
     [SerializeField] private List<Color> multiplerColor = new List<Color>();
+    [SerializeField] private List<int> multiplerValue = new List<int>();
+    private int currentPointsMultiplied;
+   
     private void Awake()
     {
         ammunition = 7;
         collectedPoints = 0;
-        currentPointsMultipler = 1;
+        currentMultipler = 1;
         LevelManager.Instance.uIManager.UpdateUI();
         allLevelPointsAmount = GameObject.FindGameObjectsWithTag("Point").Length;
         pickablePointsGameObjects.AddRange(GameObject.FindGameObjectsWithTag("Point"));
@@ -28,6 +31,10 @@ public class DataManager : MonoBehaviour
     {
         return allLevelPointsAmount;
     }
+    public int GetCurrentPointsMultiplied()
+    {
+        return currentPointsMultiplied;
+    }
     public int GetCurrentAmmuniton()
     {
         return ammunition;
@@ -38,7 +45,7 @@ public class DataManager : MonoBehaviour
     }
     public int GetCurrentPointsPointsMultipler()
     {
-        return currentPointsMultipler;
+        return currentMultipler;
     }
 
     public bool CheckCanShoot()
@@ -58,8 +65,8 @@ public class DataManager : MonoBehaviour
     }
     public void SetPoint()
     {
-
         collectedPoints += 1;
+        currentPointsMultiplied += 1 * multiplerValue[currentMultipler];
         if (collectedPoints == allLevelPointsAmount)
         {
             
@@ -70,13 +77,12 @@ public class DataManager : MonoBehaviour
     }
     private void ResetPoints()
     {
-        currentPointsMultipler++;
+        currentMultipler++;
         foreach (GameObject item in pickablePointsGameObjects)
         {
             item.SetActive(true);
-            item.GetComponent<PickablePoint>().InteractivePointMesh.material.SetColor("_Color", multiplerColor[currentPointsMultipler]);
+            item.GetComponent<PickablePoint>().InteractivePointMesh.material.SetColor("_Color", multiplerColor[currentMultipler]);
         }
         collectedPoints = 1;
-       
     }
 }
