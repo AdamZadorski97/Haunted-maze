@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class PlayerPicker : MonoBehaviour
 {
     public GameObject GameOverCanvas;
-    public TMP_Text counterText;
     public Transform pickerPoint;
     public AudioClip pickupSound;
     public AudioSource audioSource;
@@ -23,12 +22,9 @@ public class PlayerPicker : MonoBehaviour
 
         if (other.GetComponent<PickablePoint>())
         {
-            points++;
+            other.GetComponent<PickablePoint>().OnInteractivePointPickup();
             audioSource.PlayOneShot(pickupSound);
-            //other.transform.DOMove(pickerPoint.position + new Vector3(0,0.5f,0), 0.2f);
-            other.transform.DOScale(Vector3.zero, 0.2f);
-            Destroy(other.gameObject, 0.2f);
-            counterText.text = $"{points}/470";
+            LevelManager.Instance.dataManager.SetPoint();
             Sequence pointSequence = DOTween.Sequence();
             pointSequence.Append(moneyPointLight.DOIntensity(pointLightIntencity, pointLightIntencityTime).SetEase(pointLightIntencityCurve));
             pointSequence.Append(moneyPointLight.DOIntensity(0, pointLightIntencityTime).SetEase(pointLightIntencityCurve));

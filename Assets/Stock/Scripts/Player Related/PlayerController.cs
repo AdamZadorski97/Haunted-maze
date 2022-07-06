@@ -5,10 +5,21 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 using DG.Tweening;
 using Cinemachine;
+using UnityEngine.EventSystems;
 public class PlayerController : MonoSingleton<PlayerController>
 {
     public static PlayerController _Instance { get; private set; }
     [SerializeField] private bool canMove = false;
+    public bool isReloading;
+    [SerializeField] private float reloadTime = 2f;
+    [SerializeField] private float slideTime = 1.5f;
+    [SerializeField] private float jumpTime = 1.5f;
+    [SerializeField] private float jumpCameraRotationValue = 0.1f;
+    [SerializeField] private float jumpHeight = 1.5f;
+    [SerializeField] private float jumpStartTime;
+    [SerializeField] private float jumpEndTime;
+    [SerializeField] private AnimationCurve jumpStartAnimationCurve;
+    [SerializeField] private AnimationCurve jumpEndAnimationCurve;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float turnBackSpeed;
     [SerializeField] private float beforeTurnSideAngle;
@@ -46,6 +57,9 @@ public class PlayerController : MonoSingleton<PlayerController>
     [SerializeField] private ParticleSystem gunParticleSystem;
     [SerializeField] private CinemachineImpulseSource cinemachineImpulseSource;
     [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
+    [SerializeField] private CinemachineComposer cinemachineComposer;
+    [SerializeField] private CinemachineFreeLook freeLook;
+
     public Transform weaponPivot;
     public Transform cameraPivot;
     public int ammunition;
@@ -54,9 +68,12 @@ public class PlayerController : MonoSingleton<PlayerController>
     [HideInInspector] public bool moveBack;
 
     public bool turnEnd;
-
-
     private string inst = null;
+
+
+
+
+
     public void Update()
     {
         SwipeControll();
@@ -70,7 +87,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         RaycastHit hit;
 
-        if(ammunition<=0)
+        if (ammunition <= 0)
         {
             float xLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.x, 0, 3 * Time.deltaTime);
             float yLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.y, 0, 3 * Time.deltaTime);
@@ -174,34 +191,37 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public void Shoot()
     {
-        cinemachineImpulseSource.GenerateImpulse();
-        gunParticleSystem.Play();
-        if(ammunition>0)
-        gunAnimator.SetTrigger("Shoot" + Random.Range(1, 4));
-        audioSource.PlayOneShot(shootSound);
-        ammunition--;
-        if (ammunition <= 0)
-            StartCoroutine(Reload());
-
-
-
-        if (IsEnemyVisible())
+        if (LevelManager.Instance.dataManager.CheckCanShoot())
         {
-            if (closestEnemy.GetComponent<EnemyController>())
+            gunAnimator.SetTrigger("Shoot" + Random.Range(1, 4));
+
+            cinemachineImpulseSource.GenerateImpulse();
+            gunParticleSystem.Play();
+            audioSource.PlayOneShot(shootSound);
+
+            if (IsEnemyVisible())
             {
-                closestEnemy.GetComponent<EnemyController>().OnDie();
+                if (closestEnemy.GetComponent<EnemyController>())
+                {
+                    closestEnemy.GetComponent<EnemyController>().OnDie();
+                }
             }
         }
-
-    
+        else
+        {
+            if(!isReloading)
+            StartCoroutine(Reload());
+        }
     }
 
     IEnumerator Reload()
     {
+        isReloading = true;
         yield return new WaitForSeconds(0.25f);
         gunAnimator.SetTrigger("Reload");
-        yield return new WaitForSeconds(1f);
-        ammunition = 10;
+        yield return new WaitForSeconds(reloadTime);
+        isReloading = false;
+        LevelManager.Instance.dataManager.SetAmmunition();
     }
 
 
@@ -210,7 +230,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         if (swipeController.SwipeLeft && turnEnd)
         {
-          
+
             StopCoroutine(inst);
             inst = "Left";
             StartCoroutine(RememberLastSwipe("Left"));
@@ -218,7 +238,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
         if (swipeController.SwipeRight && turnEnd)
         {
-           
+
             StopCoroutine(inst);
             inst = "Right";
             StartCoroutine(RememberLastSwipe("Right"));
@@ -226,7 +246,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
         if (swipeController.SwipeUp && turnEnd)
         {
-           
+
             StopCoroutine(inst);
             inst = "Up";
             StartCoroutine(RememberLastSwipe("Up"));
@@ -234,26 +254,59 @@ public class PlayerController : MonoSingleton<PlayerController>
 
         if (swipeController.SwipeDown && turnEnd)
         {
-            
+
             StopCoroutine(inst);
             inst = "Down";
             StartCoroutine(RememberLastSwipe("Down"));
         }
 
-        if (swipeController.Tap)
+#if !UNITY_EDITOR
+        if (swipeController.Tap && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
         {
             StopCoroutine(inst);
             swipeController.tap = false;
             Shoot();
         }
+#endif
+
+#if UNITY_EDITOR
+        if (swipeController.Tap)
+        {
+            if (Input.GetMouseButtonDown(0) == true && !EventSystem.current.IsPointerOverGameObject())
+            {
+                StopCoroutine(inst);
+                swipeController.tap = false;
+                Shoot();
+
+            }
+            else
+            {
+
+                if (EventSystem.current.currentSelectedGameObject != null)
+                {
+                    Debug.Log(EventSystem.current.currentSelectedGameObject.gameObject.name);
+                }
+                else
+                {
+                    StopCoroutine(inst);
+                    swipeController.tap = false;
+                    Shoot();
+                }
+
+
+
+            }
+        }
+#endif
 
     }
-    
+
 
 
 
     private void Start()
     {
+        cinemachineComposer = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineComposer>();
         SnapToGround();
         StartCoroutine(Footstep());
     }
@@ -301,6 +354,26 @@ public class PlayerController : MonoSingleton<PlayerController>
         navMeshAgent.enabled = state;
     }
 
+    public void SlideDown()
+    {
+        Sequence slideSequence = DOTween.Sequence();
+        slideSequence.Append(cameraPivot.DOLocalMoveY(0.15f, 0.2f));
+        slideSequence.AppendInterval(slideTime);
+        slideSequence.Append(cameraPivot.DOLocalMoveY(0.88f, 0.2f));
+    }
+
+    public void Jump()
+    {
+        Sequence slideSequence = DOTween.Sequence();
+        slideSequence.Append(cameraPivot.DOLocalMoveY(jumpHeight, jumpEndTime).SetEase(jumpStartAnimationCurve));
+        slideSequence.Join(DOTween.To(() => cinemachineComposer.m_TrackedObjectOffset, x => cinemachineComposer.m_TrackedObjectOffset = x, new Vector3(0, jumpCameraRotationValue, 0), jumpEndTime).SetEase(jumpStartAnimationCurve));
+        slideSequence.Append(cameraPivot.DOLocalMoveY(jumpHeight, jumpEndTime).SetEase(jumpStartAnimationCurve));
+        slideSequence.AppendInterval(jumpTime);
+        slideSequence.Join(DOTween.To(() => cinemachineComposer.m_TrackedObjectOffset, x => cinemachineComposer.m_TrackedObjectOffset = x, new Vector3(0, 0, 0), jumpEndTime).SetEase(jumpStartAnimationCurve));
+        slideSequence.Append(cameraPivot.DOLocalMoveY(0.88f, jumpStartTime).SetEase(jumpEndAnimationCurve));
+        slideSequence.Join(DOTween.To(() => cinemachineComposer.m_TrackedObjectOffset, x => cinemachineComposer.m_TrackedObjectOffset = x, new Vector3(0, -jumpCameraRotationValue, 0), jumpEndTime).SetEase(jumpStartAnimationCurve));
+        slideSequence.Append(DOTween.To(() => cinemachineComposer.m_TrackedObjectOffset, x => cinemachineComposer.m_TrackedObjectOffset = x, new Vector3(0, 0, 0), jumpEndTime).SetEase(jumpStartAnimationCurve));
+    }
 
 
     public bool wallRaycast()
@@ -329,21 +402,21 @@ public class PlayerController : MonoSingleton<PlayerController>
 
         if (direction == "Left" && turnEnd)
         {
-     
-         
+
+
             if (!wallRaycast())
             {
                 firstTurn = DOTween.Sequence();
                 Debug.Log("Turn1");
-                firstTurn.Append( cameraPivot.DOLocalRotate(new Vector3(0, -beforeTurnSideAngle, 0), beforeTurnSideSpeed).SetEase(beforeTurnSideCurve));
+                firstTurn.Append(cameraPivot.DOLocalRotate(new Vector3(0, -beforeTurnSideAngle, 0), beforeTurnSideSpeed).SetEase(beforeTurnSideCurve));
             }
             yield return new WaitForSeconds(0.01f);
             moveLeft = true;
         }
         if (direction == "Right" && turnEnd)
         {
-         
-        
+
+
             if (!wallRaycast())
             {
                 firstTurn = DOTween.Sequence();
@@ -352,7 +425,7 @@ public class PlayerController : MonoSingleton<PlayerController>
             }
             yield return new WaitForSeconds(0.01f);
             moveRight = true;
-   
+
         }
         if (direction == "Up")
         {
@@ -387,7 +460,7 @@ public class PlayerController : MonoSingleton<PlayerController>
                 }
                 turnEnd = false;
                 Debug.Log("MoveLeft false");
-;                canTurnTimer = 0.2f;
+                ; canTurnTimer = 0.2f;
                 turnSequence = DOTween.Sequence();
                 turnSequence.AppendCallback(() => canMove = false);
                 turnSequence.Append(transform.DOLocalRotate(new Vector3(0, -90, 0), turnSideSpeed, RotateMode.LocalAxisAdd).SetEase(turnSideCurve));
@@ -435,11 +508,11 @@ public class PlayerController : MonoSingleton<PlayerController>
                     moveRight = false;
                     moveBack = false;
                     turnEnd = false;
-                   if(turnSequence!= null)
+                    if (turnSequence != null)
                     {
                         turnSequence.Kill();
                     }
-                        canTurnTimer = 0.2f;
+                    canTurnTimer = 0.2f;
                     turnSequence = DOTween.Sequence();
                     turnSequence.AppendCallback(() => canMove = false);
                     turnSequence.Append(transform.DOLocalRotate(new Vector3(0, 180, 0), turnBackSpeed, RotateMode.LocalAxisAdd).SetEase(turnBackCurve));
@@ -465,7 +538,7 @@ public class PlayerController : MonoSingleton<PlayerController>
             }
             cameraPivot.localEulerAngles = Vector3.zero;
         }
-      
+
     }
 
 

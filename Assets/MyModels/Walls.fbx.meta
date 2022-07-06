@@ -31,7 +31,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties:
-    - '#BAKERY{"meshName":["Wall.Library.Strip.InsideCorner.Left","Wall.Library.Strip.Straight","Wall.Library.Strip.InsideCorner.Right","Wall.Library.Strip.OutsideCorner.Right","Wall.Library.Strip.OutsideCorner.Left","Wall.Library.Strip.OutsideSideCorner","Wall.Library.Strip.OutsideCorner.Double","Wall.Library.Strip.OutsideCorner.LeftMakarena","Wall.Library.Strip.OutsideCorner.RightMakarena"],"padding":[168,161,168,154,154,175,148,114,114],"unwrapper":[0,0,0,0,0,0,0,0,0]}'
+    - '#BAKERY{"meshName":["Wall.Library.Strip.InsideCorner.Left","Wall.Library.Strip.Straight","Wall.Library.Strip.InsideCorner.Right","Wall.Library.Strip.OutsideCorner.Right","Wall.Library.Strip.OutsideCorner.Left","Wall.Library.Strip.OutsideSideCorner","Wall.Library.Strip.OutsideCorner.Double","Wall.Library.Strip.OutsideCorner.LeftMakarena","Wall.Library.Strip.OutsideCorner.RightMakarena"],"padding":[84,80,84,77,77,87,74,57,57],"unwrapper":[0,0,0,0,0,0,0,0,0]}'
     clipAnimations: []
     isReadable: 0
   meshes:

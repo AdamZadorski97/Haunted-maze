@@ -11,6 +11,8 @@ public class LevelManager : MonoSingleton<LevelManager>
     public List<WallController> wallControllers = new List<WallController>();
     public List<PickablePoint> pickablePoints = new List<PickablePoint>();
     public EnemySpawnerController enemySpawner;
+    public DataManager dataManager;
+    public UIManager uIManager;
   
     public int currentPlayerFloor;
     public int currentLevelMoneyCollected;
@@ -88,9 +90,8 @@ public class LevelManager : MonoSingleton<LevelManager>
                 item.gameObject.SetActive(true);
             }
         }
-
-
     }
+
     public void HideFloor(int number)
     {
    
