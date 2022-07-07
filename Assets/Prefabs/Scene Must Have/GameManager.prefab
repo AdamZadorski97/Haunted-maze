@@ -410,7 +410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &455519516
 Transform:
   m_ObjectHideFlags: 0
@@ -457,8 +457,8 @@ MonoBehaviour:
   canSpawn: 0
   playerController: {fileID: 1010135799765994900}
   debugSpawnArea: 0
-  delayAndSpawnRate: 2
-  timeUntilSpawnRateIncrease: 65
+  delayAndSpawnRate: 2.5
+  timeUntilSpawnRateIncrease: 30
 --- !u!1 &456248838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,7 +1067,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -37.5, y: 0.000022411}
-  m_SizeDelta: {x: 22.9196, y: 22.9196}
+  m_SizeDelta: {x: 29.318, y: 29.318}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &695726322
 CanvasRenderer:
@@ -1097,7 +1097,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: 2bab874ef7c8f624196553fd25e161d8, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1436,8 +1436,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -48.3, y: 0.000022888}
-  m_SizeDelta: {x: 22.9196, y: 22.9196}
+  m_AnchoredPosition: {x: -50.3, y: 1.6733}
+  m_SizeDelta: {x: 31.9035, y: 31.903}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1063174200
 CanvasRenderer:
@@ -1467,7 +1467,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: 933a1d97eec7a9146a10beb97f74f4e9, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2050,7 +2050,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -35.9, y: 0}
-  m_SizeDelta: {x: 22.9196, y: 22.9196}
+  m_SizeDelta: {x: 33.3446, y: 33.345}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1542352420
 CanvasRenderer:
@@ -2080,7 +2080,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: 5d06fec80691f7c4dae27c01fa32805a, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2408,7 +2408,7 @@ MonoBehaviour:
   - {r: 0.22263145, g: 0, b: 1, a: 1}
   - {r: 0, g: 0.33205748, b: 1, a: 1}
   - {r: 0, g: 1, b: 0.36163354, a: 1}
-  multiplerValue: 010000000a00000014000000320000006400000096000000
+  multiplerValue: 000000000a00000014000000320000006400000096000000
 --- !u!1 &1973367770
 GameObject:
   m_ObjectHideFlags: 0
@@ -2792,7 +2792,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010135798112794690}
-  m_LocalRotation: {x: -0, y: 3e-45, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.2499967, y: 1.3, z: 11.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3636,7 +3636,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.49001816, y: 1}
+    m_SensorSize: {x: 0.5625, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -5102,6 +5102,7 @@ GameObject:
   - component: {fileID: 1010135799765994901}
   - component: {fileID: 1010135799765994089}
   - component: {fileID: 1010135799765994899}
+  - component: {fileID: 849771990}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -5218,6 +5219,8 @@ MonoBehaviour:
   jumpHeight: 1.5
   jumpStartTime: 0.2
   jumpEndTime: 0.2
+  isInSlideState: 0
+  isInJumpState: 0
   jumpStartAnimationCurve:
     serializedVersion: 2
     m_Curve:
@@ -5266,6 +5269,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  defaultMoveSpeed: 3
   moveSpeed: 3
   turnBackSpeed: 0.3
   beforeTurnSideAngle: 90
@@ -5369,13 +5373,17 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   rotationSpeed: 1
+  gunRayDistance: 8
   canTurnTimer: 1
   canTurnMaxTime: 0.6
   footStepInterval: 0.3
-  footstep1: {fileID: 8300000, guid: 1711705fe9b4414498067213aa0c6311, type: 3}
-  footstep2: {fileID: 8300000, guid: dfb2e5dfc75e33a4a96c0235d28d958d, type: 3}
+  footstep1: {fileID: 8300000, guid: aeae61ceb2be9254abe016c3ea02325a, type: 3}
+  footstep2: {fileID: 8300000, guid: 41c50f7f2434ced44ae80aa3358f8a5f, type: 3}
   turnAround: {fileID: 8300000, guid: 73e7e914e9caa474cb97cd8dd0045144, type: 3}
   shootSound: {fileID: 8300000, guid: 896cc296c2b64e444adbcdb88a8461f3, type: 3}
+  jumpSound: {fileID: 8300000, guid: 5c06c5baef430374aaba99169fd662fb, type: 3}
+  slideSound: {fileID: 8300000, guid: 73e7e914e9caa474cb97cd8dd0045144, type: 3}
+  reloadSound: {fileID: 8300000, guid: 434f1c13cfd2bea4e8b4ec135f314abb, type: 3}
   minDistanceToTurn: 0.5
   raycastOffset: -0.2
   swipeController: {fileID: 18316642647453131}
@@ -5451,7 +5459,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.996
+  m_Volume: 0.539
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5535,6 +5543,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &849771990
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010135799765994090}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.481178, z: 1}
+  m_Center: {x: 0, y: 0.24058902, z: 0}
 --- !u!1 &1010135799876725983
 GameObject:
   m_ObjectHideFlags: 0

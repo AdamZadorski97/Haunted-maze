@@ -2,35 +2,72 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 public class MainMenuController : MonoBehaviour
 {
     public GameObject MainMenu;
     public GameObject ChooseLevel;
-    public AudioClip ButtonAudioClip;
+    public GameObject Options;
+    public AudioClip backToMenuAudioClip;
+    public AudioClip choseLevelAudioClip;
+    public AudioClip optionsAudioClip;
+    public AudioClip storeAudioClip;
+    public AudioClip changeSettings;
     public AudioSource audioSource;
+
+    public List<string> qualityName = new List<string>();
+    public int currentQualitySettings;
+    public TMP_Text textQuality;
+
+
+    public void OnSliderChanged()
+    {
+        audioSource.PlayOneShot(changeSettings);
+    }
+
+    public void OnQualityButtonPressed()
+    {
+        audioSource.PlayOneShot(changeSettings);
+        if (currentQualitySettings < 2)
+        {
+            currentQualitySettings++;
+        }
+        else
+        {
+            currentQualitySettings = 0;
+        }
+        textQuality.text = qualityName[currentQualitySettings];
+    }
 
     public void OpenMainMenu()
     {
         MainMenu.SetActive(true);
         ChooseLevel.SetActive(false);
-        audioSource.PlayOneShot(ButtonAudioClip);
+        Options.SetActive(false);
+        audioSource.PlayOneShot(backToMenuAudioClip);
     }
+
+    public void OpenOptions()
+    {
+        MainMenu.SetActive(false);
+        ChooseLevel.SetActive(false);
+        Options.SetActive(true);
+        audioSource.PlayOneShot(optionsAudioClip);
+    }
+
+
+
     public void OpenChooseLevel()
     {
         MainMenu.SetActive(false);
         ChooseLevel.SetActive(true);
-        audioSource.PlayOneShot(ButtonAudioClip);
-    }
-
-    public void OpenTutorialLevel()
-    {
-        SceneManager.LoadScene("World_01_Level_01");
-        audioSource.PlayOneShot(ButtonAudioClip);
+        Options.SetActive(false);
+        audioSource.PlayOneShot(choseLevelAudioClip);
     }
 
     public void OpenLiblaryLevel()
     {
-        SceneManager.LoadScene("World_01_Level_02");
-        audioSource.PlayOneShot(ButtonAudioClip);
+        SceneManager.LoadScene("01.Museum New");
+        audioSource.PlayOneShot(choseLevelAudioClip);
     }
 }

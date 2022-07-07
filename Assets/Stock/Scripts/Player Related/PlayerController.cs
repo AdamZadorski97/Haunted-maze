@@ -18,8 +18,11 @@ public class PlayerController : MonoSingleton<PlayerController>
     [SerializeField] private float jumpHeight = 1.5f;
     [SerializeField] private float jumpStartTime;
     [SerializeField] private float jumpEndTime;
+    public bool isInSlideState;
+    public bool isInJumpState;
     [SerializeField] private AnimationCurve jumpStartAnimationCurve;
     [SerializeField] private AnimationCurve jumpEndAnimationCurve;
+    [SerializeField] private float defaultMoveSpeed = 3;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float turnBackSpeed;
     [SerializeField] private float beforeTurnSideAngle;
@@ -33,6 +36,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     [SerializeField] private AnimationCurve turnSideCurve;
     [SerializeField] private float rotationSpeed;
 
+    [SerializeField] private float gunRayDistance;
 
     [SerializeField] private float canTurnTimer;
     [SerializeField] private float canTurnMaxTime;
@@ -43,6 +47,9 @@ public class PlayerController : MonoSingleton<PlayerController>
     [SerializeField] private AudioClip footstep2;
     [SerializeField] private AudioClip turnAround;
     [SerializeField] private AudioClip shootSound;
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip slideSound;
+    [SerializeField] private AudioClip reloadSound;
 
     [SerializeField] private float minDistanceToTurn = 0.3f;
     [SerializeField] private float raycastOffset;
@@ -69,10 +76,12 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public bool turnEnd;
     private string inst = null;
-
-
-
-
+    private void Start()
+    {
+        cinemachineComposer = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineComposer>();
+        SnapToGround();
+        StartCoroutine(Footstep());
+    }
 
     public void Update()
     {
@@ -87,7 +96,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         RaycastHit hit;
 
-        if (ammunition <= 0)
+        if (LevelManager.Instance.dataManager.GetCurrentAmmuniton() <= 0)
         {
             float xLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.x, 0, 3 * Time.deltaTime);
             float yLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.y, 0, 3 * Time.deltaTime);
@@ -102,9 +111,9 @@ public class PlayerController : MonoSingleton<PlayerController>
 
         if (LevelManager.Instance.enemySpawner.spawnedEnemies.Count > 0)
         {
+
             if (IsEnemyVisible())
             {
-
                 Vector3 dir = closestEnemy.transform.position - weaponPivot.position;
                 Quaternion lookRot = Quaternion.LookRotation(dir);
                 lookRot.x = 0; lookRot.z = 0;
@@ -132,23 +141,40 @@ public class PlayerController : MonoSingleton<PlayerController>
     public Transform closestEnemy;
     public bool IsEnemyVisible()
     {
-        Debug.DrawRay(cameraPivot.position, cameraPivot.TransformDirection((Vector3.forward) + new Vector3(0.25f, 0, 0)) * 5);
-        Debug.DrawRay(cameraPivot.position, cameraPivot.TransformDirection((Vector3.forward) - new Vector3(0.25f, 0, 0)) * 5);
-        Debug.DrawRay(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) * 10);
+        Debug.DrawRay(cameraPivot.position, cameraPivot.TransformDirection((Vector3.forward) + new Vector3(0.5f, 0, 0)) * gunRayDistance);
+        Debug.DrawRay(cameraPivot.position, cameraPivot.TransformDirection((Vector3.forward) - new Vector3(0.5f, 0, 0)) * gunRayDistance);
+        Debug.DrawRay(cameraPivot.position, cameraPivot.TransformDirection((Vector3.forward) + new Vector3(0.3f, 0, 0)) * gunRayDistance);
+        Debug.DrawRay(cameraPivot.position, cameraPivot.TransformDirection((Vector3.forward) - new Vector3(0.3f, 0, 0)) * gunRayDistance);
+        Debug.DrawRay(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) * gunRayDistance);
 
         RaycastHit hitRight;
-        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) + new Vector3(0.3f, 0, 0), out hitRight, 8, enemyLayermask))
+        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) + new Vector3(0.3f, 0, 0), out hitRight, gunRayDistance, enemyLayermask))
         {
             closestEnemy = hitRight.transform;
             return true;
         }
 
+        RaycastHit hitRight2;
+        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) + new Vector3(0.3f, 0, 0), out hitRight2, gunRayDistance, enemyLayermask))
+        {
+            closestEnemy = hitRight2.transform;
+            return true;
+        }
+
         RaycastHit hitLeft;
-        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) - new Vector3(0.3f, 0, 0), out hitLeft, 8, enemyLayermask))
+        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) - new Vector3(0.5f, 0, 0), out hitLeft, gunRayDistance, enemyLayermask))
         {
             closestEnemy = hitLeft.transform;
             return true;
         }
+
+        RaycastHit hitLeft2;
+        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) - new Vector3(0.5f, 0, 0), out hitLeft2, gunRayDistance, enemyLayermask))
+        {
+            closestEnemy = hitLeft2.transform;
+            return true;
+        }
+
 
         RaycastHit hitFront;
         if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward), out hitFront, 10, enemyLayermask))
@@ -205,17 +231,34 @@ public class PlayerController : MonoSingleton<PlayerController>
                 {
                     closestEnemy.GetComponent<EnemyController>().OnDie();
                 }
+
             }
+
+            if (LevelManager.Instance.dataManager.GetCurrentAmmuniton() <= 0)
+            {
+                if (!isReloading)
+                {
+                    Reload();
+                }
+            }
+
+
         }
         else
         {
-            if(!isReloading)
-            StartCoroutine(Reload());
+            if (!isReloading)
+                Reload();
         }
     }
 
-    IEnumerator Reload()
+    public void Reload()
     {
+        StartCoroutine(ReloadCoroutine());
+    }
+
+    IEnumerator ReloadCoroutine()
+    {
+        audioSource.PlayOneShot(reloadSound, 1.5f);
         isReloading = true;
         yield return new WaitForSeconds(0.25f);
         gunAnimator.SetTrigger("Reload");
@@ -260,16 +303,7 @@ public class PlayerController : MonoSingleton<PlayerController>
             StartCoroutine(RememberLastSwipe("Down"));
         }
 
-#if !UNITY_EDITOR
-        if (swipeController.Tap && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-        {
-            StopCoroutine(inst);
-            swipeController.tap = false;
-            Shoot();
-        }
-#endif
 
-#if UNITY_EDITOR
         if (swipeController.Tap)
         {
             if (Input.GetMouseButtonDown(0) == true && !EventSystem.current.IsPointerOverGameObject())
@@ -297,32 +331,28 @@ public class PlayerController : MonoSingleton<PlayerController>
 
             }
         }
-#endif
-
     }
 
 
 
 
-    private void Start()
-    {
-        cinemachineComposer = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineComposer>();
-        SnapToGround();
-        StartCoroutine(Footstep());
-    }
+
     public void StopPlaySound()
     {
         StopAllCoroutines();
     }
     IEnumerator Footstep()
     {
+
         yield return new WaitForSeconds(footStepInterval);
-        if (!wallRaycast())
-            audioSource.PlayOneShot(footstep1);
+        if (!wallRaycast() && !isInJumpState && !isInSlideState)
+            audioSource.PlayOneShot(footstep1, 0.2f);
         yield return new WaitForSeconds(footStepInterval);
-        if (!wallRaycast())
-            audioSource.PlayOneShot(footstep2);
+        if (!wallRaycast() && !isInJumpState && !isInSlideState)
+            audioSource.PlayOneShot(footstep2, 0.2f);
+
         StartCoroutine(Footstep());
+
     }
 
     public bool CanTurn()
@@ -356,23 +386,35 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public void SlideDown()
     {
-        Sequence slideSequence = DOTween.Sequence();
-        slideSequence.Append(cameraPivot.DOLocalMoveY(0.15f, 0.2f));
-        slideSequence.AppendInterval(slideTime);
-        slideSequence.Append(cameraPivot.DOLocalMoveY(0.88f, 0.2f));
+        if (!isInSlideState)
+        {
+            audioSource.PlayOneShot(slideSound, 1.5f);
+            isInSlideState = true;
+            Sequence slideSequence = DOTween.Sequence();
+            slideSequence.Append(cameraPivot.DOLocalMoveY(0.15f, 0.2f));
+            slideSequence.AppendInterval(slideTime);
+            slideSequence.Append(cameraPivot.DOLocalMoveY(0.88f, 0.2f));
+            slideSequence.AppendCallback(() => isInSlideState = false);
+        }
     }
 
     public void Jump()
     {
-        Sequence slideSequence = DOTween.Sequence();
-        slideSequence.Append(cameraPivot.DOLocalMoveY(jumpHeight, jumpEndTime).SetEase(jumpStartAnimationCurve));
-        slideSequence.Join(DOTween.To(() => cinemachineComposer.m_TrackedObjectOffset, x => cinemachineComposer.m_TrackedObjectOffset = x, new Vector3(0, jumpCameraRotationValue, 0), jumpEndTime).SetEase(jumpStartAnimationCurve));
-        slideSequence.Append(cameraPivot.DOLocalMoveY(jumpHeight, jumpEndTime).SetEase(jumpStartAnimationCurve));
-        slideSequence.AppendInterval(jumpTime);
-        slideSequence.Join(DOTween.To(() => cinemachineComposer.m_TrackedObjectOffset, x => cinemachineComposer.m_TrackedObjectOffset = x, new Vector3(0, 0, 0), jumpEndTime).SetEase(jumpStartAnimationCurve));
-        slideSequence.Append(cameraPivot.DOLocalMoveY(0.88f, jumpStartTime).SetEase(jumpEndAnimationCurve));
-        slideSequence.Join(DOTween.To(() => cinemachineComposer.m_TrackedObjectOffset, x => cinemachineComposer.m_TrackedObjectOffset = x, new Vector3(0, -jumpCameraRotationValue, 0), jumpEndTime).SetEase(jumpStartAnimationCurve));
-        slideSequence.Append(DOTween.To(() => cinemachineComposer.m_TrackedObjectOffset, x => cinemachineComposer.m_TrackedObjectOffset = x, new Vector3(0, 0, 0), jumpEndTime).SetEase(jumpStartAnimationCurve));
+        if (!isInJumpState)
+        {
+            audioSource.PlayOneShot(jumpSound);
+            isInJumpState = true;
+            Sequence slideSequence = DOTween.Sequence();
+            slideSequence.Append(cameraPivot.DOLocalMoveY(jumpHeight, jumpEndTime).SetEase(jumpStartAnimationCurve));
+            slideSequence.Join(DOTween.To(() => cinemachineComposer.m_TrackedObjectOffset, x => cinemachineComposer.m_TrackedObjectOffset = x, new Vector3(0, jumpCameraRotationValue, 0), jumpEndTime).SetEase(jumpStartAnimationCurve));
+            slideSequence.Append(cameraPivot.DOLocalMoveY(jumpHeight, jumpEndTime).SetEase(jumpStartAnimationCurve));
+            slideSequence.AppendInterval(jumpTime);
+            slideSequence.Join(DOTween.To(() => cinemachineComposer.m_TrackedObjectOffset, x => cinemachineComposer.m_TrackedObjectOffset = x, new Vector3(0, 0, 0), jumpEndTime).SetEase(jumpStartAnimationCurve));
+            slideSequence.Append(cameraPivot.DOLocalMoveY(0.88f, jumpStartTime).SetEase(jumpEndAnimationCurve));
+            slideSequence.Join(DOTween.To(() => cinemachineComposer.m_TrackedObjectOffset, x => cinemachineComposer.m_TrackedObjectOffset = x, new Vector3(0, -jumpCameraRotationValue, 0), jumpEndTime).SetEase(jumpStartAnimationCurve));
+            slideSequence.Append(DOTween.To(() => cinemachineComposer.m_TrackedObjectOffset, x => cinemachineComposer.m_TrackedObjectOffset = x, new Vector3(0, 0, 0), jumpEndTime).SetEase(jumpStartAnimationCurve));
+            slideSequence.AppendCallback(() => isInJumpState = false);
+        }
     }
 
 
@@ -512,6 +554,7 @@ public class PlayerController : MonoSingleton<PlayerController>
                     {
                         turnSequence.Kill();
                     }
+                    moveSpeed = defaultMoveSpeed;
                     canTurnTimer = 0.2f;
                     turnSequence = DOTween.Sequence();
                     turnSequence.AppendCallback(() => canMove = false);
@@ -599,5 +642,27 @@ public class PlayerController : MonoSingleton<PlayerController>
     public void SwitchNavMeshAgent(bool state)
     {
         navMeshAgent.enabled = state;
+    }
+
+    public void OnSlideObstacleHit()
+    {
+        moveSpeed = 0;
+        StartCoroutine(SlideObstacleHitCoroutine());
+    }
+    IEnumerator SlideObstacleHitCoroutine()
+    {
+        yield return new WaitUntil(() => isInSlideState);
+        moveSpeed = defaultMoveSpeed;
+    }
+
+    public void OnJumpObstacleHit()
+    {
+        moveSpeed = 0;
+        StartCoroutine(JumpObstacleHitCoroutine());
+    }
+    IEnumerator JumpObstacleHitCoroutine()
+    {
+        yield return new WaitUntil(() => isInJumpState);
+        moveSpeed = defaultMoveSpeed;
     }
 }
