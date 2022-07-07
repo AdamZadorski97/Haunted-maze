@@ -644,23 +644,23 @@ public class PlayerController : MonoSingleton<PlayerController>
         navMeshAgent.enabled = state;
     }
 
-    public void OnSlideObstacleHit()
+    public void OnSlideObstacleHit(NavMeshObstacle navMeshObstacle)
     {
         moveSpeed = 0;
-        StartCoroutine(SlideObstacleHitCoroutine());
+        StartCoroutine(SlideObstacleHitCoroutine(navMeshObstacle));
     }
-    IEnumerator SlideObstacleHitCoroutine()
+    IEnumerator SlideObstacleHitCoroutine(NavMeshObstacle navMeshObstacle)
     {
         yield return new WaitUntil(() => isInSlideState);
         moveSpeed = defaultMoveSpeed;
     }
 
-    public void OnJumpObstacleHit()
+    public void OnJumpObstacleHit(NavMeshObstacle navMeshObstacle)
     {
         moveSpeed = 0;
-        StartCoroutine(JumpObstacleHitCoroutine());
+        StartCoroutine(JumpObstacleHitCoroutine(navMeshObstacle));
     }
-    IEnumerator JumpObstacleHitCoroutine()
+    IEnumerator JumpObstacleHitCoroutine(NavMeshObstacle navMeshObstacle)
     {
         yield return new WaitUntil(() => isInJumpState);
         moveSpeed = defaultMoveSpeed;
