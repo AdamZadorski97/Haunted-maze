@@ -9,6 +9,10 @@ public class DataManager : MonoBehaviour
     private int collectedPoints;
     private int currentMultipler;
     private int allLevelPointsAmount;
+    public SaveData saveData;
+
+
+
     private List<GameObject> pickablePointsGameObjects = new List<GameObject>();
     [SerializeField] private List<Color> multiplerColor = new List<Color>();
     [SerializeField] private List<int> multiplerValue = new List<int>();
