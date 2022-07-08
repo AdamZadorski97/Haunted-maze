@@ -249,6 +249,7 @@ GameObject:
   - component: {fileID: 3926194003114027426}
   - component: {fileID: 3136085060410036382}
   - component: {fileID: 1178364309638575084}
+  - component: {fileID: 7724574769879881164}
   m_Layer: 0
   m_Name: WallAdding1
   m_TagString: Untagged
@@ -321,6 +322,31 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!205 &7724574769879881164
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2578127764957712644}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.011015968
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1178364309638575084}
+  - screenRelativeHeight: 0.010790322
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.010790322
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
 --- !u!1 &3244561785990978594
 GameObject:
   m_ObjectHideFlags: 0

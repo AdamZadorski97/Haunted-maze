@@ -79,7 +79,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     private void Start()
     {
         cinemachineComposer = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineComposer>();
-        SnapToGround();
+       // SnapToGround();
         StartCoroutine(Footstep());
     }
 
@@ -370,7 +370,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         RaycastHit groundHit;
         if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), transform.TransformDirection(Vector3.down), out groundHit, Mathf.Infinity, floorLayermask))
         {
-            transform.position = groundHit.transform.position + new Vector3(groundHit.transform.GetComponent<BoxCollider>().center.x, navMeshAgent.baseOffset, groundHit.transform.GetComponent<BoxCollider>().center.z);
+            transform.position = groundHit.transform.position;
 
 
             navMeshAgent.enabled = true;

@@ -24,7 +24,6 @@ public class LevelManager : MonoSingleton<LevelManager>
     public void Start()
     {
         Application.targetFrameRate = 300;
-        InvokeRepeating("GetFPS", 1, 1);
     }
 
     private void Awake()
@@ -34,11 +33,6 @@ public class LevelManager : MonoSingleton<LevelManager>
         pickablePoints = GameObject.FindObjectsOfType<PickablePoint>().ToList();
     }
 
-    public void GetFPS()
-    {
-        fps = (int)(1f / Time.unscaledDeltaTime);
-        fpsCounterText.text = fps + "fps";
-    }
 
 
 
