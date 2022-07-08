@@ -5,27 +5,32 @@ using UnityEngine.AI;
 public class TriggerSlideObject : MonoBehaviour
 {
     public NavMeshObstacle navMeshObstacle;
-    private void OnTriggerEnter(Collider other)
+    private bool isInTrigger;
+    private void OnTriggerStay(Collider other)
     {
         if (other.GetComponent<PlayerController>())
         {
             if (!other.GetComponent<PlayerController>().isInSlideState)
             {
-                navMeshObstacle.enabled = false;
-                other.GetComponent<PlayerController>().OnSlideObstacleHit(navMeshObstacle);
+                if (!isInTrigger)
+                {
+                    isInTrigger = true;
+                    other.GetComponent<PlayerController>().OnSlideObstacleHit(navMeshObstacle);
+                }
             }
 
             else
             {
                 navMeshObstacle.enabled = false;
-                Invoke("EnableNavmesh", 1);
             }
-
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<PlayerController>())
+        {
+            navMeshObstacle.enabled = true;
         }
     }
 
-    private void EnableNavmesh()
-    {
-        navMeshObstacle.enabled = true;
-    }
 }

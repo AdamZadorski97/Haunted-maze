@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   shadows:
-    m_OverrideState: 1
-    m_Value: {x: 0.9858404, y: 1, z: 0.9992158, w: 0.023531463}
+    m_OverrideState: 0
+    m_Value: {x: 0.9858404, y: 1, z: 0.9992158, w: 0.037425175}
   midtones:
-    m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0.31608194}
+    m_OverrideState: 0
+    m_Value: {x: 1, y: 1, z: 1, w: -0.01736713}
   highlights:
-    m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: -0.0039707213}
+    m_OverrideState: 0
+    m_Value: {x: 1, y: 1, z: 1, w: 0.11462312}
   shadowsStart:
     m_OverrideState: 1
     m_Value: 0
@@ -95,12 +95,12 @@ MonoBehaviour:
   active: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.45
+    m_Value: 0.3
   intensity:
     m_OverrideState: 1
     m_Value: 0.6
   scatter:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0.499
   clamp:
     m_OverrideState: 0
@@ -163,16 +163,16 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: 0.24
+    m_Value: -0.25
   contrast:
     m_OverrideState: 1
-    m_Value: 82.8
+    m_Value: 50.7
   colorFilter:
-    m_OverrideState: 0
-    m_Value: {r: 0.9304913, g: 0.9622642, b: 0.9604727, a: 1}
+    m_OverrideState: 1
+    m_Value: {r: 0.78221786, g: 0.8867924, b: 0.8867924, a: 1}
   hueShift:
     m_OverrideState: 1
-    m_Value: 14.7
+    m_Value: 6.7
   saturation:
     m_OverrideState: 1
-    m_Value: 39.4
+    m_Value: 100
