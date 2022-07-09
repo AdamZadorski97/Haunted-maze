@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateAmmunition()
     {
-        textCurrentAmmunition.text = LevelManager.Instance.dataManager.GetCurrentAmmuniton().ToString();
+        textCurrentAmmunition.text = $"{LevelManager.Instance.dataManager.GetAmmunitionInMagazine()}/{LevelManager.Instance.dataManager.GetLeftAmmunition()}";
     }
     public void UpdateCurrentPoints()
     {

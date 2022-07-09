@@ -72,11 +72,13 @@ public class SaveLoadDataManager : MonoBehaviour
     public int GetWeaponUpgradeLevel(int weaponID, weaponUpgradeType weaponUpgradeType)
     {
         LoadData();
+      
         switch (weaponUpgradeType)
         {
             case weaponUpgradeType.damage:
                 return saveData.upgrades.weaponDataUpgrades[weaponID].damageUpgradeLevel;
             case weaponUpgradeType.clip:
+                Debug.Log(saveData.upgrades.weaponDataUpgrades[weaponID].clipUpgradeLevel);
                 return saveData.upgrades.weaponDataUpgrades[weaponID].clipUpgradeLevel;
             case weaponUpgradeType.reloadTime:
                 return saveData.upgrades.weaponDataUpgrades[weaponID].reloadTimeUpgradeLevel;
@@ -105,6 +107,7 @@ public class SaveLoadDataManager : MonoBehaviour
 
     public float GetWeaponClipValue(int weaponID)
     {
+        Debug.Log(weaponsData.weapons[weaponID].clipValue[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.clip)]);
         return weaponsData.weapons[weaponID].clipValue[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.clip)];
     }
 

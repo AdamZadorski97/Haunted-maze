@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
-    private int ammunitionMagazine = 10;
-    private int ammunition;
+    private int maxAmmunitionInMagazine = 10;
+    private float ammunitionInMagazine;
+    private float ammunitionLeft;
+    private float ammunitionOnStart;
     private int collectedPoints;
     private int currentMultipler;
     private int allLevelPointsAmount;
@@ -14,11 +16,13 @@ public class DataManager : MonoBehaviour
     private List<GameObject> pickablePointsGameObjects = new List<GameObject>();
     [SerializeField] private List<Color> multiplerColor = new List<Color>();
     [SerializeField] private List<int> multiplerValue = new List<int>();
-    private int currentPointsMultiplied;
-   
+    public int currentPointsMultiplied;
+
+   [SerializeField] public SaveLoadDataManager saveLoadDataManager;
     private void Awake()
     {
-        ammunition = 7;
+        saveLoadDataManager.LoadData();
+        ammunitionLeft = saveLoadDataManager.GetWeaponClipValue(0);
         collectedPoints = 0;
         currentMultipler = 1;
         LevelManager.Instance.uIManager.UpdateUI();
@@ -34,9 +38,17 @@ public class DataManager : MonoBehaviour
     {
         return currentPointsMultiplied;
     }
-    public int GetCurrentAmmuniton()
+    public float GetLeftAmmunition()
     {
-        return ammunition;
+        return ammunitionLeft;
+    }
+    public float GetMaxAmmunitionInMagazine()
+    {
+        return maxAmmunitionInMagazine;
+    }
+    public float GetAmmunitionInMagazine()
+    {
+        return ammunitionInMagazine;
     }
     public int GetCurrentCollectedPoints()
     {
@@ -49,9 +61,9 @@ public class DataManager : MonoBehaviour
 
     public bool CheckCanShoot()
     {
-        if (GetCurrentAmmuniton() > 0)
+        if (GetAmmunitionInMagazine() > 0)
         {
-            ammunition--;
+            ammunitionInMagazine--;
             LevelManager.Instance.uIManager.UpdateAmmunition();
             return true;
         }
@@ -59,7 +71,17 @@ public class DataManager : MonoBehaviour
     }
     public void SetAmmunition()
     {
-        ammunition = ammunitionMagazine;
+        if (GetLeftAmmunition() > 10)
+        {
+            ammunitionInMagazine = maxAmmunitionInMagazine;
+            ammunitionLeft -= 10;
+        }
+
+        else
+        {
+            ammunitionInMagazine = GetLeftAmmunition();
+            ammunitionLeft = 0;
+        }
         LevelManager.Instance.uIManager.UpdateAmmunition();
     }
     public void SetPoint()

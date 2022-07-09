@@ -32,6 +32,7 @@ public class PlayerPicker : MonoBehaviour
 
         if(other.GetComponent<EnemyController>())
         {
+            LevelManager.Instance.dataManager.saveLoadDataManager.AddCoins(LevelManager.Instance.dataManager.currentPointsMultiplied);
             GameOverCanvas.gameObject.SetActive(true);
             playerController.StopAllCoroutines();
             playerController.enabled = false;

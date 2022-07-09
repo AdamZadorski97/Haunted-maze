@@ -16,7 +16,7 @@ public class MainMenuController : MonoBehaviour
     public AudioClip changeSettings;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private ShopController shopController;
-  public List<string> qualityName = new List<string>();
+    public List<string> qualityName = new List<string>();
     public int currentQualitySettings;
     public TMP_Text textQuality;
 

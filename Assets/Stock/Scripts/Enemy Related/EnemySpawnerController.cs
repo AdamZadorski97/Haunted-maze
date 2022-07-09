@@ -116,7 +116,7 @@ public class EnemySpawnerController : MonoBehaviour
         RaycastHit groundHit;
         if (Physics.Raycast(posToCheck + new Vector3(0, 1, 0), Vector3.down, out groundHit, Mathf.Infinity, floorLayermask))
         {
-            newEnemyPosition = groundHit.transform.position + new Vector3(groundHit.transform.GetComponent<BoxCollider>().center.x, groundHit.transform.GetComponent<BoxCollider>().center.z);
+            newEnemyPosition = groundHit.transform.position;
 
             return true;
         }

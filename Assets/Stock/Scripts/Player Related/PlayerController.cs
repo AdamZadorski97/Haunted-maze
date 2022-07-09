@@ -96,7 +96,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         RaycastHit hit;
 
-        if (LevelManager.Instance.dataManager.GetCurrentAmmuniton() <= 0)
+        if (LevelManager.Instance.dataManager.GetAmmunitionInMagazine() <= 0)
         {
             float xLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.x, 0, 3 * Time.deltaTime);
             float yLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.y, 0, 3 * Time.deltaTime);
@@ -187,13 +187,6 @@ public class PlayerController : MonoSingleton<PlayerController>
         return false;
     }
 
-
-
-
-
-
-
-
     //public Transform GetClosestEnemy()
     //{
     //    Transform bestTarget = null;
@@ -212,8 +205,6 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     //    return bestTarget;
     //}
-
-
 
     public void Shoot()
     {
@@ -234,7 +225,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
             }
 
-            if (LevelManager.Instance.dataManager.GetCurrentAmmuniton() <= 0)
+            if (LevelManager.Instance.dataManager.GetAmmunitionInMagazine() <= 0)
             {
                 if (!isReloading)
                 {
