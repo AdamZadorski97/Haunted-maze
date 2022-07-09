@@ -5,7 +5,7 @@ using UnityEngine;
 public class TriggerJumpObject : MonoBehaviour
 {
     public UnityEngine.AI.NavMeshObstacle navMeshObstacle;
-    private bool isInTrigger;
+    [SerializeField]private bool isInTrigger;
     private void OnTriggerStay(Collider other)
     {
       
@@ -29,7 +29,7 @@ public class TriggerJumpObject : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        isInTrigger = false;
+      //  isInTrigger = false;
         if (other.GetComponent<PlayerController>())
         {
             navMeshObstacle.enabled = true;

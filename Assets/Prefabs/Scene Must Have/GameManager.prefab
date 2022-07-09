@@ -2408,7 +2408,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a84d04a728d4d468ba14269241deea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveData: {fileID: 0}
+  saveData:
+    stats:
+      coinsAmount: 0
+    settings:
+      fxValue: 0
+      musicValue: 0
+      graphicValue: 0
+    upgrades:
+      weaponDataUpgrades: []
   multiplerColor:
   - {r: 1, g: 0.99862766, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}

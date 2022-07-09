@@ -651,7 +651,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     }
     IEnumerator SlideObstacleHitCoroutine(NavMeshObstacle navMeshObstacle)
     {
-        yield return new WaitUntil(() => isInSlideState);
+        yield return new WaitUntil(() => isInSlideState|| moveBack);
         moveSpeed = defaultMoveSpeed;
     }
 
@@ -662,7 +662,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     }
     IEnumerator JumpObstacleHitCoroutine(NavMeshObstacle navMeshObstacle)
     {
-        yield return new WaitUntil(() => isInJumpState);
+        yield return new WaitUntil(() => isInJumpState || moveBack);
         moveSpeed = defaultMoveSpeed;
     }
 }
