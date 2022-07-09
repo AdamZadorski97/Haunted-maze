@@ -6,9 +6,9 @@ using UnityEngine;
 public class FloorController : MonoBehaviour
 {
     [OnValueChanged("SwitchPoint")]
-    public bool interactivePointsIsOn;
+    [SerializeField] private bool interactivePointsIsOn;
     public GameObject interactivePoint;
-    public MeshRenderer meshRenderer;
+    [SerializeField] private MeshRenderer meshRenderer;
 
     public void SwitchMeshRenderer(bool state)
     {
@@ -20,7 +20,9 @@ public class FloorController : MonoBehaviour
     public void Start()
     {
         if (transform.position.y != 0)
+        {
             SwitchPoint(false);
+        }
     }
 
     public void SwitchPoint(bool state)

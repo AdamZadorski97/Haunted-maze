@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4790062950177653745
 Transform:
@@ -5175,7 +5175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2506877030404951776, guid: b341ed39fac2c18449217b5082f6081d, type: 3}
       propertyPath: m_DynamicOccludee
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2506877030404951776, guid: b341ed39fac2c18449217b5082f6081d, type: 3}
       propertyPath: m_LightProbeUsage
