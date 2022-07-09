@@ -14,10 +14,46 @@ public class SaveLoadDataManager : MonoBehaviour
         LoadData();
     }
 
+    public bool CheckEnoughCoins(float value)
+    {
+        if (value > saveData.stats.coinsAmount)
+        {
+            return false;
+        }
+        TakeCoins(value);
+        return true;
+    }
 
+    public float GetCoins()
+    {
+        LoadData();
+        return saveData.stats.coinsAmount;
+    }
+
+    public void TakeCoins(float value)
+    {
+        LoadData();
+        saveData.stats.coinsAmount -= value;
+        SaveData();
+    }
+
+    public void AddCoins(float value)
+    {
+        LoadData();
+        saveData.stats.coinsAmount += value;
+        SaveData();
+    }
+
+    public void SetCoins(float value)
+    {
+        LoadData();
+        saveData.stats.coinsAmount = value;
+        SaveData();
+    }
 
     public void SetWeaponUpgradeLevel(int weaponID, weaponUpgradeType weaponUpgradeType)
     {
+        LoadData();
         switch (weaponUpgradeType)
         {
             case weaponUpgradeType.damage:
@@ -53,11 +89,11 @@ public class SaveLoadDataManager : MonoBehaviour
         switch (weaponUpgradeType)
         {
             case weaponUpgradeType.damage:
-                return weaponsData.weapons[weaponID].damageUpgradeCost[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType)+1];
+                return weaponsData.weapons[weaponID].damageUpgradeCost[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType) + 1];
             case weaponUpgradeType.clip:
-                return weaponsData.weapons[weaponID].clipUpgradeCost[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType)+1];
+                return weaponsData.weapons[weaponID].clipUpgradeCost[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType) + 1];
             case weaponUpgradeType.reloadTime:
-                return weaponsData.weapons[weaponID].reloadTimeUpgradeCost[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType)+1];
+                return weaponsData.weapons[weaponID].reloadTimeUpgradeCost[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType) + 1];
         }
         return 0;
     }
@@ -69,12 +105,12 @@ public class SaveLoadDataManager : MonoBehaviour
 
     public float GetWeaponClipValue(int weaponID)
     {
-        return weaponsData.weapons[weaponID].damageValue[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.clip)];
+        return weaponsData.weapons[weaponID].clipValue[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.clip)];
     }
 
     public float GetWeaponRealoadTime(int weaponID)
     {
-        return weaponsData.weapons[weaponID].damageValue[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.reloadTime)];
+        return weaponsData.weapons[weaponID].reloadTimeValue[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.reloadTime)];
     }
 
     [Button]

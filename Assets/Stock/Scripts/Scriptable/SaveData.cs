@@ -9,13 +9,14 @@ public class SaveData
     public Stats stats;
     public Settings settings;
     public Upgrades upgrades;
-
 }
+
 [Serializable]
 public class Stats
 {
     public float coinsAmount;
 }
+
 [Serializable]
 public class Settings
 {
@@ -39,8 +40,3 @@ public class WeaponDataUpgrades
     public int clipUpgradeLevel;
     public int reloadTimeUpgradeLevel;
 }
-
-
-
-
-

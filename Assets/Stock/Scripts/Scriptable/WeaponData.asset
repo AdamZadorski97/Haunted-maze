@@ -12,3 +12,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241d42754fbe0ca41a37c68893d53cfc, type: 3}
   m_Name: WeaponData
   m_EditorClassIdentifier: 
+  weapons:
+  - weaponID: 0
+    weaponName: Pistol
+    weaponDescription: Pistol
+    damageValue:
+    - 1
+    - 1.2
+    - 1.4
+    - 1.6
+    - 1.8
+    - 2
+    - 2.3
+    - 2.6
+    - 2.8
+    - 3
+    damageUpgradeCost:
+    - 100
+    - 300
+    - 600
+    - 1000
+    - 1500
+    - 2000
+    - 3000
+    - 4000
+    - 8000
+    - 10000
+    clipValue:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    clipUpgradeCost:
+    - 100
+    - 300
+    - 600
+    - 1000
+    - 1500
+    - 2000
+    - 3000
+    - 4000
+    - 8000
+    - 10000
+    reloadTimeValue:
+    - 3
+    - 2.8
+    - 2.6
+    - 2.4
+    - 2.2
+    - 2
+    - 1.9
+    - 1.8
+    - 1.7
+    - 1.6
+    reloadTimeUpgradeCost:
+    - 100
+    - 300
+    - 600
+    - 1000
+    - 1500
+    - 2000
+    - 3000
+    - 4000
+    - 8000
+    - 10000
