@@ -1028,6 +1028,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 5508470898246454625}
     m_Modifications:
+    - target: {fileID: 2432307771688808324, guid: c7c4986fcb919e547841e4ad2194602c, type: 3}
+      propertyPath: intensityOutside
+      value: 0.95
+      objectReference: {fileID: 0}
     - target: {fileID: 4158410121476169695, guid: c7c4986fcb919e547841e4ad2194602c, type: 3}
       propertyPath: m_RootOrder
       value: -1
