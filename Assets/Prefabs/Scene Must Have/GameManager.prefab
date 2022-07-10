@@ -4349,8 +4349,8 @@ MonoBehaviour:
       weaponDataUpgrades:
       - currentSelectedWeapon: 0
         weaponID: 0
-        damageUpgradeLevel: 1
-        clipUpgradeLevel: 6
+        damageUpgradeLevel: 6
+        clipUpgradeLevel: 0
         reloadTimeUpgradeLevel: 0
   weaponsData: {fileID: 11400000, guid: ba9a43b3c4a90aa4789e20379b17cdfd, type: 2}
 --- !u!1 &1010135799167528545
@@ -5465,6 +5465,7 @@ MonoBehaviour:
   moveRight: 0
   moveBack: 0
   turnEnd: 1
+  reloadAnimation: {fileID: 0}
   closestEnemy: {fileID: 0}
   frontMiddleRaycastStarPoint: {fileID: 1010135798205652695}
   frontLeftRaycastStarPoint: {fileID: 1010135798864022939}

@@ -76,6 +76,8 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public bool turnEnd;
     private string inst = null;
+
+    public Animation reloadAnimation;
     private void Start()
     {
         cinemachineComposer = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineComposer>();
@@ -208,6 +210,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public void Shoot()
     {
+        if(!isReloading)
         if (LevelManager.Instance.dataManager.CheckCanShoot())
         {
             gunAnimator.SetTrigger("Shoot" + Random.Range(1, 4));
@@ -251,9 +254,20 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         audioSource.PlayOneShot(reloadSound, 1.5f);
         isReloading = true;
-        yield return new WaitForSeconds(0.25f);
         gunAnimator.SetTrigger("Reload");
-        yield return new WaitForSeconds(reloadTime);
+
+        yield return new WaitUntil(() => gunAnimator.GetCurrentAnimatorStateInfo(0).IsName("Reload"));
+
+        float reloadAnimationTime =  gunAnimator.GetCurrentAnimatorStateInfo(0).length;
+
+
+
+        float targetReloadAnimationSpeed = 1 * LevelManager.Instance.dataManager.GetReloadTime() / reloadAnimationTime;
+        gunAnimator.speed = 1/targetReloadAnimationSpeed;
+
+
+        yield return new WaitForSeconds(LevelManager.Instance.dataManager.GetReloadTime());
+        gunAnimator.speed = 1;
         isReloading = false;
         LevelManager.Instance.dataManager.SetAmmunition();
     }

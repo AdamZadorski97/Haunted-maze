@@ -11,6 +11,7 @@ public class DataManager : MonoBehaviour
     private int collectedPoints;
     private int currentMultipler;
     private int allLevelPointsAmount;
+    private int currentWeaponID;
     public SaveData saveData;
     public CoinsProportiesData coinsProportiesData;
 
@@ -31,6 +32,7 @@ public class DataManager : MonoBehaviour
         allLevelPointsAmount = GameObject.FindGameObjectsWithTag("Point").Length;
         pickablePointsGameObjects.AddRange(GameObject.FindGameObjectsWithTag("Point"));
     }
+
     #region points
     public int GetLevelPointsAmount()
     {
@@ -117,6 +119,12 @@ public class DataManager : MonoBehaviour
         }
         LevelManager.Instance.uIManager.UpdateAmmunition();
     }
+
+    public float GetReloadTime()
+    {
+        return saveLoadDataManager.GetWeaponRealoadTime(currentWeaponID);
+    }
+
     #endregion
 
 
