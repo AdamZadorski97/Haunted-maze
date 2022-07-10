@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 public class PickablePoint : MonoBehaviour
 {
     public MeshRenderer InteractivePointMesh;
+   [SerializeField] private TMP_Text textFrontMultipler;
+    [SerializeField] private TMP_Text textBackMultipler;
     private Vector3 tempScale;
     private void Start()
     {
@@ -23,6 +26,11 @@ public class PickablePoint : MonoBehaviour
         });
     }
 
+    public void SetMultipler(string value)
+    {
+        textFrontMultipler.text = value;
+        textBackMultipler.text = value;
+    }
 
 
 
