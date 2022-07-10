@@ -23,8 +23,9 @@ public class DataManager : MonoBehaviour
     {
         saveLoadDataManager.LoadData();
         ammunitionLeft = saveLoadDataManager.GetWeaponClipValue(0);
+        SetAmmunition();
         collectedPoints = 0;
-        currentMultipler = 1;
+        currentMultipler = 0;
         LevelManager.Instance.uIManager.UpdateUI();
         allLevelPointsAmount = GameObject.FindGameObjectsWithTag("Point").Length;
         pickablePointsGameObjects.AddRange(GameObject.FindGameObjectsWithTag("Point"));
@@ -56,7 +57,7 @@ public class DataManager : MonoBehaviour
     }
     public int GetCurrentPointsPointsMultipler()
     {
-        return currentMultipler;
+        return multiplerValue[currentMultipler];
     }
 
     public bool CheckCanShoot()
@@ -102,8 +103,9 @@ public class DataManager : MonoBehaviour
         foreach (GameObject item in pickablePointsGameObjects)
         {
             item.SetActive(true);
-            item.GetComponent<PickablePoint>().InteractivePointMesh.material.SetColor("_Color", multiplerColor[currentMultipler]);
+            item.GetComponent<PickablePoint>().SetMultipler(GetCurrentPointsPointsMultipler().ToString());
         }
+        LevelManager.Instance.uIManager.UpdateUI();
         collectedPoints = 1;
     }
 }
