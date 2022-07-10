@@ -129,6 +129,14 @@ PrefabInstance:
       value: 'Interactive Point '
       objectReference: {fileID: 0}
     - target: {fileID: 2100273116438126148, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
+      propertyPath: meshPlate
+      value: 
+      objectReference: {fileID: 938794557280470695}
+    - target: {fileID: 2100273116438126148, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
+      propertyPath: meshBorder
+      value: 
+      objectReference: {fileID: 6085827575269696709}
+    - target: {fileID: 2100273116438126148, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
       propertyPath: InteractivePointMesh
       value: 
       objectReference: {fileID: 6085827575269696709}
@@ -310,6 +318,11 @@ PrefabInstance:
 --- !u!4 &499351504392431716 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4790062950177653745, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
+  m_PrefabInstance: {fileID: 4942618488314751893}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &938794557280470695 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5301002838925815090, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
   m_PrefabInstance: {fileID: 4942618488314751893}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &5369871196849302526 stripped

@@ -61,7 +61,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd1e13e52b367154d8c5349b4593d134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InteractivePointMesh: {fileID: 0}
+  meshBorder: {fileID: 0}
+  meshBorderHD: {fileID: 4909526109497680923}
+  meshPlate: {fileID: 0}
   textFrontMultipler: {fileID: 8609181734867564058}
   textBackMultipler: {fileID: 7427017836958070204}
 --- !u!1 &2010481075117481803

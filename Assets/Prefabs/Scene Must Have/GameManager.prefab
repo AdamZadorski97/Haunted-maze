@@ -2263,14 +2263,7 @@ MonoBehaviour:
       graphicValue: 0
     upgrades:
       weaponDataUpgrades: []
-  multiplerColor:
-  - {r: 1, g: 0.99862766, b: 0, a: 1}
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 1, g: 0, b: 0.8595643, a: 1}
-  - {r: 0.22263145, g: 0, b: 1, a: 1}
-  - {r: 0, g: 0.33205748, b: 1, a: 1}
-  - {r: 0, g: 1, b: 0.36163354, a: 1}
-  multiplerValue: 000000000a00000014000000320000006400000096000000
+  coinsProportiesData: {fileID: 11400000, guid: a4cc77f58ad31c64fbfe575060dbb307, type: 2}
   currentPointsMultiplied: 0
   saveLoadDataManager: {fileID: 1356214048}
 --- !u!1 &1855323131

@@ -5,8 +5,10 @@ using DG.Tweening;
 using TMPro;
 public class PickablePoint : MonoBehaviour
 {
-    public MeshRenderer InteractivePointMesh;
-   [SerializeField] private TMP_Text textFrontMultipler;
+    [SerializeField] private MeshRenderer meshBorder;
+    [SerializeField] private MeshRenderer meshBorderHD;
+    [SerializeField] private MeshRenderer meshPlate;
+    [SerializeField] private TMP_Text textFrontMultipler;
     [SerializeField] private TMP_Text textBackMultipler;
     private Vector3 tempScale;
     private void Start()
@@ -26,10 +28,15 @@ public class PickablePoint : MonoBehaviour
         });
     }
 
-    public void SetMultipler(string value)
+    public void SetMultipler(string value, Color borderColor, Color plateColor, Color textColor)
     {
         textFrontMultipler.text = value;
         textBackMultipler.text = value;
+        textBackMultipler.color = textColor;
+        textFrontMultipler.color = textColor;
+        meshBorder.material.SetColor("_Color", borderColor);
+        meshBorderHD.material.SetColor("_Color", borderColor);
+        meshPlate.material.SetColor("_Color", plateColor);
     }
 
 

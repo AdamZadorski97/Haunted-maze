@@ -12,13 +12,14 @@ public class DataManager : MonoBehaviour
     private int currentMultipler;
     private int allLevelPointsAmount;
     public SaveData saveData;
+    public CoinsProportiesData coinsProportiesData;
+
 
     private List<GameObject> pickablePointsGameObjects = new List<GameObject>();
-    [SerializeField] private List<Color> multiplerColor = new List<Color>();
-    [SerializeField] private List<int> multiplerValue = new List<int>();
-    public int currentPointsMultiplied;
+ 
+    public float currentPointsMultiplied;
 
-   [SerializeField] public SaveLoadDataManager saveLoadDataManager;
+    [SerializeField] public SaveLoadDataManager saveLoadDataManager;
     private void Awake()
     {
         saveLoadDataManager.LoadData();
@@ -30,15 +31,52 @@ public class DataManager : MonoBehaviour
         allLevelPointsAmount = GameObject.FindGameObjectsWithTag("Point").Length;
         pickablePointsGameObjects.AddRange(GameObject.FindGameObjectsWithTag("Point"));
     }
-
+    #region points
     public int GetLevelPointsAmount()
     {
         return allLevelPointsAmount;
     }
-    public int GetCurrentPointsMultiplied()
+
+    public float GetCurrentPointsMultiplied()
     {
         return currentPointsMultiplied;
     }
+    public int GetCurrentCollectedPoints()
+    {
+        return collectedPoints;
+    }
+
+    public void SetPoint()
+    {
+        collectedPoints += 1;
+        currentPointsMultiplied += 1 * GetCoinMultipler();
+        if (collectedPoints == allLevelPointsAmount)
+        {
+
+            Invoke("ResetPoints", 0.1f);
+        }
+
+        LevelManager.Instance.uIManager.UpdateCurrentPoints();
+    }
+    private void ResetPoints()
+    {
+        currentMultipler++;
+        foreach (GameObject item in pickablePointsGameObjects)
+        {
+            item.SetActive(true);
+            item.GetComponent<PickablePoint>().SetMultipler(
+                GetCoinMultipler().ToString(), 
+                GetCoinMultiplersFrameColor(),
+                GetCoinMultiplersPlateColor(),
+                GetCoinMultiplersTextColor());
+        }
+        LevelManager.Instance.uIManager.UpdateUI();
+        collectedPoints = 1;
+    }
+    #endregion
+
+
+    #region ammunition
     public float GetLeftAmmunition()
     {
         return ammunitionLeft;
@@ -47,17 +85,10 @@ public class DataManager : MonoBehaviour
     {
         return maxAmmunitionInMagazine;
     }
+
     public float GetAmmunitionInMagazine()
     {
         return ammunitionInMagazine;
-    }
-    public int GetCurrentCollectedPoints()
-    {
-        return collectedPoints;
-    }
-    public int GetCurrentPointsPointsMultipler()
-    {
-        return multiplerValue[currentMultipler];
     }
 
     public bool CheckCanShoot()
@@ -70,6 +101,7 @@ public class DataManager : MonoBehaviour
         }
         return false;
     }
+
     public void SetAmmunition()
     {
         if (GetLeftAmmunition() > 10)
@@ -85,27 +117,36 @@ public class DataManager : MonoBehaviour
         }
         LevelManager.Instance.uIManager.UpdateAmmunition();
     }
-    public void SetPoint()
+    #endregion
+
+
+    #region CoinProporties
+    public float GetCoinMultipler()
     {
-        collectedPoints += 1;
-        currentPointsMultiplied += 1 * multiplerValue[currentMultipler];
-        if (collectedPoints == allLevelPointsAmount)
-        {
-            
-            Invoke("ResetPoints", 0.1f);
-        }
-       
-        LevelManager.Instance.uIManager.UpdateCurrentPoints();
+        return coinsProportiesData.coinMultiplers[currentMultipler];
     }
-    private void ResetPoints()
+
+    public string GetCoinMultiplerString()
     {
-        currentMultipler++;
-        foreach (GameObject item in pickablePointsGameObjects)
-        {
-            item.SetActive(true);
-            item.GetComponent<PickablePoint>().SetMultipler(GetCurrentPointsPointsMultipler().ToString());
-        }
-        LevelManager.Instance.uIManager.UpdateUI();
-        collectedPoints = 1;
+        return coinsProportiesData.coinMultiplersString[currentMultipler];
     }
+
+    public Color GetCoinMultiplersPlateColor()
+    {
+        return coinsProportiesData.coinMultiplersPlateColor[currentMultipler];
+    }
+
+    public Color GetCoinMultiplersFrameColor()
+    {
+        return coinsProportiesData.coinMultiplersFrameColor[currentMultipler];
+    }
+
+    public Color GetCoinMultiplersTextColor()
+    {
+        return coinsProportiesData.coinMultiplersTextColor[currentMultipler];
+    }
+    #endregion
+
+
+
 }

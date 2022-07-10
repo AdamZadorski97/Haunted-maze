@@ -25,6 +25,6 @@ public class UIManager : MonoBehaviour
     }
     public void UpdateCurrentPointsMultipler()
     {
-        textCurrentPointsMultipler.text = LevelManager.Instance.dataManager.GetCurrentPointsPointsMultipler().ToString();
+        textCurrentPointsMultipler.text = LevelManager.Instance.dataManager.GetCoinMultipler().ToString();
     }
 }

@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b26c79de96c0243a5be9b6f96bd76d, type: 3}
+  m_Name: CoinsProportiesData
+  m_EditorClassIdentifier: 
+  coinMultiplers:
+  - 1
+  - 2
+  - 5
+  - 10
+  - 20
+  - 50
+  - 100
+  - 200
+  - 500
+  - 1000
+  coinMultiplersString:
+  - 1
+  - 2
+  - 5
+  - 10
+  - 20
+  - 50
+  - 100
+  - 200
+  - 500
+  - 1k
+  coinMultiplersPlateColor:
+  - {r: 0.9433962, g: 0.77305305, b: 0.084549636, a: 1}
+  - {r: 1, g: 0.4363277, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.41492462, a: 1}
+  - {r: 0.98101234, g: 0, b: 1, a: 1}
+  - {r: 0.33774376, g: 0, b: 1, a: 1}
+  - {r: 0, g: 0.17926908, b: 1, a: 1}
+  - {r: 0, g: 0.8002434, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0.9489832, a: 1}
+  - {r: 0, g: 1, b: 0.52003455, a: 1}
+  - {r: 0, g: 1, b: 0.19104314, a: 1}
+  coinMultiplersFrameColor:
+  - {r: 0.9433962, g: 0.77305305, b: 0.084549636, a: 1}
+  - {r: 1, g: 0.4363277, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.41492462, a: 1}
+  - {r: 0.98101234, g: 0, b: 1, a: 1}
+  - {r: 0.33774376, g: 0, b: 1, a: 1}
+  - {r: 0, g: 0.17926908, b: 1, a: 1}
+  - {r: 0, g: 0.8002434, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0.9489832, a: 1}
+  - {r: 0, g: 1, b: 0.52003455, a: 1}
+  - {r: 0, g: 1, b: 0.19104314, a: 1}
+  coinMultiplersTextColor:
+  - {r: 0.9433962, g: 0.77305305, b: 0.084549636, a: 1}
+  - {r: 1, g: 0.4363277, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.41492462, a: 1}
+  - {r: 0.98101234, g: 0, b: 1, a: 1}
+  - {r: 0.33774376, g: 0, b: 1, a: 1}
+  - {r: 0, g: 0.17926908, b: 1, a: 1}
+  - {r: 0, g: 0.8002434, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0.9489832, a: 1}
+  - {r: 0, g: 1, b: 0.52003455, a: 1}
+  - {r: 0, g: 1, b: 0.19104314, a: 1}
