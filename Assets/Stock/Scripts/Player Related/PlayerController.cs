@@ -63,7 +63,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     [SerializeField] private Animator gunAnimator;
     [SerializeField] private ParticleSystem gunParticleSystem;
     [SerializeField] private CinemachineImpulseSource cinemachineImpulseSource;
-    [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
+    [SerializeField] public CinemachineVirtualCamera cinemachineVirtualCamera;
     [SerializeField] private CinemachineComposer cinemachineComposer;
     [SerializeField] private CinemachineFreeLook freeLook;
 
@@ -81,12 +81,21 @@ public class PlayerController : MonoSingleton<PlayerController>
     private void Start()
     {
         cinemachineComposer = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineComposer>();
-       // SnapToGround();
+        // SnapToGround();
         StartCoroutine(Footstep());
     }
 
     public void Update()
     {
+        if (closestEnemy == null)
+            cinemachineVirtualCamera.LookAt = cameraPivot;
+        else
+        {
+            cinemachineVirtualCamera.LookAt = closestEnemy.GetComponent<EnemyController>().head ;
+        }
+
+     
+
         SwipeControll();
         if (canMove)
             MoveController();
@@ -149,23 +158,37 @@ public class PlayerController : MonoSingleton<PlayerController>
         Debug.DrawRay(cameraPivot.position, cameraPivot.TransformDirection((Vector3.forward) - new Vector3(0.3f, 0, 0)) * gunRayDistance);
         Debug.DrawRay(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) * gunRayDistance);
 
+
+
+
+        RaycastHit hitFrontClose;
+        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward), out hitFrontClose, 4, enemyLayermask))
+        {
+
+            closestEnemy = hitFrontClose.transform;
+            return true;
+        }
+
         RaycastHit hitRight;
         if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) + new Vector3(0.3f, 0, 0), out hitRight, gunRayDistance, enemyLayermask))
         {
+        
             closestEnemy = hitRight.transform;
             return true;
         }
 
         RaycastHit hitRight2;
-        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) + new Vector3(0.3f, 0, 0), out hitRight2, gunRayDistance, enemyLayermask))
+        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) + new Vector3(0.5f, 0, 0), out hitRight2, gunRayDistance, enemyLayermask))
         {
+      
             closestEnemy = hitRight2.transform;
             return true;
         }
 
         RaycastHit hitLeft;
-        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) - new Vector3(0.5f, 0, 0), out hitLeft, gunRayDistance, enemyLayermask))
+        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) - new Vector3(0.3f, 0, 0), out hitLeft, gunRayDistance, enemyLayermask))
         {
+     
             closestEnemy = hitLeft.transform;
             return true;
         }
@@ -173,17 +196,20 @@ public class PlayerController : MonoSingleton<PlayerController>
         RaycastHit hitLeft2;
         if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) - new Vector3(0.5f, 0, 0), out hitLeft2, gunRayDistance, enemyLayermask))
         {
+      
             closestEnemy = hitLeft2.transform;
             return true;
         }
 
-
-        RaycastHit hitFront;
-        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward), out hitFront, 10, enemyLayermask))
+        RaycastHit hitFrontFar;
+        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward), out hitFrontFar, 10, enemyLayermask))
         {
-            closestEnemy = hitFront.transform;
+
+            closestEnemy = hitFrontFar.transform;
             return true;
         }
+
+
 
         closestEnemy = null;
         return false;
@@ -210,39 +236,41 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public void Shoot()
     {
-        if(!isReloading)
-        if (LevelManager.Instance.dataManager.CheckCanShoot())
-        {
-            gunAnimator.SetTrigger("Shoot" + Random.Range(1, 4));
-
-            cinemachineImpulseSource.GenerateImpulse();
-            gunParticleSystem.Play();
-            audioSource.PlayOneShot(shootSound);
-
-            if (IsEnemyVisible())
+        if (!isReloading)
+            if (LevelManager.Instance.dataManager.CheckCanShoot())
             {
-                if (closestEnemy.GetComponent<EnemyController>())
+                gunAnimator.SetTrigger("Shoot" + Random.Range(1, 4));
+
+                cinemachineImpulseSource.GenerateImpulse();
+                gunParticleSystem.Play();
+                audioSource.PlayOneShot(shootSound);
+
+                if (IsEnemyVisible())
                 {
-                    closestEnemy.GetComponent<EnemyController>().OnDie();
+                    if (closestEnemy.GetComponent<EnemyController>())
+                    {
+                        closestEnemy.GetComponent<EnemyController>().OnDie();
+                        closestEnemy = null;
+                 
+                    }
+
                 }
 
-            }
+                if (LevelManager.Instance.dataManager.GetAmmunitionInMagazine() <= 0)
+                {
+                    if (!isReloading)
+                    {
+                        Reload();
+                    }
+                }
 
-            if (LevelManager.Instance.dataManager.GetAmmunitionInMagazine() <= 0)
+
+            }
+            else
             {
                 if (!isReloading)
-                {
                     Reload();
-                }
             }
-
-
-        }
-        else
-        {
-            if (!isReloading)
-                Reload();
-        }
     }
 
     public void Reload()
@@ -258,12 +286,12 @@ public class PlayerController : MonoSingleton<PlayerController>
 
         yield return new WaitUntil(() => gunAnimator.GetCurrentAnimatorStateInfo(0).IsName("Reload"));
 
-        float reloadAnimationTime =  gunAnimator.GetCurrentAnimatorStateInfo(0).length;
+        float reloadAnimationTime = gunAnimator.GetCurrentAnimatorStateInfo(0).length;
 
 
 
         float targetReloadAnimationSpeed = 1 * LevelManager.Instance.dataManager.GetReloadTime() / reloadAnimationTime;
-        gunAnimator.speed = 1/targetReloadAnimationSpeed;
+        gunAnimator.speed = 1 / targetReloadAnimationSpeed;
 
 
         yield return new WaitForSeconds(LevelManager.Instance.dataManager.GetReloadTime());
@@ -656,7 +684,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     }
     IEnumerator SlideObstacleHitCoroutine(NavMeshObstacle navMeshObstacle)
     {
-        yield return new WaitUntil(() => isInSlideState|| moveBack);
+        yield return new WaitUntil(() => isInSlideState || moveBack);
         moveSpeed = defaultMoveSpeed;
     }
 

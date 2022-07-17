@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c97bfd0412f0234b89969f7c5216959, type: 3}
-  m_Name: WallExtruded2
+  m_Name: WallExtruded2.Right
   m_EditorClassIdentifier: 
   objectName: WallExtruded2.Right
   mesh: {fileID: 3153967677920890114, guid: a0e100df6bc118547a092bce8fb92415, type: 3}

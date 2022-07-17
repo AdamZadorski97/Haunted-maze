@@ -12,13 +12,20 @@ public class GameOverCanvas : MonoBehaviour
         textScore.text = $"{LevelManager.Instance.dataManager.GetCurrentPointsMultiplied()}";
       //  interstitial.ShowAd();
     }
+
+    public void OnShopButton()
+    {
+        PlayerPrefs.SetString("ShouldOpenShop", "Yes");
+        SceneManager.LoadScene(0);
+    }
+
     public void OnQuitButton()
     {
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
     public void OnRestartButton()
     {
-
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("01.Museum New");
+     
     }
 }

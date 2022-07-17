@@ -36,6 +36,7 @@ public class PlayerPicker : MonoBehaviour
             GameOverCanvas.gameObject.SetActive(true);
             playerController.StopAllCoroutines();
             playerController.enabled = false;
+            playerController.cinemachineVirtualCamera.LookAt = other.GetComponent<EnemyController>().head;
         }
 
         if (other.GetComponent<EndSceneController>())

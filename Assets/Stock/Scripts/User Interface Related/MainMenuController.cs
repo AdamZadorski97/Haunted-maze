@@ -20,7 +20,17 @@ public class MainMenuController : MonoBehaviour
     public int currentQualitySettings;
     public TMP_Text textQuality;
 
-
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("ShouldOpenShop"))
+        {
+            if (PlayerPrefs.GetString("ShouldOpenShop") == "Yes")
+            {
+                OpenShop();
+                PlayerPrefs.SetString("ShouldOpenShop", "No");
+            }
+        }
+    }
     public void OnSliderChanged()
     {
         audioSource.PlayOneShot(changeSettings);

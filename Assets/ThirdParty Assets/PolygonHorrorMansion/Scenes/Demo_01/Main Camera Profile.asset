@@ -135,7 +135,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: -0.52
+    m_Value: -0.486
   xMultiplier:
     m_OverrideState: 1
     m_Value: 1
@@ -163,7 +163,7 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: -0.25
+    m_Value: 0.5
   contrast:
     m_OverrideState: 1
     m_Value: 50.7

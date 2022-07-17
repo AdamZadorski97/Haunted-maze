@@ -16,6 +16,7 @@ TagManager:
   - Point
   - Floor
   - Wall
+  - MiniMap
   - Player
   - 
   - 
@@ -36,8 +37,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Map
   m_SortingLayers:
   - name: Default
     uniqueID: 0

@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     public GameObject mapVisualize;
     public EnemySpawnerController enemySpawnerController;
     public bool isDead;
+    public Transform head;
     public void Start()
     {
         if (Mathf.Round(transform.position.y) != 3 * LevelManager.Instance.currentPlayerFloor)
