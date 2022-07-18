@@ -225,16 +225,13 @@ namespace EPOOutline
                         var index = (meshRenderer == null ? 0 : meshRenderer.subMeshStartIndex) + target.SubmeshIndex;
                         var filter = meshRenderer == null ? null : meshRenderer.GetComponent<MeshFilter>();
                         var mesh = filter == null ? null : filter.sharedMesh;
-                        
+
                         if (mesh != null && mesh.subMeshCount > index)
-                        {
                             bounds = mesh.GetSubMesh(index).bounds;
-                            pretransformedBounds = meshRenderer.isPartOfStaticBatch;
-                        }
                         else
                         {
-                            pretransformedBounds = true;
                             bounds = renderer.bounds;
+                            pretransformedBounds = true;
                         }
                     }
 
