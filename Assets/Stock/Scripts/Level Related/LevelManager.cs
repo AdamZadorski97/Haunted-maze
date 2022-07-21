@@ -11,9 +11,11 @@ public class LevelManager : MonoSingleton<LevelManager>
     public List<WallController> wallControllers = new List<WallController>();
     public List<PickablePoint> pickablePoints = new List<PickablePoint>();
     public EnemySpawnerController enemySpawner;
+   
     public DataManager dataManager;
     public UIManager uIManager;
-  
+
+    public int currentkilletUnits;
     public int currentPlayerFloor;
     public int currentLevelMoneyCollected;
     public int moneyToUnlockKey;

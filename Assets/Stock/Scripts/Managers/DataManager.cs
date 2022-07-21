@@ -7,11 +7,13 @@ public class DataManager : MonoBehaviour
     private int maxAmmunitionInMagazine = 10;
     private float ammunitionInMagazine;
     private float ammunitionLeft;
-    private float ammunitionOnStart;
+    private int currentKilledUnits;
     private int collectedPoints;
-    private int currentMultipler;
+    [SerializeField] private int currentMultipler; 
+    private float currentKillsMultipler = 0.1f;
     private int allLevelPointsAmount;
     private int currentWeaponID;
+   [SerializeField] private float currentPointsMultiplied;
     public SaveData saveData;
     public CoinsProportiesData coinsProportiesData;
     public AudioSource audioSource;
@@ -19,7 +21,7 @@ public class DataManager : MonoBehaviour
 
     private List<GameObject> pickablePointsGameObjects = new List<GameObject>();
  
-    public float currentPointsMultiplied;
+
 
     [SerializeField] public SaveLoadDataManager saveLoadDataManager;
     private void Awake()
@@ -28,43 +30,61 @@ public class DataManager : MonoBehaviour
         ammunitionLeft = saveLoadDataManager.GetWeaponClipValue(0);
         SetAmmunition();
         collectedPoints = 0;
-        currentMultipler = 0;
+        currentMultipler = 1;
         LevelManager.Instance.uIManager.UpdateUI();
-        allLevelPointsAmount = GameObject.FindGameObjectsWithTag("Point").Length;
+        AllLevelPointsAmount = GameObject.FindGameObjectsWithTag("Point").Length;
         pickablePointsGameObjects.AddRange(GameObject.FindGameObjectsWithTag("Point"));
     }
 
-    #region points
-    public int GetLevelPointsAmount()
+    public int CurrentKilledUnits
     {
-        return allLevelPointsAmount;
+        get { return currentKilledUnits; }
+        set { currentKilledUnits = value; }
     }
 
-    public float GetCurrentPointsMultiplied()
+    #region points
+
+    public int AllLevelPointsAmount
     {
-        return currentPointsMultiplied;
+        get { return allLevelPointsAmount; }
+        set { allLevelPointsAmount = value; }
     }
-    public int GetCurrentCollectedPoints()
+    public int CollectedPoints
     {
-        return collectedPoints;
+        get { return collectedPoints; }
+        set { collectedPoints = value; }
+    }
+
+    public float CurrentPointsMultiplied
+    {
+        get { return currentPointsMultiplied; }
+        set { currentPointsMultiplied = value; }
+    }
+
+    public int CurrentMultipler
+    {
+        get { return currentMultipler; }
+        set { currentMultipler = value; }
     }
 
     public void SetPoint()
     {
-        collectedPoints += 1;
-        currentPointsMultiplied += 1 * GetCoinMultipler();
-        if (collectedPoints == allLevelPointsAmount)
-        {
+        CollectedPoints += 1;
 
+        CurrentPointsMultiplied += 1 * CurrentMultipler ;
+   
+
+        if (collectedPoints == AllLevelPointsAmount)
+        {
             Invoke("ResetPoints", 0.1f);
         }
-
         LevelManager.Instance.uIManager.UpdateCurrentPoints();
     }
+
     private void ResetPoints()
     {
         audioSource.PlayOneShot(resetCoinsSound);
-        currentMultipler++;
+        CurrentMultipler++;
         foreach (GameObject item in pickablePointsGameObjects)
         {
             item.SetActive(true);
@@ -81,25 +101,30 @@ public class DataManager : MonoBehaviour
 
 
     #region ammunition
-    public float GetLeftAmmunition()
+
+    public float AmmunitionLeft
     {
-        return ammunitionLeft;
-    }
-    public float GetMaxAmmunitionInMagazine()
-    {
-        return maxAmmunitionInMagazine;
+        get { return ammunitionLeft; }
+        set { ammunitionLeft = value; }
     }
 
-    public float GetAmmunitionInMagazine()
+    public float AmmunitionInMagazine
     {
-        return ammunitionInMagazine;
+        get { return ammunitionInMagazine; }
+        set { ammunitionInMagazine = value; }
+    }
+
+    public int MaxAmmunitionInMagazine
+    {
+        get { return maxAmmunitionInMagazine; }
+        set { maxAmmunitionInMagazine = value; }
     }
 
     public bool CheckCanShoot()
     {
-        if (GetAmmunitionInMagazine() > 0)
+        if (AmmunitionInMagazine > 0)
         {
-            ammunitionInMagazine--;
+            AmmunitionInMagazine--;
             LevelManager.Instance.uIManager.UpdateAmmunition();
             return true;
         }
@@ -108,16 +133,16 @@ public class DataManager : MonoBehaviour
 
     public void SetAmmunition()
     {
-        if (GetLeftAmmunition() > 10)
+        if (AmmunitionLeft > 10)
         {
-            ammunitionInMagazine = maxAmmunitionInMagazine;
-            ammunitionLeft -= 10;
+            AmmunitionInMagazine = MaxAmmunitionInMagazine;
+            AmmunitionLeft -= 10;
         }
 
         else
         {
-            ammunitionInMagazine = GetLeftAmmunition();
-            ammunitionLeft = 0;
+            AmmunitionInMagazine = AmmunitionLeft;
+            AmmunitionLeft = 0;
         }
         LevelManager.Instance.uIManager.UpdateAmmunition();
     }
@@ -125,6 +150,14 @@ public class DataManager : MonoBehaviour
     public float GetReloadTime()
     {
         return saveLoadDataManager.GetWeaponRealoadTime(currentWeaponID);
+    }
+
+    public float GetKillMultipler()
+    {
+        if (CurrentKilledUnits > 0)
+            return 1+ (CurrentKilledUnits * currentKillsMultipler);
+        else
+            return 1;
     }
 
     #endregion

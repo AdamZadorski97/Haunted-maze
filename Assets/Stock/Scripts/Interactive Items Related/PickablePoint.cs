@@ -11,6 +11,7 @@ public class PickablePoint : MonoBehaviour
     [SerializeField] private TMP_Text textFrontMultipler;
     [SerializeField] private TMP_Text textBackMultipler;
     private Vector3 tempScale;
+
     private void Start()
     {
         tempScale = transform.localScale;
@@ -19,7 +20,6 @@ public class PickablePoint : MonoBehaviour
     {
         Sequence pointSequence = DOTween.Sequence();
         pointSequence.Append( transform.DOScale(Vector3.zero, 0.2f));
-
 
         pointSequence.AppendCallback(()=>
         {
@@ -38,7 +38,4 @@ public class PickablePoint : MonoBehaviour
         meshBorderHD.material.SetColor("_Color", borderColor);
         meshPlate.material.SetColor("_Color", plateColor);
     }
-
-
-
 }

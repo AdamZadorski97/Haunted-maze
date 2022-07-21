@@ -9,6 +9,10 @@ public class UIManager : MonoBehaviour
     public TMP_Text textCurrentAmmunition;
     public TMP_Text textCurrentPoints;
     public TMP_Text textCurrentPointsMultipler;
+
+    public CanvasGroup topPanel;
+    public CanvasGroup bottomPanel;
+    
     public Image reloadButtonImage;
     public Color defaultButtonColor;
     public Color alertLowAmmoButtonColor;
@@ -24,13 +28,13 @@ public class UIManager : MonoBehaviour
 
     public void UpdateAmmunition()
     {
-        textCurrentAmmunition.text = $"{LevelManager.Instance.dataManager.GetAmmunitionInMagazine()}/{LevelManager.Instance.dataManager.GetLeftAmmunition()}";
+        textCurrentAmmunition.text = $"{LevelManager.Instance.dataManager.AmmunitionInMagazine}/{LevelManager.Instance.dataManager.AmmunitionLeft}";
 
         Sequence scaleSequence = DOTween.Sequence();
         scaleSequence.Append(textCurrentAmmunition.transform.DOScale(Vector3.one * 1.1f, 0.1f));
         scaleSequence.Append(textCurrentAmmunition.transform.DOScale(Vector3.one, 0.1f));
 
-        if (LevelManager.Instance.dataManager.GetAmmunitionInMagazine() < 2)
+        if (LevelManager.Instance.dataManager.AmmunitionInMagazine < 2)
         {
             reloadButtonImage.color = alertLowAmmoButtonColor;
             textCurrentAmmunition.color = alertTextColor;
@@ -43,7 +47,7 @@ public class UIManager : MonoBehaviour
     }
     public void UpdateCurrentPoints()
     {
-        textCurrentPoints.text = $"{LevelManager.Instance.dataManager.GetCurrentCollectedPoints()}/{LevelManager.Instance.dataManager.GetLevelPointsAmount()}";
+        textCurrentPoints.text = $"{LevelManager.Instance.dataManager.CollectedPoints}/{LevelManager.Instance.dataManager.AllLevelPointsAmount}";
         Sequence scaleSequence = DOTween.Sequence();
         scaleSequence.Append(textCurrentPoints.transform.DOScale(Vector3.one * 1.1f, 0.1f));
         scaleSequence.Append(textCurrentPoints.transform.DOScale(Vector3.one, 0.1f));

@@ -52,6 +52,8 @@ public class PlayerController : MonoSingleton<PlayerController>
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip slideSound;
     [SerializeField] private AudioClip reloadSound;
+    [SerializeField] private AudioClip killSound;
+
 
     [SerializeField] private float minDistanceToTurn = 0.3f;
     [SerializeField] private float raycastOffset;
@@ -93,10 +95,10 @@ public class PlayerController : MonoSingleton<PlayerController>
             cinemachineVirtualCamera.LookAt = cameraPivot;
         else
         {
-            cinemachineVirtualCamera.LookAt = closestEnemy.GetComponent<EnemyController>().head ;
+            cinemachineVirtualCamera.LookAt = closestEnemy.GetComponent<EnemyController>().head;
         }
 
-     
+
 
         SwipeControll();
         if (canMove)
@@ -109,7 +111,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         RaycastHit hit;
 
-        if (LevelManager.Instance.dataManager.GetAmmunitionInMagazine() <= 0)
+        if (LevelManager.Instance.dataManager.AmmunitionInMagazine <= 0)
         {
             float xLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.x, 0, 3 * Time.deltaTime);
             float yLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.y, 0, 3 * Time.deltaTime);
@@ -174,7 +176,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         RaycastHit hitRight;
         if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) + new Vector3(0.3f, 0, 0), out hitRight, gunRayDistance, enemyLayermask))
         {
-        
+
             closestEnemy = hitRight.transform;
             return true;
         }
@@ -182,7 +184,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         RaycastHit hitRight2;
         if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) + new Vector3(0.5f, 0, 0), out hitRight2, gunRayDistance, enemyLayermask))
         {
-      
+
             closestEnemy = hitRight2.transform;
             return true;
         }
@@ -190,7 +192,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         RaycastHit hitLeft;
         if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) - new Vector3(0.3f, 0, 0), out hitLeft, gunRayDistance, enemyLayermask))
         {
-     
+
             closestEnemy = hitLeft.transform;
             return true;
         }
@@ -198,7 +200,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         RaycastHit hitLeft2;
         if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) - new Vector3(0.5f, 0, 0), out hitLeft2, gunRayDistance, enemyLayermask))
         {
-      
+
             closestEnemy = hitLeft2.transform;
             return true;
         }
@@ -251,27 +253,28 @@ public class PlayerController : MonoSingleton<PlayerController>
                 {
                     if (closestEnemy.GetComponent<EnemyController>())
                     {
+                        audioSource.PlayOneShot(killSound);
+                        LevelManager.Instance.dataManager.CurrentKilledUnits++;
                         closestEnemy.GetComponent<EnemyController>().OnDie();
                         closestEnemy = null;
-                 
                     }
 
                 }
 
-                if (LevelManager.Instance.dataManager.GetAmmunitionInMagazine() <= 0)
+                if (LevelManager.Instance.dataManager.AmmunitionInMagazine <= 0)
                 {
                     if (!isReloading)
                     {
                         Reload();
                     }
                 }
-
-
             }
             else
             {
                 if (!isReloading)
+                {
                     Reload();
+                }
             }
     }
 
@@ -289,26 +292,18 @@ public class PlayerController : MonoSingleton<PlayerController>
         yield return new WaitUntil(() => gunAnimator.GetCurrentAnimatorStateInfo(0).IsName("Reload"));
 
         float reloadAnimationTime = gunAnimator.GetCurrentAnimatorStateInfo(0).length;
-
-
-
         float targetReloadAnimationSpeed = 1 * LevelManager.Instance.dataManager.GetReloadTime() / reloadAnimationTime;
         gunAnimator.speed = 1 / targetReloadAnimationSpeed;
-
-
         yield return new WaitForSeconds(LevelManager.Instance.dataManager.GetReloadTime());
         gunAnimator.speed = 1;
         isReloading = false;
         LevelManager.Instance.dataManager.SetAmmunition();
     }
 
-
-
     public void SwipeControll()
     {
         if (swipeController.SwipeLeft && turnEnd)
         {
-
             StopCoroutine(inst);
             inst = "Left";
             StartCoroutine(RememberLastSwipe("Left"));
@@ -316,7 +311,6 @@ public class PlayerController : MonoSingleton<PlayerController>
 
         if (swipeController.SwipeRight && turnEnd)
         {
-
             StopCoroutine(inst);
             inst = "Right";
             StartCoroutine(RememberLastSwipe("Right"));
@@ -324,7 +318,6 @@ public class PlayerController : MonoSingleton<PlayerController>
 
         if (swipeController.SwipeUp && turnEnd)
         {
-
             StopCoroutine(inst);
             inst = "Up";
             StartCoroutine(RememberLastSwipe("Up"));
@@ -332,12 +325,10 @@ public class PlayerController : MonoSingleton<PlayerController>
 
         if (swipeController.SwipeDown && turnEnd)
         {
-
             StopCoroutine(inst);
             inst = "Down";
             StartCoroutine(RememberLastSwipe("Down"));
         }
-
 
         if (swipeController.Tap)
         {
@@ -346,11 +337,9 @@ public class PlayerController : MonoSingleton<PlayerController>
                 StopCoroutine(inst);
                 swipeController.tap = false;
                 Shoot();
-
             }
             else
             {
-
                 if (EventSystem.current.currentSelectedGameObject != null)
                 {
                     Debug.Log(EventSystem.current.currentSelectedGameObject.gameObject.name);
@@ -361,16 +350,9 @@ public class PlayerController : MonoSingleton<PlayerController>
                     swipeController.tap = false;
                     Shoot();
                 }
-
-
-
             }
         }
     }
-
-
-
-
 
     public void StopPlaySound()
     {
@@ -682,6 +664,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 1;
         cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
     }
+
     public void SwitchNavMeshAgent(bool state)
     {
         navMeshAgent.enabled = state;
@@ -697,6 +680,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         yield return new WaitUntil(() => isInSlideState || moveBack);
         moveSpeed = defaultMoveSpeed;
     }
+
 
     public void OnJumpObstacleHit(NavMeshObstacle navMeshObstacle)
     {

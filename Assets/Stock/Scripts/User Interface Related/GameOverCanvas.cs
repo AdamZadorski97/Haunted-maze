@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 public class GameOverCanvas : MonoBehaviour
 {
     public InterstitialAd interstitial;
-    public TMP_Text textScore;
+    public Text textScore;
     public void OnEnable()
     {
-        textScore.text = $"{LevelManager.Instance.dataManager.GetCurrentPointsMultiplied()}";
+        textScore.text = $"{(int)(LevelManager.Instance.dataManager.CurrentPointsMultiplied * LevelManager.Instance.dataManager.GetKillMultipler())}";
       //  interstitial.ShowAd();
     }
 
@@ -26,6 +27,5 @@ public class GameOverCanvas : MonoBehaviour
     public void OnRestartButton()
     {
         SceneManager.LoadScene("01.Museum New");
-     
     }
 }

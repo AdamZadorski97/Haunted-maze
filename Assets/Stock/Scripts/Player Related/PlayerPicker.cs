@@ -9,6 +9,8 @@ public class PlayerPicker : MonoBehaviour
     public GameObject GameOverCanvas;
     public Transform pickerPoint;
     public AudioClip pickupSound;
+    public AudioClip ghostSound;
+    public AudioClip endGameSound;
     public AudioSource audioSource;
     public int points;
     public PlayerController playerController;
@@ -16,6 +18,7 @@ public class PlayerPicker : MonoBehaviour
     public float pointLightIntencityTime;
     public AnimationCurve pointLightIntencityCurve;
     [SerializeField] private Light moneyPointLight;
+    [SerializeField] private UIManager uIManager;
     public void OnTriggerEnter(Collider other)
     {
      
@@ -32,8 +35,12 @@ public class PlayerPicker : MonoBehaviour
 
         if(other.GetComponent<EnemyController>())
         {
-            LevelManager.Instance.dataManager.saveLoadDataManager.AddCoins(LevelManager.Instance.dataManager.currentPointsMultiplied);
+            LevelManager.Instance.dataManager.saveLoadDataManager.AddCoins((int)(LevelManager.Instance.dataManager.CurrentPointsMultiplied * LevelManager.Instance.dataManager.GetKillMultipler()));
             GameOverCanvas.gameObject.SetActive(true);
+            audioSource.PlayOneShot(ghostSound, 0.5f);
+            audioSource.PlayOneShot(endGameSound, 0.5f);
+            uIManager.bottomPanel.DOFade(0, 0.5f);
+            uIManager.topPanel.DOFade(0, 0.5f);
             playerController.StopAllCoroutines();
             playerController.enabled = false;
             playerController.cinemachineVirtualCamera.LookAt = other.GetComponent<EnemyController>().head;
