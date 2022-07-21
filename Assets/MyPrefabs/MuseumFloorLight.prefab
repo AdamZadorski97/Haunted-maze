@@ -110,7 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorFromLight: 1
   colorMode: 0
-  color: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 0.740566, g: 0.89716893, b: 1, a: 1}
   colorGradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -142,13 +142,13 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   intensityFromLight: 1
   intensityModeAdvanced: 0
-  intensityInside: 0.14
-  intensityOutside: 0.14
+  intensityInside: 0.22
+  intensityOutside: 0.12
   intensityMultiplier: 1
   hdrpExposureWeight: 0
   blendingMode: 0
   spotAngleFromLight: 1
-  spotAngle: 57
+  spotAngle: 30.8
   spotAngleMultiplier: 1
   coneRadiusStart: 0.12
   shaderAccuracy: 0

@@ -14,6 +14,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     [SerializeField] private float reloadTime = 2f;
     [SerializeField] private float slideTime = 1.5f;
     [SerializeField] private float jumpTime = 1.5f;
+    [SerializeField] private float runTime = 2f;
     [SerializeField] private float jumpCameraRotationValue = 0.1f;
     [SerializeField] private float jumpHeight = 1.5f;
     [SerializeField] private float jumpStartTime;
@@ -23,6 +24,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     [SerializeField] private AnimationCurve jumpStartAnimationCurve;
     [SerializeField] private AnimationCurve jumpEndAnimationCurve;
     [SerializeField] private float defaultMoveSpeed = 3;
+    [SerializeField] private float defaultRunSpeed = 6;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float turnBackSpeed;
     [SerializeField] private float beforeTurnSideAngle;
@@ -429,6 +431,14 @@ public class PlayerController : MonoSingleton<PlayerController>
             slideSequence.Append(cameraPivot.DOLocalMoveY(0.88f, 0.2f));
             slideSequence.AppendCallback(() => isInSlideState = false);
         }
+    }
+
+    public void Run()
+    {
+        Sequence runSequnece = DOTween.Sequence();
+        runSequnece.AppendCallback(() => moveSpeed = defaultRunSpeed);
+        runSequnece.AppendInterval(runTime);
+        runSequnece.AppendCallback(() => moveSpeed = defaultMoveSpeed);
     }
 
     public void Jump()

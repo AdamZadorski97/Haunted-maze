@@ -193,7 +193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3604941074983004341}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.318, y: 0.432, z: -0.003}
+  m_LocalPosition: {x: 0.467, y: 0.799, z: -0.003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -212,11 +212,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f24a4aaa0761b45ba25e7e5108e2c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UID: 1330291697
+  UID: -1157245227
   color: {r: 0.78221786, g: 0.8784466, b: 0.8867924, a: 1}
-  intensity: 9
+  intensity: 6.2
   shadowSpread: 0.05
-  cutoff: 1.38
+  cutoff: 2.01
   realisticFalloff: 0
   samples: 8
   projMode: 0

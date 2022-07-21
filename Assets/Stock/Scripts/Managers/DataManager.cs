@@ -14,7 +14,8 @@ public class DataManager : MonoBehaviour
     private int currentWeaponID;
     public SaveData saveData;
     public CoinsProportiesData coinsProportiesData;
-
+    public AudioSource audioSource;
+    public AudioClip resetCoinsSound;
 
     private List<GameObject> pickablePointsGameObjects = new List<GameObject>();
  
@@ -62,6 +63,7 @@ public class DataManager : MonoBehaviour
     }
     private void ResetPoints()
     {
+        audioSource.PlayOneShot(resetCoinsSound);
         currentMultipler++;
         foreach (GameObject item in pickablePointsGameObjects)
         {

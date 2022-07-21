@@ -23,7 +23,7 @@ public class PlayerPicker : MonoBehaviour
         if (other.GetComponent<PickablePoint>())
         {
             other.GetComponent<PickablePoint>().OnInteractivePointPickup();
-            audioSource.PlayOneShot(pickupSound);
+            audioSource.PlayOneShot(pickupSound, 0.5f);
             LevelManager.Instance.dataManager.SetPoint();
             Sequence pointSequence = DOTween.Sequence();
             pointSequence.Append(moneyPointLight.DOIntensity(pointLightIntencity, pointLightIntencityTime).SetEase(pointLightIntencityCurve));
