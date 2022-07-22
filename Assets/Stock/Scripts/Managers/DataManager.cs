@@ -137,6 +137,7 @@ public class DataManager : MonoBehaviour
             LevelManager.Instance.uIManager.UpdateAmmunition();
             return true;
         }
+        LevelManager.Instance.uIManager.UpdateAmmunition();
         return false;
     }
 
@@ -159,6 +160,11 @@ public class DataManager : MonoBehaviour
     public float GetReloadTime()
     {
         return saveLoadDataManager.GetWeaponRealoadTime(currentWeaponID);
+    }
+
+    public float GetWeaponDamage()
+    {
+        return saveLoadDataManager.GetWeaponDamageValue(currentWeaponID);
     }
 
     public float GetKillMultipler()

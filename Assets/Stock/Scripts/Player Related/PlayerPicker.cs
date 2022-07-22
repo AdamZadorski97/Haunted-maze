@@ -39,8 +39,13 @@ public class PlayerPicker : MonoBehaviour
             GameOverCanvas.gameObject.SetActive(true);
             audioSource.PlayOneShot(ghostSound, 0.5f);
             audioSource.PlayOneShot(endGameSound, 0.5f);
-            uIManager.bottomPanel.DOFade(0, 0.5f);
-            uIManager.topPanel.DOFade(0, 0.5f);
+          //  uIManager.bottomPanel.DOFade(0, 0.5f);
+           // uIManager.topPanel.DOFade(0, 0.5f);
+
+            uIManager.bottomPanel.gameObject.SetActive(false);
+            uIManager.topPanel.gameObject.SetActive(false);
+
+
             playerController.StopAllCoroutines();
             playerController.enabled = false;
             playerController.cinemachineVirtualCamera.LookAt = other.GetComponent<EnemyController>().head;

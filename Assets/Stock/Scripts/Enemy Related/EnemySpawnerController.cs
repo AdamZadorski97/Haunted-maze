@@ -54,14 +54,10 @@ public class EnemySpawnerController : MonoBehaviour
             if (spawnRateCountdown < 0 && delayAndSpawnRate > 1)
             {
                 spawnRateCountdown += timeUntilSpawnRateIncrease;
-                delayAndSpawnRate -= 0.1f;
+                delayAndSpawnRate -= 0.2f;
             }
         }
     }
-
-
-
-
 
     [Button]
     public void SpawnEnemy()
@@ -73,7 +69,7 @@ public class EnemySpawnerController : MonoBehaviour
             CheckCanSpawnEnemy();
             if (canSpawn == true)
             {
-                EnemyController spawnedEnemy = Instantiate(enemiesPrefabs[0], enemiesParrent);
+                EnemyController spawnedEnemy = Instantiate(enemiesPrefabs[Random.Range(0, enemiesPrefabs.Count)], enemiesParrent);
                 spawnedEnemies.Add(spawnedEnemy);
                 spawnedEnemy.transform.position = newEnemyPosition;
                 spawnedEnemy.endPoint = playerController.transform;

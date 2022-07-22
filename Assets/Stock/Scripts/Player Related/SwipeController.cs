@@ -29,7 +29,6 @@ public class SwipeController : MonoBehaviour
             endTouchTime = Time.time;
             var difference = endTouchTime - startTouchTime;
             endTouch = Input.mousePosition;
-            Debug.Log("difference" + difference);
             if (difference < 0.25f && Vector2.Distance(endTouch, startTouch)<100)
                 tap = true;
             Reset();
@@ -50,7 +49,6 @@ public class SwipeController : MonoBehaviour
 
                 endTouchTime = Time.time;
                 var difference = endTouchTime - startTouchTime;
-                Debug.Log("difference" + difference);
                 endTouch = Input.touches[0].position;
                 if (difference < 0.25f && Vector2.Distance(endTouch, startTouch) < 100)
                     tap = true;

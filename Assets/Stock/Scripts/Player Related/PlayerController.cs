@@ -49,10 +49,12 @@ public class PlayerController : MonoSingleton<PlayerController>
     [SerializeField] private AudioClip footstep2;
     [SerializeField] private AudioClip turnAround;
     [SerializeField] private AudioClip shootSound;
+    [SerializeField] private AudioClip noAmmoSound;
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip slideSound;
     [SerializeField] private AudioClip reloadSound;
     [SerializeField] private AudioClip killSound;
+
 
 
     [SerializeField] private float minDistanceToTurn = 0.3f;
@@ -254,8 +256,7 @@ public class PlayerController : MonoSingleton<PlayerController>
                     if (closestEnemy.GetComponent<EnemyController>())
                     {
                         audioSource.PlayOneShot(killSound);
-                        LevelManager.Instance.dataManager.CurrentKilledUnits++;
-                        closestEnemy.GetComponent<EnemyController>().OnDie();
+                        closestEnemy.GetComponent<EnemyController>().OnHit(LevelManager.Instance.dataManager.GetWeaponDamage());
                         closestEnemy = null;
                     }
 
@@ -263,23 +264,41 @@ public class PlayerController : MonoSingleton<PlayerController>
 
                 if (LevelManager.Instance.dataManager.AmmunitionInMagazine <= 0)
                 {
-                    if (!isReloading)
+                    if (LevelManager.Instance.dataManager.AmmunitionLeft > 0)
                     {
-                        Reload();
+                        if (!isReloading)
+                        {
+                            Reload();
+                        }
+                    }
+                    else
+                    {
+                        audioSource.PlayOneShot(noAmmoSound);
                     }
                 }
             }
             else
             {
-                if (!isReloading)
+                if (LevelManager.Instance.dataManager.AmmunitionLeft > 0)
                 {
-                    Reload();
+                    if (!isReloading)
+                    {
+                        Reload();
+                    }
+                }
+                else
+                {
+                    if (!isReloading)
+                    {
+                        audioSource.PlayOneShot(noAmmoSound);
+                    }
                 }
             }
     }
 
     public void Reload()
     {
+        if(!isReloading)
         StartCoroutine(ReloadCoroutine());
     }
 
@@ -290,7 +309,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         gunAnimator.SetTrigger("Reload");
 
         yield return new WaitUntil(() => gunAnimator.GetCurrentAnimatorStateInfo(0).IsName("Reload"));
-
+        LevelManager.Instance.uIManager.ButtonTimer(LevelManager.Instance.uIManager.imageReloadTimer, LevelManager.Instance.dataManager.GetReloadTime());
         float reloadAnimationTime = gunAnimator.GetCurrentAnimatorStateInfo(0).length;
         float targetReloadAnimationSpeed = 1 * LevelManager.Instance.dataManager.GetReloadTime() / reloadAnimationTime;
         gunAnimator.speed = 1 / targetReloadAnimationSpeed;
@@ -362,10 +381,10 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
 
         yield return new WaitForSeconds(footStepInterval);
-        if (!wallRaycast() && !isInJumpState && !isInSlideState)
+        if (!wallRaycast() && !isInJumpState && !isInSlideState && moveSpeed > 0)
             audioSource.PlayOneShot(footstep1, 0.2f);
         yield return new WaitForSeconds(footStepInterval);
-        if (!wallRaycast() && !isInJumpState && !isInSlideState)
+        if (!wallRaycast() && !isInJumpState && !isInSlideState && moveSpeed > 0)
             audioSource.PlayOneShot(footstep2, 0.2f);
 
         StartCoroutine(Footstep());
@@ -407,6 +426,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         {
             audioSource.PlayOneShot(slideSound, 1.5f);
             isInSlideState = true;
+            LevelManager.Instance.uIManager.ButtonTimer(LevelManager.Instance.uIManager.imageSlideTimer, 0.2f+0.2f+ slideTime);
             Sequence slideSequence = DOTween.Sequence();
             slideSequence.Append(cameraPivot.DOLocalMoveY(0.15f, 0.2f));
             slideSequence.AppendInterval(slideTime);
@@ -418,6 +438,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     public void Run()
     {
         Sequence runSequnece = DOTween.Sequence();
+        LevelManager.Instance.uIManager.ButtonTimer(LevelManager.Instance.uIManager.imageRunTimer, runTime);
         runSequnece.AppendCallback(() => moveSpeed = defaultRunSpeed);
         runSequnece.AppendInterval(runTime);
         runSequnece.AppendCallback(() => moveSpeed = defaultMoveSpeed);
@@ -427,15 +448,16 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         if (!isInJumpState)
         {
+            LevelManager.Instance.uIManager.ButtonTimer(LevelManager.Instance.uIManager.imageJumpTimer, jumpStartTime + jumpTime + jumpEndTime);
             audioSource.PlayOneShot(jumpSound);
             isInJumpState = true;
             Sequence slideSequence = DOTween.Sequence();
-            slideSequence.Append(cameraPivot.DOLocalMoveY(jumpHeight, jumpEndTime).SetEase(jumpStartAnimationCurve));
+            slideSequence.Append(cameraPivot.DOLocalMoveY(jumpHeight, jumpStartTime).SetEase(jumpStartAnimationCurve));
             slideSequence.Join(DOTween.To(() => cinemachineComposer.m_TrackedObjectOffset, x => cinemachineComposer.m_TrackedObjectOffset = x, new Vector3(0, jumpCameraRotationValue, 0), jumpEndTime).SetEase(jumpStartAnimationCurve));
-            slideSequence.Append(cameraPivot.DOLocalMoveY(jumpHeight, jumpEndTime).SetEase(jumpStartAnimationCurve));
+       
             slideSequence.AppendInterval(jumpTime);
             slideSequence.Join(DOTween.To(() => cinemachineComposer.m_TrackedObjectOffset, x => cinemachineComposer.m_TrackedObjectOffset = x, new Vector3(0, 0, 0), jumpEndTime).SetEase(jumpStartAnimationCurve));
-            slideSequence.Append(cameraPivot.DOLocalMoveY(0.88f, jumpStartTime).SetEase(jumpEndAnimationCurve));
+            slideSequence.Append(cameraPivot.DOLocalMoveY(0.88f, jumpEndTime).SetEase(jumpEndAnimationCurve));
             slideSequence.Join(DOTween.To(() => cinemachineComposer.m_TrackedObjectOffset, x => cinemachineComposer.m_TrackedObjectOffset = x, new Vector3(0, -jumpCameraRotationValue, 0), jumpEndTime).SetEase(jumpStartAnimationCurve));
             slideSequence.Append(DOTween.To(() => cinemachineComposer.m_TrackedObjectOffset, x => cinemachineComposer.m_TrackedObjectOffset = x, new Vector3(0, 0, 0), jumpEndTime).SetEase(jumpStartAnimationCurve));
             slideSequence.AppendCallback(() => isInJumpState = false);

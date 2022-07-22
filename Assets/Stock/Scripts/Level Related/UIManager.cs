@@ -12,12 +12,26 @@ public class UIManager : MonoBehaviour
 
     public CanvasGroup topPanel;
     public CanvasGroup bottomPanel;
-    
+
+    public Sprite noAmmoIcon;
     public Image reloadButtonImage;
+    public Image reloadButtonImageIcon;
     public Color defaultButtonColor;
     public Color alertLowAmmoButtonColor;
     public Color defaultTextColor;
     public Color alertTextColor;
+
+    public Image imageSlideTimer;
+    public Image imageJumpTimer;
+    public Image imageReloadTimer;
+    public Image imageRunTimer;
+
+    public void ButtonTimer(Image imageTimer, float time)
+    {
+        imageTimer.fillAmount = 1;
+        imageTimer.DOFillAmount(0, time);
+    }
+
 
     public void UpdateUI()
     {
@@ -34,17 +48,25 @@ public class UIManager : MonoBehaviour
         scaleSequence.Append(textCurrentAmmunition.transform.DOScale(Vector3.one * 1.1f, 0.1f));
         scaleSequence.Append(textCurrentAmmunition.transform.DOScale(Vector3.one, 0.1f));
 
+        
+
+        if(LevelManager.Instance.dataManager.AmmunitionLeft<=0 && LevelManager.Instance.dataManager.AmmunitionInMagazine<=0)
+        {
+            reloadButtonImageIcon.sprite = noAmmoIcon;
+            return;
+        }
+
         if (LevelManager.Instance.dataManager.AmmunitionInMagazine < 2)
         {
-            reloadButtonImage.color = alertLowAmmoButtonColor;
             textCurrentAmmunition.color = alertTextColor;
         }
+
         else
         {
-            reloadButtonImage.color = defaultButtonColor;
             textCurrentAmmunition.color = defaultTextColor;
         }
     }
+
     public void UpdateCurrentPoints()
     {
         textCurrentPoints.text = $"{LevelManager.Instance.dataManager.CollectedPoints}/{LevelManager.Instance.dataManager.AllLevelPointsAmount}";
@@ -52,6 +74,7 @@ public class UIManager : MonoBehaviour
         scaleSequence.Append(textCurrentPoints.transform.DOScale(Vector3.one * 1.1f, 0.1f));
         scaleSequence.Append(textCurrentPoints.transform.DOScale(Vector3.one, 0.1f));
     }
+
     public void UpdateCurrentPointsMultipler()
     {
         textCurrentPointsMultipler.text = LevelManager.Instance.dataManager.GetCoinMultipler().ToString();
