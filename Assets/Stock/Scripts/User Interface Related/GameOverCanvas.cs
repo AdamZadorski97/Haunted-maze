@@ -7,10 +7,16 @@ using UnityEngine.UI;
 public class GameOverCanvas : MonoBehaviour
 {
     public InterstitialAd interstitial;
-    public Text textScore;
+
+    public Text textCollectedCoins;
+    public Text textTotalScore;
+    public Text textKilledOponents;
     public void OnEnable()
     {
-        textScore.text = $"{(int)(LevelManager.Instance.dataManager.CurrentPointsMultiplied * LevelManager.Instance.dataManager.GetKillMultipler())}";
+
+        textKilledOponents.text = LevelManager.Instance.dataManager.CurrentKilledUnits.ToString();
+        textCollectedCoins.text = LevelManager.Instance.dataManager.AllCollectedPoints.ToString();
+        textTotalScore.text = $"{(int)(LevelManager.Instance.dataManager.CurrentPointsMultiplied * LevelManager.Instance.dataManager.GetKillMultipler())}";
       //  interstitial.ShowAd();
     }
 

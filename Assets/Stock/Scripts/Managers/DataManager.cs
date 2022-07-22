@@ -9,6 +9,7 @@ public class DataManager : MonoBehaviour
     private float ammunitionLeft;
     private int currentKilledUnits;
     private int collectedPoints;
+    private int allCollectedPoints;
     [SerializeField] private int currentMultipler; 
     private float currentKillsMultipler = 0.1f;
     private int allLevelPointsAmount;
@@ -55,6 +56,13 @@ public class DataManager : MonoBehaviour
         set { collectedPoints = value; }
     }
 
+    public int AllCollectedPoints
+    {
+        get { return allCollectedPoints; }
+        set { allCollectedPoints = value; }
+    }
+
+
     public float CurrentPointsMultiplied
     {
         get { return currentPointsMultiplied; }
@@ -69,6 +77,7 @@ public class DataManager : MonoBehaviour
 
     public void SetPoint()
     {
+        AllCollectedPoints += 1;
         CollectedPoints += 1;
 
         CurrentPointsMultiplied += 1 * CurrentMultipler ;
