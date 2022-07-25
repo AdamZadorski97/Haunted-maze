@@ -99,25 +99,24 @@ public class EnemySpawnerController : MonoBehaviour
         {
             return;
         }
-        if (CheckGround(checkPosition))
-        {
+
             canSpawn = true;
             newEnemyPosition = checkPosition;
-        }
+
     }
 
 
-    public bool CheckGround(Vector3 posToCheck)
-    {
-        RaycastHit groundHit;
-        if (Physics.Raycast(posToCheck + new Vector3(0, 1, 0), Vector3.down, out groundHit, Mathf.Infinity, floorLayermask))
-        {
-            newEnemyPosition = groundHit.transform.position;
+    //public bool CheckGround(Vector3 posToCheck)
+    //{
+    //    RaycastHit groundHit;
+    //    if (Physics.Raycast(posToCheck + new Vector3(0, 1, 0), Vector3.down, out groundHit, Mathf.Infinity, floorLayermask))
+    //    {
+    //        newEnemyPosition = groundHit.transform.position;
 
-            return true;
-        }
-        else return false;
-    }
+    //        return true;
+    //    }
+    //    else return false;
+    //}
     void OnDrawGizmosSelected()
     {
         if (debugSpawnArea)

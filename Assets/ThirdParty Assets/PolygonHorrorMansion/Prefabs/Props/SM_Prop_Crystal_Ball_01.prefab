@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f24a4aaa0761b45ba25e7e5108e2c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UID: 1925786286
+  UID: 501146351
   color: {r: 0.18609823, g: 0.72839344, b: 0.7735849, a: 1}
   intensity: 4.77
   shadowSpread: 0.05
