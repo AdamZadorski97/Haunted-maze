@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class CoinsManager : MonoBehaviour
 {
-    private List<GameObject> pickablePointsGameObjects = new List<GameObject>();
+    private List<FloorController> pickablePointsGameObjects = new List<FloorController>();
     private Vector3 rotation;
     private void Awake()
     {
-        pickablePointsGameObjects.AddRange(GameObject.FindGameObjectsWithTag("Point"));
+        var foundCanvasObjects = FindObjectsOfType<FloorController>();
+
+        foreach (FloorController s in foundCanvasObjects)
+        {
+            pickablePointsGameObjects.Add(s);
+        }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         rotation += new Vector3(0.0f, 5.0f, 0.0f);
-        foreach (GameObject item in pickablePointsGameObjects)
+        foreach (FloorController item in pickablePointsGameObjects)
         {
-            if(item.activeSelf)
+            if(item.interactivePoint.activeSelf)
             {
-                item.transform.localEulerAngles = rotation;
+                item.interactivePoint.transform.localEulerAngles = rotation;
             }
         }
     }

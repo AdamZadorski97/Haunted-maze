@@ -20,7 +20,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     public int currentLevelMoneyCollected;
     public int moneyToUnlockKey;
     public GameObject NextLevelKey;
-
+    public Camera cameraMain;
     public TMP_Text fpsCounterText;
     public float fps;
     public void Start()

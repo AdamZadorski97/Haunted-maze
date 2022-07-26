@@ -5,22 +5,76 @@ using UnityEngine;
 
 public class CoinOculusion : MonoBehaviour
 {
-    public Collider[] currentCoins;
-    Collider[] coinsInsideZone;
-    Collider[] coinsOutSideZone;
+    public float cullingRadius = 10;
+    public GameObject rig;
 
-    private void FixedUpdate()
+    CullingGroup m_CullingGroup;
+
+   
+    void Start()
     {
-        coinsInsideZone = Physics.OverlapSphere(this.transform.position, 10);
+        
+        if (m_CullingGroup == null)
+        {
+            m_CullingGroup = new CullingGroup();
+            m_CullingGroup.targetCamera = LevelManager.Instance.cameraMain;
+            m_CullingGroup.SetBoundingSpheres(new[] { new BoundingSphere(transform.position, cullingRadius) });
+            m_CullingGroup.SetBoundingSphereCount(1);
+            m_CullingGroup.onStateChanged += OnStateChanged;
 
-        foreach(var coin in coinsInsideZone)
-        {
-            coin.transform.GetChild(0).gameObject.SetActive(true);
+            Cull(m_CullingGroup.IsVisible(0));
         }
-        coinsOutSideZone = currentCoins.Except(coinsInsideZone).ToArray();
-        foreach(var coin in coinsOutSideZone)
+
+        m_CullingGroup.enabled = true;
+    }
+
+    void OnDisable()
+    {
+        if (m_CullingGroup != null)
+            m_CullingGroup.enabled = false;
+
+        SetRig(true);
+    }
+
+    void OnDestroy()
+    {
+        if (m_CullingGroup != null)
+            m_CullingGroup.Dispose();
+    }
+
+    void OnStateChanged(CullingGroupEvent sphere)
+    {
+        Cull(sphere.isVisible);
+    }
+
+    void Cull(bool visible)
+    {
+        if (visible)
         {
-            coin.transform.GetChild(0).gameObject.SetActive(false);
+            SetRig(true);
+        }
+        else
+        {
+            SetRig(false);
+        }
+    }
+
+    void SetRig(bool enable)
+    {
+        rig.SetActive(enable);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (enabled)
+        {
+            Color col = Color.red;
+            if (m_CullingGroup != null && !m_CullingGroup.IsVisible(0))
+                col = Color.gray;
+
+            Gizmos.color = col;
+            Gizmos.DrawWireSphere(transform.position, cullingRadius);
         }
     }
 }
+

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4926025588815940}
   - component: {fileID: 6029568889663635917}
+  - component: {fileID: 6691778048301057455}
   m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
@@ -48,6 +49,20 @@ MonoBehaviour:
   interactivePointsIsOn: 1
   interactivePoint: {fileID: 5369871196849302526}
   meshRenderer: {fileID: 0}
+--- !u!114 &6691778048301057455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775028586471206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc281f15c72e4134884234b74febd3b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cullingRadius: 1.5
+  rig: {fileID: 2525422200473220374}
 --- !u!1001 &4942618488314751893
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58,6 +73,10 @@ PrefabInstance:
     - target: {fileID: 1013917073699143787, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
       propertyPath: m_Name
       value: 'Interactive Point '
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059396075837304047, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
+      propertyPath: cullingRadius
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2100273116438126148, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
       propertyPath: meshPlate
@@ -257,6 +276,11 @@ Transform:
 --- !u!23 &938794557280470695 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 5301002838925815090, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
+  m_PrefabInstance: {fileID: 4942618488314751893}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2525422200473220374 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7465753563672616579, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
   m_PrefabInstance: {fileID: 4942618488314751893}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2902511346248003500 stripped

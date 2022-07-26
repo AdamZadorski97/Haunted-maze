@@ -73,6 +73,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     [SerializeField] private CinemachineComposer cinemachineComposer;
     [SerializeField] private CinemachineFreeLook freeLook;
 
+    public Camera mainCamera;
     public Transform weaponPivot;
     public Transform cameraPivot;
     public int ammunition;
