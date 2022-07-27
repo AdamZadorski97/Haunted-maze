@@ -6,11 +6,24 @@ public class TriggerJumpObject : MonoBehaviour
 {
     public UnityEngine.AI.NavMeshObstacle navMeshObstacle;
     [SerializeField]private bool isInTrigger;
+
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<PlayerController>())
+        {
+            LevelManager.Instance.uIManager.HighlitghtAction(LevelManager.Instance.uIManager.imageJumpTimer, true);
+        }
+    }
+
+
     private void OnTriggerStay(Collider other)
     {
       
         if (other.GetComponent<PlayerController>())
         {
+            Debug.Log("Player");
             if (!other.GetComponent<PlayerController>().isInJumpState)
             {
                 if (!isInTrigger)
@@ -33,6 +46,7 @@ public class TriggerJumpObject : MonoBehaviour
         if (other.GetComponent<PlayerController>())
         {
             navMeshObstacle.enabled = true;
+            LevelManager.Instance.uIManager.HighlitghtAction(LevelManager.Instance.uIManager.imageJumpTimer, false);
         }
     }
 }

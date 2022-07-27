@@ -26,6 +26,23 @@ public class UIManager : MonoBehaviour
     public Image imageReloadTimer;
     public Image imageRunTimer;
 
+
+
+    public void HighlitghtAction(Image image, bool enable)
+    {
+        if (enable)
+        {
+            image.fillAmount = 1;
+        }
+        else
+        {
+            if (image.fillAmount == 1)
+            {
+                image.fillAmount = 0;
+            }
+        }
+    }
+
     public void ButtonTimer(Image imageTimer, float time)
     {
         imageTimer.fillAmount = 1;
@@ -48,9 +65,9 @@ public class UIManager : MonoBehaviour
         scaleSequence.Append(textCurrentAmmunition.transform.DOScale(Vector3.one * 1.1f, 0.1f));
         scaleSequence.Append(textCurrentAmmunition.transform.DOScale(Vector3.one, 0.1f));
 
-        
 
-        if(LevelManager.Instance.dataManager.AmmunitionLeft<=0 && LevelManager.Instance.dataManager.AmmunitionInMagazine<=0)
+
+        if (LevelManager.Instance.dataManager.AmmunitionLeft <= 0 && LevelManager.Instance.dataManager.AmmunitionInMagazine <= 0)
         {
             reloadButtonImageIcon.sprite = noAmmoIcon;
             return;

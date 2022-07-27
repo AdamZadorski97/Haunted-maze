@@ -13,8 +13,21 @@ public class HintTriggerController : MonoBehaviour
     public string conditionToClose = "Left";
     public bool lockPlayerMovement = true;
     public bool destroyAfterEnter = true;
+
+    private void Start()
+    {
+        if(PlayerPrefs.HasKey(gameObject.name))
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
+
     public void OnHintTriggerEnter()
     {
+        Time.timeScale = 0.01f;
+        PlayerPrefs.SetString(gameObject.name, "Done");
         PopupController.Instance.OpenPopup(title, titleFontSize, constents, constentsFontSize, icon, conditionToClose, !lockPlayerMovement);
         if (destroyAfterEnter)
         {

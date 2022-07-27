@@ -42,6 +42,7 @@ public class PopupController : MonoSingleton<PopupController>
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
         tempConditionToClose = "";
+        Time.timeScale = 1f;
     }
     private void Update()
     {
@@ -66,6 +67,14 @@ public class PopupController : MonoSingleton<PopupController>
             ClosePopup();
         }
         if (swipeController.Tap && tempConditionToClose == "Tap")
+        {
+            ClosePopup();
+        }
+        if (PlayerController.Instance.isInJumpState && tempConditionToClose == "Jump")
+        {
+            ClosePopup();
+        }
+        if (PlayerController.Instance.isInSlideState && tempConditionToClose == "Slide")
         {
             ClosePopup();
         }

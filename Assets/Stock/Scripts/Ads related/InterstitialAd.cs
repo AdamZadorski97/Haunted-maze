@@ -1,14 +1,15 @@
 
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
 public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
-    [SerializeField] string _androidAdUnitId = "Interstitial_Android";
+    [SerializeField] string _androidAdUnitId = "Rewarded_Android";
     [SerializeField] string _iOsAdUnitId = "Interstitial_iOS";
     string _adUnitId;
-
+    public Action onRewardedAdSuccess;
     void Awake()
     {
         // Get the Ad Unit ID for the current platform:
@@ -18,7 +19,7 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
     }
     void Start()
     {
-        Advertisement.Initialize("4699829");
+        Advertisement.Initialize("4737921");
         StartCoroutine(Initialize());
     }
     IEnumerator Initialize()
@@ -37,8 +38,9 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
     }
 
     // Show the loaded content in the Ad Unit:
-    public void ShowAd()
+    public void ShowAd(Action action)
     {
+        onRewardedAdSuccess = action;
         // Note that if the ad content wasn't previously loaded, this method will fail
         Debug.Log("Showing Ad: " + _adUnitId);
         Advertisement.Show(_adUnitId, this);
@@ -65,5 +67,13 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
 
     public void OnUnityAdsShowStart(string adUnitId) { }
     public void OnUnityAdsShowClick(string adUnitId) { }
-    public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState) { }
+
+    public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
+    {
+        if (adUnitId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
+        {
+            onRewardedAdSuccess.Invoke();
+            Debug.Log("Unity Ads Rewarded Ad Completed");
+        }
+    }
 }

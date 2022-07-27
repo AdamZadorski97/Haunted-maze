@@ -35,7 +35,6 @@ public class PlayerPicker : MonoBehaviour
 
         if(other.GetComponent<EnemyController>())
         {
-            LevelManager.Instance.dataManager.saveLoadDataManager.AddCoins((int)(LevelManager.Instance.dataManager.CurrentPointsMultiplied * LevelManager.Instance.dataManager.GetKillMultipler()));
             GameOverCanvas.gameObject.SetActive(true);
             audioSource.PlayOneShot(ghostSound, 0.5f);
             audioSource.PlayOneShot(endGameSound, 0.5f);

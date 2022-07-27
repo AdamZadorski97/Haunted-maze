@@ -19,16 +19,19 @@ public class EnemyController : MonoBehaviour
     private float currentHealth;
 
     public List<GameObject> enemiesSkins = new List<GameObject>();
-
+    [SerializeField] private bool runOnStart = true;
     [SerializeField] private GameObject canvas;
     [SerializeField] private Image hpBar;
     public void Start()
     {
-        navMeshAgent.speed = enemyProporties.speed;
-        currentHealth = enemyProporties.hp;
-        hpBar.fillAmount = 1;
-        if (Mathf.Round(transform.position.y) != 3 * LevelManager.Instance.currentPlayerFloor)
-            gameObject.SetActive(false);
+        if (runOnStart)
+        {
+            navMeshAgent.speed = enemyProporties.speed;
+            currentHealth = enemyProporties.hp;
+            hpBar.fillAmount = 1;
+            if (Mathf.Round(transform.position.y) != 3 * LevelManager.Instance.currentPlayerFloor)
+                gameObject.SetActive(false);
+        }
     }
 
     private void OnEnable()
@@ -90,6 +93,7 @@ public class EnemyController : MonoBehaviour
     {
 
         LevelManager.Instance.dataManager.CurrentKilledUnits++;
+        if(enemySpawnerController!=null)
         enemySpawnerController.spawnedEnemies.Remove(this);
         isDead = true;
         animator.SetTrigger("Die");

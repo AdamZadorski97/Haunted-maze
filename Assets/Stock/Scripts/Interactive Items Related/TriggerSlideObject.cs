@@ -6,6 +6,16 @@ public class TriggerSlideObject : MonoBehaviour
 {
     public NavMeshObstacle navMeshObstacle;
     private bool isInTrigger;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<PlayerController>())
+        {
+            LevelManager.Instance.uIManager.HighlitghtAction(LevelManager.Instance.uIManager.imageSlideTimer, true);
+        }
+    }
+
+
     private void OnTriggerStay(Collider other)
     {
         if (other.GetComponent<PlayerController>())
@@ -29,6 +39,7 @@ public class TriggerSlideObject : MonoBehaviour
     {
         if (other.GetComponent<PlayerController>())
         {
+            LevelManager.Instance.uIManager.HighlitghtAction(LevelManager.Instance.uIManager.imageSlideTimer, false);
             navMeshObstacle.enabled = true;
         }
     }
