@@ -15,6 +15,4 @@ MonoBehaviour:
   modifiedAssetPathList:
   - Assets/Bakery/examples/content/sponza/sponza.FBX
   - Assets/MyModels/MuseumAssets_01.fbx
-  - Assets/MyModels/Walls.fbx
-  - Assets/MyModels/WallPlane.fbx
-  modifiedAssetPaddingHash: d6a958ffb0129d93d3f496d5eddb894b
+  modifiedAssetPaddingHash: d6a958ffcc5882e1

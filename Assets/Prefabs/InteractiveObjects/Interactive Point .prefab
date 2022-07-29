@@ -435,11 +435,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ac7fff3ec1f08a84f9b947b9c9ad51b1, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.5
+      value: 3.5000007
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ac7fff3ec1f08a84f9b947b9c9ad51b1, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.5
+      value: 3.5000002
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ac7fff3ec1f08a84f9b947b9c9ad51b1, type: 3}
       propertyPath: m_LocalScale.z
@@ -451,7 +451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ac7fff3ec1f08a84f9b947b9c9ad51b1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6599999
+      value: 0.6599997
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ac7fff3ec1f08a84f9b947b9c9ad51b1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -587,6 +587,10 @@ PrefabInstance:
     - target: {fileID: -6936121817792062794, guid: b341ed39fac2c18449217b5082f6081d, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6787729786757241917, guid: b341ed39fac2c18449217b5082f6081d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -5448104366783067894, guid: b341ed39fac2c18449217b5082f6081d, type: 3}
       propertyPath: m_IsActive
@@ -848,40 +852,22 @@ LODGroup:
   m_LocalReferencePoint: {x: 0, y: 0, z: 0}
   m_Size: 2.48
   m_FadeMode: 0
-  m_AnimateCrossFading: 0
+  m_AnimateCrossFading: 1
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.7095717
+  - screenRelativeHeight: 0.8567496
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 4909526109497680923}
-  - screenRelativeHeight: 0.527028
+  - screenRelativeHeight: 0.9477771
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 1216682993444015952}
-  - screenRelativeHeight: 0.22985661
+  - screenRelativeHeight: 0.29810637
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 1216682993444015952}
   m_Enabled: 1
---- !u!1 &7465753563672616579 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b341ed39fac2c18449217b5082f6081d, type: 3}
-  m_PrefabInstance: {fileID: 7735713693804864466}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3574330784797780100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7465753563672616579}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0e296cf2eb4db9449df8f3e9d44e956, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinRotationSpeed: 2
 --- !u!4 &7840907564419138617 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b341ed39fac2c18449217b5082f6081d, type: 3}
