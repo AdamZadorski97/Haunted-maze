@@ -1,0 +1,24 @@
+Canvas Particle Info
+------------------------
+
+Requires Unity 4.6 or higher (up to 5.1) or Unity 5.3.x
+
+
+Canvas Particle Emitter is the ultimate solution to create particle effects inside the Unity UGUI Canvas. 
+
+It's a Gameobject Component as any other Unity UI Components that can render hundreds of particles using the default Canvas Render, with only 1 DrawCall for standard particles and 2 DrawCalls for texturized particle.
+
+It works with free or pro version in any platform.
+
+It came with the source code and can be modified by your own risk. Check the script documentation for more information.
+
+Features
+* You can create tons of effects inside the Unity UI Canvas.
+* Put particle effects with texts, images, buttons, scrolls and more.
+* Render hundreds of particles with just one draw call.
+* Use on free or pro Unity version from 4.6 or higher.
+* Support mobile, desktop or console platforms.
+* Animate any particle or emitter attribute.
+* 5 emitter types: point, directional, line, rect and circular.
+
+

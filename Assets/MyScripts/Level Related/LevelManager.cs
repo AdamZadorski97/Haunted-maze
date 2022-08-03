@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -15,8 +15,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     public DataManager dataManager;
     public UIManager uIManager;
 
-    public int currentkilletUnits;
-    public int currentPlayerFloor;
+
     public int currentLevelMoneyCollected;
     public int moneyToUnlockKey;
     public GameObject NextLevelKey;
@@ -53,24 +52,9 @@ public class LevelManager : MonoSingleton<LevelManager>
         NextLevelKey.gameObject.SetActive(true);
     }
 
-
-
-
-
-
     public void ShowFloor(int number)
     {
-        currentPlayerFloor = number;
-        foreach (var item in wallControllers)
-        {
-            if (Mathf.Round(item.transform.position.y) == number * 3)
-            {
-                foreach (GameObject mapLine in item.mapLines)
-                {
-                    mapLine.SetActive(true);
-                }
-            }
-        }
+      
         foreach (var item in floorControllers)
         {
             if (Mathf.Round(item.transform.position.y) == number * 3)

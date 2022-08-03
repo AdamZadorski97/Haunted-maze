@@ -1,0 +1,19 @@
+Canvas Particle - Shuriken Render
+------------------------
+
+Requires Unity 2017.3 or higher
+
+- Works on any kind of UI Canvas
+- Works with Atlas multi-texture
+
+
+How To
+
+- Attach a ShurikenCanvasRenderer component into the same object as the Unity's Shuriken Particle;
+- Set any parent of these object to be a UI Canvas object;
+- Adjust the Size Multiplier attribute of the ShurikenCanvasRenderer to adjust the render size in the canvas
+- Repeat the process to all nodes that have a Shuriken Particle System.
+
+- Attention: Observe the 3D rotation of the main particle object after setting it as child of a Canvas object. 
+Sometimes Unity's change the object rotation to maintain world orientation. The canvas render will work only with X and Y rotations to 0.
+- Please note that some Materials used on standard particles aren't compatible with Canvas Renderer, so some tweaks on particle materiasl might be necessary.

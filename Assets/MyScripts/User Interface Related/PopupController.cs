@@ -18,13 +18,19 @@ public class PopupController : MonoSingleton<PopupController>
     public Image popupIcon;
     public SwipeController swipeController;
     private string tempConditionToClose;
+    Sequence tutorialSequence;
 
-  
 
-    public void OpenPopup(string title,float titleFontSize, string constents,float constentsFontSize, Sprite icon, string conditionToClose, bool lockPlayerMovement)
+    public void OpenPopup(string title, float titleFontSize, string constents, float constentsFontSize, Sprite icon, string conditionToClose, bool lockPlayerMovement)
     {
         PlayerController.Instance.SwitchMovement(lockPlayerMovement);
-        canvasGroup.DOFade(1, openingCanvasAnimationTime).SetEase(openingCanvasAnimationTimeCurve);
+
+        tutorialSequence = DOTween.Sequence();
+
+        tutorialSequence.Append(canvasGroup.DOFade(1, openingCanvasAnimationTime).SetEase(openingCanvasAnimationTimeCurve));
+        tutorialSequence.AppendCallback(() => Time.timeScale = 0.0001f);
+
+
         if (title != "") popupTitle.text = title;
         if (title != "") popupTitle.fontSize = titleFontSize;
         if (constents != "") popupContents.text = constents;
@@ -37,8 +43,11 @@ public class PopupController : MonoSingleton<PopupController>
 
     public void ClosePopup()
     {
+        if (tutorialSequence != null) tutorialSequence.Kill();
+
         PlayerController.Instance.SwitchMovement(true);
         canvasGroup.DOFade(0, closeCanvasAnimationTime).SetEase(closeCanvasAnimationTimeCurve);
+
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
         tempConditionToClose = "";
@@ -66,7 +75,7 @@ public class PopupController : MonoSingleton<PopupController>
         {
             ClosePopup();
         }
-        if (swipeController.Tap && tempConditionToClose == "Tap")
+        if (PlayerController.Instance.isInShootState && tempConditionToClose == "Shoot")
         {
             ClosePopup();
         }
@@ -75,6 +84,10 @@ public class PopupController : MonoSingleton<PopupController>
             ClosePopup();
         }
         if (PlayerController.Instance.isInSlideState && tempConditionToClose == "Slide")
+        {
+            ClosePopup();
+        }
+        if (PlayerController.Instance.isReloading && tempConditionToClose == "Reload")
         {
             ClosePopup();
         }

@@ -4,54 +4,89 @@ using UnityEngine;
 
 public class SwipeController : MonoBehaviour
 {
-    public bool tap;
+    public bool tap, longTap;
     private bool swipeLeft, swipeRight, swipeUp, swipeDown;
     private bool isDraging = false;
     private Vector2 startTouch, swipeDelta;
     private Vector2 endTouch;
     public float startTouchTime;
     public float endTouchTime;
+    public float touchTime;
+    public bool canUpdateLongTouch;
     private void Update()
     {
-        tap = swipeLeft = swipeRight = swipeUp = swipeDown = false;
+        tap = swipeLeft = swipeRight = swipeUp = swipeDown = longTap = false;
 
         #region Standolone Inputs
         if (Input.GetMouseButtonDown(0))
         {
+            canUpdateLongTouch = true;
             isDraging = true;
             startTouch = Input.mousePosition;
-            startTouchTime = Time.time;
-         
         }
+
+        if (Input.GetMouseButton(0))
+        {
+            if (canUpdateLongTouch)
+            {
+                touchTime +=  Time.unscaledDeltaTime;
+                endTouch = Input.mousePosition;
+                if (touchTime > 0.5f && Vector2.Distance(endTouch, startTouch) < 100)
+                {
+                    canUpdateLongTouch = false;
+                    touchTime = 0;
+                    longTap = true;
+                }
+            }
+        }
+
+
         else if (Input.GetMouseButtonUp(0))
         {
+            touchTime = 0;
             isDraging = false;
             endTouchTime = Time.time;
             var difference = endTouchTime - startTouchTime;
             endTouch = Input.mousePosition;
-            if (difference < 0.25f && Vector2.Distance(endTouch, startTouch)<100)
+            if (difference < 0.25f && Vector2.Distance(endTouch, startTouch) < 100)
                 tap = true;
             Reset();
         }
         #endregion
-  
+
         #region Mobile Inputs
-        if(Input.touches.Length > 0)
+        if (Input.touches.Length > 0)
         {
-            if(Input.touches[0].phase == TouchPhase.Began)
+            if (canUpdateLongTouch == true)
             {
+                touchTime += Time.unscaledDeltaTime;
+            }
+            endTouch = Input.mousePosition;
+            if (touchTime > 0.5f && Vector2.Distance(endTouch, startTouch) < 100)
+            {
+                touchTime = 0;
+                longTap = true;
+                canUpdateLongTouch = false;
+            }
+
+
+            if (Input.touches[0].phase == TouchPhase.Began)
+            {
+                canUpdateLongTouch = true;
                 isDraging = true;
                 startTouch = Input.touches[0].position;
                 startTouchTime = Time.time;
             }
-            else if(Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled)
+            else if (Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled)
             {
-
+                touchTime = 0;
                 endTouchTime = Time.time;
                 var difference = endTouchTime - startTouchTime;
                 endTouch = Input.touches[0].position;
                 if (difference < 0.25f && Vector2.Distance(endTouch, startTouch) < 100)
                     tap = true;
+               
+
                 isDraging = false;
                 Reset();
             }
@@ -59,7 +94,7 @@ public class SwipeController : MonoBehaviour
         #endregion
 
         swipeDelta = Vector2.zero;
-        if(isDraging)
+        if (isDraging)
         {
             if (Input.touches.Length > 0)
                 swipeDelta = Input.touches[0].position - startTouch;
@@ -67,13 +102,13 @@ public class SwipeController : MonoBehaviour
                 swipeDelta = (Vector2)Input.mousePosition - startTouch;
         }
 
-      
 
-            if (swipeDelta.magnitude >125)
+
+        if (swipeDelta.magnitude > 125)
         {
             float x = swipeDelta.x;
             float y = swipeDelta.y;
-            if(Mathf.Abs(x)> Mathf.Abs(y))
+            if (Mathf.Abs(x) > Mathf.Abs(y))
             {
                 if (x < 0)
                     swipeLeft = true;
@@ -109,5 +144,8 @@ public class SwipeController : MonoBehaviour
     public bool SwipeUp { get { return swipeUp; } }
     public bool SwipeDown { get { return swipeDown; } }
 
+    public bool IsDragging { get { return isDraging; } }
     public bool Tap { get { return tap; } }
+
+    public bool LongTap { get { return tap; } set { tap = value; } }
 }

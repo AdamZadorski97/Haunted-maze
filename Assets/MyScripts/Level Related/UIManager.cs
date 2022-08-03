@@ -25,9 +25,17 @@ public class UIManager : MonoBehaviour
     public Image imageJumpTimer;
     public Image imageReloadTimer;
     public Image imageRunTimer;
+    public Image blackScreen;
 
+    private void Start()
+    {
+        blackScreen.gameObject.SetActive(true);
+        Sequence sequence = DOTween.Sequence();
+        sequence.AppendInterval(0.25f);
+        sequence.Append(blackScreen.DOColor(new Vector4(0, 0, 0, 0), 0.25f));
+        sequence.AppendCallback(() => blackScreen.gameObject.SetActive(false));
 
-
+    }
     public void HighlitghtAction(Image image, bool enable)
     {
         if (enable)

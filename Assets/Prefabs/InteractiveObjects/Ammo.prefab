@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 690819150478830805}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Ammo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 684976003586395063}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -23.52, y: -2.25, z: -31.490002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9892,7 +9892,7 @@ GameObject:
   - component: {fileID: 6240813798385803484}
   m_Layer: 2
   m_Name: Trigger Ammo
-  m_TagString: Point
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9940,7 +9940,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 7573049980485603635}
   boxCollider: {fileID: 7105027405571834148}
-  respawnTime: 0
+  respawnTime: 25
   pickupSound: {fileID: 8300000, guid: 5a00e62cadf4ab342aaea3bea2a3a54d, type: 3}
   audioSource: {fileID: 6240813798385803484}
 --- !u!82 &6240813798385803484
@@ -10048,7 +10048,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7607958001207433744}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10081,7 +10081,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8742943883829228649, guid: 91573ec73d5c0e442b6a341fa9c5920c, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 91573ec73d5c0e442b6a341fa9c5920c, type: 3}
       propertyPath: m_RootOrder
@@ -10105,7 +10105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 91573ec73d5c0e442b6a341fa9c5920c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.92000055
+      value: 0.88
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 91573ec73d5c0e442b6a341fa9c5920c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10141,7 +10141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4999402208657661683, guid: 91573ec73d5c0e442b6a341fa9c5920c, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: -4289149648430912572, guid: 91573ec73d5c0e442b6a341fa9c5920c, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -10157,15 +10157,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 91573ec73d5c0e442b6a341fa9c5920c, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4798316190363724606, guid: 91573ec73d5c0e442b6a341fa9c5920c, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6043154647133658443, guid: 91573ec73d5c0e442b6a341fa9c5920c, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7139045216190462894, guid: 91573ec73d5c0e442b6a341fa9c5920c, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -10173,7 +10173,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 58b1071670fbe3f42be64ee3a5b44c56, type: 2}
     - target: {fileID: 7897457751957255007, guid: 91573ec73d5c0e442b6a341fa9c5920c, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8834324017786672651, guid: 91573ec73d5c0e442b6a341fa9c5920c, type: 3}
       propertyPath: m_Materials.Array.data[0]

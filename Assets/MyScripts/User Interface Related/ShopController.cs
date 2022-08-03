@@ -22,6 +22,17 @@ public class ShopController : MonoBehaviour
     [SerializeField] private TMP_Text textClipCurrentLevel;
     [SerializeField] private TMP_Text textReloadCurrentLevel;
 
+    [SerializeField] private Image imageButtonDamageUpgrade;
+    [SerializeField] private Image imageButtonClipUpgrade;
+    [SerializeField] private Image imageButtonReloadUpgrade;
+
+    [SerializeField] private CanvasParticleEmitter canvasParticleEmitterButtonDamageUpgrade;
+    [SerializeField] private CanvasParticleEmitter canvasParticleEmitterButtonClipUpgrade;
+    [SerializeField] private CanvasParticleEmitter canvasParticleEmitterButtonReloadUpgrade;
+
+    [SerializeField] private Sprite canUpdateSprite;
+    [SerializeField] private Sprite cantUpdateSprite;
+
     [SerializeField] private SaveLoadDataManager saveLoadDataManager;
     [SerializeField] private int currentWeaponID;
 
@@ -29,6 +40,7 @@ public class ShopController : MonoBehaviour
     [SerializeField] private AudioClip audioClipUpgrade;
     [SerializeField] private AudioClip audioClipNoUpgrade;
 
+    [SerializeField] private CanvasParticleEmitter canvasParticleEmitter;
 
     private void OnEnable()
     {
@@ -37,11 +49,14 @@ public class ShopController : MonoBehaviour
 
     public void OnDamageUpgradeButtonPressed()
     {
-        if (saveLoadDataManager.CheckEnoughCoins(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.damage)))
+        Debug.Log("reload Cost:" + saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.damage));
+        if (saveLoadDataManager.CheckEnoughCoins(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.damage), true))
         {
+         
             saveLoadDataManager.SetWeaponUpgradeLevel(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.damage);
             UpdateShopItemValues();
             audioSource.PlayOneShot(audioClipUpgrade);
+            ParticlesBuyEffect();
         }
         else
         {
@@ -54,13 +69,19 @@ public class ShopController : MonoBehaviour
         }
     }
 
+
+
     public void OnClipUpgradeButtonPressed()
     {
-        if (saveLoadDataManager.CheckEnoughCoins(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.clip)))
+        if (saveLoadDataManager.CheckEnoughCoins(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.clip), true))
         {
+          
+
+
             saveLoadDataManager.SetWeaponUpgradeLevel(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.clip);
             UpdateShopItemValues();
             audioSource.PlayOneShot(audioClipUpgrade);
+            ParticlesBuyEffect();
         }
         else
         {
@@ -75,11 +96,14 @@ public class ShopController : MonoBehaviour
 
     public void OnReloadTimeUpgradeButtonPressed()
     {
-        if (saveLoadDataManager.CheckEnoughCoins(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.reloadTime)))
+        Debug.Log("reload Cost:" + saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.reloadTime));
+        if (saveLoadDataManager.CheckEnoughCoins(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.reloadTime), true))
         {
+     
             saveLoadDataManager.SetWeaponUpgradeLevel(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.reloadTime);
             UpdateShopItemValues();
             audioSource.PlayOneShot(audioClipUpgrade);
+            ParticlesBuyEffect();
         }
         else
         {
@@ -105,5 +129,49 @@ public class ShopController : MonoBehaviour
         textDamageCurrentLevel.text = "Level:" + saveLoadDataManager.GetWeaponUpgradeLevel(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.damage).ToString();
         textClipCurrentLevel.text = "Level:" + saveLoadDataManager.GetWeaponUpgradeLevel(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.clip).ToString();
         textReloadCurrentLevel.text = "Level:" + saveLoadDataManager.GetWeaponUpgradeLevel(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.reloadTime).ToString();
+
+        if (saveLoadDataManager.CheckEnoughCoins(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.clip)))
+        {
+            canvasParticleEmitterButtonClipUpgrade.canvasRenderer.SetColor(Color.green);
+            imageButtonClipUpgrade.sprite = canUpdateSprite;
+        }
+        else
+        {
+            canvasParticleEmitterButtonClipUpgrade.canvasRenderer.SetColor(Color.red);
+            imageButtonClipUpgrade.sprite = cantUpdateSprite;
+        }
+
+        if (saveLoadDataManager.CheckEnoughCoins(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.damage)))
+        {
+            canvasParticleEmitterButtonDamageUpgrade.canvasRenderer.SetColor(Color.green);
+            imageButtonDamageUpgrade.sprite = canUpdateSprite;
+        }
+        else
+        {
+            canvasParticleEmitterButtonDamageUpgrade.canvasRenderer.SetColor(Color.red);
+            imageButtonDamageUpgrade.sprite = cantUpdateSprite;
+        }
+
+
+        if (saveLoadDataManager.CheckEnoughCoins(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.reloadTime)))
+        {
+            canvasParticleEmitterButtonReloadUpgrade.canvasRenderer.SetColor(Color.green);
+            imageButtonReloadUpgrade.sprite = canUpdateSprite;
+        }
+        else
+        {
+            canvasParticleEmitterButtonReloadUpgrade.canvasRenderer.SetColor(Color.red);
+            imageButtonReloadUpgrade.sprite = cantUpdateSprite;
+        }
+
+
+    }
+
+    private void ParticlesBuyEffect()
+    {
+        Sequence particleSequence = DOTween.Sequence();
+        particleSequence.AppendCallback(() => canvasParticleEmitter.EmiterRate = 20);
+        particleSequence.AppendInterval(1);
+        particleSequence.AppendCallback(() => canvasParticleEmitter.EmiterRate = 0);
     }
 }

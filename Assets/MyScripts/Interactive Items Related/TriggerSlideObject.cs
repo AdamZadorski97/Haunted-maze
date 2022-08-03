@@ -4,44 +4,21 @@ using UnityEngine;
 using UnityEngine.AI;
 public class TriggerSlideObject : MonoBehaviour
 {
-    public NavMeshObstacle navMeshObstacle;
-    private bool isInTrigger;
+    [SerializeField] private float resetTime;
+    public UnityEngine.AI.NavMeshObstacle navMeshObstacle;
+    public BoxCollider boxCollider;
 
-    private void OnTriggerEnter(Collider other)
+    public void Update()
     {
-        if (other.GetComponent<PlayerController>())
+        if (PlayerController.Instance.isInSlideState)
         {
-            LevelManager.Instance.uIManager.HighlitghtAction(LevelManager.Instance.uIManager.imageSlideTimer, true);
+            boxCollider.enabled = false;
+            navMeshObstacle.enabled = false;
         }
-    }
-
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.GetComponent<PlayerController>())
+        else
         {
-            if (!other.GetComponent<PlayerController>().isInSlideState)
-            {
-                if (!isInTrigger)
-                {
-                    isInTrigger = true;
-                    other.GetComponent<PlayerController>().OnSlideObstacleHit(navMeshObstacle);
-                }
-            }
-
-            else
-            {
-                navMeshObstacle.enabled = false;
-            }
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.GetComponent<PlayerController>())
-        {
-            LevelManager.Instance.uIManager.HighlitghtAction(LevelManager.Instance.uIManager.imageSlideTimer, false);
+            boxCollider.enabled = true;
             navMeshObstacle.enabled = true;
         }
     }
-
 }

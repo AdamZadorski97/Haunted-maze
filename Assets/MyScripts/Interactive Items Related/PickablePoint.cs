@@ -6,15 +6,12 @@ using TMPro;
 public class PickablePoint : MonoBehaviour
 {
     [SerializeField] private MeshRenderer meshBorder;
-    [SerializeField] private MeshRenderer meshBorderHD;
     [SerializeField] private MeshRenderer meshPlate;
     [SerializeField] private MeshRenderer glow;
-    [SerializeField] private TMP_Text textFrontMultipler;
-    [SerializeField] private TMP_Text textBackMultipler;
     [SerializeField] private BoxCollider boxCollider;
+    [SerializeField] private Color glowAlpha;
     private Vector3 tempScale;
     private Vector3 tempPosition;
-    public Color glowAlpha;
 
     private void Start()
     {
@@ -40,15 +37,12 @@ public class PickablePoint : MonoBehaviour
         });
     }
 
-    public void SetMultipler(string value, Color borderColor, Color plateColor, Color textColor)
+    public void SetMultipler(Texture texture, Color borderColor, Color plateColor)
     {
         boxCollider.enabled = true;
-        textFrontMultipler.text = value;
-        textBackMultipler.text = value;
-        textBackMultipler.color = textColor;
-        textFrontMultipler.color = textColor;
         meshBorder.material.SetColor("_Color", borderColor);
-        meshBorderHD.material.SetColor("_Color", borderColor);
-        meshPlate.material.SetColor("_Color", plateColor);
+        meshPlate.material.SetTexture("_BaseMap", texture);
+        meshPlate.material.SetColor("_BaseColor", plateColor);
+        glow.material.SetColor("_TintColor", plateColor);
     }
 }

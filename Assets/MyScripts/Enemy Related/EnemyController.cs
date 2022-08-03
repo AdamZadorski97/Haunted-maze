@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private bool runOnStart = true;
     [SerializeField] private GameObject canvas;
     [SerializeField] private Image hpBar;
+    private float speed;
     public void Start()
     {
         if (runOnStart)
@@ -29,10 +30,28 @@ public class EnemyController : MonoBehaviour
             navMeshAgent.speed = enemyProporties.speed;
             currentHealth = enemyProporties.hp;
             hpBar.fillAmount = 1;
-            if (Mathf.Round(transform.position.y) != 3 * LevelManager.Instance.currentPlayerFloor)
-                gameObject.SetActive(false);
+
+            //if (Mathf.Round(transform.position.y) != 3 * LevelManager.Instance.currentPlayerFloor)
+            //    gameObject.SetActive(false);
         }
     }
+    private Vector3 lastPosition;
+
+    void FixedUpdate()
+    {
+        Speed = Mathf.Lerp(speed, (transform.position - lastPosition).magnitude / Time.deltaTime, 0.1f);
+        lastPosition = transform.position;
+        animator.SetFloat("Speed", Speed);
+    }
+
+
+
+    public float Speed
+    {
+        get { return speed; }
+        set { speed = value; }
+    }
+
 
     private void OnEnable()
     {
@@ -53,6 +72,7 @@ public class EnemyController : MonoBehaviour
 
         if (endPoint != null)
         {
+            if(navMeshAgent.enabled)
             sequence.AppendCallback(() => navMeshAgent.SetDestination(endPoint.transform.position));
             sequence.AppendInterval(1);
         }
@@ -105,7 +125,7 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator EnableNavmeshDelay()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
 
         navMeshAgent.enabled = true;
         yield return new WaitForSeconds(0.1f);

@@ -9,6 +9,7 @@ public class MainMenuController : MonoBehaviour
     public GameObject ChooseLevel;
     public GameObject Options;
     public GameObject Shop;
+    public GameObject LoginPanel;
     public AudioClip backToMenuAudioClip;
     public AudioClip choseLevelAudioClip;
     public AudioClip optionsAudioClip;
@@ -19,9 +20,13 @@ public class MainMenuController : MonoBehaviour
     public List<string> qualityName = new List<string>();
     public int currentQualitySettings;
     public TMP_Text textQuality;
+    public TMP_InputField inputTextNickName;
+    public SaveLoadDataManager saveLoadDataManager;
+
 
     private void Start()
     {
+        CheckNickname();
         if (PlayerPrefs.HasKey("ShouldOpenShop"))
         {
             if (PlayerPrefs.GetString("ShouldOpenShop") == "Yes")
@@ -48,6 +53,7 @@ public class MainMenuController : MonoBehaviour
             currentQualitySettings = 0;
         }
         textQuality.text = qualityName[currentQualitySettings];
+        saveLoadDataManager.SetQualitySettings(currentQualitySettings);
     }
 
     public void OpenMainMenu()
@@ -61,6 +67,8 @@ public class MainMenuController : MonoBehaviour
 
     public void OpenOptions()
     {
+        currentQualitySettings = saveLoadDataManager.GetQualitySettings();
+        textQuality.text = qualityName[currentQualitySettings];
         MainMenu.SetActive(false);
         ChooseLevel.SetActive(false);
         Options.SetActive(true);
@@ -91,5 +99,27 @@ public class MainMenuController : MonoBehaviour
     {
         SceneManager.LoadScene("01.Museum New");
         audioSource.PlayOneShot(choseLevelAudioClip);
+    }
+
+    public void SetupNickname()
+    {
+        if (inputTextNickName.text != "")
+        {
+            PlayerPrefs.SetString("NickName", inputTextNickName.text);
+            LoginPanel.SetActive(false);
+        }
+    }
+
+    public void CheckNickname()
+    {
+        if (PlayerPrefs.HasKey("NickName"))
+        {
+            return;
+        }
+        else
+        {
+            saveLoadDataManager.SetQualitySettings(1);
+            LoginPanel.SetActive(true);
+        }
     }
 }

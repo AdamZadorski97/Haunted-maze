@@ -12,17 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b26c79de96c0243a5be9b6f96bd76d, type: 3}
   m_Name: CoinsProportiesData
   m_EditorClassIdentifier: 
-  coinMultiplers:
-  - 1
-  - 2
-  - 5
-  - 10
-  - 20
-  - 50
-  - 100
-  - 200
-  - 500
-  - 1000
+  coinMultiplers: 0100000002000000050000000a000000140000003200000064000000c8000000f4010000e8030000
+  coinTexture:
+  - {fileID: 2800000, guid: b218ba0ffeeec7c4f9c2cd80aef0aae3, type: 3}
+  - {fileID: 2800000, guid: 784646287c3b51c4fa930f2efdbd4889, type: 3}
+  - {fileID: 2800000, guid: 850cd0be095da614cb9c9d6729b60150, type: 3}
+  - {fileID: 2800000, guid: e5423ab480e47334385c3017d730b07c, type: 3}
+  - {fileID: 2800000, guid: 03f5c924673208945a749e023a4eb2dc, type: 3}
+  - {fileID: 2800000, guid: 3a1cebb09f330864a8e622853c50bb5b, type: 3}
+  - {fileID: 2800000, guid: cf75650c2b3634c4fb0e87b6675d92d5, type: 3}
+  - {fileID: 2800000, guid: 1ed5306140a506646938cf040067e191, type: 3}
+  - {fileID: 2800000, guid: 24c9816df37e3c6499aaa03cd1158594, type: 3}
+  - {fileID: 2800000, guid: f7586ab842d28ef47ac9b0a3443433f1, type: 3}
+  - {fileID: 2800000, guid: f885ef616c15b6e468b7a8f6c433352d, type: 3}
+  - {fileID: 2800000, guid: 15dd130b7ebb54642a83cb728c80e707, type: 3}
+  - {fileID: 2800000, guid: 4a34200d7f014764a8ba6bbb95325fb2, type: 3}
+  - {fileID: 2800000, guid: d7121d38da061b44abe15d78483f1581, type: 3}
+  - {fileID: 2800000, guid: ef75429c7750e444aad7dbe12a1f16d6, type: 3}
   coinMultiplersString:
   - 1
   - 2

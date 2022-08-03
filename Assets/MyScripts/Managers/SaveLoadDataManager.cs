@@ -38,13 +38,18 @@ public class SaveLoadDataManager : MonoBehaviour
 
 
 
-    public bool CheckEnoughCoins(float value)
+    public bool CheckEnoughCoins(float value, bool takeCoins = false)
     {
-        if (value > saveData.stats.coinsAmount)
+        if (value > GetCoins())
         {
+            Debug.Log($"don't have enouth Coins  Coins: {GetCoins()}  value: {value}");
             return false;
         }
-        TakeCoins(value);
+        Debug.Log($"You have enouth Coins  Coins: {GetCoins()}  value: {value}");
+        if (takeCoins)
+        {
+            TakeCoins(value);
+        }
         return true;
     }
 
@@ -75,6 +80,18 @@ public class SaveLoadDataManager : MonoBehaviour
         SaveData();
     }
 
+    public void SetQualitySettings(int value)
+    {
+        LoadData();
+        saveData.settings.graphicValue = value;
+        SaveData();
+    }
+    public int GetQualitySettings()
+    {
+        LoadData();
+        return saveData.settings.graphicValue;
+    }
+
     public void SetWeaponUpgradeLevel(int weaponID, weaponUpgradeType weaponUpgradeType)
     {
         LoadData();
@@ -96,13 +113,12 @@ public class SaveLoadDataManager : MonoBehaviour
     public int GetWeaponUpgradeLevel(int weaponID, weaponUpgradeType weaponUpgradeType)
     {
         LoadData();
-      
+
         switch (weaponUpgradeType)
         {
             case weaponUpgradeType.damage:
                 return saveData.upgrades.weaponDataUpgrades[weaponID].damageUpgradeLevel;
             case weaponUpgradeType.clip:
-                Debug.Log(saveData.upgrades.weaponDataUpgrades[weaponID].clipUpgradeLevel);
                 return saveData.upgrades.weaponDataUpgrades[weaponID].clipUpgradeLevel;
             case weaponUpgradeType.reloadTime:
                 return saveData.upgrades.weaponDataUpgrades[weaponID].reloadTimeUpgradeLevel;
@@ -131,7 +147,6 @@ public class SaveLoadDataManager : MonoBehaviour
 
     public float GetWeaponClipValue(int weaponID)
     {
-        Debug.Log(weaponsData.weapons[weaponID].clipValue[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.clip)]);
         return weaponsData.weapons[weaponID].clipValue[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.clip)];
     }
 
@@ -146,8 +161,6 @@ public class SaveLoadDataManager : MonoBehaviour
         {
             if (levelData.levelName == levelName)
                 return levelData.levelPrestigeLevel;
-            else 
-                return 0;
 
         }
         return 0;
@@ -164,10 +177,23 @@ public class SaveLoadDataManager : MonoBehaviour
                 return;
             }
         }
-    
+
     }
 
-
+    public int SetLevelTopScore(string levelName, int topScore)
+    {
+        foreach (LevelData levelData in saveData.upgrades.levelData)
+        {
+            if (levelData.levelName == levelName)
+            {
+                levelData.topScore = topScore;
+                SaveData();
+            }
+            else
+                return 0;
+        }
+        return 0;
+    }
 
     public int GetLevelTopScore(string levelName)
     {
@@ -192,21 +218,45 @@ public class SaveLoadDataManager : MonoBehaviour
         File.WriteAllText(messagepath, jsonSaveString);
     }
 
+    public void SaveDataWithDefault()
+    {
+        WeaponDataUpgrades weaponDataUpgrades = new WeaponDataUpgrades();
+        LevelData levelData = new LevelData();
+        saveData.upgrades.weaponDataUpgrades.Add(weaponDataUpgrades);
+        saveData.upgrades.levelData.Add(levelData);
+
+
+        string subDir = Path.Combine(Application.persistentDataPath, "Saves", "Data");
+        Directory.CreateDirectory(subDir);
+        string messagepath = Path.Combine(subDir, "SaveData" + ".json");
+        string jsonSaveString = JsonUtility.ToJson(saveData);
+        File.WriteAllText(messagepath, jsonSaveString);
+    }
+
+
+
     [Button]
     public void LoadData()
     {
         string subDir = Path.Combine(Application.persistentDataPath, "Saves", "Data");
-        Directory.CreateDirectory(subDir);
         string messagepath = Path.Combine(subDir, "SaveData" + ".json");
 
         if (!File.Exists(messagepath))
         {
-            SaveData();
+            SaveDataWithDefault();
         }
         else
         {
             string jsonString = File.ReadAllText(messagepath);
             saveData = JsonUtility.FromJson<SaveData>(jsonString);
         }
+    }
+
+    [Button]
+    public void DeleteData()
+    {
+        PlayerPrefs.DeleteAll();
+        string subDir = Path.Combine(Application.persistentDataPath);
+        if (Directory.Exists(subDir)) { Directory.Delete(subDir, true); }
     }
 }

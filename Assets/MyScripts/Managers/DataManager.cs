@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
-    private int maxAmmunitionInMagazine = 10;
+    [SerializeField] private string levelName;
+    private int maxAmmunitionInMagazine = 12;
     private float ammunitionInMagazine;
     private float ammunitionLeft;
     private int currentKilledUnits;
     private int collectedPoints;
     private int allCollectedPoints;
-    [SerializeField] private int currentMultipler; 
+    [SerializeField] private int currentMultipler;
     private float currentKillsMultipler = 0.1f;
     private int allLevelPointsAmount;
     private int currentWeaponID;
-   [SerializeField] private float currentPointsMultiplied;
+    [SerializeField] private float currentPointsMultiplied;
     public SaveData saveData;
     public CoinsProportiesData coinsProportiesData;
     public AudioSource audioSource;
     public AudioClip resetCoinsSound;
 
     private List<GameObject> pickablePointsGameObjects = new List<GameObject>();
- 
+
 
 
     [SerializeField] public SaveLoadDataManager saveLoadDataManager;
@@ -31,10 +32,24 @@ public class DataManager : MonoBehaviour
         ammunitionLeft = saveLoadDataManager.GetWeaponClipValue(0);
         SetAmmunition();
         collectedPoints = 0;
-        currentMultipler = 1;
+
+        Debug.Log(saveLoadDataManager.GetLevelPrestigeLevel(levelName));
+        currentMultipler = saveLoadDataManager.GetLevelPrestigeLevel(levelName);
+
+
+
         LevelManager.Instance.uIManager.UpdateUI();
         AllLevelPointsAmount = GameObject.FindGameObjectsWithTag("Point").Length;
         pickablePointsGameObjects.AddRange(GameObject.FindGameObjectsWithTag("Point"));
+
+        foreach (GameObject item in pickablePointsGameObjects)
+        {
+            item.SetActive(true);
+            item.GetComponent<PickablePoint>().SetMultipler(
+                GetCoinTexture(),
+                GetCoinMultiplersFrameColor(),
+                GetCoinMultiplersPlateColor());
+        }
     }
 
     public int CurrentKilledUnits
@@ -75,20 +90,26 @@ public class DataManager : MonoBehaviour
         set { currentMultipler = value; }
     }
 
+    public string LevelName
+    {
+        get { return levelName; }
+    }
+
     public void SetPoint()
     {
         AllCollectedPoints += 1;
         CollectedPoints += 1;
 
-        CurrentPointsMultiplied += 1 * CurrentMultipler ;
-   
+        CurrentPointsMultiplied += 1 * coinsProportiesData.coinMultiplers[CurrentMultipler];
 
-        if (collectedPoints == AllLevelPointsAmount)
-        {
-            Invoke("ResetPoints", 0.1f);
-        }
+        if (AllLevelPointsAmount > 0)
+            if (collectedPoints == AllLevelPointsAmount)
+            {
+                Invoke("ResetPoints", 0.1f);
+            }
         LevelManager.Instance.uIManager.UpdateCurrentPoints();
     }
+
 
     private void ResetPoints()
     {
@@ -98,14 +119,21 @@ public class DataManager : MonoBehaviour
         {
             item.SetActive(true);
             item.GetComponent<PickablePoint>().SetMultipler(
-                GetCoinMultipler().ToString(), 
+                GetCoinTexture(),
                 GetCoinMultiplersFrameColor(),
-                GetCoinMultiplersPlateColor(),
-                GetCoinMultiplersTextColor());
+                GetCoinMultiplersPlateColor());
         }
         LevelManager.Instance.uIManager.UpdateUI();
         collectedPoints = 1;
     }
+
+
+
+
+
+
+
+
     #endregion
 
 
@@ -150,17 +178,19 @@ public class DataManager : MonoBehaviour
 
     public void SetAmmunition()
     {
-        if (AmmunitionLeft > 10)
-        {
-            AmmunitionInMagazine = MaxAmmunitionInMagazine;
-            AmmunitionLeft -= 10;
-        }
 
+        float emptyStore = maxAmmunitionInMagazine - AmmunitionInMagazine;
+        if (AmmunitionLeft > emptyStore)
+        {
+            AmmunitionInMagazine += emptyStore;
+            AmmunitionLeft -= emptyStore;
+        }
         else
         {
-            AmmunitionInMagazine = AmmunitionLeft;
+            AmmunitionInMagazine += AmmunitionLeft;
             AmmunitionLeft = 0;
         }
+
         LevelManager.Instance.uIManager.UpdateAmmunition();
     }
 
@@ -177,7 +207,7 @@ public class DataManager : MonoBehaviour
     public float GetKillMultipler()
     {
         if (CurrentKilledUnits > 0)
-            return 1+ (CurrentKilledUnits * currentKillsMultipler);
+            return 1 + (CurrentKilledUnits * currentKillsMultipler);
         else
             return 1;
     }
@@ -186,7 +216,7 @@ public class DataManager : MonoBehaviour
 
 
     #region CoinProporties
-    public float GetCoinMultipler()
+    public int GetCoinMultipler()
     {
         return coinsProportiesData.coinMultiplers[currentMultipler];
     }
@@ -209,6 +239,11 @@ public class DataManager : MonoBehaviour
     public Color GetCoinMultiplersTextColor()
     {
         return coinsProportiesData.coinMultiplersTextColor[currentMultipler];
+    }
+
+    public Texture GetCoinTexture()
+    {
+        return coinsProportiesData.coinTexture[currentMultipler];
     }
     #endregion
 

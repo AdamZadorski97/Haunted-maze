@@ -50,5 +50,4 @@ public class LevelData
     public string levelName;
     public int topScore;
     public int levelPrestigeLevel;
-    public List<int> levelPrestigeCost = new List<int>();
 }

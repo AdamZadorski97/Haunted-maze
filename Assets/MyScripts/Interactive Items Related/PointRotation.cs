@@ -8,7 +8,7 @@ public class PointRotation : MonoBehaviour
 
     private void OnEnable()
     {
-        Vector3 rot = new Vector3(0, 0, 360);
+        Vector3 rot = new Vector3(0, 360, 0);
         transform.DOLocalRotate(rot, coinRotationSpeed, RotateMode.FastBeyond360).SetRelative(true).SetLoops(-1).SetEase(Ease.Linear);
     }
 }

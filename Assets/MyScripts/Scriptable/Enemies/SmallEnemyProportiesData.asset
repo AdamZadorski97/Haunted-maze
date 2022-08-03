@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SmallEnemyProportiesData
   m_EditorClassIdentifier: 
   enemyName: SmallEnemy
-  hp: 2
+  hp: 1.5
   speed: 1.5

@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 public class PlayerController : MonoSingleton<PlayerController>
 {
     public static PlayerController _Instance { get; private set; }
-    [SerializeField] private bool canMove = false;
+
     public bool isReloading;
     [SerializeField] private float reloadTime = 2f;
     [SerializeField] private float slideTime = 1.5f;
@@ -19,13 +19,24 @@ public class PlayerController : MonoSingleton<PlayerController>
     [SerializeField] private float jumpHeight = 1.5f;
     [SerializeField] private float jumpStartTime;
     [SerializeField] private float jumpEndTime;
+
+
+
+
+    [SerializeField] private bool canMove = false;
+    public bool canMoveLeft = true;
+    public bool canMoveRight = true;
+    public bool canMoveBack = true;
+    public bool canRun;
+    public bool isInRunState;
     public bool isInSlideState;
     public bool isInJumpState;
+    public bool isInShootState;
     [SerializeField] private AnimationCurve jumpStartAnimationCurve;
     [SerializeField] private AnimationCurve jumpEndAnimationCurve;
-    [SerializeField] private float defaultMoveSpeed = 3;
+    [SerializeField] public float defaultMoveSpeed = 3;
     [SerializeField] private float defaultRunSpeed = 6;
-    [SerializeField] private float moveSpeed;
+    [SerializeField] public float moveSpeed;
     [SerializeField] private float turnBackSpeed;
     [SerializeField] private float beforeTurnSideAngle;
     [SerializeField] private float beforeTurnSideSpeed;
@@ -70,6 +81,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     [SerializeField] private ParticleSystem gunParticleSystem;
     [SerializeField] private CinemachineImpulseSource cinemachineImpulseSource;
     [SerializeField] public CinemachineVirtualCamera cinemachineVirtualCamera;
+    [SerializeField] private CinemachineBrain cinemachineBrain;
     [SerializeField] private CinemachineComposer cinemachineComposer;
     [SerializeField] private CinemachineFreeLook freeLook;
     [SerializeField] private GameObject magnesParticles;
@@ -87,10 +99,22 @@ public class PlayerController : MonoSingleton<PlayerController>
     public Animation reloadAnimation;
     private void Start()
     {
+
+
+
         cinemachineComposer = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineComposer>();
         // SnapToGround();
         StartCoroutine(Footstep());
+        StartCoroutine(StartDelay());
     }
+    IEnumerator StartDelay()
+    {
+        yield return new WaitForSeconds(3f);
+        moveSpeed = defaultMoveSpeed;
+        cinemachineBrain.enabled = true;
+    }
+
+
 
     public void Update()
     {
@@ -98,7 +122,10 @@ public class PlayerController : MonoSingleton<PlayerController>
             cinemachineVirtualCamera.LookAt = cameraPivot;
         else
         {
-            cinemachineVirtualCamera.LookAt = closestEnemy.GetComponent<EnemyController>().head;
+            if (closestEnemy.GetComponent<EnemyController>().head)
+            {
+                cinemachineVirtualCamera.LookAt = closestEnemy.GetComponent<EnemyController>().head;
+            }
         }
 
 
@@ -159,14 +186,16 @@ public class PlayerController : MonoSingleton<PlayerController>
     public Transform closestEnemy;
     public bool IsEnemyVisible()
     {
-        Debug.DrawRay(cameraPivot.position, cameraPivot.TransformDirection((Vector3.forward) + new Vector3(0.5f, 0, 0)) * gunRayDistance);
-        Debug.DrawRay(cameraPivot.position, cameraPivot.TransformDirection((Vector3.forward) - new Vector3(0.5f, 0, 0)) * gunRayDistance);
-        Debug.DrawRay(cameraPivot.position, cameraPivot.TransformDirection((Vector3.forward) + new Vector3(0.3f, 0, 0)) * gunRayDistance);
-        Debug.DrawRay(cameraPivot.position, cameraPivot.TransformDirection((Vector3.forward) - new Vector3(0.3f, 0, 0)) * gunRayDistance);
-        Debug.DrawRay(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) * gunRayDistance);
+        Debug.DrawRay(transform.position + new Vector3(0, 0.5f, 0), cameraPivot.TransformDirection((Vector3.forward) + new Vector3(0.5f, 0, 0)) * gunRayDistance);
+        Debug.DrawRay(transform.position + new Vector3(0, 0.5f, 0), cameraPivot.TransformDirection((Vector3.forward) - new Vector3(0.5f, 0, 0)) * gunRayDistance);
+        Debug.DrawRay(transform.position + new Vector3(0, 0.5f, 0), cameraPivot.TransformDirection((Vector3.forward) + new Vector3(0.3f, 0, 0)) * gunRayDistance);
+        Debug.DrawRay(transform.position + new Vector3(0, 0.5f, 0), cameraPivot.TransformDirection((Vector3.forward) - new Vector3(0.3f, 0, 0)) * gunRayDistance);
+        Debug.DrawRay(transform.position + new Vector3(0, 0.5f, 0), cameraPivot.TransformDirection((Vector3.forward) + new Vector3(0.7f, 0, 0)) * gunRayDistance);
+        Debug.DrawRay(transform.position + new Vector3(0, 0.5f, 0), cameraPivot.TransformDirection((Vector3.forward) - new Vector3(0.7f, 0, 0)) * gunRayDistance);
+        Debug.DrawRay(transform.position + new Vector3(0, 0.5f, 0), cameraPivot.TransformDirection(Vector3.forward) * gunRayDistance);
 
         RaycastHit hitFrontClose;
-        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward), out hitFrontClose, 4, enemyLayermask))
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), cameraPivot.TransformDirection(Vector3.forward), out hitFrontClose, 4, enemyLayermask))
         {
 
             closestEnemy = hitFrontClose.transform;
@@ -174,7 +203,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         }
 
         RaycastHit hitRight;
-        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) + new Vector3(0.3f, 0, 0), out hitRight, gunRayDistance, enemyLayermask))
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), cameraPivot.TransformDirection(Vector3.forward) + new Vector3(0.3f, 0, 0), out hitRight, gunRayDistance, enemyLayermask))
         {
 
             closestEnemy = hitRight.transform;
@@ -182,15 +211,23 @@ public class PlayerController : MonoSingleton<PlayerController>
         }
 
         RaycastHit hitRight2;
-        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) + new Vector3(0.5f, 0, 0), out hitRight2, gunRayDistance, enemyLayermask))
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), cameraPivot.TransformDirection(Vector3.forward) + new Vector3(0.5f, 0, 0), out hitRight2, gunRayDistance, enemyLayermask))
         {
 
             closestEnemy = hitRight2.transform;
             return true;
         }
 
+        RaycastHit hitRight3;
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), cameraPivot.TransformDirection(Vector3.forward) + new Vector3(0.8f, 0, 0), out hitRight3, gunRayDistance * 0.7f, enemyLayermask))
+        {
+
+            closestEnemy = hitRight3.transform;
+            return true;
+        }
+
         RaycastHit hitLeft;
-        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) - new Vector3(0.3f, 0, 0), out hitLeft, gunRayDistance, enemyLayermask))
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), cameraPivot.TransformDirection(Vector3.forward) - new Vector3(0.3f, 0, 0), out hitLeft, gunRayDistance, enemyLayermask))
         {
 
             closestEnemy = hitLeft.transform;
@@ -198,15 +235,22 @@ public class PlayerController : MonoSingleton<PlayerController>
         }
 
         RaycastHit hitLeft2;
-        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward) - new Vector3(0.5f, 0, 0), out hitLeft2, gunRayDistance, enemyLayermask))
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), cameraPivot.TransformDirection(Vector3.forward) - new Vector3(0.5f, 0, 0), out hitLeft2, gunRayDistance, enemyLayermask))
         {
 
             closestEnemy = hitLeft2.transform;
             return true;
         }
+        RaycastHit hitLeft3;
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), cameraPivot.TransformDirection(Vector3.forward) - new Vector3(0.8f, 0, 0), out hitLeft3, gunRayDistance * 0.7f, enemyLayermask))
+        {
+
+            closestEnemy = hitLeft3.transform;
+            return true;
+        }
 
         RaycastHit hitFrontFar;
-        if (Physics.Raycast(cameraPivot.position, cameraPivot.TransformDirection(Vector3.forward), out hitFrontFar, 10, enemyLayermask))
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), cameraPivot.TransformDirection(Vector3.forward), out hitFrontFar, 10, enemyLayermask))
         {
 
             closestEnemy = hitFrontFar.transform;
@@ -238,8 +282,15 @@ public class PlayerController : MonoSingleton<PlayerController>
     //    return bestTarget;
     //}
 
+    IEnumerator ShootTrigger()
+    {
+        isInShootState = true;
+        yield return new WaitForSeconds(0.25f);
+        isInShootState = false;
+    }
     public void Shoot()
     {
+        StartCoroutine(ShootTrigger());
         if (!isReloading)
             if (LevelManager.Instance.dataManager.CheckCanShoot())
             {
@@ -296,8 +347,8 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public void Reload()
     {
-        if(!isReloading)
-        StartCoroutine(ReloadCoroutine());
+        if (!isReloading)
+            StartCoroutine(ReloadCoroutine());
     }
 
     IEnumerator ReloadCoroutine()
@@ -319,14 +370,15 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public void SwipeControll()
     {
-        if (swipeController.SwipeLeft && turnEnd)
+
+        if (swipeController.SwipeLeft && turnEnd && canMoveLeft)
         {
             StopCoroutine(inst);
             inst = "Left";
             StartCoroutine(RememberLastSwipe("Left"));
         }
 
-        if (swipeController.SwipeRight && turnEnd)
+        if (swipeController.SwipeRight && turnEnd && canMoveRight)
         {
             StopCoroutine(inst);
             inst = "Right";
@@ -340,11 +392,18 @@ public class PlayerController : MonoSingleton<PlayerController>
             StartCoroutine(RememberLastSwipe("Up"));
         }
 
-        if (swipeController.SwipeDown && turnEnd)
+
+
+        if (swipeController.SwipeDown && turnEnd && canMoveBack)
         {
             StopCoroutine(inst);
             inst = "Down";
             StartCoroutine(RememberLastSwipe("Down"));
+        }
+
+        if (swipeController.longTap)
+        {
+            SlideDown();
         }
 
         if (swipeController.Tap)
@@ -424,7 +483,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         {
             audioSource.PlayOneShot(slideSound, 1.5f);
             isInSlideState = true;
-            LevelManager.Instance.uIManager.ButtonTimer(LevelManager.Instance.uIManager.imageSlideTimer, 0.2f+0.2f+ slideTime);
+            LevelManager.Instance.uIManager.ButtonTimer(LevelManager.Instance.uIManager.imageSlideTimer, 0.2f + 0.2f + slideTime);
             Sequence slideSequence = DOTween.Sequence();
             slideSequence.Append(cameraPivot.DOLocalMoveY(0.15f, 0.2f));
             slideSequence.AppendInterval(slideTime);
@@ -433,13 +492,21 @@ public class PlayerController : MonoSingleton<PlayerController>
         }
     }
 
+
+
     public void Run()
     {
-        Sequence runSequnece = DOTween.Sequence();
-        LevelManager.Instance.uIManager.ButtonTimer(LevelManager.Instance.uIManager.imageRunTimer, runTime);
-        runSequnece.AppendCallback(() => moveSpeed = defaultRunSpeed);
-        runSequnece.AppendInterval(runTime);
-        runSequnece.AppendCallback(() => moveSpeed = defaultMoveSpeed);
+        if (canRun)
+            if (!isInRunState)
+            {
+                isInRunState = true;
+                Sequence runSequnece = DOTween.Sequence();
+                LevelManager.Instance.uIManager.ButtonTimer(LevelManager.Instance.uIManager.imageRunTimer, runTime);
+                runSequnece.AppendCallback(() => moveSpeed = defaultRunSpeed);
+                runSequnece.AppendInterval(runTime);
+                runSequnece.AppendCallback(() => moveSpeed = defaultMoveSpeed);
+                runSequnece.AppendCallback(() => isInRunState = false);
+            }
     }
 
     public void Jump()
@@ -452,7 +519,7 @@ public class PlayerController : MonoSingleton<PlayerController>
             Sequence slideSequence = DOTween.Sequence();
             slideSequence.Append(cameraPivot.DOLocalMoveY(jumpHeight, jumpStartTime).SetEase(jumpStartAnimationCurve));
             slideSequence.Join(DOTween.To(() => cinemachineComposer.m_TrackedObjectOffset, x => cinemachineComposer.m_TrackedObjectOffset = x, new Vector3(0, jumpCameraRotationValue, 0), jumpEndTime).SetEase(jumpStartAnimationCurve));
-       
+
             slideSequence.AppendInterval(jumpTime);
             slideSequence.Join(DOTween.To(() => cinemachineComposer.m_TrackedObjectOffset, x => cinemachineComposer.m_TrackedObjectOffset = x, new Vector3(0, 0, 0), jumpEndTime).SetEase(jumpStartAnimationCurve));
             slideSequence.Append(cameraPivot.DOLocalMoveY(0.88f, jumpEndTime).SetEase(jumpEndAnimationCurve));
@@ -460,6 +527,13 @@ public class PlayerController : MonoSingleton<PlayerController>
             slideSequence.Append(DOTween.To(() => cinemachineComposer.m_TrackedObjectOffset, x => cinemachineComposer.m_TrackedObjectOffset = x, new Vector3(0, 0, 0), jumpEndTime).SetEase(jumpStartAnimationCurve));
             slideSequence.AppendCallback(() => isInJumpState = false);
         }
+    }
+
+    private bool turnBackLeft;
+    public void TurnBack(bool isLeft)
+    {
+        turnBackLeft = isLeft;
+        moveBack = true;
     }
 
 
@@ -487,7 +561,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     IEnumerator RememberLastSwipe(string direction)
     {
 
-        if (direction == "Left" && turnEnd)
+        if (direction == "Left" && turnEnd && !moveLeft && !moveRight)
         {
 
 
@@ -499,7 +573,23 @@ public class PlayerController : MonoSingleton<PlayerController>
             yield return new WaitForSeconds(0.01f);
             moveLeft = true;
         }
-        if (direction == "Right" && turnEnd)
+        else if (direction == "Left" && turnEnd && moveLeft)
+        {
+            moveLeft = false;
+            TurnBack(true);
+        }
+        else if (direction == "Left" && turnEnd && moveRight)
+        {
+            moveRight = false;
+            moveLeft = false;
+            yield return new WaitForSeconds(0.01f);
+            cameraPivot.DOLocalRotate(new Vector3(0, 0, 0), beforeTurnSideSpeed).SetEase(beforeTurnSideCurve);
+        }
+
+
+
+
+        if (direction == "Right" && turnEnd && !moveRight && !moveLeft)
         {
 
 
@@ -510,11 +600,26 @@ public class PlayerController : MonoSingleton<PlayerController>
             }
             yield return new WaitForSeconds(0.01f);
             moveRight = true;
-
         }
+        else if (direction == "Right" && turnEnd && moveRight)
+        {
+            moveRight = false;
+            TurnBack(false);
+        }
+        else if (direction == "Right" && turnEnd && moveLeft)
+        {
+            moveRight = false;
+            moveLeft = false;
+            yield return new WaitForSeconds(0.01f);
+            cameraPivot.DOLocalRotate(new Vector3(0, 0, 0), beforeTurnSideSpeed).SetEase(beforeTurnSideCurve);
+        }
+
+
+
+
         if (direction == "Up")
         {
-
+            Jump();
         }
         if (direction == "Down" && turnEnd)
         {
@@ -551,6 +656,8 @@ public class PlayerController : MonoSingleton<PlayerController>
                 turnSequence.AppendCallback(() => canMove = true);
                 turnSequence.Append(cameraPivot.DOLocalRotate(new Vector3(0, 0, 0), turnSideSpeed).SetEase(turnSideCurve));
                 turnSequence.AppendCallback(() => turnEnd = true);
+                if (!isInRunState)
+                    turnSequence.AppendCallback(() => moveSpeed = defaultMoveSpeed);
                 return;
             }
             if (moveRight && CheckCanTurnRight() && turnEnd)
@@ -573,8 +680,9 @@ public class PlayerController : MonoSingleton<PlayerController>
                 turnSequence.Append(transform.DOLocalRotate(new Vector3(0, 90, 0), turnSideSpeed, RotateMode.LocalAxisAdd).SetEase(turnSideCurve));
                 turnSequence.AppendCallback(() => canMove = true);
                 turnSequence.Append(cameraPivot.DOLocalRotate(new Vector3(0, 0, 0), turnSideSpeed).SetEase(turnSideCurve));
-
                 turnSequence.AppendCallback(() => turnEnd = true);
+                if (!isInRunState)
+                    turnSequence.AppendCallback(() => moveSpeed = defaultMoveSpeed);
                 return;
             }
 
@@ -594,10 +702,20 @@ public class PlayerController : MonoSingleton<PlayerController>
                     canTurnTimer = 0.2f;
                     turnSequence = DOTween.Sequence();
                     turnSequence.AppendCallback(() => canMove = false);
-                    turnSequence.Append(transform.DOLocalRotate(new Vector3(0, 180, 0), turnBackSpeed, RotateMode.LocalAxisAdd).SetEase(turnBackCurve));
-                    turnSequence.AppendCallback(() => canMove = true);
-                    turnSequence.Append(cameraPivot.DOLocalRotate(new Vector3(0, 0, 0), turnBackSpeed).SetEase(turnBackCurve));
 
+                    turnSequence.Append(transform.DOLocalRotate(new Vector3(0, 180, 0), turnBackSpeed, RotateMode.LocalAxisAdd).SetEase(turnBackCurve));
+
+
+
+
+                    if (turnBackLeft)
+                        turnSequence.Join(cameraPivot.DOLocalRotate(new Vector3(0, 1, 0), turnBackSpeed, RotateMode.FastBeyond360).SetEase(turnBackCurve));
+
+                    else
+                    {
+                        turnSequence.Join(cameraPivot.DOLocalRotate(new Vector3(0, 359, 0), turnBackSpeed, RotateMode.Fast).SetEase(turnBackCurve));
+                    }
+                    turnSequence.AppendCallback(() => canMove = true);
                     turnSequence.AppendCallback(() => turnEnd = true);
 
                     return;
@@ -615,7 +733,7 @@ public class PlayerController : MonoSingleton<PlayerController>
             {
                 turnSequence.Kill();
             }
-            cameraPivot.localEulerAngles = Vector3.zero;
+            //  cameraPivot.localEulerAngles = Vector3.zero;
         }
 
     }

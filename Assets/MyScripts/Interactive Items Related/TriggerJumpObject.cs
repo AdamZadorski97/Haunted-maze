@@ -5,48 +5,99 @@ using UnityEngine;
 public class TriggerJumpObject : MonoBehaviour
 {
     public UnityEngine.AI.NavMeshObstacle navMeshObstacle;
-    [SerializeField]private bool isInTrigger;
+    public bool wasTriggered;
 
+    [SerializeField] private float resetTime;
 
+    public BoxCollider boxCollider;
 
-    private void OnTriggerEnter(Collider other)
+    public void Update()
     {
-        if (other.GetComponent<PlayerController>())
+        if(PlayerController.Instance.isInJumpState)
         {
-            LevelManager.Instance.uIManager.HighlitghtAction(LevelManager.Instance.uIManager.imageJumpTimer, true);
+            boxCollider.enabled = false;
+            navMeshObstacle.enabled = false;
         }
-    }
-
-
-    private void OnTriggerStay(Collider other)
-    {
-      
-        if (other.GetComponent<PlayerController>())
+        else
         {
-            Debug.Log("Player");
-            if (!other.GetComponent<PlayerController>().isInJumpState)
-            {
-                if (!isInTrigger)
-                {
-                    isInTrigger = true;
-                    other.GetComponent<PlayerController>().OnJumpObstacleHit(navMeshObstacle);
-                }
-            }
-
-            else
-            {
-                navMeshObstacle.enabled = false;
-            }
-        
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-      //  isInTrigger = false;
-        if (other.GetComponent<PlayerController>())
-        {
+            boxCollider.enabled = true;
             navMeshObstacle.enabled = true;
-            LevelManager.Instance.uIManager.HighlitghtAction(LevelManager.Instance.uIManager.imageJumpTimer, false);
         }
     }
+
+
+
+
+
+
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.GetComponent<PlayerController>())
+    //    {
+    //        LevelManager.Instance.uIManager.HighlitghtAction(LevelManager.Instance.uIManager.imageJumpTimer, true);
+    //        other.GetComponent<PlayerController>().canRun = false;
+    //    }
+    //    if (other.GetComponent<EnemyController>())
+    //    {
+    //        other.GetComponent<EnemyController>().navMeshAgent.enabled = false;
+       
+    //    }
+    //}
+
+
+    //private void OnTriggerStay(Collider other)
+    //{
+
+    //    if (other.GetComponent<PlayerController>())
+    //    {
+    //        if (other.GetComponent<PlayerController>().moveBack)
+    //        {
+    //            wasTriggered = true;
+    //            other.GetComponent<PlayerController>().moveSpeed = other.GetComponent<PlayerController>().defaultMoveSpeed;
+    //            StopCoroutine(RestState());
+    //            StartCoroutine(RestState());
+    //            return;
+    //        }
+
+    //        else if (!other.GetComponent<PlayerController>().isInJumpState && !wasTriggered)
+    //        {
+    //            wasTriggered = true;
+    //            other.GetComponent<PlayerController>().OnJumpObstacleHit(navMeshObstacle);
+    //            return;
+    //        }
+
+    //        else
+    //        {
+    //            wasTriggered = true;
+    //            StopCoroutine(RestState());
+    //            StartCoroutine(RestState());
+    //            navMeshObstacle.enabled = false;
+    //        }
+
+    //    }
+    //}
+    //private void OnTriggerExit(Collider other)
+    //{
+    
+    //    if (other.GetComponent<PlayerController>())
+    //    {
+    //        navMeshObstacle.enabled = true;
+    //        LevelManager.Instance.uIManager.HighlitghtAction(LevelManager.Instance.uIManager.imageJumpTimer, false);
+    //        other.GetComponent<PlayerController>().canRun = true;
+
+    //    }
+
+
+    //    if (other.GetComponent<EnemyController>())
+    //    {
+    //        other.GetComponent<EnemyController>().navMeshAgent.enabled = true;
+    //    }
+    //}
+
+    //IEnumerator RestState()
+    //{
+    //    yield return new WaitForSeconds(resetTime);
+    //    wasTriggered = false;
+    //}
 }

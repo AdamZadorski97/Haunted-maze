@@ -16,6 +16,7 @@ public class EnemySpawnerController : MonoBehaviour
     public float maxSpawnPointFromMiddleX;
     public float maxSpawnPointFromMiddleZ;
     public float minDistanceFromPlayer;
+    public float maxDistanceFromPlayer;
     public LayerMask floorLayermask;
     public Vector3 newEnemyPosition;
     public bool canSpawn;
@@ -24,6 +25,7 @@ public class EnemySpawnerController : MonoBehaviour
 
     public float delayAndSpawnRate = 2;
     public float timeUntilSpawnRateIncrease = 30;
+    public List<HintTriggerController> hintTriggerControllers = new List<HintTriggerController>();
 
     void Start()
     {
@@ -34,6 +36,9 @@ public class EnemySpawnerController : MonoBehaviour
 
     IEnumerator SpawnObject(float firstDelay)
     {
+        yield return new WaitUntil(() => hintTriggerControllers.Count ==0);
+
+
         float spawnRateCountdown = timeUntilSpawnRateIncrease;
         float spawnCountdown = firstDelay;
         while (true)
@@ -90,17 +95,21 @@ public class EnemySpawnerController : MonoBehaviour
         FloorController floorController = floorControllers[(int)Random.Range(0, floorControllers.Length - 1)];
         Vector3 checkPosition =  new Vector3(floorController.interactivePoint.transform.position.x, floorController.transform.position.y, floorController.interactivePoint.transform.position.z);
 
-        if(floorController.transform.position.y  != LevelManager.Instance.currentPlayerFloor * 3)
-        {
-            return;
-        }    
+        //if(floorController.transform.position.y  != LevelManager.Instance.currentPlayerFloor * 3)
+        //{
+        //    return;
+        //}    
 
         if (Vector3.Distance(checkPosition, playerController.transform.position) < minDistanceFromPlayer)
         {
             return;
         }
+        if (Vector3.Distance(checkPosition, playerController.transform.position) > maxDistanceFromPlayer)
+        {
+            return;
+        }
 
-            canSpawn = true;
+        canSpawn = true;
             newEnemyPosition = checkPosition;
 
     }
