@@ -14,6 +14,6 @@ public class LevelSelectController : MonoBehaviour
 
     public void UpdateShopItemValues()
     {
-        textCoinsAmount.text = saveLoadDataManager.GetCoins().ToString();
+        textCoinsAmount.text = Formatter.IdleValue(saveLoadDataManager.GetCoins());
     }
 }

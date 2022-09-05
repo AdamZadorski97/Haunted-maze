@@ -5,17 +5,17 @@ using UnityEngine;
 public class DataManager : MonoBehaviour
 {
     [SerializeField] private string levelName;
-    private int maxAmmunitionInMagazine = 12;
-    private float ammunitionInMagazine;
-    private float ammunitionLeft;
-    private int currentKilledUnits;
-    private int collectedPoints;
-    private int allCollectedPoints;
+    private double maxAmmunitionInMagazine = 12;
+    private double ammunitionInMagazine;
+    private double ammunitionLeft;
+    private double currentKilledUnits;
+    private double collectedPoints;
+    private double allCollectedPoints;
     [SerializeField] private int currentMultipler;
-    private float currentKillsMultipler = 0.1f;
-    private int allLevelPointsAmount;
+    private double currentKillsMultipler = 0.1f;
+    private double allLevelPointsAmount;
     private int currentWeaponID;
-    [SerializeField] private float currentPointsMultiplied;
+    [SerializeField] private double currentPointsMultiplied;
     public SaveData saveData;
     public CoinsProportiesData coinsProportiesData;
     public AudioSource audioSource;
@@ -52,7 +52,7 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public int CurrentKilledUnits
+    public double CurrentKilledUnits
     {
         get { return currentKilledUnits; }
         set { currentKilledUnits = value; }
@@ -60,25 +60,25 @@ public class DataManager : MonoBehaviour
 
     #region points
 
-    public int AllLevelPointsAmount
+    public double AllLevelPointsAmount
     {
         get { return allLevelPointsAmount; }
         set { allLevelPointsAmount = value; }
     }
-    public int CollectedPoints
+    public double CollectedPoints
     {
         get { return collectedPoints; }
         set { collectedPoints = value; }
     }
 
-    public int AllCollectedPoints
+    public double AllCollectedPoints
     {
         get { return allCollectedPoints; }
         set { allCollectedPoints = value; }
     }
 
 
-    public float CurrentPointsMultiplied
+    public double CurrentPointsMultiplied
     {
         get { return currentPointsMultiplied; }
         set { currentPointsMultiplied = value; }
@@ -139,19 +139,19 @@ public class DataManager : MonoBehaviour
 
     #region ammunition
 
-    public float AmmunitionLeft
+    public double AmmunitionLeft
     {
         get { return ammunitionLeft; }
         set { ammunitionLeft = value; }
     }
 
-    public float AmmunitionInMagazine
+    public double AmmunitionInMagazine
     {
         get { return ammunitionInMagazine; }
         set { ammunitionInMagazine = value; }
     }
 
-    public int MaxAmmunitionInMagazine
+    public double MaxAmmunitionInMagazine
     {
         get { return maxAmmunitionInMagazine; }
         set { maxAmmunitionInMagazine = value; }
@@ -179,7 +179,7 @@ public class DataManager : MonoBehaviour
     public void SetAmmunition()
     {
 
-        float emptyStore = maxAmmunitionInMagazine - AmmunitionInMagazine;
+        double emptyStore = maxAmmunitionInMagazine - AmmunitionInMagazine;
         if (AmmunitionLeft > emptyStore)
         {
             AmmunitionInMagazine += emptyStore;
@@ -194,17 +194,17 @@ public class DataManager : MonoBehaviour
         LevelManager.Instance.uIManager.UpdateAmmunition();
     }
 
-    public float GetReloadTime()
+    public double GetReloadTime()
     {
         return saveLoadDataManager.GetWeaponRealoadTime(currentWeaponID);
     }
 
-    public float GetWeaponDamage()
+    public double GetWeaponDamage()
     {
         return saveLoadDataManager.GetWeaponDamageValue(currentWeaponID);
     }
 
-    public float GetKillMultipler()
+    public double GetKillMultipler()
     {
         if (CurrentKilledUnits > 0)
             return 1 + (CurrentKilledUnits * currentKillsMultipler);
@@ -216,15 +216,11 @@ public class DataManager : MonoBehaviour
 
 
     #region CoinProporties
-    public int GetCoinMultipler()
+    public double GetCoinMultipler()
     {
         return coinsProportiesData.coinMultiplers[currentMultipler];
     }
 
-    public string GetCoinMultiplerString()
-    {
-        return coinsProportiesData.coinMultiplersString[currentMultipler];
-    }
 
     public Color GetCoinMultiplersPlateColor()
     {

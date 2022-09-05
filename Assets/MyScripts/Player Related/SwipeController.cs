@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SwipeController : MonoBehaviour
 {
@@ -29,13 +30,16 @@ public class SwipeController : MonoBehaviour
         {
             if (canUpdateLongTouch)
             {
-                touchTime +=  Time.unscaledDeltaTime;
+                touchTime += Time.unscaledDeltaTime;
                 endTouch = Input.mousePosition;
                 if (touchTime > 0.5f && Vector2.Distance(endTouch, startTouch) < 100)
                 {
-                    canUpdateLongTouch = false;
-                    touchTime = 0;
-                    longTap = true;
+                    if (!LevelManager.Instance.uIManager.buttonRun.isPressed)
+                    {
+                        canUpdateLongTouch = false;
+                        touchTime = 0;
+                        longTap = true;
+                    }
                 }
             }
         }
@@ -62,11 +66,17 @@ public class SwipeController : MonoBehaviour
                 touchTime += Time.unscaledDeltaTime;
             }
             endTouch = Input.mousePosition;
+
             if (touchTime > 0.5f && Vector2.Distance(endTouch, startTouch) < 100)
             {
-                touchTime = 0;
-                longTap = true;
-                canUpdateLongTouch = false;
+                    if (!LevelManager.Instance.uIManager.buttonRun.isPressed)
+                    {
+                        touchTime = 0;
+                        longTap = true;
+                        canUpdateLongTouch = false;
+                    }
+                
+
             }
 
 
@@ -85,7 +95,7 @@ public class SwipeController : MonoBehaviour
                 endTouch = Input.touches[0].position;
                 if (difference < 0.25f && Vector2.Distance(endTouch, startTouch) < 100)
                     tap = true;
-               
+
 
                 isDraging = false;
                 Reset();

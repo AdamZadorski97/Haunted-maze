@@ -17,7 +17,7 @@ public class PickablePoint : MonoBehaviour
     {
         tempScale = transform.localScale;
         tempPosition = transform.position;
-        glowAlpha = glow.material.GetColor("_TintColor");
+        glowAlpha = glow.material.GetColor("_Color");
     }
     public void OnInteractivePointPickup()
     {
@@ -25,7 +25,7 @@ public class PickablePoint : MonoBehaviour
         Sequence pointSequence = DOTween.Sequence();
         pointSequence.Append( transform.DOScale(Vector3.zero, 0.45f));
         pointSequence.Join(transform.DOMove(PlayerController.Instance.transform.position, 0.45f));
-        pointSequence.Join(glow.material.DOColor(Vector4.zero, "_TintColor", 0.45f));
+        pointSequence.Join(glow.material.DOColor(Vector4.zero, "_Color", 0.45f));
 
 
         pointSequence.AppendCallback(()=>
@@ -33,16 +33,18 @@ public class PickablePoint : MonoBehaviour
             transform.gameObject.SetActive(false);
             transform.localScale = tempScale;
             transform.position = tempPosition;
-            glow.material.SetColor("_TintColor", glowAlpha);
+            glow.gameObject.SetActive(false);
+            glow.material.SetColor("_Color", glowAlpha);
         });
     }
 
     public void SetMultipler(Texture texture, Color borderColor, Color plateColor)
     {
+        glow.gameObject.SetActive(true);
         boxCollider.enabled = true;
         meshBorder.material.SetColor("_Color", borderColor);
         meshPlate.material.SetTexture("_BaseMap", texture);
         meshPlate.material.SetColor("_BaseColor", plateColor);
-        glow.material.SetColor("_TintColor", plateColor);
+        glow.material.SetColor("_Color", plateColor);
     }
 }

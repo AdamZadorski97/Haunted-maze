@@ -10,14 +10,14 @@ public class WeaponsData : ScriptableObject
 [Serializable]
 public class Weapon
 {
-    public string weaponID;
+    public int weaponID;
     public string weaponName;
     public string weaponDescription;
-    public List<float> damageValue = new List<float>();
-    public List<float> damageUpgradeCost = new List<float>();
-    public List<float> clipValue = new List<float>();
-    public List<float> clipUpgradeCost = new List<float>();
-    public List<float> reloadTimeValue = new List<float>();
-    public List<float> reloadTimeUpgradeCost = new List<float>();
+    public List<double> damageValue = new List<double>();
+    public List<double> damageUpgradeCost = new List<double>();
+    public List<double> clipValue = new List<double>();
+    public List<double> clipUpgradeCost = new List<double>();
+    public List<double> reloadTimeValue = new List<double>();
+    public List<double> reloadTimeUpgradeCost = new List<double>();
 }
 

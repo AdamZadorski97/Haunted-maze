@@ -9,4 +9,7 @@ public class EnemyProporties : ScriptableObject
     public string enemyName;
     public float hp;
     public float speed;
+    public float throwCurvePower;
+    public float throwMaxDistance;
+    public float throwSpeed;
 }

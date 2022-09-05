@@ -7,14 +7,18 @@ public class EnemySpawnerController : MonoBehaviour
 {
     public List<EnemyController> spawnedEnemies = new List<EnemyController>();
     public List<EnemyController> enemiesPrefabs = new List<EnemyController>();
+
+    public List<EnemyController> bossPrefabs = new List<EnemyController>();
+
+
+
+
     public FloorController[] floorControllers;
     public List<float> SpawningFrequency = new List<float>();
 
-    
+
     public Transform enemiesParrent;
     public Transform middleOfMap;
-    public float maxSpawnPointFromMiddleX;
-    public float maxSpawnPointFromMiddleZ;
     public float minDistanceFromPlayer;
     public float maxDistanceFromPlayer;
     public LayerMask floorLayermask;
@@ -26,18 +30,58 @@ public class EnemySpawnerController : MonoBehaviour
     public float delayAndSpawnRate = 2;
     public float timeUntilSpawnRateIncrease = 30;
     public List<HintTriggerController> hintTriggerControllers = new List<HintTriggerController>();
-
+    private float bossTimer = 120;
+    public float bossSpawnTime;
+    private bool canUpdateBossTime;
     void Start()
     {
-
+        bossTimer = bossSpawnTime;
         GetFloorList();
         StartCoroutine(SpawnObject(delayAndSpawnRate));
     }
 
+    private void Update()
+    {
+        UpdateBossTime();
+    }
+    private void UpdateBossTime()
+    {
+        if (!canUpdateBossTime) return;
+
+        bossTimer -= Time.deltaTime;
+        LevelManager.Instance.uIManager.textSpawnBossTime.text = Formatter.TimeFormatter((int)bossTimer);
+        if (bossTimer <= 0)
+        {
+            bossTimer = bossSpawnTime;
+            SpawnBoss();
+        }
+    }
+    public void SpawnBoss()
+    {
+        for (int i = 0; i < 150; i++)
+        {
+            CheckCanSpawnEnemy();
+            if (canSpawn == true)
+            {
+                EnemyController spawnedBoss = Instantiate(bossPrefabs[Random.Range(0, bossPrefabs.Count)], enemiesParrent);
+                spawnedEnemies.Add(spawnedBoss);
+                spawnedBoss.MaxHealth = spawnedBoss.enemyProporties.hp * (LevelManager.Instance.dataManager.CurrentMultipler+1);
+                spawnedBoss.CurrentHealth = spawnedBoss.enemyProporties.hp * (LevelManager.Instance.dataManager.CurrentMultipler+1);
+                spawnedBoss.isBoss = true;
+                spawnedBoss.transform.position = newEnemyPosition;
+                spawnedBoss.endPoint = playerController.transform;
+                spawnedBoss.EnableNavMesh();
+                spawnedBoss.enemySpawnerController = this;
+                break;
+            }
+        }
+    }
+
+
     IEnumerator SpawnObject(float firstDelay)
     {
-        yield return new WaitUntil(() => hintTriggerControllers.Count ==0);
-
+        yield return new WaitUntil(() => hintTriggerControllers.Count == 0);
+        canUpdateBossTime = true;
 
         float spawnRateCountdown = timeUntilSpawnRateIncrease;
         float spawnCountdown = firstDelay;
@@ -74,8 +118,11 @@ public class EnemySpawnerController : MonoBehaviour
             CheckCanSpawnEnemy();
             if (canSpawn == true)
             {
+                Debug.Log(LevelManager.Instance.dataManager.CurrentMultipler + 1);
                 EnemyController spawnedEnemy = Instantiate(enemiesPrefabs[Random.Range(0, enemiesPrefabs.Count)], enemiesParrent);
                 spawnedEnemies.Add(spawnedEnemy);
+                spawnedEnemy.MaxHealth = spawnedEnemy.enemyProporties.hp * (LevelManager.Instance.dataManager.CurrentMultipler+1);
+                spawnedEnemy.CurrentHealth = spawnedEnemy.enemyProporties.hp * (LevelManager.Instance.dataManager.CurrentMultipler+1);
                 spawnedEnemy.transform.position = newEnemyPosition;
                 spawnedEnemy.endPoint = playerController.transform;
                 spawnedEnemy.EnableNavMesh();
@@ -91,9 +138,9 @@ public class EnemySpawnerController : MonoBehaviour
     }
     private void CheckCanSpawnEnemy()
     {
-        
+
         FloorController floorController = floorControllers[(int)Random.Range(0, floorControllers.Length - 1)];
-        Vector3 checkPosition =  new Vector3(floorController.interactivePoint.transform.position.x, floorController.transform.position.y, floorController.interactivePoint.transform.position.z);
+        Vector3 checkPosition = new Vector3(floorController.interactivePoint.transform.position.x, floorController.transform.position.y, floorController.interactivePoint.transform.position.z);
 
         //if(floorController.transform.position.y  != LevelManager.Instance.currentPlayerFloor * 3)
         //{
@@ -110,29 +157,7 @@ public class EnemySpawnerController : MonoBehaviour
         }
 
         canSpawn = true;
-            newEnemyPosition = checkPosition;
-
-    }
-
-
-    //public bool CheckGround(Vector3 posToCheck)
-    //{
-    //    RaycastHit groundHit;
-    //    if (Physics.Raycast(posToCheck + new Vector3(0, 1, 0), Vector3.down, out groundHit, Mathf.Infinity, floorLayermask))
-    //    {
-    //        newEnemyPosition = groundHit.transform.position;
-
-    //        return true;
-    //    }
-    //    else return false;
-    //}
-    void OnDrawGizmosSelected()
-    {
-        if (debugSpawnArea)
-        {
-            Gizmos.color = new Color(1, 1, 0, 0.75F);
-            Gizmos.DrawCube(middleOfMap.position, new Vector3(maxSpawnPointFromMiddleX * 2, 1, maxSpawnPointFromMiddleZ * 2));
-        }
+        newEnemyPosition = checkPosition;
 
     }
 }

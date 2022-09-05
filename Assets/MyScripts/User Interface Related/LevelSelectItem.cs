@@ -26,7 +26,7 @@ public class LevelSelectItem : MonoBehaviour
 
     public void OnButtonBuyPrestige()
     {
-        if(saveLoadDataManager.CheckEnoughCoins(levelProportiesData.levelPrestigeCost[saveLoadDataManager.GetLevelPrestigeLevel(levelName) + 1]))
+        if(saveLoadDataManager.CheckEnoughCoins(levelProportiesData.levelPrestigeCost[saveLoadDataManager.GetLevelPrestigeLevel(levelName) + 1], true))
         {
             audioSource.PlayOneShot(upgradeLevelSound);
             saveLoadDataManager.AddLevelPrestigeLevel(levelName);
@@ -39,9 +39,9 @@ public class LevelSelectItem : MonoBehaviour
     }
     public void UpdateUI()
     {
-        textTopScore.text = $"Top Score: {saveLoadDataManager.GetLevelTopScore(levelName)}";
-        textPrestigeLevel.text = $"{coinsProportiesData.coinMultiplersString[saveLoadDataManager.GetLevelPrestigeLevel(levelName)+1]}x";
-        textPrestigeUpgradeCost.text = $"{levelProportiesData.levelPrestigeCost[saveLoadDataManager.GetLevelPrestigeLevel(levelName) + 1]}";
+        textTopScore.text = $"Top Score: {Formatter.IdleValue( saveLoadDataManager.GetLevelTopScore(levelName))}";
+        textPrestigeLevel.text = $"{Formatter.IdleValue(coinsProportiesData.coinMultiplers[saveLoadDataManager.GetLevelPrestigeLevel(levelName)+1])}x";
+        textPrestigeUpgradeCost.text = $"{Formatter.IdleValue(levelProportiesData.levelPrestigeCost[saveLoadDataManager.GetLevelPrestigeLevel(levelName) + 1])}";
         levelSelectController.UpdateShopItemValues();
     }
 }

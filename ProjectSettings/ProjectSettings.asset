@@ -47,7 +47,7 @@ PlayerSettings:
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
   m_StereoRenderingPath: 0
-  m_ActiveColorSpace: 0
+  m_ActiveColorSpace: 1
   m_MTRendering: 1
   mipStripping: 0
   numberOfMipsStripped: 0
@@ -134,7 +134,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.6
+  bundleVersion: 2.7
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -161,7 +161,7 @@ PlayerSettings:
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 21
+  AndroidBundleVersionCode: 32
   AndroidMinSdkVersion: 22
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -708,23 +708,23 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
     : UNITY_POST_PROCESSING_STACK_V2;ODIN_INSPECTOR;ODIN_INSPECTOR_3;BAKERY_INCLUDED;URP_OUTLINE;EPO_DOTWEEN
-    Android: ODIN_INSPECTOR;ODIN_INSPECTOR_3;BAKERY_INCLUDED;URP_OUTLINE;URP_OUTLINE
-    CloudRendering: URP_OUTLINE;URP_OUTLINE
-    EmbeddedLinux: URP_OUTLINE
-    GameCoreScarlett: URP_OUTLINE;URP_OUTLINE
-    GameCoreXboxOne: URP_OUTLINE;URP_OUTLINE
-    Lumin: URP_OUTLINE;URP_OUTLINE
-    Nintendo Switch: URP_OUTLINE;URP_OUTLINE
-    PS4: URP_OUTLINE;URP_OUTLINE
-    PS5: URP_OUTLINE;URP_OUTLINE
+    Android: ODIN_INSPECTOR;ODIN_INSPECTOR_3;BAKERY_INCLUDED;URP_OUTLINE;URP_OUTLINE;EPO_DOTWEEN;LETAI_TRUESHADOW
+    CloudRendering: URP_OUTLINE;URP_OUTLINE;EPO_DOTWEEN
+    EmbeddedLinux: URP_OUTLINE;EPO_DOTWEEN
+    GameCoreScarlett: URP_OUTLINE;URP_OUTLINE;EPO_DOTWEEN
+    GameCoreXboxOne: URP_OUTLINE;URP_OUTLINE;EPO_DOTWEEN
+    Lumin: URP_OUTLINE;URP_OUTLINE;EPO_DOTWEEN
+    Nintendo Switch: URP_OUTLINE;URP_OUTLINE;EPO_DOTWEEN
+    PS4: URP_OUTLINE;URP_OUTLINE;EPO_DOTWEEN
+    PS5: URP_OUTLINE;URP_OUTLINE;EPO_DOTWEEN
     QNX: URP_OUTLINE
-    Stadia: URP_OUTLINE;URP_OUTLINE
-    Standalone: URP_OUTLINE;URP_OUTLINE;BAKERY_INCLUDED;ODIN_INSPECTOR;ODIN_INSPECTOR_3
-    WebGL: URP_OUTLINE;URP_OUTLINE
-    Windows Store Apps: URP_OUTLINE;URP_OUTLINE
-    XboxOne: URP_OUTLINE;URP_OUTLINE
-    iPhone: URP_OUTLINE;URP_OUTLINE
-    tvOS: URP_OUTLINE;URP_OUTLINE
+    Stadia: URP_OUTLINE;URP_OUTLINE;EPO_DOTWEEN
+    Standalone: URP_OUTLINE;URP_OUTLINE;BAKERY_INCLUDED;ODIN_INSPECTOR;ODIN_INSPECTOR_3;EPO_DOTWEEN
+    WebGL: URP_OUTLINE;URP_OUTLINE;EPO_DOTWEEN
+    Windows Store Apps: URP_OUTLINE;URP_OUTLINE;EPO_DOTWEEN
+    XboxOne: URP_OUTLINE;URP_OUTLINE;EPO_DOTWEEN
+    iPhone: URP_OUTLINE;URP_OUTLINE;EPO_DOTWEEN
+    tvOS: URP_OUTLINE;URP_OUTLINE;EPO_DOTWEEN
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

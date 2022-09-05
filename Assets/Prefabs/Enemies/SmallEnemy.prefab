@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 854636299585195034}
   - component: {fileID: 854636299585195031}
   - component: {fileID: 129963501660822025}
+  - component: {fileID: 7475800417064310301}
   m_Layer: 6
   m_Name: SmallEnemy
   m_TagString: Untagged
@@ -38,6 +39,7 @@ Transform:
   - {fileID: 7058262927553150061}
   - {fileID: 7054642798219727384}
   - {fileID: 5189916957041518649}
+  - {fileID: 1326700343454429857}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -139,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8afadef72d52b244823d870ae1fc0c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlinable: {fileID: 7475800417064310301}
   navMeshAgent: {fileID: 854636299585195034}
   endPoint: {fileID: 0}
   animator: {fileID: 6970289274197490334}
@@ -148,6 +151,9 @@ MonoBehaviour:
   isDead: 0
   head: {fileID: 7054763837396667364}
   enemyProporties: {fileID: 11400000, guid: 7a17a749b8f823e498486f1fb97a538b, type: 2}
+  isBoss: 0
+  healthBar: {fileID: 7391014889441583574}
+  currentLevel: {fileID: 7875008730338630388}
   enemiesSkins:
   - {fileID: 7055979559238978866}
   - {fileID: 7056111553696182934}
@@ -202,6 +208,7 @@ MonoBehaviour:
   runOnStart: 1
   canvas: {fileID: 5481824951114739525}
   hpBar: {fileID: 4957748562172325073}
+  coinParticles: {fileID: 1366609379001912582}
 --- !u!114 &129963501660822025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +221,863 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7475800417064310301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854636299585195037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fe91dc294731a9428c0941ea7579110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  complexMaskingMode: 0
+  drawingMode: 1
+  outlineLayer: 0
+  outlineTargets:
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 854636299585195032}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 0
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917743892262787186}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917679482936970900}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917968925192222782}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6922015987135071012}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917997530945270672}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917876830505911496}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6921843429587556166}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6921787311732437786}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917752402591605562}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6921873859710366932}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917924915014918240}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917824742010678778}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6918068314488593096}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917570746392517724}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6921883610517794842}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917579596158568948}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917979511925951880}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917598479660666752}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6918052275113431804}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6922005696940643264}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917728429879454094}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917696899838350972}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917749113625415028}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917844054831583218}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917981083369616020}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917969578267607570}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917948238458211992}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917736167490705056}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6918187387597053344}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917895284203447988}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917667675315992488}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917813662228859798}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917577790163957518}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6918071412166292182}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917657650384669152}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917848756172171206}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917964592705629106}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6922006005120249222}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6921917256566430550}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6921879233698458550}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6921836584436940074}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917963687954241158}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6918171112055560188}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6918189503951905982}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6921892810145073466}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6921878584622900094}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6922022102982728908}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917711199483882574}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917850497229313066}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6917648642142827318}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  renderStyle: 1
+  outlineParameters:
+    enabled: 1
+    color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+  backParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+  frontParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
 --- !u!1 &2079439895971643830
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,6 +1155,141 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2501226656113807187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1589210920043555958}
+  - component: {fileID: 8779961387233768546}
+  - component: {fileID: 7875008730338630388}
+  m_Layer: 6
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1589210920043555958
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2501226656113807187}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5189916957041518649}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0.049}
+  m_SizeDelta: {x: 1, y: 0.3}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8779961387233768546
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2501226656113807187}
+  m_CullTransparentMesh: 1
+--- !u!114 &7875008730338630388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2501226656113807187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: LVL 1
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 416ea36f228ef3e4eaf99f5355975e26, type: 2}
+  m_sharedMaterial: {fileID: -1177626806982919480, guid: 416ea36f228ef3e4eaf99f5355975e26, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 0.4
+  m_fontSizeBase: 0.4
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &5481824951114739525
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,7 +1308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5189916957041518649
 RectTransform:
   m_ObjectHideFlags: 0
@@ -323,6 +1322,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4475914665122516740}
+  - {fileID: 1589210920043555958}
   m_Father: {fileID: 854636299585195030}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -348,7 +1348,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -402,6 +1402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059495036876665282}
   - component: {fileID: 6922015987135071012}
+  - component: {fileID: 7801170919174138071}
   m_Layer: 6
   m_Name: Zombie_Bride_Female_01
   m_TagString: Untagged
@@ -527,6 +1528,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.87408054, z: -0.043592148}
     m_Extent: {x: 1.0212042, y: 0.9707413, z: 0.21347183}
   m_DirtyAABB: 0
+--- !u!114 &7801170919174138071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7055884607231242534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7055886527710549738
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,6 +1550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054467056106901816}
   - component: {fileID: 6917736167490705056}
+  - component: {fileID: 5323229063515949572}
   m_Layer: 6
   m_Name: Zombie_Jacket_Male_01
   m_TagString: Untagged
@@ -662,6 +1676,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0000013709068, y: 0.85721916, z: -0.08269866}
     m_Extent: {x: 1.0245605, y: 0.9553215, z: 0.27594912}
   m_DirtyAABB: 0
+--- !u!114 &5323229063515949572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7055886527710549738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7055905518884356902
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,6 +1698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059515552845508298}
   - component: {fileID: 6918171112055560188}
+  - component: {fileID: 6693800089900013713}
   m_Layer: 6
   m_Name: Zombie_SchoolGirl_Female_01
   m_TagString: Untagged
@@ -797,6 +1824,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.00000017881393, y: 0.85771704, z: -0.054065928}
     m_Extent: {x: 1.021204, y: 0.970999, z: 0.21679284}
   m_DirtyAABB: 0
+--- !u!114 &6693800089900013713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7055905518884356902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7055920356596107556
 GameObject:
   m_ObjectHideFlags: 0
@@ -871,6 +1910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054348238334118888}
   - component: {fileID: 6917848756172171206}
+  - component: {fileID: 847932978367797369}
   m_Layer: 6
   m_Name: Zombie_Police_Male_01
   m_TagString: Untagged
@@ -996,6 +2036,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.87884206, z: -0.04523465}
     m_Extent: {x: 1.0245593, y: 0.97993547, z: 0.29640326}
   m_DirtyAABB: 0
+--- !u!114 &847932978367797369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7055928298224373660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7055936541328337656
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,6 +2092,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054540869371703852}
   - component: {fileID: 6917648642142827318}
+  - component: {fileID: 4448078419846275527}
   m_Layer: 6
   m_Name: Zombie_Underwear_Male_01
   m_TagString: Untagged
@@ -1165,6 +2218,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000000059604645, y: 0.84347886, z: -0.06108754}
     m_Extent: {x: 1.0245616, y: 0.94457227, z: 0.25316468}
   m_DirtyAABB: 0
+--- !u!114 &4448078419846275527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7055951884077801324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7055960465305907100
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,6 +2240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059693568689639490}
   - component: {fileID: 6921836584436940074}
+  - component: {fileID: 3425104362331867499}
   m_Layer: 6
   m_Name: Zombie_Roadworker_Male_01
   m_TagString: Untagged
@@ -1300,6 +2366,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0013982058, y: 0.9039425, z: -0.041274726}
     m_Extent: {x: 1.0245618, y: 0.96695846, z: 0.2932071}
   m_DirtyAABB: 0
+--- !u!114 &3425104362331867499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7055960465305907100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7055968975947428084
 GameObject:
   m_ObjectHideFlags: 0
@@ -1342,6 +2420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054754617861416940}
   - component: {fileID: 6917743892262787186}
+  - component: {fileID: 4274302288185550569}
   m_Layer: 6
   m_Name: Zombie_Bellboy_Male_01
   m_TagString: Untagged
@@ -1467,6 +2546,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0000010728836, y: 0.8709697, z: -0.05633028}
     m_Extent: {x: 1.0245606, y: 0.9690748, z: 0.27961087}
   m_DirtyAABB: 0
+--- !u!114 &4274302288185550569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7055979559238978866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056028282134458714
 GameObject:
   m_ObjectHideFlags: 0
@@ -1543,6 +2634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054736907251304026}
   - component: {fileID: 6917824742010678778}
+  - component: {fileID: 7200064071677255600}
   m_Layer: 6
   m_Name: Zombie_Diver_Male_01
   m_TagString: Untagged
@@ -1668,6 +2760,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000000059604645, y: 0.8309231, z: -0.0026285201}
     m_Extent: {x: 1.0245616, y: 1.011824, z: 0.32951927}
   m_DirtyAABB: 0
+--- !u!114 &7200064071677255600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056035499991797458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056038443212363142
 GameObject:
   m_ObjectHideFlags: 0
@@ -1710,6 +2814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054602214180829240}
   - component: {fileID: 6917948238458211992}
+  - component: {fileID: 7484001930527164903}
   m_Layer: 6
   m_Name: Zombie_Jacket_Female_01
   m_TagString: Untagged
@@ -1835,6 +2940,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.008365154, y: 0.84712285, z: -0.061930478}
     m_Extent: {x: 1.0295683, y: 0.96141595, z: 0.26370487}
   m_DirtyAABB: 0
+--- !u!114 &7484001930527164903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056053150519661856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056054413140246074
 GameObject:
   m_ObjectHideFlags: 0
@@ -1909,6 +3026,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054859523156980996}
   - component: {fileID: 6918052275113431804}
+  - component: {fileID: 7449995168633077583}
   m_Layer: 6
   m_Name: Zombie_Gangster_Male_01
   m_TagString: Untagged
@@ -2034,6 +3152,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0000011324883, y: 0.8707578, z: -0.031837583}
     m_Extent: {x: 1.0245614, y: 0.97511446, z: 0.25866607}
   m_DirtyAABB: 0
+--- !u!114 &7449995168633077583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056078618745955572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056085112279614826
 GameObject:
   m_ObjectHideFlags: 0
@@ -2044,6 +3174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054763482580121626}
   - component: {fileID: 6917981083369616020}
+  - component: {fileID: 1904359750962519299}
   m_Layer: 6
   m_Name: Zombie_Hoodie_Male_01
   m_TagString: Untagged
@@ -2169,6 +3300,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000000059604645, y: 0.8551386, z: -0.07861956}
     m_Extent: {x: 1.02456, y: 0.956232, z: 0.27374926}
   m_DirtyAABB: 0
+--- !u!114 &1904359750962519299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056085112279614826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056095115532512642
 GameObject:
   m_ObjectHideFlags: 0
@@ -2179,6 +3322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054572963229223628}
   - component: {fileID: 6917728429879454094}
+  - component: {fileID: 2283009950710079369}
   m_Layer: 6
   m_Name: Zombie_Grandpa_Male_01
   m_TagString: Untagged
@@ -2304,6 +3448,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0000005364418, y: 0.8536799, z: -0.05001469}
     m_Extent: {x: 1.0245619, y: 0.95463395, z: 0.27124637}
   m_DirtyAABB: 0
+--- !u!114 &2283009950710079369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056095115532512642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056097147386434220
 GameObject:
   m_ObjectHideFlags: 0
@@ -2314,6 +3470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059454043214793672}
   - component: {fileID: 6917579596158568948}
+  - component: {fileID: 5646047568224677142}
   m_Layer: 6
   m_Name: Zombie_Firefighter_Male_01
   m_TagString: Untagged
@@ -2439,6 +3596,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0000012516975, y: 0.8871802, z: -0.056825653}
     m_Extent: {x: 1.0245605, y: 0.99305403, z: 0.30242777}
   m_DirtyAABB: 0
+--- !u!114 &5646047568224677142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056097147386434220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056105977306283574
 GameObject:
   m_ObjectHideFlags: 0
@@ -2552,6 +3721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054858901177420454}
   - component: {fileID: 6917679482936970900}
+  - component: {fileID: 1046883115143188478}
   m_Layer: 6
   m_Name: Zombie_Biker_Male_01
   m_TagString: Untagged
@@ -2677,6 +3847,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0000009536743, y: 0.8666966, z: -0.031073213}
     m_Extent: {x: 1.0245591, y: 0.96764326, z: 0.2912987}
   m_DirtyAABB: 0
+--- !u!114 &1046883115143188478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056111553696182934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056113020816600364
 GameObject:
   m_ObjectHideFlags: 0
@@ -2718,6 +3900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059726368972700630}
   - component: {fileID: 6917577790163957518}
+  - component: {fileID: 9005912807506785088}
   m_Layer: 6
   m_Name: Zombie_Paramedic_Female_01
   m_TagString: Untagged
@@ -2843,6 +4026,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00005966425, y: 0.8648151, z: -0.030372754}
     m_Extent: {x: 1.0212102, y: 0.96761703, z: 0.20725058}
   m_DirtyAABB: 0
+--- !u!114 &9005912807506785088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056113134004135866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056119204112825152
 GameObject:
   m_ObjectHideFlags: 0
@@ -2885,6 +4080,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054642077423780350}
   - component: {fileID: 6921843429587556166}
+  - component: {fileID: 4934484732541097605}
   m_Layer: 6
   m_Name: Zombie_BusinessShirt_Male_01
   m_TagString: Untagged
@@ -3010,6 +4206,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000000059604645, y: 0.8633062, z: -0.065105505}
     m_Extent: {x: 1.0245593, y: 0.9614113, z: 0.2684757}
   m_DirtyAABB: 0
+--- !u!114 &4934484732541097605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056120409549622128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056134661528893028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3020,6 +4228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059720853810703786}
   - component: {fileID: 6921892810145073466}
+  - component: {fileID: 1136900028269422260}
   m_Layer: 6
   m_Name: Zombie_ShopKeeper_Male_01
   m_TagString: Untagged
@@ -3145,6 +4354,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.00000035762787, y: 0.8617839, z: -0.029551536}
     m_Extent: {x: 1.0245618, y: 0.9639643, z: 0.24078664}
   m_DirtyAABB: 0
+--- !u!114 &1136900028269422260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056134661528893028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056152149455850852
 GameObject:
   m_ObjectHideFlags: 0
@@ -3155,6 +4376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054876139250841890}
   - component: {fileID: 6917895284203447988}
+  - component: {fileID: 5206814003713775065}
   m_Layer: 6
   m_Name: Zombie_Military_Male_01
   m_TagString: Untagged
@@ -3280,6 +4502,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000002503395, y: 0.8600756, z: -0.05076456}
     m_Extent: {x: 1.0245622, y: 0.958189, z: 0.27500698}
   m_DirtyAABB: 0
+--- !u!114 &5206814003713775065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056152149455850852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056179043491740954
 GameObject:
   m_ObjectHideFlags: 0
@@ -3290,6 +4524,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059469055855429880}
   - component: {fileID: 6917813662228859798}
+  - component: {fileID: 7167738247177041694}
   m_Layer: 6
   m_Name: Zombie_Mother_Female_02
   m_TagString: Untagged
@@ -3415,6 +4650,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0000030994415, y: 0.8422094, z: -0.0557539}
     m_Extent: {x: 1.0212036, y: 0.9605785, z: 0.23296092}
   m_DirtyAABB: 0
+--- !u!114 &7167738247177041694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056179043491740954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056187150785257980
 GameObject:
   m_ObjectHideFlags: 0
@@ -3425,6 +4672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059620282808719662}
   - component: {fileID: 6921917256566430550}
+  - component: {fileID: 8806558825427231779}
   m_Layer: 6
   m_Name: Zombie_Punk_Male_01
   m_TagString: Untagged
@@ -3550,6 +4798,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0000006556511, y: 0.9649468, z: -0.04684581}
     m_Extent: {x: 1.0245609, y: 1.0659006, z: 0.2941386}
   m_DirtyAABB: 0
+--- !u!114 &8806558825427231779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056187150785257980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056188128815772052
 GameObject:
   m_ObjectHideFlags: 0
@@ -3560,6 +4820,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059932466760846448}
   - component: {fileID: 6917876830505911496}
+  - component: {fileID: 730286150829839137}
   m_Layer: 6
   m_Name: Zombie_Businessman_Male_01
   m_TagString: Untagged
@@ -3685,6 +4946,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000000059604645, y: 0.8749251, z: -0.052453183}
     m_Extent: {x: 1.024559, y: 0.97303015, z: 0.28074017}
   m_DirtyAABB: 0
+--- !u!114 &730286150829839137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056188128815772052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056208297163917532
 GameObject:
   m_ObjectHideFlags: 0
@@ -3727,6 +5000,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054690246012801810}
   - component: {fileID: 6922022102982728908}
+  - component: {fileID: 6565408779751972241}
   m_Layer: 6
   m_Name: Zombie_SummerGirl_Female_01
   m_TagString: Untagged
@@ -3852,6 +5126,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0006210804, y: 0.85945916, z: 0.006226197}
     m_Extent: {x: 1.0219103, y: 0.96411824, z: 0.26297814}
   m_DirtyAABB: 0
+--- !u!114 &6565408779751972241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056237385734532008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056254428763921182
 GameObject:
   m_ObjectHideFlags: 0
@@ -3893,6 +5179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059924520470350264}
   - component: {fileID: 6917850497229313066}
+  - component: {fileID: 4160300202580032526}
   m_Layer: 6
   m_Name: Zombie_Underwear_Female_01
   m_TagString: Untagged
@@ -4018,6 +5305,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000000059604645, y: 0.85102224, z: -0.024380289}
     m_Extent: {x: 1.0192196, y: 0.94768286, z: 0.1862604}
   m_DirtyAABB: 0
+--- !u!114 &4160300202580032526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056258077274308530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056267823610716920
 GameObject:
   m_ObjectHideFlags: 0
@@ -4091,6 +5390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059950421421213668}
   - component: {fileID: 6922006005120249222}
+  - component: {fileID: 8181463049308605267}
   m_Layer: 6
   m_Name: Zombie_Punk_Female_01
   m_TagString: Untagged
@@ -4216,6 +5516,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.00000071525574, y: 0.8672102, z: -0.0070779473}
     m_Extent: {x: 1.0212886, y: 0.9723726, z: 0.18408628}
   m_DirtyAABB: 0
+--- !u!114 &8181463049308605267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056308435820027246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056312516505800600
 GameObject:
   m_ObjectHideFlags: 0
@@ -4480,6 +5792,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059889904189666146}
   - component: {fileID: 6917963687954241158}
+  - component: {fileID: 1829797190803106218}
   m_Layer: 6
   m_Name: Zombie_SchoolBoy_Male_01
   m_TagString: Untagged
@@ -4605,6 +5918,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000000059604645, y: 0.8672339, z: -0.018249363}
     m_Extent: {x: 1.0245616, y: 0.96941423, z: 0.2380076}
   m_DirtyAABB: 0
+--- !u!114 &1829797190803106218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056398644038177280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056398731855809614
 GameObject:
   m_ObjectHideFlags: 0
@@ -4773,6 +6098,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059500628688088488}
   - component: {fileID: 6922005696940643264}
+  - component: {fileID: 9164526687334872144}
   m_Layer: 6
   m_Name: Zombie_Grandma_Female_01
   m_TagString: Untagged
@@ -4898,6 +6224,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0002900362, y: 0.8643121, z: -0.028963424}
     m_Extent: {x: 1.0221575, y: 0.9775941, z: 0.21287754}
   m_DirtyAABB: 0
+--- !u!114 &9164526687334872144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056412679908107770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056424718047387488
 GameObject:
   m_ObjectHideFlags: 0
@@ -4908,6 +6246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054684394365215150}
   - component: {fileID: 6921878584622900094}
+  - component: {fileID: 4930332742761645800}
   m_Layer: 6
   m_Name: Zombie_Son_Male_01
   m_TagString: Untagged
@@ -5033,6 +6372,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0000006556511, y: 0.8681336, z: -0.0150977075}
     m_Extent: {x: 1.0245624, y: 0.96935433, z: 0.26414928}
   m_DirtyAABB: 0
+--- !u!114 &4930332742761645800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056424718047387488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056447913550515502
 GameObject:
   m_ObjectHideFlags: 0
@@ -5106,6 +6457,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054412528239000802}
   - component: {fileID: 6921873859710366932}
+  - component: {fileID: 4011047817546815338}
   m_Layer: 6
   m_Name: Zombie_Coat_Female_01
   m_TagString: Untagged
@@ -5231,6 +6583,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0000011920929, y: 0.861858, z: -0.05371663}
     m_Extent: {x: 1.021203, y: 0.9599631, z: 0.250526}
   m_DirtyAABB: 0
+--- !u!114 &4011047817546815338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056468109240352642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056477262068715224
 GameObject:
   m_ObjectHideFlags: 0
@@ -5273,6 +6637,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059450245147643490}
   - component: {fileID: 6917964592705629106}
+  - component: {fileID: 3877681598016127202}
   m_Layer: 6
   m_Name: Zombie_Prisinor_Male_01
   m_TagString: Untagged
@@ -5398,6 +6763,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000009775162, y: 0.85448074, z: -0.058943845}
     m_Extent: {x: 1.0245531, y: 0.95557415, z: 0.25646943}
   m_DirtyAABB: 0
+--- !u!114 &3877681598016127202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056477884170231470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056487288760325580
 GameObject:
   m_ObjectHideFlags: 0
@@ -5536,6 +6913,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059438634973653216}
   - component: {fileID: 6917667675315992488}
+  - component: {fileID: 3903916660023466702}
   m_Layer: 6
   m_Name: Zombie_Mother_Female_01
   m_TagString: Untagged
@@ -5661,6 +7039,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0000010728836, y: 0.8664693, z: -0.02248633}
     m_Extent: {x: 1.0212042, y: 0.9848384, z: 0.2334263}
   m_DirtyAABB: 0
+--- !u!114 &3903916660023466702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056526451712550648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056528592540597122
 GameObject:
   m_ObjectHideFlags: 0
@@ -5671,6 +7061,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054887979429222386}
   - component: {fileID: 6918187387597053344}
+  - component: {fileID: 3429746024672797747}
   m_Layer: 6
   m_Name: Zombie_Jock_Male_01
   m_TagString: Untagged
@@ -5796,6 +7187,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000000059604645, y: 0.867645, z: -0.06539926}
     m_Extent: {x: 1.0245576, y: 0.9694756, z: 0.28170878}
   m_DirtyAABB: 0
+--- !u!114 &3429746024672797747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056528592540597122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056535916664386948
 GameObject:
   m_ObjectHideFlags: 0
@@ -5806,6 +7209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059589039630142532}
   - component: {fileID: 6917969578267607570}
+  - component: {fileID: 2954030338414655080}
   m_Layer: 6
   m_Name: Zombie_HotDogSuit_Male_01
   m_TagString: Untagged
@@ -5931,6 +7335,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0000006556511, y: 0.9286239, z: -0.07764539}
     m_Extent: {x: 1.0245595, y: 1.027046, z: 0.35833246}
   m_DirtyAABB: 0
+--- !u!114 &2954030338414655080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056535916664386948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056539673116370164
 GameObject:
   m_ObjectHideFlags: 0
@@ -5972,6 +7388,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054875302951092522}
   - component: {fileID: 6917657650384669152}
+  - component: {fileID: 3779690353015849636}
   m_Layer: 6
   m_Name: Zombie_Police_Female_01
   m_TagString: Untagged
@@ -6097,6 +7514,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000000059604645, y: 0.8727193, z: -0.0670833}
     m_Extent: {x: 1.0212042, y: 0.97147655, z: 0.26125905}
   m_DirtyAABB: 0
+--- !u!114 &3779690353015849636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056542525578100168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056544300285425020
 GameObject:
   m_ObjectHideFlags: 0
@@ -6107,6 +7536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059791078645706472}
   - component: {fileID: 6917968925192222782}
+  - component: {fileID: 3921627329709048909}
   m_Layer: 6
   m_Name: Zombie_BioHazardSuit_Male_01
   m_TagString: Untagged
@@ -6232,6 +7662,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.8907193, z: -0.054586552}
     m_Extent: {x: 1.0245618, y: 0.9918127, z: 0.28943938}
   m_DirtyAABB: 0
+--- !u!114 &3921627329709048909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056544300285425020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056561475083171272
 GameObject:
   m_ObjectHideFlags: 0
@@ -6242,6 +7684,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059719416077613998}
   - component: {fileID: 6921883610517794842}
+  - component: {fileID: 5453848213366012842}
   m_Layer: 6
   m_Name: Zombie_Father_Male_02
   m_TagString: Untagged
@@ -6367,6 +7810,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000000059604645, y: 0.8588844, z: -0.018711463}
     m_Extent: {x: 1.0245616, y: 0.960074, z: 0.2860273}
   m_DirtyAABB: 0
+--- !u!114 &5453848213366012842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056561475083171272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056564814700702436
 GameObject:
   m_ObjectHideFlags: 0
@@ -6440,6 +7895,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059917392187362036}
   - component: {fileID: 6917749113625415028}
+  - component: {fileID: 4230337645983486116}
   m_Layer: 6
   m_Name: Zombie_Hipster_Male_01
   m_TagString: Untagged
@@ -6565,6 +8021,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0000014901161, y: 0.86671114, z: -0.06375365}
     m_Extent: {x: 1.0245619, y: 0.97737336, z: 0.25608867}
   m_DirtyAABB: 0
+--- !u!114 &4230337645983486116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056593223482362284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056609861513694542
 GameObject:
   m_ObjectHideFlags: 0
@@ -6575,6 +8043,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059454479361600368}
   - component: {fileID: 6917979511925951880}
+  - component: {fileID: 6653753553566603409}
   m_Layer: 6
   m_Name: Zombie_Footballer_Male_01
   m_TagString: Untagged
@@ -6700,6 +8169,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000000059604645, y: 0.86579156, z: -0.04348553}
     m_Extent: {x: 1.0245616, y: 0.966885, z: 0.27209595}
   m_DirtyAABB: 0
+--- !u!114 &6653753553566603409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056609861513694542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056613305183683196
 GameObject:
   m_ObjectHideFlags: 0
@@ -6710,6 +8191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059620416015493616}
   - component: {fileID: 6917696899838350972}
+  - component: {fileID: 4820104970763817942}
   m_Layer: 6
   m_Name: Zombie_Hipster_Female_01
   m_TagString: Untagged
@@ -6835,6 +8317,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0005655885, y: 0.8797956, z: -0.041718274}
     m_Extent: {x: 1.0219107, y: 0.98099154, z: 0.22400343}
   m_DirtyAABB: 0
+--- !u!114 &4820104970763817942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056613305183683196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056621824283959220
 GameObject:
   m_ObjectHideFlags: 0
@@ -6845,6 +8339,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054669838700562438}
   - component: {fileID: 6917997530945270672}
+  - component: {fileID: 583223214760201422}
   m_Layer: 6
   m_Name: Zombie_Business_Female_01
   m_TagString: Untagged
@@ -6970,6 +8465,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0000006556511, y: 0.86576533, z: -0.046856247}
     m_Extent: {x: 1.0212042, y: 0.9584112, z: 0.2545382}
   m_DirtyAABB: 0
+--- !u!114 &583223214760201422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056621824283959220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056663581293473642
 GameObject:
   m_ObjectHideFlags: 0
@@ -6980,6 +8487,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054623978714378484}
   - component: {fileID: 6917570746392517724}
+  - component: {fileID: 5588242170260252475}
   m_Layer: 6
   m_Name: Zombie_Father_Male_01
   m_TagString: Untagged
@@ -7105,6 +8613,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000000059604645, y: 0.8628936, z: -0.0372051}
     m_Extent: {x: 1.0245616, y: 0.96665716, z: 0.26662716}
   m_DirtyAABB: 0
+--- !u!114 &5588242170260252475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056663581293473642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056666162936370466
 GameObject:
   m_ObjectHideFlags: 0
@@ -7115,6 +8635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054741427171776768}
   - component: {fileID: 6917598479660666752}
+  - component: {fileID: 1100145084119308547}
   m_Layer: 6
   m_Name: Zombie_GamerGirl_Female_01
   m_TagString: Untagged
@@ -7240,6 +8761,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00056540966, y: 0.881389, z: -0.027481169}
     m_Extent: {x: 1.0219108, y: 0.97898054, z: 0.21215367}
   m_DirtyAABB: 0
+--- !u!114 &1100145084119308547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056666162936370466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056696098839584500
 GameObject:
   m_ObjectHideFlags: 0
@@ -7282,6 +8815,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059413602280917078}
   - component: {fileID: 6918189503951905982}
+  - component: {fileID: 6330144906394881256}
   m_Layer: 6
   m_Name: Zombie_ShopKeeper_Female_01
   m_TagString: Untagged
@@ -7407,6 +8941,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.00000023841858, y: 0.88342756, z: -0.03423409}
     m_Extent: {x: 1.0212882, y: 0.98808664, z: 0.2102765}
   m_DirtyAABB: 0
+--- !u!114 &6330144906394881256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056705073617165178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056718278966881820
 GameObject:
   m_ObjectHideFlags: 0
@@ -7417,6 +8963,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054350772119706888}
   - component: {fileID: 6917711199483882574}
+  - component: {fileID: 3345272221545690687}
   m_Layer: 6
   m_Name: Zombie_Tourist_Male_01
   m_TagString: Untagged
@@ -7542,6 +9089,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0000013113022, y: 0.88120085, z: -0.025646895}
     m_Extent: {x: 1.0245614, y: 0.98496443, z: 0.31802678}
   m_DirtyAABB: 0
+--- !u!114 &3345272221545690687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056718278966881820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056720381905194252
 GameObject:
   m_ObjectHideFlags: 0
@@ -7552,6 +9111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059889851692208474}
   - component: {fileID: 6921879233698458550}
+  - component: {fileID: 1272670623470498501}
   m_Layer: 6
   m_Name: Zombie_RiotCop_Male_01
   m_TagString: Untagged
@@ -7677,6 +9237,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0000022053719, y: 0.8661594, z: -0.072726354}
     m_Extent: {x: 1.0245602, y: 0.96725565, z: 0.2739035}
   m_DirtyAABB: 0
+--- !u!114 &1272670623470498501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056720381905194252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056734473524533728
 GameObject:
   m_ObjectHideFlags: 0
@@ -7784,6 +9356,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054812945374250528}
   - component: {fileID: 6917844054831583218}
+  - component: {fileID: 2113516229286572495}
   m_Layer: 6
   m_Name: Zombie_Hobo_Male_01
   m_TagString: Untagged
@@ -7909,6 +9482,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0000004172325, y: 0.87291247, z: -0.046375617}
     m_Extent: {x: 1.0245585, y: 0.97385913, z: 0.31776613}
   m_DirtyAABB: 0
+--- !u!114 &2113516229286572495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056779846477802364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056780943535105146
 GameObject:
   m_ObjectHideFlags: 0
@@ -7985,6 +9570,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059583728615229900}
   - component: {fileID: 6918068314488593096}
+  - component: {fileID: 7951118567938358366}
   m_Layer: 6
   m_Name: Zombie_FastfoodWorker_Male_01
   m_TagString: Untagged
@@ -8110,6 +9696,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.00000071525574, y: 0.89914477, z: -0.040284768}
     m_Extent: {x: 1.0245595, y: 1.0059437, z: 0.2968802}
   m_DirtyAABB: 0
+--- !u!114 &7951118567938358366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056801473513494648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056809499454696198
 GameObject:
   m_ObjectHideFlags: 0
@@ -8120,6 +9718,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054473959005607674}
   - component: {fileID: 6917752402591605562}
+  - component: {fileID: 3145332898733431572}
   m_Layer: 6
   m_Name: Zombie_Clown_Male_01
   m_TagString: Untagged
@@ -8245,6 +9844,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0000005364418, y: 0.8790802, z: -0.06587259}
     m_Extent: {x: 1.0245616, y: 0.9902586, z: 0.28054982}
   m_DirtyAABB: 0
+--- !u!114 &3145332898733431572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056809499454696198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056812244391120800
 GameObject:
   m_ObjectHideFlags: 0
@@ -8255,6 +9866,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054743668471697976}
   - component: {fileID: 6921787311732437786}
+  - component: {fileID: 8751598665219667978}
   m_Layer: 6
   m_Name: Zombie_Cheerleader_Female_01
   m_TagString: Untagged
@@ -8380,6 +9992,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.00000035762787, y: 0.86976415, z: -0.030808568}
     m_Extent: {x: 1.021204, y: 0.96616477, z: 0.22604132}
   m_DirtyAABB: 0
+--- !u!114 &8751598665219667978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056812244391120800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056812915993762864
 GameObject:
   m_ObjectHideFlags: 0
@@ -8520,6 +10144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054681730416324958}
   - component: {fileID: 6917924915014918240}
+  - component: {fileID: 970913714233625057}
   m_Layer: 6
   m_Name: Zombie_Daughter_Female_01
   m_TagString: Untagged
@@ -8645,6 +10270,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.8683889, z: -0.04475385}
     m_Extent: {x: 1.0212042, y: 0.97069657, z: 0.22818255}
   m_DirtyAABB: 0
+--- !u!114 &970913714233625057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056851639379216418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056966626829955646
 GameObject:
   m_ObjectHideFlags: 0
@@ -8687,6 +10324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054499811532413688}
   - component: {fileID: 6918071412166292182}
+  - component: {fileID: 943014581885143935}
   m_Layer: 6
   m_Name: Zombie_Patient_Female_01
   m_TagString: Untagged
@@ -8812,6 +10450,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.8499973, z: -0.075102255}
     m_Extent: {x: 1.0212042, y: 0.9466579, z: 0.25352263}
   m_DirtyAABB: 0
+--- !u!114 &943014581885143935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056972988095440094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7056997647207900578
 GameObject:
   m_ObjectHideFlags: 0
@@ -8855,6 +10505,7 @@ GameObject:
   - component: {fileID: 7058262927553150061}
   - component: {fileID: 7058262927553952845}
   - component: {fileID: 7058262927554920077}
+  - component: {fileID: 1161490390910183547}
   m_Layer: 7
   m_Name: Arrow
   m_TagString: Untagged
@@ -8927,6 +10578,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1161490390910183547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7058262927552979021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7391014889441583574
 GameObject:
   m_ObjectHideFlags: 0
@@ -9016,6 +10679,7 @@ GameObject:
   - component: {fileID: 7095966601663989563}
   - component: {fileID: 2214834795720792695}
   - component: {fileID: 5057773301812838926}
+  - component: {fileID: 8278526820186020226}
   m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
@@ -9101,6 +10765,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8278526820186020226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8497242697342995225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8879274551454591986
 GameObject:
   m_ObjectHideFlags: 0
@@ -9177,3 +10853,70 @@ MonoBehaviour:
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1001 &413691185720285472
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 854636299585195030}
+    m_Modifications:
+    - target: {fileID: 1717238288108759937, guid: 59e71a5f8dc9a4c44805b62b3ec6ff43, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717238288108759937, guid: 59e71a5f8dc9a4c44805b62b3ec6ff43, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717238288108759937, guid: 59e71a5f8dc9a4c44805b62b3ec6ff43, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717238288108759937, guid: 59e71a5f8dc9a4c44805b62b3ec6ff43, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717238288108759937, guid: 59e71a5f8dc9a4c44805b62b3ec6ff43, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717238288108759937, guid: 59e71a5f8dc9a4c44805b62b3ec6ff43, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717238288108759937, guid: 59e71a5f8dc9a4c44805b62b3ec6ff43, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717238288108759937, guid: 59e71a5f8dc9a4c44805b62b3ec6ff43, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717238288108759937, guid: 59e71a5f8dc9a4c44805b62b3ec6ff43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717238288108759937, guid: 59e71a5f8dc9a4c44805b62b3ec6ff43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717238288108759937, guid: 59e71a5f8dc9a4c44805b62b3ec6ff43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147779842245494025, guid: 59e71a5f8dc9a4c44805b62b3ec6ff43, type: 3}
+      propertyPath: m_Name
+      value: Coins Prefab
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 59e71a5f8dc9a4c44805b62b3ec6ff43, type: 3}
+--- !u!4 &1326700343454429857 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1717238288108759937, guid: 59e71a5f8dc9a4c44805b62b3ec6ff43, type: 3}
+  m_PrefabInstance: {fileID: 413691185720285472}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1366609379001912582 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1678314392958080038, guid: 59e71a5f8dc9a4c44805b62b3ec6ff43, type: 3}
+  m_PrefabInstance: {fileID: 413691185720285472}
+  m_PrefabAsset: {fileID: 0}

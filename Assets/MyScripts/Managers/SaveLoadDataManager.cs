@@ -3,49 +3,107 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Networking;
 
 public class SaveLoadDataManager : MonoBehaviour
 {
     public SaveData saveData;
     public WeaponsData weaponsData;
+    public PlayerData playerData;
+
+    private string CheckPlayerExistLink = "http://skydomesoftware.usermd.net/HauntedMaze/HauntedMazeCheckUserExists.php";
+    private string GetPlayerLink = "http://skydomesoftware.usermd.net/HauntedMaze/HauntedMazeGetPlayerSave.php";
+    private string InsertPlayerLink = "http://skydomesoftware.usermd.net/HauntedMaze/HauntedMazeInsertNewPlayer.php";
+    private string UpdatePlayerLink = "http://skydomesoftware.usermd.net/HauntedMaze/HauntedMazeUpdatePlayerSave.php";
+
+
 
     public List<string> levelNames = new List<string>();
 
     public enum weaponUpgradeType { damage, clip, reloadTime }
+    public enum playerUpgradeType { hp, sprintTime, sprintReloadSpeed }
+
+    public UnityEvent OnDataLoaded;
+
     private void Start()
     {
         LoadData();
-        UpdateLevelList();
+        Invoke("UpdateLevelList", 0.15f);
+        Invoke("UpdateWeaponList", 0.25f);
     }
 
-    private void UpdateLevelList()
+
+
+
+
+
+    public void UpdateWeaponList()
+    {
+        foreach (Weapon weapon in weaponsData.weapons)
+        {
+            bool match = false;
+            foreach (WeaponDataUpgrades weaponDataUpgrade in saveData.upgrades.weaponDataUpgrades)
+            {
+                if (weaponDataUpgrade.weaponID != weapon.weaponID)
+                {
+                    Debug.Log("don't Match: " + weapon.weaponID + "/" + weaponDataUpgrade.weaponID);
+                    match = false;
+                }
+                else
+                {
+                    match = true;
+                    break;
+                }
+            }
+            if (match == false)
+            {
+                WeaponDataUpgrades newWeaponDataUpgrade = new WeaponDataUpgrades();
+                newWeaponDataUpgrade.weaponID = weapon.weaponID;
+                saveData.upgrades.weaponDataUpgrades.Add(newWeaponDataUpgrade);
+                Debug.Log("Added: " + weapon.weaponID);
+            }
+        }
+        SaveData();
+    }
+
+    public void UpdateLevelList()
     {
         foreach (string checkLevelName in levelNames)
         {
+            bool match = false;
             foreach (LevelData levelData in saveData.upgrades.levelData)
             {
-                if (levelData.levelName == checkLevelName)
+                if (levelData.levelName != checkLevelName)
                 {
-                    return;
+                    Debug.Log("don't Match: " + checkLevelName + "/" + levelData.levelName);
+                    match = false;
+                }
+                else
+                {
+                    match = true;
+                    break;
                 }
             }
-            LevelData newLevelData = new LevelData();
-            newLevelData.levelName = checkLevelName;
-            saveData.upgrades.levelData.Add(newLevelData);
+            if (match == false)
+            {
+                LevelData newLevelData = new LevelData();
+                newLevelData.levelName = checkLevelName;
+                saveData.upgrades.levelData.Add(newLevelData);
+                Debug.Log("Added: " + checkLevelName);
+            }
         }
         SaveData();
     }
 
 
 
-    public bool CheckEnoughCoins(float value, bool takeCoins = false)
+    public bool CheckEnoughCoins(double value, bool takeCoins = false)
     {
         if (value > GetCoins())
         {
-            Debug.Log($"don't have enouth Coins  Coins: {GetCoins()}  value: {value}");
             return false;
         }
-        Debug.Log($"You have enouth Coins  Coins: {GetCoins()}  value: {value}");
         if (takeCoins)
         {
             TakeCoins(value);
@@ -53,27 +111,27 @@ public class SaveLoadDataManager : MonoBehaviour
         return true;
     }
 
-    public float GetCoins()
+    public double GetCoins()
     {
         LoadData();
         return saveData.stats.coinsAmount;
     }
 
-    public void TakeCoins(float value)
+    public void TakeCoins(double value)
     {
         LoadData();
         saveData.stats.coinsAmount -= value;
         SaveData();
     }
 
-    public void AddCoins(float value)
+    public void AddCoins(double value)
     {
         LoadData();
         saveData.stats.coinsAmount += value;
         SaveData();
     }
 
-    public void SetCoins(float value)
+    public void SetCoins(double value)
     {
         LoadData();
         saveData.stats.coinsAmount = value;
@@ -110,6 +168,9 @@ public class SaveLoadDataManager : MonoBehaviour
         SaveData();
     }
 
+
+
+
     public int GetWeaponUpgradeLevel(int weaponID, weaponUpgradeType weaponUpgradeType)
     {
         LoadData();
@@ -126,7 +187,10 @@ public class SaveLoadDataManager : MonoBehaviour
         return 1;
     }
 
-    public float GetWeaponUpgradeCost(int weaponID, weaponUpgradeType weaponUpgradeType)
+
+
+
+    public double GetWeaponUpgradeCost(int weaponID, weaponUpgradeType weaponUpgradeType)
     {
         switch (weaponUpgradeType)
         {
@@ -140,20 +204,96 @@ public class SaveLoadDataManager : MonoBehaviour
         return 0;
     }
 
-    public float GetWeaponDamageValue(int weaponID)
+    public void SetPlayerUpgradeLevel(playerUpgradeType playerUpgradeType)
+    {
+        LoadData();
+
+        switch (playerUpgradeType)
+        {
+            case playerUpgradeType.hp:
+               saveData.upgrades.playerDataUpgrades.hpUpgradeLevel++;
+                break;
+            case playerUpgradeType.sprintTime:
+                saveData.upgrades.playerDataUpgrades.sprintTimeUpgradeLevel++;
+                break;
+            case playerUpgradeType.sprintReloadSpeed:
+                saveData.upgrades.playerDataUpgrades.sprintReloadSpeedUpgradeLevel++;
+                break;
+        }
+        SaveData();
+    }
+
+    public int GetPlayerUpgradeLevel(playerUpgradeType playerUpgradeType)
+    {
+        LoadData();
+
+        switch (playerUpgradeType)
+        {
+            case playerUpgradeType.hp:
+                return saveData.upgrades.playerDataUpgrades.hpUpgradeLevel;
+            case playerUpgradeType.sprintTime:
+                return saveData.upgrades.playerDataUpgrades.sprintTimeUpgradeLevel;
+            case playerUpgradeType.sprintReloadSpeed:
+                return saveData.upgrades.playerDataUpgrades.sprintReloadSpeedUpgradeLevel;
+        }
+        return 1;
+    }
+
+    public double GetPlayerUpgradeCost(playerUpgradeType playerUpgradeType)
+    {
+        LoadData();
+
+        switch (playerUpgradeType)
+        {
+            case playerUpgradeType.hp:
+                return playerData.hpUpgradeCost[GetPlayerUpgradeLevel(playerUpgradeType) + 1];
+            case playerUpgradeType.sprintTime:
+                return playerData.sprintTimeUpgradeCost[GetPlayerUpgradeLevel(playerUpgradeType) + 1];
+            case playerUpgradeType.sprintReloadSpeed:
+                return playerData.sprintReloadSpeedUpgradeCost[GetPlayerUpgradeLevel(playerUpgradeType) + 1];
+        }
+        return 1;
+    }
+
+
+
+    public double GetWeaponDamageValue(int weaponID)
     {
         return weaponsData.weapons[weaponID].damageValue[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.damage)];
     }
 
-    public float GetWeaponClipValue(int weaponID)
+    public double GetWeaponClipValue(int weaponID)
     {
         return weaponsData.weapons[weaponID].clipValue[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.clip)];
     }
 
-    public float GetWeaponRealoadTime(int weaponID)
+    public double GetWeaponRealoadTime(int weaponID)
     {
         return weaponsData.weapons[weaponID].reloadTimeValue[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.reloadTime)];
     }
+
+    public double GetPlayerHpValue()
+    {
+        return playerData.hpValue[GetPlayerUpgradeLevel(playerUpgradeType.hp)];
+    }
+
+    public double GetPlayerSprintTimeValue()
+    {
+        return playerData.sprintTimeValue[GetPlayerUpgradeLevel(playerUpgradeType.sprintTime)];
+    }
+
+    public double GetPlayerSprintReloadSpeedValue()
+    {
+        return playerData.sprintReloadSpeedValue[GetPlayerUpgradeLevel(playerUpgradeType.sprintReloadSpeed)];
+    }
+
+
+
+
+
+
+
+
 
     public int GetLevelPrestigeLevel(string levelName)
     {
@@ -216,16 +356,11 @@ public class SaveLoadDataManager : MonoBehaviour
         string messagepath = Path.Combine(subDir, "SaveData" + ".json");
         string jsonSaveString = JsonUtility.ToJson(saveData);
         File.WriteAllText(messagepath, jsonSaveString);
+        StartCoroutine(UpdatePlayerData(output => { }));
     }
 
     public void SaveDataWithDefault()
     {
-        WeaponDataUpgrades weaponDataUpgrades = new WeaponDataUpgrades();
-        LevelData levelData = new LevelData();
-        saveData.upgrades.weaponDataUpgrades.Add(weaponDataUpgrades);
-        saveData.upgrades.levelData.Add(levelData);
-
-
         string subDir = Path.Combine(Application.persistentDataPath, "Saves", "Data");
         Directory.CreateDirectory(subDir);
         string messagepath = Path.Combine(subDir, "SaveData" + ".json");
@@ -258,5 +393,115 @@ public class SaveLoadDataManager : MonoBehaviour
         PlayerPrefs.DeleteAll();
         string subDir = Path.Combine(Application.persistentDataPath);
         if (Directory.Exists(subDir)) { Directory.Delete(subDir, true); }
+    }
+
+
+    public IEnumerator CheckPlayerExist(System.Action<string> onMessageReceived)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("TableName", "HauntedMazePlayer");
+        form.AddField("PlayerName", PlayerPrefs.GetString("NickName"));
+        form.AddField("Save", JsonUtility.ToJson(saveData));
+        UnityWebRequest www = UnityWebRequest.Post(CheckPlayerExistLink, form);
+        yield return www.SendWebRequest();
+
+        if (www.isNetworkError || www.isHttpError)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            if (onMessageReceived != null)
+            {
+                onMessageReceived(www.downloadHandler.text);
+                string message = www.downloadHandler.text;
+                if (message == "true")
+                {
+                    StartCoroutine(DownloadPlayerData(output => { }));
+                }
+                else
+                {
+                    StartCoroutine(InsertNewPlayerData(output => { }));
+                }
+            }
+        }
+    }
+
+
+    public IEnumerator InsertNewPlayerData(System.Action<string> onMessageReceived)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("TableName", "HauntedMazePlayer");
+        form.AddField("PlayerName", PlayerPrefs.GetString("NickName"));
+        form.AddField("Save", JsonUtility.ToJson(saveData));
+        UnityWebRequest www = UnityWebRequest.Post(InsertPlayerLink, form);
+        yield return www.SendWebRequest();
+
+        if (www.isNetworkError || www.isHttpError)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            if (onMessageReceived != null)
+            {
+                onMessageReceived(www.downloadHandler.text);
+                string message = www.downloadHandler.text;
+                Debug.Log(message);
+            }
+        }
+    }
+
+    public IEnumerator UpdatePlayerData(System.Action<string> onMessageReceived)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("TableName", "HauntedMazePlayer");
+        form.AddField("PlayerName", PlayerPrefs.GetString("NickName"));
+        form.AddField("Save", JsonUtility.ToJson(saveData));
+        UnityWebRequest www = UnityWebRequest.Post(UpdatePlayerLink, form);
+        yield return www.SendWebRequest();
+
+        if (www.isNetworkError || www.isHttpError)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            if (onMessageReceived != null)
+            {
+                onMessageReceived(www.downloadHandler.text);
+                string message = www.downloadHandler.text;
+                Debug.Log(message);
+            }
+        }
+    }
+
+    public IEnumerator DownloadPlayerData(System.Action<string> onMessageReceived)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("TableName", "HauntedMazePlayer");
+        form.AddField("PlayerName", PlayerPrefs.GetString("NickName"));
+        form.AddField("Save", "Save");
+        UnityWebRequest www = UnityWebRequest.Post(GetPlayerLink, form);
+        yield return www.SendWebRequest();
+
+        if (www.isNetworkError || www.isHttpError)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            if (onMessageReceived != null)
+            {
+                onMessageReceived(www.downloadHandler.text);
+                string message = www.downloadHandler.text;
+                Debug.Log(message);
+                if (message != "0 results")
+                {
+                    saveData = JsonUtility.FromJson<SaveData>(message);
+                    SaveData();
+                }
+            }
+        }
     }
 }

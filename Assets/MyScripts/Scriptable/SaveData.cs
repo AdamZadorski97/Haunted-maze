@@ -15,7 +15,7 @@ public class SaveData
 [Serializable]
 public class Stats
 {
-    public float coinsAmount;
+    public Double coinsAmount;
 }
 
 [Serializable]
@@ -30,6 +30,7 @@ public class Settings
 public class Upgrades
 {
     public List<WeaponDataUpgrades> weaponDataUpgrades = new List<WeaponDataUpgrades>();
+    public PlayerDataUpgrades playerDataUpgrades;
     public List<LevelData> levelData = new List<LevelData>();
 }
 
@@ -43,6 +44,13 @@ public class WeaponDataUpgrades
     public int reloadTimeUpgradeLevel;
 }
 
+[Serializable]
+public class PlayerDataUpgrades
+{
+    public int hpUpgradeLevel;
+    public int sprintTimeUpgradeLevel;
+    public int sprintReloadSpeedUpgradeLevel;
+}
 
 [Serializable]
 public class LevelData
@@ -51,3 +59,4 @@ public class LevelData
     public int topScore;
     public int levelPrestigeLevel;
 }
+

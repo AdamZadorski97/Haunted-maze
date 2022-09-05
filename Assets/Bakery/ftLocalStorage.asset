@@ -15,4 +15,6 @@ MonoBehaviour:
   modifiedAssetPathList:
   - Assets/Bakery/examples/content/sponza/sponza.FBX
   - Assets/MyModels/MuseumAssets_01.fbx
-  modifiedAssetPaddingHash: d6a958ff3b3477f2
+  - Assets/ThirdParty Assets/PolygonHorrorMansion/Models/SM_Prop_Chest_01.fbx
+  - Assets/ThirdParty Assets/PolygonHorrorMansion/Models/SM_Bld_Base_Stairs_Ornate_Pillar_01.fbx
+  modifiedAssetPaddingHash: d6a958ff79a20a62ca5c9434de09ecc0

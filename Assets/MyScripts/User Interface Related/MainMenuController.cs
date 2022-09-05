@@ -9,6 +9,7 @@ public class MainMenuController : MonoBehaviour
     public GameObject ChooseLevel;
     public GameObject Options;
     public GameObject Shop;
+    public GameObject ShopPlayer;
     public GameObject LoginPanel;
     public AudioClip backToMenuAudioClip;
     public AudioClip choseLevelAudioClip;
@@ -23,9 +24,15 @@ public class MainMenuController : MonoBehaviour
     public TMP_InputField inputTextNickName;
     public SaveLoadDataManager saveLoadDataManager;
 
+    public GameObject weaponsParrent;
+    public GameObject charactersParrent;
 
     private void Start()
     {
+
+        Debug.Log(Formatter.IdleValue(100000000000));
+
+
         CheckNickname();
         if (PlayerPrefs.HasKey("ShouldOpenShop"))
         {
@@ -62,6 +69,7 @@ public class MainMenuController : MonoBehaviour
         ChooseLevel.SetActive(false);
         Options.SetActive(false);
         Shop.SetActive(false);
+        ShopPlayer.SetActive(false);
         audioSource.PlayOneShot(backToMenuAudioClip);
     }
 
@@ -73,6 +81,7 @@ public class MainMenuController : MonoBehaviour
         ChooseLevel.SetActive(false);
         Options.SetActive(true);
         Shop.SetActive(false);
+        ShopPlayer.SetActive(false);
         audioSource.PlayOneShot(optionsAudioClip);
     }
 
@@ -82,15 +91,32 @@ public class MainMenuController : MonoBehaviour
         ChooseLevel.SetActive(true);
         Options.SetActive(false);
         Shop.SetActive(false);
+        ShopPlayer.SetActive(false);
+        audioSource.PlayOneShot(choseLevelAudioClip);
+    }
+
+    public void OpenShopPlayer()
+    {
+        weaponsParrent.SetActive(false);
+        charactersParrent.SetActive(true);
+        MainMenu.SetActive(false);
+        ChooseLevel.SetActive(false);
+        Options.SetActive(false);
+        Shop.SetActive(false);
+        ShopPlayer.SetActive(true);
+        shopController.UpdateShopItemValues();
         audioSource.PlayOneShot(choseLevelAudioClip);
     }
 
     public void OpenShop()
     {
+        weaponsParrent.SetActive(true);
+        charactersParrent.SetActive(false);
         MainMenu.SetActive(false);
         ChooseLevel.SetActive(false);
         Options.SetActive(false);
         Shop.SetActive(true);
+        ShopPlayer.SetActive(false);
         shopController.UpdateShopItemValues();
         audioSource.PlayOneShot(choseLevelAudioClip);
     }
@@ -106,6 +132,7 @@ public class MainMenuController : MonoBehaviour
         if (inputTextNickName.text != "")
         {
             PlayerPrefs.SetString("NickName", inputTextNickName.text);
+            saveLoadDataManager.StartCoroutine(saveLoadDataManager.CheckPlayerExist(output => { }));
             LoginPanel.SetActive(false);
         }
     }
@@ -114,11 +141,11 @@ public class MainMenuController : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("NickName"))
         {
+            saveLoadDataManager.StartCoroutine(saveLoadDataManager.CheckPlayerExist(output => { }));
             return;
         }
         else
         {
-            saveLoadDataManager.SetQualitySettings(1);
             LoginPanel.SetActive(true);
         }
     }

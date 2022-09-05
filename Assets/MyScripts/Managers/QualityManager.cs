@@ -59,19 +59,19 @@ public class QualityManager : MonoBehaviour
         {
             RenderSettings.fogEndDistance = 14;
             RenderSettings.fogStartDistance = 10;
-            myCamera.m_Lens.FarClipPlane = 10;
+            myCamera.m_Lens.FarClipPlane = 15;
         }
         if (currentQuality == Quality.Medium)
         {
             RenderSettings.fogEndDistance = 20;
             RenderSettings.fogStartDistance = 14;
-            myCamera.m_Lens.FarClipPlane = 15;
+            myCamera.m_Lens.FarClipPlane = 21;
         }
         if (currentQuality == Quality.High)
         {
-            RenderSettings.fogEndDistance = 20;
-            RenderSettings.fogStartDistance = 16;
-            myCamera.m_Lens.FarClipPlane = 20;
+            RenderSettings.fogEndDistance = 25;
+            RenderSettings.fogStartDistance = 20;
+            myCamera.m_Lens.FarClipPlane = 26;
         }
     }
 

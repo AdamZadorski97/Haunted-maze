@@ -8,7 +8,6 @@ public class LevelManager : MonoSingleton<LevelManager>
     public static LevelManager _Instance { get; private set; }
 
     public List<FloorController> floorControllers = new List<FloorController>();
-    public List<WallController> wallControllers = new List<WallController>();
     public List<PickablePoint> pickablePoints = new List<PickablePoint>();
     public EnemySpawnerController enemySpawner;
    
@@ -30,7 +29,6 @@ public class LevelManager : MonoSingleton<LevelManager>
     private void Awake()
     {
         floorControllers = GameObject.FindObjectsOfType<FloorController>().ToList();
-        wallControllers = GameObject.FindObjectsOfType<WallController>().ToList();
         pickablePoints = GameObject.FindObjectsOfType<PickablePoint>().ToList();
     }
 
@@ -75,16 +73,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     public void HideFloor(int number)
     {
    
-        foreach (var item in wallControllers)
-        {
-            if (Mathf.Round(item.transform.position.y) == number * 3)
-            {
-                foreach (GameObject mapLine in item.mapLines)
-                {
-                    mapLine.SetActive(false);
-                }
-            }
-        }
+    
         foreach (var item in floorControllers)
         {
             if (Mathf.Round(item.transform.position.y) == number * 3)

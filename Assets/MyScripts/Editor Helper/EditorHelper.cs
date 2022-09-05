@@ -13,7 +13,7 @@ using UnityEngine.AI;
 public class EditorHelper : OdinEditorWindow
 {
     private bool showPath;
- 
+
 
     //[TabGroup("Tabs", "Room Builder")] public Vector2Int gridSize = new Vector2Int(5, 5);
     //[TabGroup("Tabs", "Room Builder")] public bool isCorridor;
@@ -38,11 +38,11 @@ public class EditorHelper : OdinEditorWindow
     //[TabGroup("Tabs", "Room Builder")] public bool isDoubleMaterialFloor = false;
     //[TabGroup("Tabs", "Room Builder")] [ShowIf("isDoubleMaterialFloor")] [PreviewField(70, ObjectFieldAlignment.Left)] public Material floorMatBottom;
 
-    
-    
-    
-    
-    
+
+
+
+
+
     [MenuItem("EditorTools/OpenTools")]
     private static void OpenWindow()
     {
@@ -101,8 +101,8 @@ public class EditorHelper : OdinEditorWindow
         Transform objectToSnap = Selection.activeTransform.transform;
         if (Physics.Raycast(objectToSnap.position, Vector3.down, out groundHit, Mathf.Infinity, floorLayermask))
         {
-            if(groundHit.transform.GetComponent<FloorController>())
-            objectToSnap.position = groundHit.transform.position;
+            if (groundHit.transform.GetComponent<FloorController>())
+                objectToSnap.position = groundHit.transform.position;
         }
         else
         {
@@ -125,17 +125,17 @@ public class EditorHelper : OdinEditorWindow
         }
     }
 
-  
+
 
     [TabGroup("Tabs", "Room Builder")]
     [Button]
     private void UpdateWallsData()
     {
-        WallController[] components = GameObject.FindObjectsOfType<WallController>();
-        foreach (var item in components)
-        {
-            item.ChangeProporties();
-        }
+        //WallController[] components = GameObject.FindObjectsOfType<WallController>();
+        //foreach (var item in components)
+        //{
+        //    item.ChangeProporties();
+        //}
     }
 
     [TabGroup("Tabs", "Room Builder")]
@@ -158,33 +158,34 @@ public class EditorHelper : OdinEditorWindow
     {
         if (showPath) showPath = false; else showPath = true;
 
-        WallController[] components = GameObject.FindObjectsOfType<WallController>();
-        foreach (var item in components)
-        {
-            item.showPath = showPath;
-        }
+        //WallController[] components = GameObject.FindObjectsOfType<WallController>();
+        //foreach (var item in components)
+        //{
+        //    item.showPath = showPath;
+        //}
     }
+}
 
-    [TabGroup("Tabs", "Visibility")]
-    [Button("Show Wall Colliders")]
-    private void HideFloor(int number)
-    {
-        WallController[] components = GameObject.FindObjectsOfType<WallController>();
-        foreach (var item in components)
-        {
-            if(item.transform.position.y == number*3)
-            {
-               foreach(GameObject mapLine in item.mapLines)
-                {
-                    if (mapLine.activeSelf)
-                        mapLine.SetActive(false);
-                    else
-                        mapLine.SetActive(true);
-                }
-            }
+    //[TabGroup("Tabs", "Visibility")]
+    //[Button("Show Wall Colliders")]
+    //private void HideFloor(int number)
+    //{
+    //  //  WallController[] components = GameObject.FindObjectsOfType<WallController>();
+    //    foreach (var item in components)
+    //    {
+    //        if(item.transform.position.y == number*3)
+    //        {
+    //           foreach(GameObject mapLine in item.mapLines)
+    //            {
+    //                if (mapLine.activeSelf)
+    //                    mapLine.SetActive(false);
+    //                else
+    //                    mapLine.SetActive(true);
+    //            }
+    //        }
              
-        }
-    }
+    //    }
+    //}
 
 
 
@@ -557,38 +558,38 @@ public class EditorHelper : OdinEditorWindow
     //}
 
 
-    [TabGroup("Tabs", "Player")]
-    [Button("Setup Player")]
-    private void SetupPlayer()
-    {
-        PlayerController[] components = GameObject.FindObjectsOfType<PlayerController>();
-        foreach (var item in components)
-        {
-            item.SnapToGround();
-        }
-    }
+    //[TabGroup("Tabs", "Player")]
+    //[Button("Setup Player")]
+    //private void SetupPlayer()
+    //{
+    //    PlayerController[] components = GameObject.FindObjectsOfType<PlayerController>();
+    //    foreach (var item in components)
+    //    {
+    //        item.SnapToGround();
+    //    }
+    //}
 
-    [TabGroup("Tabs", "Player")]
-    [Button("Find Player")]
+    //[TabGroup("Tabs", "Player")]
+    //[Button("Find Player")]
 
-    private void FindPlayer()
-    {
+    //private void FindPlayer()
+    //{
 
-        var view = SceneView.lastActiveSceneView;
-        if (view != null)
-        {
-            view.orthographic = false;
-            var target = new GameObject();
-            var player = GameObject.FindObjectOfType<PlayerController>().transform;
-            target.transform.position = player.position + (player.forward * -3) + new Vector3(0, 5, 0);
-            target.transform.rotation = player.rotation;
-            target.transform.eulerAngles -= new Vector3(-45, 0, 0);
-            Selection.activeObject = player.gameObject;
-            view.AlignViewToObject(target.transform);
-            GameObject.DestroyImmediate(target);
-        }
-    }
+    //    var view = SceneView.lastActiveSceneView;
+    //    if (view != null)
+    //    {
+    //        view.orthographic = false;
+    //        var target = new GameObject();
+    //        var player = GameObject.FindObjectOfType<PlayerController>().transform;
+    //        target.transform.position = player.position + (player.forward * -3) + new Vector3(0, 5, 0);
+    //        target.transform.rotation = player.rotation;
+    //        target.transform.eulerAngles -= new Vector3(-45, 0, 0);
+    //        Selection.activeObject = player.gameObject;
+    //        view.AlignViewToObject(target.transform);
+    //        GameObject.DestroyImmediate(target);
+    //    }
+    //}
 
 
-}
+
 #endif

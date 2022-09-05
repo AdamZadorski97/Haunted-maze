@@ -6,9 +6,8 @@ using System.Collections.Generic;
 [Serializable]
 public class CoinsProportiesData : ScriptableObject
 {
-    public List<int> coinMultiplers = new List<int>();
+    public List<double> coinMultiplers = new List<double>();
     public List<Texture> coinTexture = new List<Texture>();
-    public List<string> coinMultiplersString = new List<string>();
     public List<Color> coinMultiplersPlateColor = new List<Color>();
     public List<Color> coinMultiplersFrameColor = new List<Color>();
     public List<Color> coinMultiplersTextColor = new List<Color>();

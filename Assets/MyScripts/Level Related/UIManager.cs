@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     public TMP_Text textCurrentAmmunition;
     public TMP_Text textCurrentPoints;
     public TMP_Text textCurrentPointsMultipler;
+    public TMP_Text textSpawnBossTime;
+    public TMP_Text textHP;
 
     public CanvasGroup topPanel;
     public CanvasGroup bottomPanel;
@@ -26,7 +28,15 @@ public class UIManager : MonoBehaviour
     public Image imageReloadTimer;
     public Image imageRunTimer;
     public Image blackScreen;
+    public Image slimeVfx;
 
+    [SerializeField] private float slimeVfxAlpha;
+    [SerializeField] private float slimeVfxEnableSpeed;
+    [SerializeField] private float slimeVfxDisableSpeed;
+    [SerializeField] private AnimationCurve slimeVfxEnableCurve;
+    [SerializeField] private AnimationCurve slimeVfxDisableCurve;
+    private Sequence slimeVfxSequence;
+    public ButtonRun buttonRun;
     private void Start()
     {
         blackScreen.gameObject.SetActive(true);
@@ -51,10 +61,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ButtonTimer(Image imageTimer, float time)
+    public void ButtonTimer(Image imageTimer, double time)
     {
         imageTimer.fillAmount = 1;
-        imageTimer.DOFillAmount(0, time);
+        imageTimer.DOFillAmount(0, (float)time);
     }
 
 
@@ -103,5 +113,20 @@ public class UIManager : MonoBehaviour
     public void UpdateCurrentPointsMultipler()
     {
         textCurrentPointsMultipler.text = LevelManager.Instance.dataManager.GetCoinMultipler().ToString();
+    }
+    public void UpdateHP()
+    {
+        textHP.text = PlayerController.Instance.currentHp.ToString();
+    }
+    public void SlimeVfx()
+    {
+        if (slimeVfxSequence != null) slimeVfxSequence.Kill();
+       
+        slimeVfx.gameObject.SetActive(true);
+        slimeVfxSequence = DOTween.Sequence();
+        slimeVfxSequence.Append(slimeVfx.DOFade(slimeVfxAlpha, slimeVfxEnableSpeed).SetEase(slimeVfxEnableCurve));
+        slimeVfxSequence.Append(slimeVfx.DOFade(0, slimeVfxDisableSpeed).SetEase(slimeVfxDisableCurve));
+        slimeVfxSequence.AppendCallback(() => slimeVfx.gameObject.SetActive(false));
+        slimeVfxSequence.AppendCallback(() => PlayerController.Instance.moveSpeed = PlayerController.Instance.defaultMoveSpeed);
     }
 }

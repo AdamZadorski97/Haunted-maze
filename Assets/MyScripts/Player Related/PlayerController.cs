@@ -14,7 +14,8 @@ public class PlayerController : MonoSingleton<PlayerController>
     [SerializeField] private float reloadTime = 2f;
     [SerializeField] private float slideTime = 1.5f;
     [SerializeField] private float jumpTime = 1.5f;
-    [SerializeField] private float runTime = 2f;
+    [SerializeField] private double maxRunTime = 2f;
+    [SerializeField] private double runTime = 2f;
     [SerializeField] private float jumpCameraRotationValue = 0.1f;
     [SerializeField] private float jumpHeight = 1.5f;
     [SerializeField] private float jumpStartTime;
@@ -85,6 +86,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     [SerializeField] private CinemachineComposer cinemachineComposer;
     [SerializeField] private CinemachineFreeLook freeLook;
     [SerializeField] private GameObject magnesParticles;
+    [SerializeField] private EnemySpawnerController enemySpawnerController;
     public Camera mainCamera;
     public Transform weaponPivot;
     public Transform cameraPivot;
@@ -97,11 +99,15 @@ public class PlayerController : MonoSingleton<PlayerController>
     private string inst = null;
 
     public Animation reloadAnimation;
+    public int currentHp;
+
+
     private void Start()
     {
-
-
-
+        currentHp = (int)LevelManager.Instance.dataManager.saveLoadDataManager.GetPlayerHpValue();
+        LevelManager.Instance.uIManager.UpdateHP();
+        maxRunTime = LevelManager.Instance.dataManager.saveLoadDataManager.GetPlayerSprintTimeValue();
+        runTime = maxRunTime;
         cinemachineComposer = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineComposer>();
         // SnapToGround();
         StartCoroutine(Footstep());
@@ -118,8 +124,25 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     public void Update()
     {
+        GetClosestEnemy();
+
+        LevelManager.Instance.uIManager.imageRunTimer.fillAmount = (float)(runTime / maxRunTime);
+
+        if (!isInRunState)
+        {
+            if(runTime <= maxRunTime)
+            runTime += Time.deltaTime * LevelManager.Instance.dataManager.saveLoadDataManager.GetPlayerSprintReloadSpeedValue();
+        }
+        else
+        {
+            if (runTime > 0)
+
+                runTime -= Time.deltaTime;
+        }
+
         if (closestEnemy == null)
             cinemachineVirtualCamera.LookAt = cameraPivot;
+
         else
         {
             if (closestEnemy.GetComponent<EnemyController>().head)
@@ -157,7 +180,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         if (LevelManager.Instance.enemySpawner.spawnedEnemies.Count > 0)
         {
 
-            if (IsEnemyVisible())
+            if (closestEnemy != null)
             {
                 Vector3 dir = closestEnemy.transform.position - weaponPivot.position;
                 Quaternion lookRot = Quaternion.LookRotation(dir);
@@ -184,6 +207,52 @@ public class PlayerController : MonoSingleton<PlayerController>
     }
 
     public Transform closestEnemy;
+    public EnemyController GetClosestEnemy()
+    {
+        EnemyController tMin = null;
+        float minDist = 10f;
+        Vector3 currentPos = transform.position;
+        foreach (EnemyController enemyController in enemySpawnerController.spawnedEnemies)
+        {
+            float dot = Vector3.Dot(transform.forward, (enemyController.transform.position - transform.position).normalized);
+
+            if (dot > 0.4f)
+            {
+                float dist = Vector3.Distance(enemyController.transform.position, currentPos);
+                if (dist < minDist * dot)
+                {
+                    tMin = enemyController;
+                    minDist = dist;
+                }
+                else
+                {
+                    enemyController.outlinable.enabled = false;
+                }
+            }
+            else
+            {
+                enemyController.outlinable.enabled = false;
+            }
+        }
+        if (tMin != null)
+        {
+            tMin.outlinable.enabled = true;
+            closestEnemy = tMin.transform;
+            return tMin;
+        }
+        closestEnemy = null;
+        return null;
+    }
+
+
+
+
+
+
+
+
+
+
     public bool IsEnemyVisible()
     {
         Debug.DrawRay(transform.position + new Vector3(0, 0.5f, 0), cameraPivot.TransformDirection((Vector3.forward) + new Vector3(0.5f, 0, 0)) * gunRayDistance);
@@ -294,13 +363,9 @@ public class PlayerController : MonoSingleton<PlayerController>
         if (!isReloading)
             if (LevelManager.Instance.dataManager.CheckCanShoot())
             {
-                gunAnimator.SetTrigger("Shoot" + Random.Range(1, 4));
+                ShootEffect();
 
-                cinemachineImpulseSource.GenerateImpulse();
-                gunParticleSystem.Play();
-                audioSource.PlayOneShot(shootSound);
-
-                if (IsEnemyVisible())
+                if (closestEnemy != null)
                 {
                     if (closestEnemy.GetComponent<EnemyController>())
                     {
@@ -344,6 +409,14 @@ public class PlayerController : MonoSingleton<PlayerController>
                 }
             }
     }
+    public void ShootEffect()
+    {
+        gunAnimator.SetTrigger("Shoot" + Random.Range(1, 4));
+
+        cinemachineImpulseSource.GenerateImpulse();
+        gunParticleSystem.Play();
+        audioSource.PlayOneShot(shootSound);
+    }
 
     public void Reload()
     {
@@ -360,9 +433,9 @@ public class PlayerController : MonoSingleton<PlayerController>
         yield return new WaitUntil(() => gunAnimator.GetCurrentAnimatorStateInfo(0).IsName("Reload"));
         LevelManager.Instance.uIManager.ButtonTimer(LevelManager.Instance.uIManager.imageReloadTimer, LevelManager.Instance.dataManager.GetReloadTime());
         float reloadAnimationTime = gunAnimator.GetCurrentAnimatorStateInfo(0).length;
-        float targetReloadAnimationSpeed = 1 * LevelManager.Instance.dataManager.GetReloadTime() / reloadAnimationTime;
-        gunAnimator.speed = 1 / targetReloadAnimationSpeed;
-        yield return new WaitForSeconds(LevelManager.Instance.dataManager.GetReloadTime());
+        double targetReloadAnimationSpeed = 1 * LevelManager.Instance.dataManager.GetReloadTime() / reloadAnimationTime;
+        gunAnimator.speed = 1 / (float)targetReloadAnimationSpeed;
+        yield return new WaitForSeconds((float)LevelManager.Instance.dataManager.GetReloadTime());
         gunAnimator.speed = 1;
         isReloading = false;
         LevelManager.Instance.dataManager.SetAmmunition();
@@ -493,20 +566,62 @@ public class PlayerController : MonoSingleton<PlayerController>
     }
 
 
-
     public void Run()
     {
-        if (canRun)
-            if (!isInRunState)
+        if (runTime > 0)
+        {
+            Debug.Log("Run");
+            if (canRun)
             {
                 isInRunState = true;
-                Sequence runSequnece = DOTween.Sequence();
-                LevelManager.Instance.uIManager.ButtonTimer(LevelManager.Instance.uIManager.imageRunTimer, runTime);
-                runSequnece.AppendCallback(() => moveSpeed = defaultRunSpeed);
-                runSequnece.AppendInterval(runTime);
-                runSequnece.AppendCallback(() => moveSpeed = defaultMoveSpeed);
-                runSequnece.AppendCallback(() => isInRunState = false);
+                moveSpeed = defaultRunSpeed;
             }
+        }
+        else
+        {
+            if (isInRunState)
+            {
+                Debug.Log("Stop Run");
+                isInRunState = false;
+                canRun = false;
+                StartCoroutine(RunCulDown());
+                StopRun();
+            }
+        }
+
+
+
+
+
+        //if (!isInRunState)
+        //{
+        //    isInRunState = true;
+        //    Sequence runSequnece = DOTween.Sequence();
+        //    LevelManager.Instance.uIManager.ButtonTimer(LevelManager.Instance.uIManager.imageRunTimer, runTime);
+        //    runSequnece.AppendCallback(() => moveSpeed = defaultRunSpeed);
+        //    runSequnece.AppendInterval(runTime);
+        //    runSequnece.AppendCallback(() => moveSpeed = defaultMoveSpeed);
+        //    runSequnece.AppendCallback(() => isInRunState = false);
+        //}
+    }
+
+    IEnumerator RunCulDown()
+    {
+        yield return new WaitForSeconds(1);
+        canRun = true;
+    }
+
+
+    public void StopRun()
+    {
+        StartCoroutine(StopRunDelay());
+    }
+
+   IEnumerator StopRunDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        isInRunState = false;
+        moveSpeed = defaultMoveSpeed;
     }
 
     public void Jump()
