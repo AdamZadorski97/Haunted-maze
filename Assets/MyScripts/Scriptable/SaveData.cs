@@ -44,6 +44,7 @@ public class WeaponDataUpgrades
     public int clipUpgradeLevel;
     public int reloadTimeUpgradeLevel;
     public int shootSpeedTimeUpgradeLevel;
+    public int knockbackUpgradeLevel;
 }
 
 [Serializable]

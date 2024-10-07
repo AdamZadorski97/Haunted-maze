@@ -196,6 +196,11 @@ public class DataManager : MonoBehaviour
         LevelManager.Instance.uIManager.UpdateAmmunition();
     }
 
+    public double GetShootSpeed()
+    {
+        return saveLoadDataManager.GetWeaponShootSpeedTime(currentWeaponID);
+    }
+
     public double GetReloadTime()
     {
         return saveLoadDataManager.GetWeaponRealoadTime(currentWeaponID);
@@ -205,7 +210,10 @@ public class DataManager : MonoBehaviour
     {
         return saveLoadDataManager.GetWeaponDamageValue(currentWeaponID);
     }
-
+    public double GetWeaponKnockback()
+    {
+        return saveLoadDataManager.GetWeaponKnockbackValue(currentWeaponID);
+    }
     public double GetKillMultipler()
     {
         if (CurrentKilledUnits > 0)

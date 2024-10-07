@@ -181,7 +181,7 @@ public class EnemyController : MonoBehaviour
 
         // Add knockback effect here
         Vector3 knockbackDirection = (transform.position - PlayerController.Instance.transform.position).normalized;
-        StartCoroutine(KnockbackCoroutine(knockbackDirection, 15f, 0.2f)); // Adjust force and duration as needed
+        StartCoroutine(KnockbackCoroutine(knockbackDirection, (float)LevelManager.Instance.dataManager.GetWeaponKnockback(), 0.2f)); // Adjust force and duration as needed
 
         Sequence hitSequence = DOTween.Sequence();
         hitSequence.AppendCallback(() => navMeshAgent.speed = 0);

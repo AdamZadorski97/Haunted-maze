@@ -14,6 +14,8 @@ public class WeaponData
     public double reloadTimeUpgradeCost;
     public double shootSpeedTimeValue;
     public double shootSpeedTimeUpgradeCost;
+    public double knockbackValue;
+    public double knockbackUpgradeCost;
 }
 
 

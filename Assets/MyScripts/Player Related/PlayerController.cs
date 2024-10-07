@@ -361,13 +361,25 @@ public class PlayerController : MonoSingleton<PlayerController>
         yield return new WaitForSeconds(0.25f);
         isInShootState = false;
     }
+    private double nextShootTime = 0;
+
     public void Shoot()
     {
+        double shootSpeed = LevelManager.Instance.dataManager.GetShootSpeed();
+
+        // Sprawdzenie, czy można strzelić, uwzględniając czas od ostatniego strzału
+        if (Time.time < nextShootTime)
+        {
+            return; // Zbyt wcześnie, aby strzelić ponownie
+        }
+
         StartCoroutine(ShootTrigger());
         if (!isReloading)
+        {
             if (LevelManager.Instance.dataManager.CheckCanShoot())
             {
                 ShootEffect();
+                nextShootTime = Time.time + shootSpeed; // Ustawienie czasu na kolejny możliwy strzał
 
                 if (closestEnemy != null)
                 {
@@ -377,7 +389,6 @@ public class PlayerController : MonoSingleton<PlayerController>
                         closestEnemy.GetComponent<EnemyController>().OnHit(LevelManager.Instance.dataManager.GetWeaponDamage());
                         closestEnemy = null;
                     }
-
                 }
 
                 if (LevelManager.Instance.dataManager.AmmunitionInMagazine <= 0)
@@ -412,6 +423,7 @@ public class PlayerController : MonoSingleton<PlayerController>
                     }
                 }
             }
+        }
     }
     public void ShootEffect()
     {
@@ -593,44 +605,6 @@ public class PlayerController : MonoSingleton<PlayerController>
             StartCoroutine(RunCulDown());
             StopRun();
         }
-
-
-
-        //if (runTime > 0)
-        //{
-        //    Debug.Log("Run");
-        //    if (canRun)
-        //    {
-        //        isInRunState = true;
-        //        moveSpeed = defaultRunSpeed;
-        //    }
-        //}
-        //else
-        //{
-        //    if (isInRunState)
-        //    {
-        //        Debug.Log("Stop Run");
-        //        isInRunState = false;
-        //        canRun = false;
-        //        StartCoroutine(RunCulDown());
-        //        StopRun();
-        //    }
-        //}
-
-
-
-
-
-        //if (!isInRunState)
-        //{
-        //    isInRunState = true;
-        //    Sequence runSequnece = DOTween.Sequence();
-        //    LevelManager.Instance.uIManager.ButtonTimer(LevelManager.Instance.uIManager.imageRunTimer, runTime);
-        //    runSequnece.AppendCallback(() => moveSpeed = defaultRunSpeed);
-        //    runSequnece.AppendInterval(runTime);
-        //    runSequnece.AppendCallback(() => moveSpeed = defaultMoveSpeed);
-        //    runSequnece.AppendCallback(() => isInRunState = false);
-        //}
     }
 
     IEnumerator RunCulDown()
