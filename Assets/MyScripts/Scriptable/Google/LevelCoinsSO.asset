@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a557931884d29954a86b8e13d2c698fb, type: 3}
+  m_Name: LevelCoinsSO
+  m_EditorClassIdentifier: 
+  missingTranslation: Translation not found for that key.
+  missingKey: Key not found in the localization data.
+  LevelDataTableName: LevelCost
+  levelCoinsData:
+  - levelPrestigeCost: 0
+  - levelPrestigeCost: 500
+  - levelPrestigeCost: 2000
+  - levelPrestigeCost: 10000
+  - levelPrestigeCost: 100000
+  - levelPrestigeCost: 1000000
+  - levelPrestigeCost: 10000000
+  - levelPrestigeCost: 100000000
+  - levelPrestigeCost: 1000000000
+  - levelPrestigeCost: 10000000000
+  - levelPrestigeCost: 100000000000

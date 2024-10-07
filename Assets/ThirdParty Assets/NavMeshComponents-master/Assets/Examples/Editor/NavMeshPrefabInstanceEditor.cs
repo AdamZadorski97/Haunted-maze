@@ -70,7 +70,7 @@ class NavMeshPrefabInstanceEditor : Editor
         var sources = new List<NavMeshBuildSource>();
         var markups = new List<NavMeshBuildMarkup>();
 
-        UnityEditor.AI.NavMeshBuilder.CollectSourcesInStage(
+        UnityEditor.AI.NavMeshEditorHelpers.CollectSourcesInStage(
             root, ~0, NavMeshCollectGeometry.RenderMeshes, 0, markups, instance.gameObject.scene, sources);
         var settings = NavMesh.GetSettingsByID(0);
         var bounds = new Bounds(Vector3.zero, 1000.0f * Vector3.one);

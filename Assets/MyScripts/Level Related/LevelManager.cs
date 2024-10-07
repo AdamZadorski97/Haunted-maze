@@ -14,7 +14,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     public DataManager dataManager;
     public UIManager uIManager;
 
-
+    public List<GameObject> weaponsModels;
     public int currentLevelMoneyCollected;
     public int moneyToUnlockKey;
     public GameObject NextLevelKey;
@@ -30,9 +30,18 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         floorControllers = GameObject.FindObjectsOfType<FloorController>().ToList();
         pickablePoints = GameObject.FindObjectsOfType<PickablePoint>().ToList();
+        TurnOnWeaponModel();
     }
 
-
+    public void TurnOnWeaponModel()
+    {
+        foreach (GameObject weapon in weaponsModels)
+        {
+            weapon.SetActive(false);
+        }
+        Debug.Log(dataManager.saveLoadDataManager.GetCurrentWeapon());
+        weaponsModels[dataManager.saveLoadDataManager.GetCurrentWeapon()].SetActive(true);
+    }
 
 
     public void OnMoneyCollect(int value)

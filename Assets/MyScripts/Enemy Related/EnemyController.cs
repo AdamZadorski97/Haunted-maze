@@ -171,8 +171,6 @@ public class EnemyController : MonoBehaviour
         healthBar.SetActive(true);
         currentHealth -= hitValue;
 
-
-
         if (currentHealth <= 0)
         {
             canvas.SetActive(false);
@@ -181,11 +179,31 @@ public class EnemyController : MonoBehaviour
         }
         animator.SetTrigger("Hit");
 
+        // Add knockback effect here
+        Vector3 knockbackDirection = (transform.position - PlayerController.Instance.transform.position).normalized;
+        StartCoroutine(KnockbackCoroutine(knockbackDirection, 15f, 0.2f)); // Adjust force and duration as needed
+
         Sequence hitSequence = DOTween.Sequence();
         hitSequence.AppendCallback(() => navMeshAgent.speed = 0);
         hitSequence.AppendInterval(2f);
         hitSequence.AppendCallback(() => navMeshAgent.speed = enemyProporties.speed);
         hpBar.DOFillAmount((float)GetHealthPercent(), 0.25f);
+    }
+
+    IEnumerator KnockbackCoroutine(Vector3 direction, float force, float duration)
+    {
+        float elapsedTime = 0f;
+        navMeshAgent.isStopped = true;
+
+        while (elapsedTime < duration)
+        {
+            navMeshAgent.Move(direction * force * Time.deltaTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        navMeshAgent.isStopped = false;
+        navMeshAgent.SetDestination(endPoint.transform.position); // Resume normal movement after knockback
     }
 
     public double GetHealthPercent()

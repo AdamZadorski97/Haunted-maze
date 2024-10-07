@@ -29,10 +29,6 @@ public class MainMenuController : MonoBehaviour
 
     private void Start()
     {
-
-        Debug.Log(Formatter.IdleValue(100000000000));
-
-
         CheckNickname();
         if (PlayerPrefs.HasKey("ShouldOpenShop"))
         {
@@ -117,12 +113,14 @@ public class MainMenuController : MonoBehaviour
         Options.SetActive(false);
         Shop.SetActive(true);
         ShopPlayer.SetActive(false);
+        shopController.GetPricesList();
         shopController.UpdateShopItemValues();
         audioSource.PlayOneShot(choseLevelAudioClip);
     }
 
     public void OpenLiblaryLevel()
     {
+        saveLoadDataManager.SaveData();
         SceneManager.LoadScene("01.Museum New");
         audioSource.PlayOneShot(choseLevelAudioClip);
     }
@@ -134,6 +132,7 @@ public class MainMenuController : MonoBehaviour
             PlayerPrefs.SetString("NickName", inputTextNickName.text);
             saveLoadDataManager.StartCoroutine(saveLoadDataManager.CheckPlayerExist(output => { }));
             LoginPanel.SetActive(false);
+            saveLoadDataManager.SaveData();
         }
     }
 

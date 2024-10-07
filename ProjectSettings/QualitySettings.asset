@@ -35,7 +35,7 @@ QualitySettings:
     streamingMipmapsRenderersPerFrame: 1024
     streamingMipmapsMaxLevelReduction: 1
     streamingMipmapsMaxFileIORequests: 1024
-    particleRaycastBudget: 16
+    particleRaycastBudget: 4
     asyncUploadTimeSlice: 2
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
@@ -124,3 +124,5 @@ QualitySettings:
     Android: 0
     Server: 0
     Standalone: 0
+    WebGL: 0
+    iPhone: 0

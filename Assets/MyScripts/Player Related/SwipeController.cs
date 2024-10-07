@@ -18,6 +18,33 @@ public class SwipeController : MonoBehaviour
     {
         tap = swipeLeft = swipeRight = swipeUp = swipeDown = longTap = false;
 
+
+        //if (Input.GetKeyDown(KeyCode.RightArrow))
+        //{
+        //    Debug.Log("arrow");
+        //    swipeRight = true;
+        //}
+        //if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //{
+        //    swipeLeft = true;
+
+        //}
+        //if (Input.GetKeyDown(KeyCode.DownArrow))
+        //{
+        //    longTap = true;
+        //}
+        //if (Input.GetKeyDown(KeyCode.UpArrow))
+        //{
+        //    swipeUp = true;
+   
+        //}
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    tap = true;
+        //}
+        //Reset();
+
+
         #region Standolone Inputs
         if (Input.GetMouseButtonDown(0))
         {
@@ -59,6 +86,8 @@ public class SwipeController : MonoBehaviour
         #endregion
 
         #region Mobile Inputs
+
+
         if (Input.touches.Length > 0)
         {
             if (canUpdateLongTouch == true)
@@ -69,13 +98,13 @@ public class SwipeController : MonoBehaviour
 
             if (touchTime > 0.5f && Vector2.Distance(endTouch, startTouch) < 100)
             {
-                    if (!LevelManager.Instance.uIManager.buttonRun.isPressed)
-                    {
-                        touchTime = 0;
-                        longTap = true;
-                        canUpdateLongTouch = false;
-                    }
-                
+                if (!LevelManager.Instance.uIManager.buttonRun.isPressed)
+                {
+                    touchTime = 0;
+                    longTap = true;
+                    canUpdateLongTouch = false;
+                }
+
 
             }
 

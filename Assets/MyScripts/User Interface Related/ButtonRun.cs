@@ -15,18 +15,11 @@ public class ButtonRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
     public void OnPointerUp(PointerEventData eventData)
     {
         isPressed = false;
-        PlayerController.Instance.StopRun();
+        PlayerController.Instance.EnableRun();
     }
 
     public void OnUpdateSelected(BaseEventData data)
     {
-        if (isPressed)
-        {
-            PlayerController.Instance.Run();
-        }
-        else
-        {
-           
-        }
+     
     }
 }

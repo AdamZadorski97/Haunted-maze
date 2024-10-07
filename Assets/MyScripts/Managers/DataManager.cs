@@ -28,8 +28,10 @@ public class DataManager : MonoBehaviour
     [SerializeField] public SaveLoadDataManager saveLoadDataManager;
     private void Awake()
     {
+        currentWeaponID = saveLoadDataManager.GetCurrentWeapon();
+
         saveLoadDataManager.LoadData();
-        ammunitionLeft = saveLoadDataManager.GetWeaponClipValue(0);
+        ammunitionLeft = saveLoadDataManager.GetWeaponClipValue(saveLoadDataManager.GetCurrentWeapon());
         SetAmmunition();
         collectedPoints = 0;
 

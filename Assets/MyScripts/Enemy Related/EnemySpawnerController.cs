@@ -19,24 +19,22 @@ public class EnemySpawnerController : MonoBehaviour
 
     public Transform enemiesParrent;
     public Transform middleOfMap;
-    public float minDistanceFromPlayer;
-    public float maxDistanceFromPlayer;
     public LayerMask floorLayermask;
     public Vector3 newEnemyPosition;
     public bool canSpawn;
     public PlayerController playerController;
     public bool debugSpawnArea;
 
-    public float delayAndSpawnRate = 2;
-    public float timeUntilSpawnRateIncrease = 30;
     public List<HintTriggerController> hintTriggerControllers = new List<HintTriggerController>();
-    private float bossTimer = 120;
-    public float bossSpawnTime;
+
+    public double delayAndSpawnRate;
+    private double bossTimer = 120;
     private bool canUpdateBossTime;
     void Start()
     {
-        bossTimer = bossSpawnTime;
+        bossTimer = LevelManager.Instance.dataManager.saveLoadDataManager.GetBossSpawnTime(0);
         GetFloorList();
+        delayAndSpawnRate = LevelManager.Instance.dataManager.saveLoadDataManager.GetSpawnRate(0);
         StartCoroutine(SpawnObject(delayAndSpawnRate));
     }
 
@@ -52,7 +50,7 @@ public class EnemySpawnerController : MonoBehaviour
         LevelManager.Instance.uIManager.textSpawnBossTime.text = Formatter.TimeFormatter((int)bossTimer);
         if (bossTimer <= 0)
         {
-            bossTimer = bossSpawnTime;
+            bossTimer = LevelManager.Instance.dataManager.saveLoadDataManager.GetBossSpawnTime(0);
             SpawnBoss();
         }
     }
@@ -65,8 +63,8 @@ public class EnemySpawnerController : MonoBehaviour
             {
                 EnemyController spawnedBoss = Instantiate(bossPrefabs[Random.Range(0, bossPrefabs.Count)], enemiesParrent);
                 spawnedEnemies.Add(spawnedBoss);
-                spawnedBoss.MaxHealth = spawnedBoss.enemyProporties.hp * (LevelManager.Instance.dataManager.CurrentMultipler+1);
-                spawnedBoss.CurrentHealth = spawnedBoss.enemyProporties.hp * (LevelManager.Instance.dataManager.CurrentMultipler+1);
+                spawnedBoss.MaxHealth = spawnedBoss.enemyProporties.hp * (LevelManager.Instance.dataManager.CurrentMultipler);
+                spawnedBoss.CurrentHealth = spawnedBoss.enemyProporties.hp * (LevelManager.Instance.dataManager.CurrentMultipler);
                 spawnedBoss.isBoss = true;
                 spawnedBoss.transform.position = newEnemyPosition;
                 spawnedBoss.endPoint = playerController.transform;
@@ -78,13 +76,13 @@ public class EnemySpawnerController : MonoBehaviour
     }
 
 
-    IEnumerator SpawnObject(float firstDelay)
+    IEnumerator SpawnObject(double firstDelay)
     {
         yield return new WaitUntil(() => hintTriggerControllers.Count == 0);
         canUpdateBossTime = true;
 
-        float spawnRateCountdown = timeUntilSpawnRateIncrease;
-        float spawnCountdown = firstDelay;
+        double spawnRateCountdown = LevelManager.Instance.dataManager.saveLoadDataManager.GetTimeUntilSpawnRateIncrease(0); ;
+        double spawnCountdown = firstDelay;
         while (true)
         {
             yield return null;
@@ -102,7 +100,7 @@ public class EnemySpawnerController : MonoBehaviour
             // Should the spawn rate increase?
             if (spawnRateCountdown < 0 && delayAndSpawnRate > 1)
             {
-                spawnRateCountdown += timeUntilSpawnRateIncrease;
+                spawnRateCountdown += LevelManager.Instance.dataManager.saveLoadDataManager.GetBossSpawnTime(0);
                 delayAndSpawnRate -= 0.2f;
             }
         }
@@ -112,7 +110,7 @@ public class EnemySpawnerController : MonoBehaviour
     public void SpawnEnemy()
     {
         int counter = 0;
-        for (int i = 0; i < 150; i++)
+        for (int i = 0; i < LevelManager.Instance.dataManager.saveLoadDataManager.GetMaxEnemies(0); i++)
         {
             counter++;
             CheckCanSpawnEnemy();
@@ -121,8 +119,8 @@ public class EnemySpawnerController : MonoBehaviour
                 Debug.Log(LevelManager.Instance.dataManager.CurrentMultipler + 1);
                 EnemyController spawnedEnemy = Instantiate(enemiesPrefabs[Random.Range(0, enemiesPrefabs.Count)], enemiesParrent);
                 spawnedEnemies.Add(spawnedEnemy);
-                spawnedEnemy.MaxHealth = spawnedEnemy.enemyProporties.hp * (LevelManager.Instance.dataManager.CurrentMultipler+1);
-                spawnedEnemy.CurrentHealth = spawnedEnemy.enemyProporties.hp * (LevelManager.Instance.dataManager.CurrentMultipler+1);
+                spawnedEnemy.MaxHealth = spawnedEnemy.enemyProporties.hp * (LevelManager.Instance.dataManager.CurrentMultipler + 1);
+                spawnedEnemy.CurrentHealth = spawnedEnemy.enemyProporties.hp * (LevelManager.Instance.dataManager.CurrentMultipler + 1);
                 spawnedEnemy.transform.position = newEnemyPosition;
                 spawnedEnemy.endPoint = playerController.transform;
                 spawnedEnemy.EnableNavMesh();
@@ -132,6 +130,23 @@ public class EnemySpawnerController : MonoBehaviour
             }
         }
     }
+
+    public void DestroyAllEnemies()
+    {
+
+        foreach (EnemyController enemyController in spawnedEnemies)
+        {
+            if (enemyController != null)
+            {
+                Destroy(enemyController.gameObject);
+            }
+        }
+        spawnedEnemies = new List<EnemyController>();
+    }
+
+
+
+
     public void GetFloorList()
     {
         floorControllers = GameObject.FindObjectsOfType<FloorController>();
@@ -147,11 +162,11 @@ public class EnemySpawnerController : MonoBehaviour
         //    return;
         //}    
 
-        if (Vector3.Distance(checkPosition, playerController.transform.position) < minDistanceFromPlayer)
+        if (Vector3.Distance(checkPosition, playerController.transform.position) < LevelManager.Instance.dataManager.saveLoadDataManager.GetMinDistanceFromPlayer(0))
         {
             return;
         }
-        if (Vector3.Distance(checkPosition, playerController.transform.position) > maxDistanceFromPlayer)
+        if (Vector3.Distance(checkPosition, playerController.transform.position) > LevelManager.Instance.dataManager.saveLoadDataManager.GetMaxDistanceFromPlayer(0))
         {
             return;
         }

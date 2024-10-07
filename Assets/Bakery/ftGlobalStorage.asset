@@ -15,9 +15,16 @@ MonoBehaviour:
   modifiedAssetPathList:
   - Assets/Bakery/examples/content/sponza/sponza.FBX
   - Assets/MyModels/MuseumAssets_01.fbx
-  - Assets/ThirdParty Assets/PolygonHorrorMansion/Models/SM_Prop_Chest_01.fbx
-  - Assets/ThirdParty Assets/PolygonHorrorMansion/Models/SM_Bld_Base_Stairs_Ornate_Pillar_01.fbx
-  modifiedAssetPaddingHash: d6a958ff79a20a62ca5c9434de09ecc0
+  - Assets/PolygonDungeon/Models/SM_Env_Wall_End_Coner_Inner_01.fbx
+  - Assets/PolygonDungeon/Models/SM_Env_Wall_Tunnel_Entrance_01.fbx
+  - Assets/PolygonDungeon/Models/SM_Prop_Wall_Banner_01.fbx
+  - Assets/PolygonDungeon/Models/SM_Env_Rubble_Pebbles_03.fbx
+  - Assets/PolygonDungeon/Models/SM_Env_Rubble_Pebbles_01.fbx
+  - Assets/PolygonDungeon/Models/SM_Env_Pillar_Square_01.fbx
+  - Assets/PolygonDungeon/Models/SM_Env_Pillar_Broken_Pile_01.fbx
+  - Assets/PolygonDungeon/Models/SM_Env_Wall_Window_Bars_02.fbx
+  - Assets/PolygonDungeon/Models/SM_Prop_Chain_07.fbx
+  modifiedAssetPaddingHash: aaf8cc2e4f4406551b3a803314f33a06af67e2a8eddb894ba35031eede09ecc080c5d890de09ecc023c5d890
   modifiedMeshList: []
   modifiedMeshPaddingList: 
   modifiedAssets:
@@ -401,31 +408,38 @@ MonoBehaviour:
     padding: 2e000000460000002a000000110000000e0000000c0000000400000033000000330000003300000033000000330000003300000033000000330000000a00000007000000060000002b0000002b00000011000000140000001400000014000000140000002a0000001d000000320000003200000032000000320000002a000000080000000d0000000500000087000000fa00000087000000fa00000087000000fa00000087000000fa00000087000000fb00000087000000fb00000087000000fb00000087000000fb00000087000000fb00000051000000510000005100000051000000510000005100000051000000510000005100000051000000510000000c00000006000000060000002700000028000000390000002b000000150000002700000000010000ba0000009b0000009b000000b70000009d000000b7000000b7000000b70000009b000000b70000009d000000b7000000b7000000b70000009b0000009b0000009b00000083000000ba00000000010000ba0000009b0000009b000000b70000009d000000b7000000b7000000b70000009b000000b70000009d000000b7000000b7000000b70000009b0000009b0000009b00000083000000000100002700000006000000270000002700000027000000270000002d0000001000000010000000230000006a000000000100006a000000000100006a000000000100006a000000000100001e0000002c000000210000005c000000000100005c000000000100005c000000000100005c000000000100001a00000026000000210000005c000000000100005c000000000100005c000000000100005c000000000100001a00000026000000210000005c000000000100005c000000000100005c000000000100005c000000000100001a00000026000000210000005c000000000100005c000000000100005c000000000100005c000000000100001a00000026000000210000005c000000000100005c000000000100005c000000000100005c000000000100001a00000026000000210000005c000000000100005c000000000100005c000000000100005c000000000100001a00000026000000210000005c000000000100005c000000000100005c000000000100005c000000000100001a00000026000000210000005c000000000100005c000000000100005c000000000100005c000000000100001a00000026000000210000005c000000000100005c000000000100005c000000000100005c000000000100001a00000026000000210000005c000000000100005c000000000100005c000000000100005c000000000100001a00000026000000230000006a000000000100006a000000000100006a000000000100006a000000000100001e0000002c000000630000004300000000010000000100004300000000010000430000000001000043000000430000009400000094000000430000009400000043000000940000004300000024000000270000004600000030000000360000002d000000360000001d0000001d0000001d0000001d0000001d0000001d0000001d0000001d00000000010000ad0000000001000000010000ad0000000001000000010000ad0000000001000000010000ad0000000001000000010000ad0000000001000000010000ad0000000001000000010000ad0000000001000000010000ad0000000001000000010000ad0000000001000000010000ad000000000100001b0000001b0000001b0000001b0000001b0000001b0000001b0000001b0000001b0000001b000000000100000001000000010000000100008c00000000010000000100000001000000010000000100000001000000010000000100008c00000000010000000100000001000000010000000100000001000000010000000100008c00000000010000000100000001000000010000000100000001000000010000000100008c000000000100000001000000010000000100004600000046000000460000004900000049000000490000004900000024000000240000002400000024000000220000001800000004000000
     unwrapper: 
   - meshName:
-    - Wall.001
-    - Wall.008
+    - Area1_Evolution9.001
+    - Area_EvolutionPlant.022
+    - DlugiKiosk.2
+    - MuzeumFloor
+    - Area.Sufit.Zapychacz
+    - Kiosk.005
+    - Kiosk.006
+    - Kiosk.007
+    - Kiosk.008
+    - Museum.CeillingBridge
+    - Museum.CeillingBridge.001
+    - Museum.CeillingBridge.Damaged.004
+    - Museum.CeillingBridge.Damaged.005
+    - Museum.CeillingBridge.Damaged.009
+    - Museum.CeillingBridge.Damaged.010
+    - MuseumWindow.006
+    - Wall.007
+    - Wall.013
+    - Wall_Extruded2.Center.007
     - Area.Fasada
     - Area.Kopula
     - Area.PodtrzymywaczeKolumny
     - Area.Sufit.1
     - Area.Sufit.2
     - Area.Sufit.3
-    - Area.Sufit.Zapychacz
-    - Area1_Evolution9
     - Area01_EvolutionElement4.001
-    - Area1_Evolution1.001
     - Area1_EvolutionElement1.001
     - Area1_EvolutionElement2.001
     - Area1_EvolutionElement3.001
     - MuseumFloorLamp.001
     - MuseumFloorLamp.Emission.001
     - MuseumInfoPropStand.004
-    - Area1_Evolution1.002
-    - Area1_Evolution1.003
-    - Area1_Evolution1.004
-    - Area1_Evolution1.005
-    - Area06_Evolution1
-    - Area07_Evolution1
-    - Area08_Evolution1.009
     - Area10,Kosci
     - Area10.Czaszki
     - Area10.Dzida
@@ -450,654 +464,124 @@ MonoBehaviour:
     - Area10_ProstaKopula.Luki.001
     - Area10_ProstaKopula.Luki.2
     - Area10_SkosnaKopula
-    - Area_EvolutionPlant
     - Area_LongEvolutionElement
     - Area_Przytrzymywacz.017
-    - DlugiKiosk.001
-    - Kiosk
-    - Kiosk.001
-    - Kiosk.002
-    - Kiosk.003
     - LevelProp.WallDroppings.001
     - LevelProp.WallDroppings.006
+    - MuseumInfoPropStand.011
+    - MuseumWindow.002
     - Museum.Cabinet1
     - Museum.Cabinet2
     - Museum.Cabinet3
     - Museum.Cabinet4
-    - Museum.CeillingBridge
-    - Museum.CeillingBridge.001
-    - Museum.CeillingBridge.Damaged.004
-    - Museum.CeillingBridge.Damaged.005
-    - Museum.CeillingBridge.Damaged.006
-    - Museum.CeillingBridge.Damaged.008
-    - Museum.CeillingBridge.Damaged.009
-    - Museum.CeillingBridge.Damaged.010
-    - Museum.Rocks1
-    - Museum.Rocks2
-    - MuseumInfoPropBorder.010
-    - MuseumInfoPropBorder.011
-    - MuseumInfoPropBorder.012
-    - MuseumInfoPropBorder.013
-    - MuseumInfoPropBorder.014
-    - MuseumInfoPropBorder.015
-    - MuseumInfoPropBorder.016
-    - MuseumInfoPropBorder.017
-    - MuseumInfoPropBorder.018
-    - MuseumInfoPropBorder.019
-    - MuseumInfoPropBorder.020
-    - MuseumInfoPropBorder.021
-    - MuseumInfoPropBorder.022
-    - MuseumInfoPropBorder.023
-    - MuseumInfoPropBorder.024
-    - MuseumInfoPropBorder.026
-    - MuseumInfoPropBorder.027
-    - MuseumInfoPropBorder.028
-    - MuseumInfoPropBorder.029
-    - MuseumInfoPropBorder.030
-    - MuseumInfoPropBorder.031
-    - MuseumInfoPropBorder.037
-    - MuseumInfoPropBorder.038
-    - MuseumInfoPropBorder.039
-    - MuseumInfoPropBorder.040
-    - MuseumInfoPropBorder.041
-    - MuseumInfoPropBorder.042
-    - MuseumInfoPropBorder.043
-    - MuseumInfoPropStand.011
-    - MuseumObstacle.1
-    - MuseumWindow.001
-    - Wall.017
-    - Wall.020
-    - Wall.064
-    - Wall_Extruded2.Center.001
-    - Area_EvolutionPlant.022
-    - Wall_Extruded2.Center.007
-    - Wall.013
-    - Wall.007
-    - PictureBorders
-    - Museum.Map
-    - Listwy
-    - Kiosk.008
-    - Kiosk.007
-    - Kiosk.006
-    - Kiosk.005
-    - DlugiKiosk.2
-    - Area1_Evolution9.001
-    - MuzeumFloor
-    - MuseumWindow.Wypelniacz..1
-    - MuseumWalls.003
-    - MuseumWalls.002
-    - MuseumWalls.001
-    - Museum.ShortCeillingBridge
-    - Museum.LongCeillingBridge.5
-    - Museum.LongCeillingBridge.4
-    - Museum.LongCeillingBridge.3
-    - Museum.LongCeillingBridge.2
-    - Museum.LongCeillingBridge.1
-    - Kiosk3
-    - Kiosk.4
-    - Kiosk.2
-    - Kiosk.1
-    - Area07_Evolution1.Mesh1
-    - Area1_Evolution09.Mesh
-    - Area1_Evolution08.Mesh
-    - Area1_Evolution5.Mesh
-    - Area1_Evolution4.Mesh
-    - Area1_Evolution3.Mesh
-    - Area01_Evolution2.Mesh
-    - Area01_Evolution1.Mesh
-    - Area.Sufit.Zapychacz.1
-    - MuseumWindow.006
-    - MuseumWindow.002
-    padding: 42000000350000000700000004000000040000000200000002000000020000000e000000150000000d0000002700000041000000590000002e000000cf0000000001000025000000230000002400000023000000230000000c00000020000000270000001300000013000000570000005d0000005c0000005c0000006200000058000000590000005c00000042000000420000003d0000004200000042000000420000004200000042000000080000000800000024000000410000003700000008000000a50000000800000000010000180000001a0000001a0000001a0000001a00000059000000050000000600000007000000060000000600000004000000060000000200000001000000070000008900000002000000020000000001000000010000ad000000a6000000ad000000a6000000ad000000ad000000ad000000a6000000ad000000ad000000ad000000ad000000a6000000ad0000004800000048000000480000008f0000003c00000080000000ad000000a6000000a6000000ad000000ad000000a6000000ad000000ad0000001b00000040000000110000000900000012000000140000001b000000290000000600000003000000020000000b000000020000000200000006000000060000000600000006000000060000000c000000010000000d00000006000000030000000200000001000000020000000200000002000000020000000200000006000000060000000600000006000000100000000a0000001c00000023000000230000002400000023000000270000000e000000250000000b000000
-    unwrapper: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    padding: 0c0000002900000006000000010000000e00000006000000060000000600000006000000040000000600000002000000010000000200000002000000250000000200000003000000060000000700000004000000040000000200000002000000020000000d00000041000000590000002e000000cf00000000010000250000001300000013000000570000005d0000005c0000005c0000006200000058000000590000005c00000042000000420000003d0000004200000042000000420000004200000042000000080000000800000024000000410000003700000008000000080000000001000059000000050000001b0000000b00000006000000070000000600000006000000
+    unwrapper: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   - meshName:
-    - SM_Prop_Chest_01_Handle_01
-    - SM_Prop_Chest_01_Latch_01
-    - SM_Prop_Chest_01_Handle_02
-    - SM_Prop_Chest_01
-    - SM_Prop_Chest_01_Lid_01
-    padding: af0000006e000000af0000000d00000010000000
-    unwrapper: 0000000000000000000000000000000000000000
+    - SM_Env_Wall_End_Coner_Inner_01
+    padding: 0f000000
+    unwrapper: 00000000
   - meshName:
-    - SM_Bld_Base_Stairs_Ornate_Pillar_01
+    - SM_Env_Wall_Tunnel_Entrance_01
+    padding: 0a000000
+    unwrapper: 00000000
+  - meshName:
+    - SM_Prop_Wall_Banner_01
+    padding: 0b000000
+    unwrapper: 00000000
+  - meshName:
+    - SM_Env_Rubble_Pebbles_03
+    padding: 2e000000
+    unwrapper: 00000000
+  - meshName:
+    - SM_Env_Rubble_Pebbles_01
+    padding: 25000000
+    unwrapper: 00000000
+  - meshName:
+    - SM_Env_Pillar_Square_01
     padding: 0c000000
+    unwrapper: 00000000
+  - meshName:
+    - SM_Env_Pillar_Broken_Pile_01
+    padding: 0e000000
+    unwrapper: 00000000
+  - meshName:
+    - SM_Env_Wall_Window_Bars_02
+    padding: 0c000000
+    unwrapper: 00000000
+  - meshName:
+    - SM_Prop_Chain_07
+    padding: 2c000000
     unwrapper: 00000000
   assetList:
   - Assets/Bakery/examples/content/sponza/bush.FBX
   - Assets/Bakery/examples/content/floor_lamp.FBX
-  - Assets/MyModels/WallLamp.fbx
-  - Assets/MyModels/Ammo.fbx
-  - Assets/MyCoins/Coin.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_OnFire_4B_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperChase_2_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_45_HA_4_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_90_HA_2_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_90_4_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_Arm_2_R_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Hit_Forward_1_Start.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperChase_1_SHORT_CIR_R_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_90_HA_3_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_180_HA_4_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_45_HA_3_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_OnFire_2B.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_180_HA_2_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_OnFire_4B_SHORT_End.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperAttack_4_SHORT_Idle_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperChase_2_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperAttack_2_SHORT_Idle_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Hit_Forward_1_Start_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_To_Chase_3_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Chase_4_KnockBack_Chase.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_OnFire_2A_SHORT_Start.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Hit_Back_1_Start_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_90_5_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_Arms_3_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_To_Chase_1.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_90_1_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_90_HA_1_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Chase_4_KnockBack_Chase_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Crawl_2_to_Stand.fbx
-  - Assets/Zombie_27/Animation/In_Place/Split_Jumps/Zombie_HyperChase_5_Jump_End_HA2_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_To_Chase_2_Full_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_OnFire_2A_SHORT_Start_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Walk_F_4_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Split_Jumps/Zombie_HyperChase_5_Jump_Start_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Hit_Forward_1_End_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_OnFire_2A_SHORT_End_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_Loop_1_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_OnFire_1.fbx
-  - Assets/Zombie_27/Animation/In_Place/Split_Jumps/Zombie_HyperChase_5_Jump_End_HA3_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_Arm_2_R_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Idle_3_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_180_3_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Chase_3_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_90_5_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_OnFire_3C.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Idle_3.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Forward_1_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_90_5_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_Loop_4.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_45_HA_3_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_Arms_3_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperChase_4_SHORT_CIR_L_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_90_4_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand to_Crawl_2_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperChase_1_SHORT_CIR_L_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_Walk_F_1_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_To_HyperChase_5.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_Walk_F_6.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Hit_Left_1_Start.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Walk_F_1_KnockBack_Walk.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_To_HyperChase_3_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_180_2_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_180_4_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Chase_2_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_180_1_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Chase_5_KnockBack_Chase_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Split_Jumps/Zombie_HyperChase_5_Jump_End_HA4_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_90_HA_2_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Idle_4.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_90_3_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_Hit_to_Crawl_1.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperChase_5_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Crawl_1_to_Stand_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Right_3_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Idle_2.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperChase_3_SHORT_CIR_R_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperAttack_1_SHORT_Idle_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_180_HA_1_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_Hit_to_Crawl_2.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_180_HA_4_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_OnFire_1_SHORT_End_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_180_2.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Walk_F_1_Full_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_90_HA_3_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_45_HA_1_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Crawl_1.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Hit_Back_1_End_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_OnFire_1_SHORT_End.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Walk_F_1_Full_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_To_Chase_4_Full_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Reach_1_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_To_Atk_3.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_OnFire_2A_SHORT_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_OnFire_3B_SHORT_Start.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_OnFire_4B.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_45_HA_2_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_KnockBack_4_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Crawl_2_to_Stand_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Hit_Left_1_Start_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_To_Chase_4_Full.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperChase_3_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Idle_2_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Walk_F_5_Full_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_OnFire_3A_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_45_HA_2_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_OnFire_4B_SHORT.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_To_Atk_5_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_180_2_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Chase_1_Full_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_90_2_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_OnFire_4A_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Chase_5_Full_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Chase_1_KnockBack_Chase.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_To_Chase_5_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Chase_3_Full_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Walk_F_4_Full_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_Arm_2_R_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Chase_2_KnockBack_Chase_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_To_Chase_5_Full.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_To_Atk_2.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperChase_1_SHORT_CIR_R_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Chase_2_Full_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_90_HA_3_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_To_Atk_1_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_KnockBack_1_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_Hit_to_Crawl_2_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_To_Atk_3_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Hit_Back_1_End.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_Arms_4_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Back_Mid_1.fbx
-  - Assets/Zombie_27/Animation/In_Place/Split_Jumps/Zombie_HyperChase_5_Jump_End_HA1_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_180_1_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperChase_5_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Shamble_2.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperChase_3_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Walk_F_1_KnockBack_Walk_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_End_1.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Right_3.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Reach_2_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_180_4.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_90_1_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Reach_2_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_90_2_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Idle_4_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_To_Chase_2_Full.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Walk_F_5_KnockBack_Walk.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Chase_3_Full_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Hit_Forward_1_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_90_5.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_To_Chase_1_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_180_2.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Shamble_2_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Crawl_2_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Forward_1.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperAttack_3_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperAttack_3_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Walk_F_3_Full_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Walk_F_5_Full_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Chase_1_Full_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_180_1_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_90_4.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_OnFire_3C_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_Loop_3.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperChase_5_SHORT_CIR_L_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_90_5_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_90_1.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperChase_2_SHORT_CIR_R_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_Arms_3_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Walk_F_2_KnockBack_Walk.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_Walk_F_3.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_KnockBack_2.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Left_2_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_Arms_4_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_Arms_4A_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperChase_5_SHORT_CIR_R_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Split_Jumps/Zombie_HyperChase_4_Jump_End_HA3_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_To_HyperChase_3.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Back_Mid_2_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_End_5_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Left_1_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_180_3_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Chase_1_KnockBack_Chase_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_180_4_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperChase_5_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_Arm_1_L_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_OnFire_4B_SHORT_Start_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_Loop_2_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Crawl_1_to_Stand.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_End_5.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Chase_1_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_45_HA_4_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Back_Mid_1_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Walk_F_6_KnockBack_Walk_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Left_1.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_90_1_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Shamble_Long_1.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_Walk_F_2_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_45_HA_3_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Split_Jumps/Zombie_HyperChase_4_Jump_End_HA4_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_Arm_1_R_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_90_2_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand to_Crawl_1.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Idle_1_v2_to_MOB_Stand_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_KnockBack_5_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperAttack_4_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_Walk_F_6_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_90_HA_1_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Walk_F_3_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Hit_Right_1_Start_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Hit_Right_1_End.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_180_HA_3_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_180_1_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_To_Chase_3_Full_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_90_HA_2_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Walk_F_3_Full_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperAttack_2_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Right_1_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperChase_3_SHORT_CIR_L_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_Arms_4_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Hit_Back_1.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_Arm_2_L_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_180_HA_1_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Walk_F_6_Full_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_90_2_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Split_Jumps/Zombie_HyperChase_4_Jump_Start_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_OnFire_3B_SHORT_Start_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_180_2_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_To_HyperChase_5_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Walk_F_5_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_90_5.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_90_HA_1_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Hit_Left_1.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_90_2_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_OnFire_2B_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_180_1_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_Walk_F_3_Full_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperAttack_3_SHORT_Idle_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Hit_Right_1_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Crawl_1_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/MOB_Stand_to_Zombie_Idle_1_v2.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_45_HA_2_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperAttack_4_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_To_Atk_4_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_45_HA_2_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_To_HyperChase_2.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_Arms_3A_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperChase_1_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperAttack_4_SHORT_Idle_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Idle_1_v2.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_45_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_OnFire_3B.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_180_HA_2_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_To_Chase_1_Full_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperChase_2_SHORT_CIR_L_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Chase_3_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Hit_Left_1_End.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Right_2.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_To_Chase_5_Full_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Split_Jumps/Zombie_HyperChase_5_Jump_Air_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperAttack_1_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_45_HA_1_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Chase_5_KnockBack_Chase.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Forward_2_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Idle_1_v2_to_MOB_Stand.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_180_HA_4_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_90_1_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_OnFire_2A_SHORT_End.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_90_3_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Right_1.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_Walk_F_1.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_Arm_2_L_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_Walk_F_3_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_KnockBack_3_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_KnockBack_1.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_180_3.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_90_HA_4_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_End_4.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_Arms_3_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperAttack_4_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_180_2_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Reach_Full_2_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_90_3_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperChase_1_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_To_HyperChase_4.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_180_2_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_180_1.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_OnFire_1_SHORT_Start_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Forward_2.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_90_1_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperAttack_1_SHORT_Idle_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Hit_Forward_1_End.fbx
-  - Assets/Zombie_27/Animation/In_Place/MOB_Stand_to_Zombie_Idle_1_v2_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_OnFire_4B_SHORT_Start.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand to_Crawl_1_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Walk_F_6_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_90_1_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_Loop_4_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_Arm_1_L_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_To_Atk_5.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperChase_4_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_90_HA_4_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperChase_5_SHORT_CIR_L_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Chase_4_Full_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Walk_F_3_KnockBack_Walk.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_OnFire_1_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperAttack_3_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_90_1.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperChase_2_SHORT_CIR_R_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Shamble_Long_2.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_90_1_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_OnFire_2A_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperChase_1_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Walk_F_2_Full_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Walk_F_5_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperChase_3_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_180_HA_3_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_To_Atk_4.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Chase_4_Full_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_End_4_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Walk_F_2_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Walk_F_6_Full_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperChase_2_SHORT_CIR_L_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand to_Crawl_2.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_End_2.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_To_Chase_3_Full.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_OnFire_1_SHORT.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Chase_3_KnockBack_Chase.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_90_1_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperChase_4_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Walk_F_4_KnockBack_Walk.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_180_1_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_To_HyperChase_1.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_Walk_F_4_Full_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_180_4.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_To_Atk_2_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Walk_F_2_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_OnFire_3B_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_180_HA_3_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_Walk_F_2_Full.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_90_1_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_45_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_Arm_1_R_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Crawl_1_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Shamble_1_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_Arm_1_L_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperChase_5_SHORT_CIR_R_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Idle_1_v2_Full.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_Walk_F_5_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_180_HA_3_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_Arm_1_L_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperChase_4_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Walk_F_6_KnockBack_Walk.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_Loop_3_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_90_3_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Chase_2_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Shamble_Long_2_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_180_1_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Chase_3_KnockBack_Chase_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_90_1_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperChase_4_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_KnockBack_5.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_Walk_F_2.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_OnFire_3B_SHORT.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_To_HyperChase_4_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_Hit_to_Crawl_1_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_90_4.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperChase_2_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperAttack_1_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperChase_1_SHORT_CIR_L_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_180_4_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_Walk_F_4_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperChase_4_SHORT_CIR_L_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Split_Jumps/Zombie_HyperChase_4_Jump_End_HA1_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Split_Jumps/Zombie_HyperChase_4_Jump_Air_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_Walk_F_3_Full.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperAttack_3_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Split_Jumps/Zombie_HyperChase_4_Jump_End_HA2_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_End_3_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Walk_F_4_Full_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_90_HA_3_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_180_2_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_180_3_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_45_HA_4_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_OnFire_4B_SHORT_End_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_90_5_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_To_HyperChase_1_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_45_HA_1_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_90_2_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperAttack_1_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperChase_3_SHORT_CIR_L_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Crawl_2_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_To_Chase_2_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Crawl_2_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_90_HA_4_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_180_1_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Chase_2_KnockBack_Chase.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Walk_F_1_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_90_4_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_End_2_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_180_4_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_End_1_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Hit_Left_1_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_45_HA_3_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_180_HA_2_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Back_Mid_3.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Crawl_1_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Left_2.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_OnFire_1_SHORT_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_Arms_4A_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Back_Mid_3_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_180_4_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_Loop_5.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_180_1_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Left_3_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperChase_4_SHORT_CIR_R_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_To_Atk_1.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_90_HA_1_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_90_2.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_Walk_F_2_Full_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_90_HA_4_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Chase_5_Full_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Hit_Right_1_End_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_Walk_F_4.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Walk_F_3_KnockBack_Walk_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Walk_F_1_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_OnFire_4B_SHORT_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_90_3_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_90_3.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_To_Chase_2.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperAttack_4_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_To_Chase_3.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_180_3_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperAttack_3_SHORT_Idle_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_90_3.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Right_2_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Walk_F_4_KnockBack_Walk_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Chase_5_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_45_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperAttack_2_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Hit_Forward_1.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Reach_1_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_Walk_F_5.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_90_2.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_90_4_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_OnFire_4A.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_Arms_4_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_90_5_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperAttack_2_SHORT_Idle_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_Arm_2_R_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_180_HA_2_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Back_Mid_2.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_OnFire_2A_SHORT.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_180_1.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_R_45_HA_4_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperAttack_1_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperChase_2_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Hit_Right_1_Start.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Hit_Left_1_End_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_180_HA_4_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_Loop_1.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_180_1_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperChase_3_SHORT_CIR_R_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_180_HA_1_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_90_4_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Idle_1_v2_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_180_HA_1_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_To_Chase_1_Full.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Crawl_2.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_Arms_3A_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Walk_F_3_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_OnFire_3B_SHORT_End_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Idle_1_v2_Full_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_OnFire_3B_SHORT_End.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperAttack_2_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_OnFire_2A.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_To_Chase_5.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Chase_5_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperChase_4_SHORT_CIR_R_Loop.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_180_3_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_HyperChase_5_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Stand_To_HyperChase_2_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_Loop_5_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Chase_2_Full_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Chase_1_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Walk_F_4_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Reach_Full_2.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Hit_Back_1_Start.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Atk_KnockBack_2_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Reach_Full_1_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_OnFire_3B_SHORT_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Walk_F_6_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Walk_F_5_KnockBack_Walk_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperAttack_2_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperChase_1_SHORT_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_HyperChase_3_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Turn_L_180_3.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_180_4_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_180_3_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Shamble_Long_1_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_OnFire_1_SHORT_Start.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Walk_F_2_Full_Loop.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Stand_Walk_F_4_Full.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_45_HA_1_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_45_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Reach_Full_1.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_90_4_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Walk_F_2_KnockBack_Walk_IPC.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Death_Hit_Back_1_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_Loop_2.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Left_3.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_KnockBack_4.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_KnockBack_3.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_R_90_HA_2_SHORT_Loop_IPC.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Shamble_1.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_OnFire_3A.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Death_Hit_Right_1.fbx
-  - Assets/Zombie_27/Animation/Root_Motion/Zombie_Atk_End_3.fbx
-  - Assets/Zombie_27/Animation/In_Place/Zombie_Turn_L_90_3_IPC.fbx
-  - Assets/MyAnimations/Zombie/Zombie Idle.fbx
-  - Assets/MyAnimations/Zombie/Zombie Running.fbx
-  - Assets/MyAnimations/Zombie/Attack.fbx
-  - Assets/MyModels/Magnes.fbx
   - Assets/MyModels/LibraryAssets.fbx
-  - Assets/MyAnimations/Zombie/Goalie Throw.fbx
-  - Assets/MyAnimations/Zombie/Zombie Throw.fbx
-  - Assets/MyAnimations/Zombie/Throw.fbx
-  - Assets/My Animators/Player/Idle.fbx
+  - Assets/ElseForty/Other/3D/Meshes/Robot Kyle/AnimationClip/Animation/RunTurn.fbx
+  - Assets/ElseForty/Other/3D/Meshes/T-70_Track_Piece.FBX
+  - Assets/ElseForty/Other/3D/Meshes/train3.FBX
+  - Assets/ElseForty/Other/3D/Meshes/Robot Kyle/AnimationClip/Animation/Walk.fbx
+  - Assets/ThirdParty Assets/JMO Assets/MatCap Shaders/Demo/Assets/Robot Kyle/Robot
+    Kyle.fbx
+  - Assets/ElseForty/Other/3D/Meshes/Pillar.FBX
+  - Assets/ElseForty/Other/3D/Meshes/Robot Kyle/AnimationClip/Animation/RunTurnSharp.fbx
+  - Assets/ElseForty/Other/3D/Meshes/RoadModel/StreetLamp/StreetLamp2_Short.fbx
+  - Assets/ElseForty/Other/3D/Meshes/fence.FBX
+  - Assets/ElseForty/Other/3D/Meshes/train2.FBX
+  - Assets/ElseForty/Other/3D/Meshes/Robot Kyle/AnimationClip/Animation/Jump.FBX
+  - Assets/ElseForty/Other/3D/Meshes/Rail.FBX
+  - Assets/ElseForty/Other/3D/Meshes/PillarSmall.FBX
+  - Assets/ElseForty/Other/3D/Meshes/train1.FBX
+  - Assets/ElseForty/Other/3D/Meshes/Rock2.FBX
+  - Assets/ElseForty/Other/3D/Meshes/PillarBig.FBX
+  - Assets/ElseForty/Other/3D/Meshes/Robot Kyle/AnimationClip/Animation/WalkTurnSharp.fbx
+  - Assets/ElseForty/Other/3D/Meshes/Rock1.FBX
+  - Assets/ElseForty/Other/3D/Meshes/Robot Kyle/AnimationClip/Animation/WalkTurn.fbx
+  - Assets/ElseForty/Other/3D/Meshes/Robot Kyle/AnimationClip/Animation/Run.fbx
+  - Assets/ElseForty/Other/3D/Meshes/RoadModel/Road/old road.fbx
+  - Assets/ElseForty/Other/3D/Meshes/car.FBX
+  - Assets/ElseForty/Other/3D/Meshes/terrain.FBX
+  - Assets/ElseForty/Other/3D/Meshes/Rock3.FBX
+  - Assets/ElseForty/Other/3D/Meshes/PillarMid.FBX
+  - Assets/ElseForty/Other/3D/Meshes/RoadModel/GuardRail/Guard.fbx
+  - Assets/ElseForty/Other/3D/Meshes/Robot Kyle/AnimationClip/Animation/StandTurn.fbx
+  - Assets/ElseForty/Other/3D/Meshes/city.FBX
+  - Assets/ElseForty/Other/3D/Meshes/Robot Kyle/AnimationClip/Animation/Idle.fbx
+  - Assets/MyModels/Magnes.fbx
   - Assets/My Animators/Player/Idle(1).fbx
+  - Assets/MyModels/Ammo.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/Circle_2.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/Crystal.fbx
+  - Assets/MyAnimations/Zombie/Attack.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/Tornado.fbx
+  - Assets/MyAnimations/Zombie/Zombie Running.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/LongSlide.fbx
+  - Assets/MyCoins/Coin.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/Cylinder_01.fbx
+  - Assets/MyAnimations/Zombie/Zombie Idle.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/Line_01.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/Halfsphare.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/BlackHole.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/Line_02.fbx
   - Assets/My Animators/Player/Idle(2).fbx
-  uvOverlapAssetList: 00000000ffffffff01010000010100000101000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001010000000000000000000000000000000000000000000000000000
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/Wave.fbx
+  - Assets/MyAnimations/Zombie/Zombie Throw.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/Halfsphere_2.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/MushroomCloud_01.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/Line_03.fbx
+  - Assets/MyModels/MuseumDinosaursExport.fbx
+  - Assets/My Animators/Player/Idle.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/Ring.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/Donut_Mesh.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/Sword_1.fbx
+  - Assets/MyAnimations/Zombie/Zombie Reaction Hit.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/Bullet.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/Beam.fbx
+  - Assets/MyAnimations/Zombie/Falling Back Death.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/Ring_2.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/Arrow_1.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/Chopper_01.fbx
+  - Assets/ThirdParty Assets/SpecialSkillsEffectsPack/Models/Circle.fbx
+  uvOverlapAssetList: 00000000ffffffff0101000000000000010100000101000000000000000000000101000000000000000000000101000001010000000000000101000001010000010100000101000001010000000000000101000000000000000000000000000001010000000000000101000001010000000000000000000001010000000000000000000000000000010100000000000000000000000000000000000000000000000000000101000000000000000000000101000000000000010100000101000000000000010100000000000000000000010100000101000000000000000000000000000000000000010100000000000001010000000000000000000000000000010100000101000000000000
   xatlasWarningShown: 0
   foundCompatibleSetup: 1
   gpuName: NVIDIA GeForce RTX 2070 SUPER
@@ -1183,5 +667,5 @@ MonoBehaviour:
   renderSettingsRTPVSceneView: 0
   renderSettingsRTPVWidth: 640
   renderSettingsRTPVHeight: 360
-  modifiedMeshPaddingArray: 42000000350000000700000004000000040000000200000002000000020000000e000000150000000d0000002700000041000000590000002e000000cf0000000001000025000000230000002400000023000000230000000c00000020000000270000001300000013000000570000005d0000005c0000005c0000006200000058000000590000005c00000042000000420000003d0000004200000042000000420000004200000042000000080000000800000024000000410000003700000008000000a50000000800000000010000180000001a0000001a0000001a0000001a00000059000000050000000600000007000000060000000600000004000000060000000200000001000000070000008900000002000000020000000001000000010000ad000000a6000000ad000000a6000000ad000000ad000000ad000000a6000000ad000000ad000000ad000000ad000000a6000000ad0000004800000048000000480000008f0000003c00000080000000ad000000a6000000a6000000ad000000ad000000a6000000ad000000ad0000001b00000040000000110000000900000012000000140000001b000000290000000600000003000000020000000b000000020000000200000006000000060000000600000006000000060000000c000000010000000d00000006000000030000000200000001000000020000000200000002000000020000000200000006000000060000000600000006000000100000000a0000001c00000023000000230000002400000023000000270000000e000000250000000b000000
-  modifiedMeshUnwrapperArray: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  modifiedMeshPaddingArray: 0c0000002900000006000000010000000e00000006000000060000000600000006000000040000000600000002000000010000000200000002000000250000000200000003000000060000000700000004000000040000000200000002000000020000000d00000041000000590000002e000000cf00000000010000250000001300000013000000570000005d0000005c0000005c0000006200000058000000590000005c00000042000000420000003d0000004200000042000000420000004200000042000000080000000800000024000000410000003700000008000000080000000001000059000000050000001b0000000b00000006000000070000000600000006000000
+  modifiedMeshUnwrapperArray: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000

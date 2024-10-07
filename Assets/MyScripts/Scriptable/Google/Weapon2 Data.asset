@@ -1,0 +1,282 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a59d31237dda98f43baf527d63276703, type: 3}
+  m_Name: Weapon2 Data
+  m_EditorClassIdentifier: 
+  missingTranslation: Translation not found for that key.
+  missingKey: Key not found in the localization data.
+  weaponDataTableName: Weapon2
+  weaponData:
+  - damageValue: 5
+    damageUpgradeCost: 1000000
+    clipValue: 1
+    clipUpgradeCost: 1000000
+    reloadTimeValue: 2.5
+    reloadTimeUpgradeCost: 1000000
+    shootSpeedTimeValue: 3
+    shootSpeedTimeUpgradeCost: 10
+  - damageValue: 10
+    damageUpgradeCost: 1500000
+    clipValue: 16
+    clipUpgradeCost: 1500000
+    reloadTimeValue: 2.4
+    reloadTimeUpgradeCost: 1500000
+    shootSpeedTimeValue: 2.8
+    shootSpeedTimeUpgradeCost: 15
+  - damageValue: 11
+    damageUpgradeCost: 2000000
+    clipValue: 18
+    clipUpgradeCost: 2000000
+    reloadTimeValue: 2.3
+    reloadTimeUpgradeCost: 2000000
+    shootSpeedTimeValue: 2.6
+    shootSpeedTimeUpgradeCost: 20
+  - damageValue: 12
+    damageUpgradeCost: 2500000
+    clipValue: 20
+    clipUpgradeCost: 2500000
+    reloadTimeValue: 2.2
+    reloadTimeUpgradeCost: 2500000
+    shootSpeedTimeValue: 2.4
+    shootSpeedTimeUpgradeCost: 25
+  - damageValue: 13
+    damageUpgradeCost: 3000000
+    clipValue: 25
+    clipUpgradeCost: 3000000
+    reloadTimeValue: 2.1
+    reloadTimeUpgradeCost: 3000000
+    shootSpeedTimeValue: 2.2
+    shootSpeedTimeUpgradeCost: 30
+  - damageValue: 14
+    damageUpgradeCost: 3500000
+    clipValue: 30
+    clipUpgradeCost: 3500000
+    reloadTimeValue: 2
+    reloadTimeUpgradeCost: 3500000
+    shootSpeedTimeValue: 1.8
+    shootSpeedTimeUpgradeCost: 50
+  - damageValue: 15
+    damageUpgradeCost: 4000000
+    clipValue: 35
+    clipUpgradeCost: 4000000
+    reloadTimeValue: 1.9
+    reloadTimeUpgradeCost: 4000000
+    shootSpeedTimeValue: 1.6
+    shootSpeedTimeUpgradeCost: 75
+  - damageValue: 16
+    damageUpgradeCost: 4500000
+    clipValue: 40
+    clipUpgradeCost: 4500000
+    reloadTimeValue: 1.8
+    reloadTimeUpgradeCost: 4500000
+    shootSpeedTimeValue: 1.4
+    shootSpeedTimeUpgradeCost: 100
+  - damageValue: 17
+    damageUpgradeCost: 5000000
+    clipValue: 45
+    clipUpgradeCost: 5000000
+    reloadTimeValue: 1.7
+    reloadTimeUpgradeCost: 5000000
+    shootSpeedTimeValue: 1.3
+    shootSpeedTimeUpgradeCost: 150
+  - damageValue: 18
+    damageUpgradeCost: 5500000
+    clipValue: 50
+    clipUpgradeCost: 5500000
+    reloadTimeValue: 1.6
+    reloadTimeUpgradeCost: 5500000
+    shootSpeedTimeValue: 1.2
+    shootSpeedTimeUpgradeCost: 300
+  - damageValue: 19
+    damageUpgradeCost: 6000000
+    clipValue: 55
+    clipUpgradeCost: 6000000
+    reloadTimeValue: 1.5
+    reloadTimeUpgradeCost: 6000000
+    shootSpeedTimeValue: 1.1
+    shootSpeedTimeUpgradeCost: 500
+  - damageValue: 20
+    damageUpgradeCost: 6500000
+    clipValue: 60
+    clipUpgradeCost: 6500000
+    reloadTimeValue: 1.4
+    reloadTimeUpgradeCost: 6500000
+    shootSpeedTimeValue: 1
+    shootSpeedTimeUpgradeCost: 750
+  - damageValue: 21
+    damageUpgradeCost: 7000000
+    clipValue: 65
+    clipUpgradeCost: 7000000
+    reloadTimeValue: 1.3
+    reloadTimeUpgradeCost: 7000000
+    shootSpeedTimeValue: 0.900000000000001
+    shootSpeedTimeUpgradeCost: 900
+  - damageValue: 22
+    damageUpgradeCost: 7500000
+    clipValue: 70
+    clipUpgradeCost: 7500000
+    reloadTimeValue: 1.2
+    reloadTimeUpgradeCost: 7500000
+    shootSpeedTimeValue: 0.800000000000001
+    shootSpeedTimeUpgradeCost: 1000
+  - damageValue: 23
+    damageUpgradeCost: 8000000
+    clipValue: 75
+    clipUpgradeCost: 8000000
+    reloadTimeValue: 1.1
+    reloadTimeUpgradeCost: 8000000
+    shootSpeedTimeValue: 0.700000000000001
+    shootSpeedTimeUpgradeCost: 2000
+  - damageValue: 24
+    damageUpgradeCost: 8500000
+    clipValue: 80
+    clipUpgradeCost: 8500000
+    reloadTimeValue: 1
+    reloadTimeUpgradeCost: 8500000
+    shootSpeedTimeValue: 0.600000000000001
+    shootSpeedTimeUpgradeCost: 3000
+  - damageValue: 25
+    damageUpgradeCost: 9000000
+    clipValue: 85
+    clipUpgradeCost: 9000000
+    reloadTimeValue: 0.9
+    reloadTimeUpgradeCost: 9000000
+    shootSpeedTimeValue: 0.55
+    shootSpeedTimeUpgradeCost: 5000
+  - damageValue: 26
+    damageUpgradeCost: 9500000
+    clipValue: 90
+    clipUpgradeCost: 9500000
+    reloadTimeValue: 0.8
+    reloadTimeUpgradeCost: 9500000
+    shootSpeedTimeValue: 0.5
+    shootSpeedTimeUpgradeCost: 10000
+  - damageValue: 27
+    damageUpgradeCost: 10000000
+    clipValue: 95
+    clipUpgradeCost: 10000000
+    reloadTimeValue: 0.7
+    reloadTimeUpgradeCost: 10000000
+    shootSpeedTimeValue: 0.45
+    shootSpeedTimeUpgradeCost: 15000
+  - damageValue: 28
+    damageUpgradeCost: 10500000
+    clipValue: 100
+    clipUpgradeCost: 10500000
+    reloadTimeValue: 0.6
+    reloadTimeUpgradeCost: 10500000
+    shootSpeedTimeValue: 0.399999999999999
+    shootSpeedTimeUpgradeCost: 20000
+  - damageValue: 29
+    damageUpgradeCost: 11000000
+    clipValue: 105
+    clipUpgradeCost: 11000000
+    reloadTimeValue: 0.5
+    reloadTimeUpgradeCost: 11000000
+    shootSpeedTimeValue: 0.349999999999999
+    shootSpeedTimeUpgradeCost: 25000
+  - damageValue: 30
+    damageUpgradeCost: 11500000
+    clipValue: 110
+    clipUpgradeCost: 11500000
+    reloadTimeValue: 0.4
+    reloadTimeUpgradeCost: 11500000
+    shootSpeedTimeValue: 0.299999999999999
+    shootSpeedTimeUpgradeCost: 50000
+  - damageValue: 31
+    damageUpgradeCost: 12000000
+    clipValue: 115
+    clipUpgradeCost: 12000000
+    reloadTimeValue: 0.3
+    reloadTimeUpgradeCost: 12000000
+    shootSpeedTimeValue: 0.249999999999998
+    shootSpeedTimeUpgradeCost: 100000
+  - damageValue: 32
+    damageUpgradeCost: 12500000
+    clipValue: 120
+    clipUpgradeCost: 12500000
+    reloadTimeValue: 0.2
+    reloadTimeUpgradeCost: 12500000
+    shootSpeedTimeValue: 0.199999999999998
+    shootSpeedTimeUpgradeCost: 150000
+  - damageValue: 33
+    damageUpgradeCost: 13000000
+    clipValue: 125
+    clipUpgradeCost: 13000000
+    reloadTimeValue: 0.19
+    reloadTimeUpgradeCost: 13000000
+    shootSpeedTimeValue: 0.19
+    shootSpeedTimeUpgradeCost: 200000
+  - damageValue: 34
+    damageUpgradeCost: 14000000
+    clipValue: 130
+    clipUpgradeCost: 14000000
+    reloadTimeValue: 0.18
+    reloadTimeUpgradeCost: 14000000
+    shootSpeedTimeValue: 0.180000000000002
+    shootSpeedTimeUpgradeCost: 500000
+  - damageValue: 35
+    damageUpgradeCost: 15000000
+    clipValue: 135
+    clipUpgradeCost: 15000000
+    reloadTimeValue: 0.17
+    reloadTimeUpgradeCost: 15000000
+    shootSpeedTimeValue: 0.170000000000004
+    shootSpeedTimeUpgradeCost: 1000000
+  - damageValue: 36
+    damageUpgradeCost: 16000000
+    clipValue: 140
+    clipUpgradeCost: 16000000
+    reloadTimeValue: 0.16
+    reloadTimeUpgradeCost: 16000000
+    shootSpeedTimeValue: 0.160000000000006
+    shootSpeedTimeUpgradeCost: 1500000
+  - damageValue: 37
+    damageUpgradeCost: 17000000
+    clipValue: 145
+    clipUpgradeCost: 17000000
+    reloadTimeValue: 0.15
+    reloadTimeUpgradeCost: 17000000
+    shootSpeedTimeValue: 0.150000000000008
+    shootSpeedTimeUpgradeCost: 2000000
+  - damageValue: 38
+    damageUpgradeCost: 18000000
+    clipValue: 150
+    clipUpgradeCost: 18000000
+    reloadTimeValue: 0.14
+    reloadTimeUpgradeCost: 18000000
+    shootSpeedTimeValue: 0.14000000000001
+    shootSpeedTimeUpgradeCost: 5000000
+  - damageValue: 39
+    damageUpgradeCost: 19000000
+    clipValue: 155
+    clipUpgradeCost: 19000000
+    reloadTimeValue: 0.13
+    reloadTimeUpgradeCost: 19000000
+    shootSpeedTimeValue: 0.130000000000012
+    shootSpeedTimeUpgradeCost: 10000000
+  - damageValue: 40
+    damageUpgradeCost: 20000000
+    clipValue: 160
+    clipUpgradeCost: 20000000
+    reloadTimeValue: 0.12
+    reloadTimeUpgradeCost: 20000000
+    shootSpeedTimeValue: 0.120000000000014
+    shootSpeedTimeUpgradeCost: 15000000
+  - damageValue: 41
+    damageUpgradeCost: 21000000
+    clipValue: 165
+    clipUpgradeCost: 21000000
+    reloadTimeValue: 0.11
+    reloadTimeUpgradeCost: 21000000
+    shootSpeedTimeValue: 0.110000000000016
+    shootSpeedTimeUpgradeCost: 20000000

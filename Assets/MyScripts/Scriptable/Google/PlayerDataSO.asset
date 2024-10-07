@@ -1,0 +1,168 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 354ea2d9ef8cbbe40b3ff43af388a075, type: 3}
+  m_Name: PlayerDataSO
+  m_EditorClassIdentifier: 
+  missingTranslation: Translation not found for that key.
+  missingKey: Key not found in the localization data.
+  PlayerDataTableName: PlayerData
+  playerData:
+  - hpValue: 1
+    hpUpgradeCost: 250
+    sprintTimeValue: 1
+    sprintTimeUpgradeCost: 25
+    sprintReloadSpeedValue: 3
+    sprintReloadSpeedUpgradeCost: 25
+  - hpValue: 2
+    hpUpgradeCost: 500
+    sprintTimeValue: 1.5
+    sprintTimeUpgradeCost: 50
+    sprintReloadSpeedValue: 2.9
+    sprintReloadSpeedUpgradeCost: 50
+  - hpValue: 3
+    hpUpgradeCost: 1000
+    sprintTimeValue: 2
+    sprintTimeUpgradeCost: 75
+    sprintReloadSpeedValue: 2.8
+    sprintReloadSpeedUpgradeCost: 100
+  - hpValue: 4
+    hpUpgradeCost: 2500
+    sprintTimeValue: 2.5
+    sprintTimeUpgradeCost: 100
+    sprintReloadSpeedValue: 2.7
+    sprintReloadSpeedUpgradeCost: 150
+  - hpValue: 5
+    hpUpgradeCost: 5000
+    sprintTimeValue: 3
+    sprintTimeUpgradeCost: 150
+    sprintReloadSpeedValue: 2.6
+    sprintReloadSpeedUpgradeCost: 250
+  - hpValue: 6
+    hpUpgradeCost: 10000
+    sprintTimeValue: 3.5
+    sprintTimeUpgradeCost: 250
+    sprintReloadSpeedValue: 2.5
+    sprintReloadSpeedUpgradeCost: 300
+  - hpValue: 7
+    hpUpgradeCost: 20000
+    sprintTimeValue: 4
+    sprintTimeUpgradeCost: 300
+    sprintReloadSpeedValue: 2.39999999999999
+    sprintReloadSpeedUpgradeCost: 500
+  - hpValue: 8
+    hpUpgradeCost: 50000
+    sprintTimeValue: 4.5
+    sprintTimeUpgradeCost: 500
+    sprintReloadSpeedValue: 2.29999999999999
+    sprintReloadSpeedUpgradeCost: 750
+  - hpValue: 9
+    hpUpgradeCost: 100000
+    sprintTimeValue: 5
+    sprintTimeUpgradeCost: 750
+    sprintReloadSpeedValue: 2.19999999999999
+    sprintReloadSpeedUpgradeCost: 1000
+  - hpValue: 10
+    hpUpgradeCost: 200000
+    sprintTimeValue: 5.5
+    sprintTimeUpgradeCost: 1000
+    sprintReloadSpeedValue: 2.09999999999999
+    sprintReloadSpeedUpgradeCost: 2000
+  - hpValue: 11
+    hpUpgradeCost: 500000
+    sprintTimeValue: 6
+    sprintTimeUpgradeCost: 2000
+    sprintReloadSpeedValue: 1.99999999999999
+    sprintReloadSpeedUpgradeCost: 3000
+  - hpValue: 12
+    hpUpgradeCost: 1000000
+    sprintTimeValue: 6.5
+    sprintTimeUpgradeCost: 3000
+    sprintReloadSpeedValue: 1.89999999999999
+    sprintReloadSpeedUpgradeCost: 5000
+  - hpValue: 13
+    hpUpgradeCost: 2000000
+    sprintTimeValue: 7
+    sprintTimeUpgradeCost: 5000
+    sprintReloadSpeedValue: 1.79999999999999
+    sprintReloadSpeedUpgradeCost: 15000
+  - hpValue: 14
+    hpUpgradeCost: 5000000
+    sprintTimeValue: 7.5
+    sprintTimeUpgradeCost: 15000
+    sprintReloadSpeedValue: 1.69999999999999
+    sprintReloadSpeedUpgradeCost: 20000
+  - hpValue: 15
+    hpUpgradeCost: 10000000
+    sprintTimeValue: 8
+    sprintTimeUpgradeCost: 20000
+    sprintReloadSpeedValue: 1.59999999999999
+    sprintReloadSpeedUpgradeCost: 25000
+  - hpValue: 16
+    hpUpgradeCost: 20000000
+    sprintTimeValue: 8.5
+    sprintTimeUpgradeCost: 25000
+    sprintReloadSpeedValue: 1.49999999999999
+    sprintReloadSpeedUpgradeCost: 50000
+  - hpValue: 17
+    hpUpgradeCost: 50000000
+    sprintTimeValue: 9
+    sprintTimeUpgradeCost: 50000
+    sprintReloadSpeedValue: 1.39999999999998
+    sprintReloadSpeedUpgradeCost: 100000
+  - hpValue: 18
+    hpUpgradeCost: 100000000
+    sprintTimeValue: 9.5
+    sprintTimeUpgradeCost: 100000
+    sprintReloadSpeedValue: 1.29999999999998
+    sprintReloadSpeedUpgradeCost: 150000
+  - hpValue: 19
+    hpUpgradeCost: 200000000
+    sprintTimeValue: 10
+    sprintTimeUpgradeCost: 150000
+    sprintReloadSpeedValue: 1.19999999999998
+    sprintReloadSpeedUpgradeCost: 200000
+  - hpValue: 20
+    hpUpgradeCost: 500000000
+    sprintTimeValue: 10.5
+    sprintTimeUpgradeCost: 200000
+    sprintReloadSpeedValue: 1.09999999999998
+    sprintReloadSpeedUpgradeCost: 500000
+  - hpValue: 21
+    hpUpgradeCost: 1000000000
+    sprintTimeValue: 11
+    sprintTimeUpgradeCost: 500000
+    sprintReloadSpeedValue: 0.99999999999998
+    sprintReloadSpeedUpgradeCost: 1000000
+  - hpValue: 22
+    hpUpgradeCost: 2000000000
+    sprintTimeValue: 11.5
+    sprintTimeUpgradeCost: 1000000
+    sprintReloadSpeedValue: 0.899999999999979
+    sprintReloadSpeedUpgradeCost: 1500000
+  - hpValue: 23
+    hpUpgradeCost: 5000000000
+    sprintTimeValue: 12
+    sprintTimeUpgradeCost: 1500000
+    sprintReloadSpeedValue: 0.799999999999978
+    sprintReloadSpeedUpgradeCost: 2000000
+  - hpValue: 24
+    hpUpgradeCost: 7500000000
+    sprintTimeValue: 12.5
+    sprintTimeUpgradeCost: 2000000
+    sprintReloadSpeedValue: 0.699999999999977
+    sprintReloadSpeedUpgradeCost: 5000000
+  - hpValue: 25
+    hpUpgradeCost: 9999999999
+    sprintTimeValue: 13
+    sprintTimeUpgradeCost: 5000000
+    sprintReloadSpeedValue: 0.599999999999976
+    sprintReloadSpeedUpgradeCost: 10000000

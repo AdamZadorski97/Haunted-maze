@@ -9,8 +9,12 @@ using UnityEngine.Networking;
 public class SaveLoadDataManager : MonoBehaviour
 {
     public SaveData saveData;
-    public WeaponsData weaponsData;
-    public PlayerData playerData;
+    public List<WeaponDataSO> weaponsDatas;
+    public PlayerStatsDataSO playerDatas;
+    public LevelDataSO levelDatas;
+    public LevelCoinsSO levelCoinsSO;
+    public List<LevelData> levelData = new List<LevelData>();
+    public bool UpdateData;
 
     private string CheckPlayerExistLink = "http://skydomesoftware.usermd.net/HauntedMaze/HauntedMazeCheckUserExists.php";
     private string GetPlayerLink = "http://skydomesoftware.usermd.net/HauntedMaze/HauntedMazeGetPlayerSave.php";
@@ -21,14 +25,24 @@ public class SaveLoadDataManager : MonoBehaviour
 
     public List<string> levelNames = new List<string>();
 
-    public enum weaponUpgradeType { damage, clip, reloadTime }
+    public enum weaponUpgradeType { damage, clip, reloadTime, shootSpeed }
     public enum playerUpgradeType { hp, sprintTime, sprintReloadSpeed }
 
     public UnityEvent OnDataLoaded;
 
     private void Start()
     {
+        if (UpdateData)
+        {
+            levelCoinsSO.RetrieveCloudData();
+            weaponsDatas[0].RetrieveCloudData();
+            weaponsDatas[1].RetrieveCloudData();
+            playerDatas.RetrieveCloudData();
+            levelDatas.RetrieveCloudData();
+        }
         LoadData();
+        UpdateWeaponList();
+        UpdateLevelList();
         Invoke("UpdateLevelList", 0.15f);
         Invoke("UpdateWeaponList", 0.25f);
     }
@@ -40,35 +54,17 @@ public class SaveLoadDataManager : MonoBehaviour
 
     public void UpdateWeaponList()
     {
-        foreach (Weapon weapon in weaponsData.weapons)
+        while (saveData.upgrades.weaponDataUpgrades.Count < weaponsDatas.Count)
         {
-            bool match = false;
-            foreach (WeaponDataUpgrades weaponDataUpgrade in saveData.upgrades.weaponDataUpgrades)
-            {
-                if (weaponDataUpgrade.weaponID != weapon.weaponID)
-                {
-                    Debug.Log("don't Match: " + weapon.weaponID + "/" + weaponDataUpgrade.weaponID);
-                    match = false;
-                }
-                else
-                {
-                    match = true;
-                    break;
-                }
-            }
-            if (match == false)
-            {
-                WeaponDataUpgrades newWeaponDataUpgrade = new WeaponDataUpgrades();
-                newWeaponDataUpgrade.weaponID = weapon.weaponID;
-                saveData.upgrades.weaponDataUpgrades.Add(newWeaponDataUpgrade);
-                Debug.Log("Added: " + weapon.weaponID);
-            }
+
+            WeaponDataUpgrades newWeaponDataUpgrade = new WeaponDataUpgrades();
+            saveData.upgrades.weaponDataUpgrades.Add(newWeaponDataUpgrade);
         }
-        SaveData();
     }
 
     public void UpdateLevelList()
     {
+
         foreach (string checkLevelName in levelNames)
         {
             bool match = false;
@@ -93,7 +89,6 @@ public class SaveLoadDataManager : MonoBehaviour
                 Debug.Log("Added: " + checkLevelName);
             }
         }
-        SaveData();
     }
 
 
@@ -138,6 +133,18 @@ public class SaveLoadDataManager : MonoBehaviour
         SaveData();
     }
 
+    public void SetCurrentWeapon(int value)
+    {
+        LoadData();
+        saveData.stats.currentSelectedWeapon = value;
+        SaveData();
+    }
+    public int GetCurrentWeapon()
+    {
+        LoadData();
+        return saveData.stats.currentSelectedWeapon;
+    }
+
     public void SetQualitySettings(int value)
     {
         LoadData();
@@ -164,7 +171,11 @@ public class SaveLoadDataManager : MonoBehaviour
             case weaponUpgradeType.reloadTime:
                 saveData.upgrades.weaponDataUpgrades[weaponID].reloadTimeUpgradeLevel++;
                 break;
+            case weaponUpgradeType.shootSpeed:
+                saveData.upgrades.weaponDataUpgrades[weaponID].shootSpeedTimeUpgradeLevel++;
+                break;
         }
+        Debug.Log($"Upgrade weapon:{weaponID} with upgrade {weaponUpgradeType} ");
         SaveData();
     }
 
@@ -183,6 +194,8 @@ public class SaveLoadDataManager : MonoBehaviour
                 return saveData.upgrades.weaponDataUpgrades[weaponID].clipUpgradeLevel;
             case weaponUpgradeType.reloadTime:
                 return saveData.upgrades.weaponDataUpgrades[weaponID].reloadTimeUpgradeLevel;
+            case weaponUpgradeType.shootSpeed:
+                return saveData.upgrades.weaponDataUpgrades[weaponID].shootSpeedTimeUpgradeLevel;
         }
         return 1;
     }
@@ -195,11 +208,13 @@ public class SaveLoadDataManager : MonoBehaviour
         switch (weaponUpgradeType)
         {
             case weaponUpgradeType.damage:
-                return weaponsData.weapons[weaponID].damageUpgradeCost[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType) + 1];
+                return weaponsDatas[weaponID].weaponData[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType) + 1].damageUpgradeCost;
             case weaponUpgradeType.clip:
-                return weaponsData.weapons[weaponID].clipUpgradeCost[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType) + 1];
+                return weaponsDatas[weaponID].weaponData[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType) + 1].clipUpgradeCost;
             case weaponUpgradeType.reloadTime:
-                return weaponsData.weapons[weaponID].reloadTimeUpgradeCost[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType) + 1];
+                return weaponsDatas[weaponID].weaponData[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType) + 1].reloadTimeUpgradeCost;
+            case weaponUpgradeType.shootSpeed:
+                return weaponsDatas[weaponID].weaponData[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType) + 1].shootSpeedTimeUpgradeCost;
         }
         return 0;
     }
@@ -211,7 +226,7 @@ public class SaveLoadDataManager : MonoBehaviour
         switch (playerUpgradeType)
         {
             case playerUpgradeType.hp:
-               saveData.upgrades.playerDataUpgrades.hpUpgradeLevel++;
+                saveData.upgrades.playerDataUpgrades.hpUpgradeLevel++;
                 break;
             case playerUpgradeType.sprintTime:
                 saveData.upgrades.playerDataUpgrades.sprintTimeUpgradeLevel++;
@@ -219,6 +234,7 @@ public class SaveLoadDataManager : MonoBehaviour
             case playerUpgradeType.sprintReloadSpeed:
                 saveData.upgrades.playerDataUpgrades.sprintReloadSpeedUpgradeLevel++;
                 break;
+
         }
         SaveData();
     }
@@ -235,6 +251,7 @@ public class SaveLoadDataManager : MonoBehaviour
                 return saveData.upgrades.playerDataUpgrades.sprintTimeUpgradeLevel;
             case playerUpgradeType.sprintReloadSpeed:
                 return saveData.upgrades.playerDataUpgrades.sprintReloadSpeedUpgradeLevel;
+
         }
         return 1;
     }
@@ -246,11 +263,11 @@ public class SaveLoadDataManager : MonoBehaviour
         switch (playerUpgradeType)
         {
             case playerUpgradeType.hp:
-                return playerData.hpUpgradeCost[GetPlayerUpgradeLevel(playerUpgradeType) + 1];
+                return playerDatas.playerData[GetPlayerUpgradeLevel(playerUpgradeType) + 1].hpUpgradeCost;
             case playerUpgradeType.sprintTime:
-                return playerData.sprintTimeUpgradeCost[GetPlayerUpgradeLevel(playerUpgradeType) + 1];
+                return playerDatas.playerData[GetPlayerUpgradeLevel(playerUpgradeType) + 1].sprintTimeUpgradeCost;
             case playerUpgradeType.sprintReloadSpeed:
-                return playerData.sprintReloadSpeedUpgradeCost[GetPlayerUpgradeLevel(playerUpgradeType) + 1];
+                return playerDatas.playerData[GetPlayerUpgradeLevel(playerUpgradeType) + 1].sprintReloadSpeedUpgradeCost;
         }
         return 1;
     }
@@ -259,41 +276,72 @@ public class SaveLoadDataManager : MonoBehaviour
 
     public double GetWeaponDamageValue(int weaponID)
     {
-        return weaponsData.weapons[weaponID].damageValue[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.damage)];
+        return weaponsDatas[weaponID].weaponData[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.damage)].damageValue;
     }
 
     public double GetWeaponClipValue(int weaponID)
     {
-        return weaponsData.weapons[weaponID].clipValue[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.clip)];
+        return weaponsDatas[weaponID].weaponData[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.clip)].clipValue;
     }
 
     public double GetWeaponRealoadTime(int weaponID)
     {
-        return weaponsData.weapons[weaponID].reloadTimeValue[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.reloadTime)];
+        return weaponsDatas[weaponID].weaponData[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.reloadTime)].reloadTimeValue;
+    }
+
+    public double GetWeaponShootSpeedTime(int weaponID)
+    {
+        return weaponsDatas[weaponID].weaponData[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.shootSpeed)].shootSpeedTimeValue;
+    }
+
+    public double GetWeaponShootSpeedRealoadTime(int weaponID)
+    {
+        return weaponsDatas[weaponID].weaponData[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.shootSpeed)].shootSpeedTimeValue;
     }
 
     public double GetPlayerHpValue()
     {
-        return playerData.hpValue[GetPlayerUpgradeLevel(playerUpgradeType.hp)];
+        Debug.Log(playerDatas.playerData[GetPlayerUpgradeLevel(playerUpgradeType.hp)].hpValue);
+        return playerDatas.playerData[GetPlayerUpgradeLevel(playerUpgradeType.hp)].hpValue;
     }
 
     public double GetPlayerSprintTimeValue()
     {
-        return playerData.sprintTimeValue[GetPlayerUpgradeLevel(playerUpgradeType.sprintTime)];
+        return playerDatas.playerData[GetPlayerUpgradeLevel(playerUpgradeType.sprintTime)].sprintTimeValue;
     }
 
     public double GetPlayerSprintReloadSpeedValue()
     {
-        return playerData.sprintReloadSpeedValue[GetPlayerUpgradeLevel(playerUpgradeType.sprintReloadSpeed)];
+        return playerDatas.playerData[GetPlayerUpgradeLevel(playerUpgradeType.sprintReloadSpeed)].sprintReloadSpeedValue;
     }
 
+    public double GetMinDistanceFromPlayer(int levelID)
+    {
+        return levelDatas.levelData[levelID].minDistanceFromPlayer;
+    }
 
+    public double GetMaxDistanceFromPlayer(int levelID)
+    {
+        return levelDatas.levelData[levelID].maxDistanceFromPlayer;
+    }
 
+    public double GetSpawnRate(int levelID)
+    {
+        return levelDatas.levelData[levelID].spawnRate;
+    }
 
-
-
-
-
+    public double GetTimeUntilSpawnRateIncrease(int levelID)
+    {
+        return levelDatas.levelData[levelID].timeUntilSpawnRateIncrease;
+    }
+    public double GetMaxEnemies(int levelID)
+    {
+        return levelDatas.levelData[levelID].maxEnemies;
+    }
+    public double GetBossSpawnTime(int levelID)
+    {
+        return levelDatas.levelData[levelID].bossSpawnTime;
+    }
 
     public int GetLevelPrestigeLevel(string levelName)
     {
@@ -348,6 +396,7 @@ public class SaveLoadDataManager : MonoBehaviour
         return 0;
     }
 
+
     [Button]
     public void SaveData()
     {
@@ -356,7 +405,8 @@ public class SaveLoadDataManager : MonoBehaviour
         string messagepath = Path.Combine(subDir, "SaveData" + ".json");
         string jsonSaveString = JsonUtility.ToJson(saveData);
         File.WriteAllText(messagepath, jsonSaveString);
-        StartCoroutine(UpdatePlayerData(output => { }));
+       // StartCoroutine(UpdatePlayerData(output => { }));
+        Debug.Log("Update data");
     }
 
     public void SaveDataWithDefault()
@@ -471,7 +521,7 @@ public class SaveLoadDataManager : MonoBehaviour
             {
                 onMessageReceived(www.downloadHandler.text);
                 string message = www.downloadHandler.text;
-                Debug.Log(message);
+                // Debug.Log(message);
             }
         }
     }

@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: fac5b63586d29f7489b570b98f03a58e
 ModelImporter:
-  serializedVersion: 21300
+  serializedVersion: 22200
   internalIDToNameTable:
   - first:
       74: -752396371876200984
@@ -352,8 +352,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -367,7 +365,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties:
-    - '#BAKERY{"meshName":["Wall.001","Wall.008","Area.Fasada","Area.Kopula","Area.PodtrzymywaczeKolumny","Area.Sufit.1","Area.Sufit.2","Area.Sufit.3","Area.Sufit.Zapychacz","Area1_Evolution9","Area01_EvolutionElement4.001","Area1_Evolution1.001","Area1_EvolutionElement1.001","Area1_EvolutionElement2.001","Area1_EvolutionElement3.001","MuseumFloorLamp.001","MuseumFloorLamp.Emission.001","MuseumInfoPropStand.004","Area1_Evolution1.002","Area1_Evolution1.003","Area1_Evolution1.004","Area1_Evolution1.005","Area06_Evolution1","Area07_Evolution1","Area08_Evolution1.009","Area10,Kosci","Area10.Czaszki","Area10.Dzida","Area10.Dzida.001","Area10.Dzida.002","Area10.Dzida.003","Area10.Dzida.004","Area10.Dzida.005","Area10.Dzida.006","Area10.Dzida.007","Area10_Maczuga","Area10_Maczuga.001","Area10_Maczuga.002","Area10_Maczuga.003","Area10_Maczuga.004","Area10_Maczuga.005","Area10_Maczuga.006","Area10_Maczuga.007","Area10_MalaKopula.001","Area10_ProstaKopula.002","Area10_ProstaKopula.001","Area10_ProstaKopula.Luki.001","Area10_ProstaKopula.Luki.2","Area10_SkosnaKopula","Area_EvolutionPlant","Area_LongEvolutionElement","Area_Przytrzymywacz.017","DlugiKiosk.001","Kiosk","Kiosk.001","Kiosk.002","Kiosk.003","LevelProp.WallDroppings.001","LevelProp.WallDroppings.006","Museum.Cabinet1","Museum.Cabinet2","Museum.Cabinet3","Museum.Cabinet4","Museum.CeillingBridge","Museum.CeillingBridge.001","Museum.CeillingBridge.Damaged.004","Museum.CeillingBridge.Damaged.005","Museum.CeillingBridge.Damaged.006","Museum.CeillingBridge.Damaged.008","Museum.CeillingBridge.Damaged.009","Museum.CeillingBridge.Damaged.010","Museum.Rocks1","Museum.Rocks2","MuseumInfoPropBorder.010","MuseumInfoPropBorder.011","MuseumInfoPropBorder.012","MuseumInfoPropBorder.013","MuseumInfoPropBorder.014","MuseumInfoPropBorder.015","MuseumInfoPropBorder.016","MuseumInfoPropBorder.017","MuseumInfoPropBorder.018","MuseumInfoPropBorder.019","MuseumInfoPropBorder.020","MuseumInfoPropBorder.021","MuseumInfoPropBorder.022","MuseumInfoPropBorder.023","MuseumInfoPropBorder.024","MuseumInfoPropBorder.026","MuseumInfoPropBorder.027","MuseumInfoPropBorder.028","MuseumInfoPropBorder.029","MuseumInfoPropBorder.030","MuseumInfoPropBorder.031","MuseumInfoPropBorder.037","MuseumInfoPropBorder.038","MuseumInfoPropBorder.039","MuseumInfoPropBorder.040","MuseumInfoPropBorder.041","MuseumInfoPropBorder.042","MuseumInfoPropBorder.043","MuseumInfoPropStand.011","MuseumObstacle.1","MuseumWindow.001","Wall.017","Wall.020","Wall.064","Wall_Extruded2.Center.001","Area_EvolutionPlant.022","Wall_Extruded2.Center.007","Wall.013","Wall.007","PictureBorders","Museum.Map","Listwy","Kiosk.008","Kiosk.007","Kiosk.006","Kiosk.005","DlugiKiosk.2","Area1_Evolution9.001","MuzeumFloor","MuseumWindow.Wypelniacz..1","MuseumWalls.003","MuseumWalls.002","MuseumWalls.001","Museum.ShortCeillingBridge","Museum.LongCeillingBridge.5","Museum.LongCeillingBridge.4","Museum.LongCeillingBridge.3","Museum.LongCeillingBridge.2","Museum.LongCeillingBridge.1","Kiosk3","Kiosk.4","Kiosk.2","Kiosk.1","Area07_Evolution1.Mesh1","Area1_Evolution09.Mesh","Area1_Evolution08.Mesh","Area1_Evolution5.Mesh","Area1_Evolution4.Mesh","Area1_Evolution3.Mesh","Area01_Evolution2.Mesh","Area01_Evolution1.Mesh","Area.Sufit.Zapychacz.1","MuseumWindow.006","MuseumWindow.002"],"padding":[66,53,7,4,4,2,2,2,14,21,13,39,65,89,46,207,256,37,35,36,35,35,12,32,39,19,19,87,93,92,92,98,88,89,92,66,66,61,66,66,66,66,66,8,8,36,65,55,8,165,8,256,24,26,26,26,26,89,5,6,7,6,6,4,6,2,1,7,137,2,2,256,256,173,166,173,166,173,173,173,166,173,173,173,173,166,173,72,72,72,143,60,128,173,166,166,173,173,166,173,173,27,64,17,9,18,20,27,41,6,3,2,11,2,2,6,6,6,6,6,12,1,13,6,3,2,1,2,2,2,2,2,6,6,6,6,16,10,28,35,35,36,35,39,14,37,11],"unwrapper":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}'
+    - '#BAKERY{"meshName":["Area1_Evolution9.001","Area_EvolutionPlant.022","DlugiKiosk.2","MuzeumFloor","Area.Sufit.Zapychacz","Kiosk.005","Kiosk.006","Kiosk.007","Kiosk.008","Museum.CeillingBridge","Museum.CeillingBridge.001","Museum.CeillingBridge.Damaged.004","Museum.CeillingBridge.Damaged.005","Museum.CeillingBridge.Damaged.009","Museum.CeillingBridge.Damaged.010","MuseumWindow.006","Wall.007","Wall.013","Wall_Extruded2.Center.007","Area.Fasada","Area.Kopula","Area.PodtrzymywaczeKolumny","Area.Sufit.1","Area.Sufit.2","Area.Sufit.3","Area01_EvolutionElement4.001","Area1_EvolutionElement1.001","Area1_EvolutionElement2.001","Area1_EvolutionElement3.001","MuseumFloorLamp.001","MuseumFloorLamp.Emission.001","MuseumInfoPropStand.004","Area10,Kosci","Area10.Czaszki","Area10.Dzida","Area10.Dzida.001","Area10.Dzida.002","Area10.Dzida.003","Area10.Dzida.004","Area10.Dzida.005","Area10.Dzida.006","Area10.Dzida.007","Area10_Maczuga","Area10_Maczuga.001","Area10_Maczuga.002","Area10_Maczuga.003","Area10_Maczuga.004","Area10_Maczuga.005","Area10_Maczuga.006","Area10_Maczuga.007","Area10_MalaKopula.001","Area10_ProstaKopula.002","Area10_ProstaKopula.001","Area10_ProstaKopula.Luki.001","Area10_ProstaKopula.Luki.2","Area10_SkosnaKopula","Area_LongEvolutionElement","Area_Przytrzymywacz.017","LevelProp.WallDroppings.001","LevelProp.WallDroppings.006","MuseumInfoPropStand.011","MuseumWindow.002","Museum.Cabinet1","Museum.Cabinet2","Museum.Cabinet3","Museum.Cabinet4"],"padding":[12,41,6,1,14,6,6,6,6,4,6,2,1,2,2,37,2,3,6,7,4,4,2,2,2,13,65,89,46,207,256,37,19,19,87,93,92,92,98,88,89,92,66,66,61,66,66,66,66,66,8,8,36,65,55,8,8,256,89,5,27,11,6,7,6,6],"unwrapper":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}'
     clipAnimations:
     - serializedVersion: 16
       name: Area09.Armature|Area01.Anim
@@ -1711,6 +1709,7 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 0
     importBlendShapes: 0
     importCameras: 0
@@ -1730,14 +1729,15 @@ ModelImporter:
     optimizeBones: 1
     meshOptimizationFlags: -1
     indexFormat: 0
-    secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
-    secondaryUVHardAngle: 88
+    secondaryUVAngleDistortion: 4
+    secondaryUVAreaDistortion: 7
+    secondaryUVHardAngle: 20
     secondaryUVMarginMethod: 1
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -1770,6 +1770,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 0
   remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 

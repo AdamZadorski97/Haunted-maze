@@ -5,6 +5,7 @@ using VLB;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering;
 using Cinemachine;
+using Sirenix.OdinInspector;
 
 public class QualityManager : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class QualityManager : MonoBehaviour
         ChangeSettings();
     }
 
+    [Button]
     private void ChangeSettings()
     {
       int savedQualitySettings =  saveLoadDataManager.GetQualitySettings();

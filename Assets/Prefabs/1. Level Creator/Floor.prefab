@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactivePointsIsOn: 1
   interactivePoint: {fileID: 5369871196849302526}
-  meshRenderer: {fileID: 0}
+  meshRenderer: {fileID: 6890394428457422504}
 --- !u!114 &6691778048301057455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,7 +114,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8093321358201864876}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -275,6 +275,10 @@ PrefabInstance:
       propertyPath: meshBorder
       value: 
       objectReference: {fileID: 6085827575269696709}
+    - target: {fileID: 2100273116438126148, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
+      propertyPath: mapRenderer
+      value: 
+      objectReference: {fileID: 6890394428457422504}
     - target: {fileID: 2100273116438126148, guid: 1e1480ff1623f0346b8a6beae7d77093, type: 3}
       propertyPath: InteractivePointMesh
       value: 

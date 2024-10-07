@@ -8,6 +8,7 @@ public class PickablePoint : MonoBehaviour
     [SerializeField] private MeshRenderer meshBorder;
     [SerializeField] private MeshRenderer meshPlate;
     [SerializeField] private MeshRenderer glow;
+    [SerializeField] private MeshRenderer mapRenderer;
     [SerializeField] private BoxCollider boxCollider;
     [SerializeField] private Color glowAlpha;
     private Vector3 tempScale;
@@ -35,6 +36,7 @@ public class PickablePoint : MonoBehaviour
             transform.position = tempPosition;
             glow.gameObject.SetActive(false);
             glow.material.SetColor("_Color", glowAlpha);
+            mapRenderer.gameObject.SetActive(false);
         });
     }
 
@@ -46,5 +48,6 @@ public class PickablePoint : MonoBehaviour
         meshPlate.material.SetTexture("_BaseMap", texture);
         meshPlate.material.SetColor("_BaseColor", plateColor);
         glow.material.SetColor("_Color", plateColor);
+        mapRenderer.gameObject.SetActive(true);
     }
 }

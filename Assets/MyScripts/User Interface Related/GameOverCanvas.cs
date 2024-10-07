@@ -25,16 +25,18 @@ public class GameOverCanvas : MonoBehaviour
     public Button buttonTryAgain;
     public Button buttonUpgradePlayer;
     public Transform tutorialMask;
+    public PlayerController playerController;
 
     public int totalStore;
     public void OnEnable()
     {
+       
         Sequence gameOverSequence = DOTween.Sequence();
         gameOverSequence.AppendInterval(1);
         gameOverSequence.Append(canvasGroup.DOFade(1, 0.75f));
         gameOverSequence.AppendCallback(() => canvasGroup.interactable = true);
         gameOverSequence.AppendCallback(() => canvasGroup.blocksRaycasts = true);
-
+        gameOverSequence.AppendCallback(() => LevelManager.Instance.enemySpawner.DestroyAllEnemies());
         totalStore = (int)(LevelManager.Instance.dataManager.CurrentPointsMultiplied * LevelManager.Instance.dataManager.GetKillMultipler());
 
         textKilledOponents.text = $"{(int)(LevelManager.Instance.dataManager.CurrentPointsMultiplied * LevelManager.Instance.dataManager.GetKillMultipler() - LevelManager.Instance.dataManager.CurrentPointsMultiplied)}";
@@ -58,7 +60,7 @@ public class GameOverCanvas : MonoBehaviour
             buttonTryAgain.interactable = false;
             buttonUpgradePlayer.interactable = true;
             buttonUpgradePlayer.transform.SetParent(tutorialMask);
-            tutorialMask.GetComponent<Image>().DOColor(new Vector4(0,0,0,0.8f), 1);
+            tutorialMask.GetComponent<Image>().DOColor(new Vector4(0, 0, 0, 0.8f), 1);
 
             buttonClaimx2.GetComponent<Image>().color = new Vector4(1, 1, 1, 0.2f);
             buttonRanking.GetComponent<Image>().color = new Vector4(1, 1, 1, 0.2f);
@@ -94,6 +96,23 @@ public class GameOverCanvas : MonoBehaviour
     {
         interstitial.ShowAd(OnRewarded);
     }
+
+    public void OnContinueButton()
+    {
+        interstitial.ShowAd(OnContinue);
+
+    }
+    public void OnContinue()
+    {
+        playerController.cameraPivot.DOLocalMoveY(0.88f, 0.2f);
+        this.gameObject.SetActive(false);
+        playerController.enabled = true;
+        LevelManager.Instance.uIManager.bottomPanel.gameObject.SetActive(true);
+        LevelManager.Instance.uIManager.topPanel.gameObject.SetActive(true);
+        LevelManager.Instance.enemySpawner.DestroyAllEnemies();
+    }
+
+
     public void OnRewarded()
     {
         LevelManager.Instance.dataManager.saveLoadDataManager.AddCoins(totalStore);

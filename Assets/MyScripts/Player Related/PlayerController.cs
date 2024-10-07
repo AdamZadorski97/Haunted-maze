@@ -60,11 +60,12 @@ public class PlayerController : MonoSingleton<PlayerController>
     [SerializeField] private AudioClip footstep1;
     [SerializeField] private AudioClip footstep2;
     [SerializeField] private AudioClip turnAround;
-    [SerializeField] private AudioClip shootSound;
-    [SerializeField] private AudioClip noAmmoSound;
+    [SerializeField] private List<AudioClip> shootSound;
+    [SerializeField] private List<AudioClip> noAmmoSound;
+    [SerializeField] private List<AudioClip> reloadSound;
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip slideSound;
-    [SerializeField] private AudioClip reloadSound;
+
     [SerializeField] private AudioClip killSound;
 
 
@@ -78,8 +79,8 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     [SerializeField] private NavMeshAgent navMeshAgent;
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private Animator gunAnimator;
-    [SerializeField] private ParticleSystem gunParticleSystem;
+    [SerializeField] private List<Animator> gunAnimator;
+    [SerializeField] private List<ParticleSystem> gunParticleSystem;
     [SerializeField] private CinemachineImpulseSource cinemachineImpulseSource;
     [SerializeField] public CinemachineVirtualCamera cinemachineVirtualCamera;
     [SerializeField] private CinemachineBrain cinemachineBrain;
@@ -130,14 +131,17 @@ public class PlayerController : MonoSingleton<PlayerController>
 
         if (!isInRunState)
         {
-            if(runTime <= maxRunTime)
-            runTime += Time.deltaTime * LevelManager.Instance.dataManager.saveLoadDataManager.GetPlayerSprintReloadSpeedValue();
+            if (runTime <= maxRunTime)
+                runTime += Time.deltaTime * LevelManager.Instance.dataManager.saveLoadDataManager.GetPlayerSprintReloadSpeedValue();
         }
         else
         {
             if (runTime > 0)
-
                 runTime -= Time.deltaTime;
+            else
+            {
+                StopRun();
+            }
         }
 
         if (closestEnemy == null)
@@ -166,7 +170,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
         if (LevelManager.Instance.dataManager.AmmunitionInMagazine <= 0)
         {
-            float xLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.x, 0, 3 * Time.deltaTime);
+            float xLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.x, 50, 3 * Time.deltaTime);
             float yLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.y, 0, 3 * Time.deltaTime);
             float zLerp = Mathf.LerpAngle(weaponPivot.localEulerAngles.z, 0, 3 * Time.deltaTime);
             Vector3 Lerped = new Vector3(xLerp, yLerp, zLerp);
@@ -210,13 +214,13 @@ public class PlayerController : MonoSingleton<PlayerController>
     public EnemyController GetClosestEnemy()
     {
         EnemyController tMin = null;
-        float minDist = 10f;
+        float minDist = 8.5f;
         Vector3 currentPos = transform.position;
         foreach (EnemyController enemyController in enemySpawnerController.spawnedEnemies)
         {
             float dot = Vector3.Dot(transform.forward, (enemyController.transform.position - transform.position).normalized);
 
-            if (dot > 0.4f)
+            if (dot > 0.3f)
             {
                 float dist = Vector3.Distance(enemyController.transform.position, currentPos);
                 if (dist < minDist * dot)
@@ -387,7 +391,7 @@ public class PlayerController : MonoSingleton<PlayerController>
                     }
                     else
                     {
-                        audioSource.PlayOneShot(noAmmoSound);
+                        audioSource.PlayOneShot(noAmmoSound[LevelManager.Instance.dataManager.saveLoadDataManager.GetCurrentWeapon()]);
                     }
                 }
             }
@@ -404,18 +408,19 @@ public class PlayerController : MonoSingleton<PlayerController>
                 {
                     if (!isReloading)
                     {
-                        audioSource.PlayOneShot(noAmmoSound);
+                        audioSource.PlayOneShot(noAmmoSound[LevelManager.Instance.dataManager.saveLoadDataManager.GetCurrentWeapon()]);
                     }
                 }
             }
     }
     public void ShootEffect()
     {
-        gunAnimator.SetTrigger("Shoot" + Random.Range(1, 4));
+
+        gunAnimator[LevelManager.Instance.dataManager.saveLoadDataManager.GetCurrentWeapon()].SetTrigger("Shoot" + Random.Range(1, 4));
 
         cinemachineImpulseSource.GenerateImpulse();
-        gunParticleSystem.Play();
-        audioSource.PlayOneShot(shootSound);
+        gunParticleSystem[LevelManager.Instance.dataManager.saveLoadDataManager.GetCurrentWeapon()].Play();
+        audioSource.PlayOneShot(shootSound[LevelManager.Instance.dataManager.saveLoadDataManager.GetCurrentWeapon()]);
     }
 
     public void Reload()
@@ -426,17 +431,17 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     IEnumerator ReloadCoroutine()
     {
-        audioSource.PlayOneShot(reloadSound, 1.5f);
+        audioSource.PlayOneShot(reloadSound[LevelManager.Instance.dataManager.saveLoadDataManager.GetCurrentWeapon()], 1.5f);
         isReloading = true;
-        gunAnimator.SetTrigger("Reload");
+        gunAnimator[LevelManager.Instance.dataManager.saveLoadDataManager.GetCurrentWeapon()].SetTrigger("Reload");
 
-        yield return new WaitUntil(() => gunAnimator.GetCurrentAnimatorStateInfo(0).IsName("Reload"));
+        yield return new WaitUntil(() => gunAnimator[LevelManager.Instance.dataManager.saveLoadDataManager.GetCurrentWeapon()].GetCurrentAnimatorStateInfo(0).IsName("Reload"));
         LevelManager.Instance.uIManager.ButtonTimer(LevelManager.Instance.uIManager.imageReloadTimer, LevelManager.Instance.dataManager.GetReloadTime());
-        float reloadAnimationTime = gunAnimator.GetCurrentAnimatorStateInfo(0).length;
+        float reloadAnimationTime = gunAnimator[LevelManager.Instance.dataManager.saveLoadDataManager.GetCurrentWeapon()].GetCurrentAnimatorStateInfo(0).length;
         double targetReloadAnimationSpeed = 1 * LevelManager.Instance.dataManager.GetReloadTime() / reloadAnimationTime;
-        gunAnimator.speed = 1 / (float)targetReloadAnimationSpeed;
+        gunAnimator[LevelManager.Instance.dataManager.saveLoadDataManager.GetCurrentWeapon()].speed = 1 / (float)targetReloadAnimationSpeed;
         yield return new WaitForSeconds((float)LevelManager.Instance.dataManager.GetReloadTime());
-        gunAnimator.speed = 1;
+        gunAnimator[LevelManager.Instance.dataManager.saveLoadDataManager.GetCurrentWeapon()].speed = 1;
         isReloading = false;
         LevelManager.Instance.dataManager.SetAmmunition();
     }
@@ -481,6 +486,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
         if (swipeController.Tap)
         {
+            Debug.Log("Tap");
             if (Input.GetMouseButtonDown(0) == true && !EventSystem.current.IsPointerOverGameObject())
             {
                 StopCoroutine(inst);
@@ -566,28 +572,50 @@ public class PlayerController : MonoSingleton<PlayerController>
     }
 
 
-    public void Run()
+    public void EnableRun()
     {
-        if (runTime > 0)
+        if (!isInRunState)
         {
-            Debug.Log("Run");
-            if (canRun)
+            if (runTime > 0)
             {
-                isInRunState = true;
-                moveSpeed = defaultRunSpeed;
+                Debug.Log("Run");
+                if (canRun)
+                {
+                    isInRunState = true;
+                    moveSpeed = defaultRunSpeed;
+                }
             }
         }
         else
         {
-            if (isInRunState)
-            {
-                Debug.Log("Stop Run");
-                isInRunState = false;
-                canRun = false;
-                StartCoroutine(RunCulDown());
-                StopRun();
-            }
+            isInRunState = false;
+            canRun = false;
+            StartCoroutine(RunCulDown());
+            StopRun();
         }
+
+
+
+        //if (runTime > 0)
+        //{
+        //    Debug.Log("Run");
+        //    if (canRun)
+        //    {
+        //        isInRunState = true;
+        //        moveSpeed = defaultRunSpeed;
+        //    }
+        //}
+        //else
+        //{
+        //    if (isInRunState)
+        //    {
+        //        Debug.Log("Stop Run");
+        //        isInRunState = false;
+        //        canRun = false;
+        //        StartCoroutine(RunCulDown());
+        //        StopRun();
+        //    }
+        //}
 
 
 
@@ -617,7 +645,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         StartCoroutine(StopRunDelay());
     }
 
-   IEnumerator StopRunDelay()
+    IEnumerator StopRunDelay()
     {
         yield return new WaitForSeconds(0.1f);
         isInRunState = false;

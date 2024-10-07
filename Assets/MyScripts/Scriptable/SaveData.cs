@@ -16,6 +16,7 @@ public class SaveData
 public class Stats
 {
     public Double coinsAmount;
+    public int currentSelectedWeapon;
 }
 
 [Serializable]
@@ -42,6 +43,7 @@ public class WeaponDataUpgrades
     public int damageUpgradeLevel;
     public int clipUpgradeLevel;
     public int reloadTimeUpgradeLevel;
+    public int shootSpeedTimeUpgradeLevel;
 }
 
 [Serializable]

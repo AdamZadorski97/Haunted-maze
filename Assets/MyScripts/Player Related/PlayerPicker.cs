@@ -41,6 +41,10 @@ public class PlayerPicker : MonoBehaviour
         {
             other.GetComponent<TriggerAmmo>().OnPickup();
             LevelManager.Instance.dataManager.AddAmmunition();
+
+
+            if (LevelManager.Instance.dataManager.AmmunitionInMagazine == 0)
+                playerController.Reload();
         }
 
 

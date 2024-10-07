@@ -6,18 +6,8 @@ using UnityEngine;
 
 public class DataExporter : MonoBehaviour
 {
-    public WeaponsData weaponsData;
-    public PlayerData playerData;
 
-    [Button]
-    public void ExportData()
-    {
-        string subDir = Path.Combine(Application.persistentDataPath, "Export", "Data");
-        Directory.CreateDirectory(subDir);
-        string messagepath = Path.Combine(subDir, "SaveData" + ".json");
-        string jsonSaveString = JsonUtility.ToJson(weaponsData);
-        File.WriteAllText(messagepath, jsonSaveString);
-    }
+    
     [Button]
     public void ShowExplorer()
     {
