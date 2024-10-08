@@ -15,7 +15,7 @@ public class ShopController : MonoBehaviour
     [BoxGroup("Weapon Models")]
     [SerializeField] private List<GameObject> weaponModels;
 
-    
+
 
     [Header("Weapon Upgrade Items")]
     [SerializeField] private UpgradeItem damageUpgrade;
@@ -24,10 +24,11 @@ public class ShopController : MonoBehaviour
     [SerializeField] private UpgradeItem shootSpeedUpgrade;
     [SerializeField] private UpgradeItem knockbackUpgrade;
     [SerializeField] private UpgradeItem knockbackChanceUpgrade;
+    [SerializeField] private UpgradeItem criticalChanceUpgrade;
     #endregion
 
     #region Player Properties
-  
+
 
 
     [Header("Player Upgrade Items")]
@@ -67,6 +68,8 @@ public class ShopController : MonoBehaviour
     public void OnShootKnockbackUpgradeButtonPressed() => HandleUpgrade(SaveLoadDataManager.weaponUpgradeType.knockback, coinsPanel, audioClipUpgrade, audioClipNoUpgrade);
 
     public void OnShootKnockbackChanceUpgradeButtonPressed() => HandleUpgrade(SaveLoadDataManager.weaponUpgradeType.knockbackChance, coinsPanel, audioClipUpgrade, audioClipNoUpgrade);
+
+    public void OnShootCriticalChanceUpgradeButtonPressed() => HandleUpgrade(SaveLoadDataManager.weaponUpgradeType.criticalChance, coinsPanel, audioClipUpgrade, audioClipNoUpgrade);
 
     private void HandleUpgrade(SaveLoadDataManager.playerUpgradeType upgradeType, Transform coinsPanel, AudioClip successClip, AudioClip failureClip)
     {
@@ -161,6 +164,13 @@ public class ShopController : MonoBehaviour
         );
         knockbackChanceUpgrade.SetUpgradeAction(OnShootKnockbackChanceUpgradeButtonPressed);
 
+        criticalChanceUpgrade.SetUpgradeValues(
+     Formatter.IdleValue(saveLoadDataManager.GetWeaponCriticalChanceValue(currentWeaponID), "0") + "%",
+     Formatter.IdleValue(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.criticalChance)),
+     "Level:" + saveLoadDataManager.GetWeaponUpgradeLevel(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.criticalChance)
+        );
+        criticalChanceUpgrade.SetUpgradeAction(OnShootCriticalChanceUpgradeButtonPressed);
+
         textCoinsAmount.text = Formatter.IdleValue(saveLoadDataManager.GetCoins());
     }
 
@@ -208,6 +218,7 @@ public class ShopController : MonoBehaviour
             saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.shootSpeed),
             saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.knockback),
             saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.knockbackChance),
+            saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.criticalChance),
             saveLoadDataManager.GetPlayerUpgradeCost(SaveLoadDataManager.playerUpgradeType.hp),
             saveLoadDataManager.GetPlayerUpgradeCost(SaveLoadDataManager.playerUpgradeType.sprintTime),
             saveLoadDataManager.GetPlayerUpgradeCost(SaveLoadDataManager.playerUpgradeType.sprintReloadSpeed)

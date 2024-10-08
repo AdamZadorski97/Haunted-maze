@@ -46,6 +46,7 @@ public class WeaponDataUpgrades
     public int shootSpeedTimeUpgradeLevel;
     public int knockbackUpgradeLevel;
     public int knockbackChanceUpgradeLevel;
+    public int criticalChanceUpgradeLevel;
 }
 
 [Serializable]

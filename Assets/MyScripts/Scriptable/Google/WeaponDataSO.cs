@@ -18,6 +18,8 @@ public class WeaponData
     public double knockbackUpgradeCost;
     public double knockbackChanceValue;
     public double knockbackChanceUpgradeCost;
+    public double ctriticalChanceValue;
+    public double criticalChanceUpgradeCost;
 }
 
 
@@ -47,7 +49,7 @@ public class WeaponDataSO : ScriptableObject
         // Suscribe to Drive event to get the Drive response.
         Drive.responseCallback += HandleDriveResponse;
 
-        string[] tableHeaders = new string[] { "damageValue", "damageUpgradeCost", "clipValue", "clipUpgradeCost", "reloadTimeValue", "reloadTimeUpgradeCost", "knockbackChanceValue", "knockbackChanceUpgradeCost" };
+        string[] tableHeaders = new string[] { "damageValue", "damageUpgradeCost", "clipValue", "clipUpgradeCost", "reloadTimeValue", "reloadTimeUpgradeCost", "knockbackChanceValue", "knockbackChanceUpgradeCost, ctriticalChanceValue, criticalChanceUpgradeCost" };
         Drive.CreateTable(tableHeaders, weaponDataTableName, false);
     }
 

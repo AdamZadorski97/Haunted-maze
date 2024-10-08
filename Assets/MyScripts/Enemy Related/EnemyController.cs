@@ -168,6 +168,15 @@ public class EnemyController : MonoBehaviour
     }
     public void OnHit(double hitValue)
     {
+        float criticalChance = (float)LevelManager.Instance.dataManager.GetWeaponCriticalChance();
+
+        // Check if critical hit occurs
+        if (Random.Range(0f, 100f) <= criticalChance)
+        {
+            hitValue *= 2;  // Double the damage for critical hit
+            Debug.Log("Critical Hit! Damage: " + hitValue);  // Optional: Log for testing
+        }
+
         healthBar.SetActive(true);
         currentHealth -= hitValue;
 
@@ -198,6 +207,7 @@ public class EnemyController : MonoBehaviour
         // Update health bar
         hpBar.DOFillAmount((float)GetHealthPercent(), 0.25f);
     }
+
 
     IEnumerator KnockbackCoroutine(Vector3 direction, float force, float duration)
     {
