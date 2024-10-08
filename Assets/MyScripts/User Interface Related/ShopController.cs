@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -8,66 +7,33 @@ using Sirenix.OdinInspector;
 
 public class ShopController : MonoBehaviour
 {
+    [BoxGroup("Current Coins")]
+    [SerializeField] private Transform coinsPanel;
+    [SerializeField] private TMP_Text textCoinsAmount;
+    [SerializeField] private TMP_Text freeCoinsText;
     #region Weapon Properties
-    [BoxGroup("Weapon Models")][SerializeField] private List<GameObject> weaponModels;
+    [BoxGroup("Weapon Models")]
+    [SerializeField] private List<GameObject> weaponModels;
 
-    [BoxGroup("Weapon Upgrade Panels")][SerializeField] private Transform CoinsPanelWeapon;
-    [BoxGroup("Weapon Upgrade Panels")][SerializeField] private TMP_Text textCoinsAmountWeapon;
+    
 
-    [BoxGroup("Weapon Stats")][SerializeField] private TMP_Text textDamageValue;
-    [BoxGroup("Weapon Stats")][SerializeField] private TMP_Text textClipValue;
-    [BoxGroup("Weapon Stats")][SerializeField] private TMP_Text textReloadTimeValue;
-    [BoxGroup("Weapon Stats")][SerializeField] private TMP_Text textShootSpeedTimeValue;
-    [BoxGroup("Weapon Stats")][SerializeField] private TMP_Text textKnockbackValue;
-
-    [BoxGroup("Weapon Upgrade Costs")][SerializeField] private TMP_Text textDamageUpgradeCost;
-    [BoxGroup("Weapon Upgrade Costs")][SerializeField] private TMP_Text textClipUpgradeCost;
-    [BoxGroup("Weapon Upgrade Costs")][SerializeField] private TMP_Text textReloadUpgradeCost;
-    [BoxGroup("Weapon Upgrade Costs")][SerializeField] private TMP_Text textShootSpeedUpgradeCost;
-    [BoxGroup("Weapon Upgrade Costs")][SerializeField] private TMP_Text textKnockbackUpgradeCost;
-
-    [BoxGroup("Weapon Upgrade Levels")][SerializeField] private TMP_Text textDamageCurrentLevel;
-    [BoxGroup("Weapon Upgrade Levels")][SerializeField] private TMP_Text textClipCurrentLevel;
-    [BoxGroup("Weapon Upgrade Levels")][SerializeField] private TMP_Text textReloadCurrentLevel;
-    [BoxGroup("Weapon Upgrade Levels")][SerializeField] private TMP_Text textShootSpeedCurrentLevel;
-    [BoxGroup("Weapon Upgrade Levels")][SerializeField] private TMP_Text textKnockbackCurrentLevel;
-
-    [BoxGroup("Weapon Upgrade Buttons")][SerializeField] private Image imageButtonDamageUpgrade;
-    [BoxGroup("Weapon Upgrade Buttons")][SerializeField] private Image imageButtonClipUpgrade;
-    [BoxGroup("Weapon Upgrade Buttons")][SerializeField] private Image imageButtonReloadUpgrade;
-    [BoxGroup("Weapon Upgrade Buttons")][SerializeField] private Image imageButtonShootSpeedUpgrade;
-    [BoxGroup("Weapon Upgrade Buttons")][SerializeField] private Image imageButtonknockBackUpgrade;
-
-    [BoxGroup("Weapon Particle Emitters")][SerializeField] private CanvasParticleEmitter canvasParticleEmitterButtonDamageUpgrade;
-    [BoxGroup("Weapon Particle Emitters")][SerializeField] private CanvasParticleEmitter canvasParticleEmitterButtonClipUpgrade;
-    [BoxGroup("Weapon Particle Emitters")][SerializeField] private CanvasParticleEmitter canvasParticleEmitterButtonReloadUpgrade;
-    [BoxGroup("Weapon Particle Emitters")][SerializeField] private CanvasParticleEmitter canvasParticleEmitterButtonShootSpeedUpgrade;
-    [BoxGroup("Weapon Particle Emitters")][SerializeField] private CanvasParticleEmitter canvasParticleEmitterButtonKnockbackUpgrade;
+    [Header("Weapon Upgrade Items")]
+    [SerializeField] private UpgradeItem damageUpgrade;
+    [SerializeField] private UpgradeItem clipUpgrade;
+    [SerializeField] private UpgradeItem reloadTimeUpgrade;
+    [SerializeField] private UpgradeItem shootSpeedUpgrade;
+    [SerializeField] private UpgradeItem knockbackUpgrade;
+    [SerializeField] private UpgradeItem knockbackChanceUpgrade;
     #endregion
 
     #region Player Properties
-    [BoxGroup("Player Upgrade Panels")][SerializeField] private Transform CoinsPanelPlayer;
-    [BoxGroup("Player Upgrade Panels")][SerializeField] private TMP_Text textCoinsAmountPlayer;
+  
 
-    [BoxGroup("Player Stats")][SerializeField] private TMP_Text textHpValue;
-    [BoxGroup("Player Stats")][SerializeField] private TMP_Text textSprintTimeValue;
-    [BoxGroup("Player Stats")][SerializeField] private TMP_Text textSprintReloadSpeedValue;
 
-    [BoxGroup("Player Upgrade Costs")][SerializeField] private TMP_Text textHpUpgradeCost;
-    [BoxGroup("Player Upgrade Costs")][SerializeField] private TMP_Text textSprintTimeUpgradeCost;
-    [BoxGroup("Player Upgrade Costs")][SerializeField] private TMP_Text textSprintReloadSpeedUpgradeCost;
-
-    [BoxGroup("Player Upgrade Levels")][SerializeField] private TMP_Text textHpCurrentLevel;
-    [BoxGroup("Player Upgrade Levels")][SerializeField] private TMP_Text textSprintTimeCurrentLevel;
-    [BoxGroup("Player Upgrade Levels")][SerializeField] private TMP_Text textSprintReloadSpeedCurrentLevel;
-
-    [BoxGroup("Player Upgrade Buttons")][SerializeField] private Image imageButtonHpUpgrade;
-    [BoxGroup("Player Upgrade Buttons")][SerializeField] private Image imageButtonSprintTimeCurrentUpgrade;
-    [BoxGroup("Player Upgrade Buttons")][SerializeField] private Image imageButtonSprintReloadSpeedCurrentUpgrade;
-
-    [BoxGroup("Player Particle Emitters")][SerializeField] private CanvasParticleEmitter canvasParticleEmitterButtonHpUpgrade;
-    [BoxGroup("Player Particle Emitters")][SerializeField] private CanvasParticleEmitter canvasParticleEmitterButtonSprintTimeUpgrade;
-    [BoxGroup("Player Particle Emitters")][SerializeField] private CanvasParticleEmitter canvasParticleEmitterButtonReloadSpeedCurrentUpgrade;
+    [Header("Player Upgrade Items")]
+    [SerializeField] private UpgradeItem hpUpgrade;
+    [SerializeField] private UpgradeItem sprintTimeUpgrade;
+    [SerializeField] private UpgradeItem sprintReloadSpeedUpgrade;
     #endregion
 
     #region General Properties
@@ -80,24 +46,27 @@ public class ShopController : MonoBehaviour
     [SerializeField] private AudioClip audioClipUpgrade;
     [SerializeField] private AudioClip audioClipNoUpgrade;
     [SerializeField] private CanvasParticleEmitter canvasParticleEmitter;
+
     #endregion
 
     #region Button Pressed Handlers
-    public void OnHpUpgradeButtonPressed() => HandleUpgrade(SaveLoadDataManager.playerUpgradeType.hp, CoinsPanelPlayer, audioClipUpgrade, audioClipNoUpgrade);
+    public void OnHpUpgradeButtonPressed() => HandleUpgrade(SaveLoadDataManager.playerUpgradeType.hp, coinsPanel, audioClipUpgrade, audioClipNoUpgrade);
 
-    public void OnSprintTimeUpgradeButtonPressed() => HandleUpgrade(SaveLoadDataManager.playerUpgradeType.sprintTime, CoinsPanelPlayer, audioClipUpgrade, audioClipNoUpgrade);
+    public void OnSprintTimeUpgradeButtonPressed() => HandleUpgrade(SaveLoadDataManager.playerUpgradeType.sprintTime, coinsPanel, audioClipUpgrade, audioClipNoUpgrade);
 
-    public void OnSprintReloadSpeedUpgradeButtonPressed() => HandleUpgrade(SaveLoadDataManager.playerUpgradeType.sprintReloadSpeed, CoinsPanelPlayer, audioClipUpgrade, audioClipNoUpgrade);
+    public void OnSprintReloadSpeedUpgradeButtonPressed() => HandleUpgrade(SaveLoadDataManager.playerUpgradeType.sprintReloadSpeed, coinsPanel, audioClipUpgrade, audioClipNoUpgrade);
 
-    public void OnDamageUpgradeButtonPressed() => HandleUpgrade(SaveLoadDataManager.weaponUpgradeType.damage, CoinsPanelWeapon, audioClipUpgrade, audioClipNoUpgrade);
+    public void OnDamageUpgradeButtonPressed() => HandleUpgrade(SaveLoadDataManager.weaponUpgradeType.damage, coinsPanel, audioClipUpgrade, audioClipNoUpgrade);
 
-    public void OnClipUpgradeButtonPressed() => HandleUpgrade(SaveLoadDataManager.weaponUpgradeType.clip, CoinsPanelWeapon, audioClipUpgrade, audioClipNoUpgrade);
+    public void OnClipUpgradeButtonPressed() => HandleUpgrade(SaveLoadDataManager.weaponUpgradeType.clip, coinsPanel, audioClipUpgrade, audioClipNoUpgrade);
 
-    public void OnReloadTimeUpgradeButtonPressed() => HandleUpgrade(SaveLoadDataManager.weaponUpgradeType.reloadTime, CoinsPanelWeapon, audioClipUpgrade, audioClipNoUpgrade);
+    public void OnReloadTimeUpgradeButtonPressed() => HandleUpgrade(SaveLoadDataManager.weaponUpgradeType.reloadTime, coinsPanel, audioClipUpgrade, audioClipNoUpgrade);
 
-    public void OnShootSpeedTimeUpgradeButtonPressed() => HandleUpgrade(SaveLoadDataManager.weaponUpgradeType.shootSpeed, CoinsPanelWeapon, audioClipUpgrade, audioClipNoUpgrade);
+    public void OnShootSpeedTimeUpgradeButtonPressed() => HandleUpgrade(SaveLoadDataManager.weaponUpgradeType.shootSpeed, coinsPanel, audioClipUpgrade, audioClipNoUpgrade);
 
-    public void OnShootKnockbackUpgradeButtonPressed() => HandleUpgrade(SaveLoadDataManager.weaponUpgradeType.knockback, CoinsPanelWeapon, audioClipUpgrade, audioClipNoUpgrade);
+    public void OnShootKnockbackUpgradeButtonPressed() => HandleUpgrade(SaveLoadDataManager.weaponUpgradeType.knockback, coinsPanel, audioClipUpgrade, audioClipNoUpgrade);
+
+    public void OnShootKnockbackChanceUpgradeButtonPressed() => HandleUpgrade(SaveLoadDataManager.weaponUpgradeType.knockbackChance, coinsPanel, audioClipUpgrade, audioClipNoUpgrade);
 
     private void HandleUpgrade(SaveLoadDataManager.playerUpgradeType upgradeType, Transform coinsPanel, AudioClip successClip, AudioClip failureClip)
     {
@@ -144,50 +113,81 @@ public class ShopController : MonoBehaviour
     {
         UpdateWeaponValues();
         UpdatePlayerValues();
+        GetPricesList();
+        freeCoinsText.text = Formatter.IdleValue(pricesList[0] * 4);
     }
 
-    private void UpdateWeaponValues()
+    public void UpdateWeaponValues()
     {
-        textDamageValue.text = Formatter.IdleValue(saveLoadDataManager.GetWeaponDamageValue(currentWeaponID), "0.0");
-        textDamageUpgradeCost.text = Formatter.IdleValue(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.damage));
+        damageUpgrade.SetUpgradeValues(
+            Formatter.IdleValue(saveLoadDataManager.GetWeaponDamageValue(currentWeaponID), "0.0"),
+            Formatter.IdleValue(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.damage)),
+            "Level:" + saveLoadDataManager.GetWeaponUpgradeLevel(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.damage)
+        );
+        damageUpgrade.SetUpgradeAction(OnDamageUpgradeButtonPressed);  // Assign action to button
 
-        textClipValue.text = Formatter.IdleValue(saveLoadDataManager.GetWeaponClipValue(currentWeaponID));
-        textClipUpgradeCost.text = Formatter.IdleValue(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.clip));
+        clipUpgrade.SetUpgradeValues(
+            Formatter.IdleValue(saveLoadDataManager.GetWeaponClipValue(currentWeaponID)),
+            Formatter.IdleValue(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.clip)),
+            "Level:" + saveLoadDataManager.GetWeaponUpgradeLevel(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.clip)
+        );
+        clipUpgrade.SetUpgradeAction(OnClipUpgradeButtonPressed);
 
-        textReloadTimeValue.text = Formatter.IdleValue(saveLoadDataManager.GetWeaponRealoadTime(currentWeaponID), "0.0") + "s";
-        textReloadUpgradeCost.text = Formatter.IdleValue(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.reloadTime));
+        reloadTimeUpgrade.SetUpgradeValues(
+            Formatter.IdleValue(saveLoadDataManager.GetWeaponRealoadTime(currentWeaponID), "0.0") + "s",
+            Formatter.IdleValue(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.reloadTime)),
+            "Level:" + saveLoadDataManager.GetWeaponUpgradeLevel(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.reloadTime)
+        );
+        reloadTimeUpgrade.SetUpgradeAction(OnReloadTimeUpgradeButtonPressed);
 
-        textShootSpeedTimeValue.text = Formatter.IdleValue(saveLoadDataManager.GetWeaponShootSpeedTime(currentWeaponID), "0.00") + "s";
-        textShootSpeedUpgradeCost.text = Formatter.IdleValue(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.shootSpeed));
+        shootSpeedUpgrade.SetUpgradeValues(
+            Formatter.IdleValue(saveLoadDataManager.GetWeaponShootSpeedTime(currentWeaponID), "0.00") + "s",
+            Formatter.IdleValue(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.shootSpeed)),
+            "Level:" + saveLoadDataManager.GetWeaponUpgradeLevel(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.shootSpeed)
+        );
+        shootSpeedUpgrade.SetUpgradeAction(OnShootSpeedTimeUpgradeButtonPressed);
 
-        textKnockbackValue.text = Formatter.IdleValue(saveLoadDataManager.GetWeaponKnockbackValue(currentWeaponID), "0.00");
-        textKnockbackUpgradeCost.text = Formatter.IdleValue(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.knockback));
+        knockbackUpgrade.SetUpgradeValues(
+            Formatter.IdleValue(saveLoadDataManager.GetWeaponKnockbackValue(currentWeaponID), "0.00"),
+            Formatter.IdleValue(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.knockback)),
+            "Level:" + saveLoadDataManager.GetWeaponUpgradeLevel(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.knockback)
+        );
+        knockbackUpgrade.SetUpgradeAction(OnShootKnockbackUpgradeButtonPressed);
 
-        textCoinsAmountWeapon.text = Formatter.IdleValue(saveLoadDataManager.GetCoins());
+        knockbackChanceUpgrade.SetUpgradeValues(
+            Formatter.IdleValue(saveLoadDataManager.GetWeaponKnockbackChanceValue(currentWeaponID), "0") + "%",
+            Formatter.IdleValue(saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.knockbackChance)),
+            "Level:" + saveLoadDataManager.GetWeaponUpgradeLevel(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.knockbackChance)
+        );
+        knockbackChanceUpgrade.SetUpgradeAction(OnShootKnockbackChanceUpgradeButtonPressed);
 
-
-
-        textDamageCurrentLevel.text = "Level:" + saveLoadDataManager.GetWeaponUpgradeLevel(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.damage);
-        textClipCurrentLevel.text = "Level:" + saveLoadDataManager.GetWeaponUpgradeLevel(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.clip);
-        textReloadCurrentLevel.text = "Level:" + saveLoadDataManager.GetWeaponUpgradeLevel(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.reloadTime);
-        textShootSpeedCurrentLevel.text = "Level:" + saveLoadDataManager.GetWeaponUpgradeLevel(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.shootSpeed);
-        textKnockbackCurrentLevel.text = "Level:" + saveLoadDataManager.GetWeaponUpgradeLevel(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.knockback);
+        textCoinsAmount.text = Formatter.IdleValue(saveLoadDataManager.GetCoins());
     }
 
-    private void UpdatePlayerValues()
+    public void UpdatePlayerValues()
     {
-        textHpValue.text = Formatter.IdleValue(saveLoadDataManager.GetPlayerHpValue(), "0");
-        textHpUpgradeCost.text = Formatter.IdleValue(saveLoadDataManager.GetPlayerUpgradeCost(SaveLoadDataManager.playerUpgradeType.hp));
-        textSprintTimeValue.text = saveLoadDataManager.GetPlayerSprintTimeValue() + "s";
-        textSprintTimeUpgradeCost.text = Formatter.IdleValue(saveLoadDataManager.GetPlayerUpgradeCost(SaveLoadDataManager.playerUpgradeType.sprintTime));
-        textSprintReloadSpeedValue.text = Formatter.IdleValue(saveLoadDataManager.GetPlayerSprintReloadSpeedValue(), "0.0");
-        textSprintReloadSpeedUpgradeCost.text = Formatter.IdleValue(saveLoadDataManager.GetPlayerUpgradeCost(SaveLoadDataManager.playerUpgradeType.sprintReloadSpeed));
-       
-        textCoinsAmountPlayer.text = Formatter.IdleValue(saveLoadDataManager.GetCoins());
+        hpUpgrade.SetUpgradeValues(
+            Formatter.IdleValue(saveLoadDataManager.GetPlayerHpValue(), "0"),
+            Formatter.IdleValue(saveLoadDataManager.GetPlayerUpgradeCost(SaveLoadDataManager.playerUpgradeType.hp)),
+            "Level:" + saveLoadDataManager.GetPlayerUpgradeLevel(SaveLoadDataManager.playerUpgradeType.hp)
+        );
+        hpUpgrade.SetUpgradeAction(OnHpUpgradeButtonPressed);
 
-        textHpCurrentLevel.text = "Level:" + saveLoadDataManager.GetPlayerUpgradeLevel(SaveLoadDataManager.playerUpgradeType.hp);
-        textSprintTimeCurrentLevel.text = "Level:" + saveLoadDataManager.GetPlayerUpgradeLevel(SaveLoadDataManager.playerUpgradeType.sprintTime);
-        textSprintReloadSpeedCurrentLevel.text = "Level:" + saveLoadDataManager.GetPlayerUpgradeLevel(SaveLoadDataManager.playerUpgradeType.sprintReloadSpeed);
+        sprintTimeUpgrade.SetUpgradeValues(
+            saveLoadDataManager.GetPlayerSprintTimeValue() + "s",
+            Formatter.IdleValue(saveLoadDataManager.GetPlayerUpgradeCost(SaveLoadDataManager.playerUpgradeType.sprintTime)),
+            "Level:" + saveLoadDataManager.GetPlayerUpgradeLevel(SaveLoadDataManager.playerUpgradeType.sprintTime)
+        );
+        sprintTimeUpgrade.SetUpgradeAction(OnSprintTimeUpgradeButtonPressed);
+
+        sprintReloadSpeedUpgrade.SetUpgradeValues(
+            Formatter.IdleValue(saveLoadDataManager.GetPlayerSprintReloadSpeedValue(), "0.0"),
+            Formatter.IdleValue(saveLoadDataManager.GetPlayerUpgradeCost(SaveLoadDataManager.playerUpgradeType.sprintReloadSpeed)),
+            "Level:" + saveLoadDataManager.GetPlayerUpgradeLevel(SaveLoadDataManager.playerUpgradeType.sprintReloadSpeed)
+        );
+        sprintReloadSpeedUpgrade.SetUpgradeAction(OnSprintReloadSpeedUpgradeButtonPressed);
+
+        textCoinsAmount.text = Formatter.IdleValue(saveLoadDataManager.GetCoins());
     }
 
     private void ParticlesBuyEffect()
@@ -207,6 +207,7 @@ public class ShopController : MonoBehaviour
             saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.reloadTime),
             saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.shootSpeed),
             saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.knockback),
+            saveLoadDataManager.GetWeaponUpgradeCost(currentWeaponID, SaveLoadDataManager.weaponUpgradeType.knockbackChance),
             saveLoadDataManager.GetPlayerUpgradeCost(SaveLoadDataManager.playerUpgradeType.hp),
             saveLoadDataManager.GetPlayerUpgradeCost(SaveLoadDataManager.playerUpgradeType.sprintTime),
             saveLoadDataManager.GetPlayerUpgradeCost(SaveLoadDataManager.playerUpgradeType.sprintReloadSpeed)

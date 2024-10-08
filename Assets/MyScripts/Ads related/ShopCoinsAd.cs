@@ -20,7 +20,7 @@ public class ShopCoinsAd : MonoBehaviour
     }
     public void OnRewarded()
     {
-        mainMenuController.saveLoadDataManager.AddCoins(shopController.pricesList[0]);
+        mainMenuController.saveLoadDataManager.AddCoins(shopController.pricesList[0] * 4);
         shopController.UpdateShopItemValues();
     }
 }

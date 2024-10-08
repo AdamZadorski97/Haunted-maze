@@ -25,7 +25,7 @@ public class SaveLoadDataManager : MonoBehaviour
 
     public List<string> levelNames = new List<string>();
 
-    public enum weaponUpgradeType { damage, clip, reloadTime, shootSpeed, knockback }
+    public enum weaponUpgradeType { damage, clip, reloadTime, shootSpeed, knockback, knockbackChance }
     public enum playerUpgradeType { hp, sprintTime, sprintReloadSpeed }
 
     public UnityEvent OnDataLoaded;
@@ -177,6 +177,9 @@ public class SaveLoadDataManager : MonoBehaviour
             case weaponUpgradeType.knockback:
                 saveData.upgrades.weaponDataUpgrades[weaponID].knockbackUpgradeLevel++;
                 break;
+            case weaponUpgradeType.knockbackChance:
+                saveData.upgrades.weaponDataUpgrades[weaponID].knockbackChanceUpgradeLevel++;
+                break;
         }
         Debug.Log($"Upgrade weapon:{weaponID} with upgrade {weaponUpgradeType} ");
         SaveData();
@@ -201,6 +204,8 @@ public class SaveLoadDataManager : MonoBehaviour
                 return saveData.upgrades.weaponDataUpgrades[weaponID].shootSpeedTimeUpgradeLevel;
             case weaponUpgradeType.knockback:
                 return saveData.upgrades.weaponDataUpgrades[weaponID].knockbackUpgradeLevel;
+            case weaponUpgradeType.knockbackChance:
+                return saveData.upgrades.weaponDataUpgrades[weaponID].knockbackChanceUpgradeLevel;
         }
         return 1;
     }
@@ -222,6 +227,8 @@ public class SaveLoadDataManager : MonoBehaviour
                 return weaponsDatas[weaponID].weaponData[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType) + 1].shootSpeedTimeUpgradeCost;
             case weaponUpgradeType.knockback:
                 return weaponsDatas[weaponID].weaponData[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType) + 1].knockbackUpgradeCost;
+            case weaponUpgradeType.knockbackChance:
+                return weaponsDatas[weaponID].weaponData[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType) + 1].knockbackChanceUpgradeCost;
         }
         return 0;
     }
@@ -309,6 +316,10 @@ public class SaveLoadDataManager : MonoBehaviour
     public double GetWeaponKnockbackValue(int weaponID)
     {
         return weaponsDatas[weaponID].weaponData[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.knockback)].knockbackValue;
+    }
+    public double GetWeaponKnockbackChanceValue(int weaponID)
+    {
+        return weaponsDatas[weaponID].weaponData[GetWeaponUpgradeLevel(weaponID, weaponUpgradeType.knockbackChance)].knockbackChanceValue;
     }
 
     public double GetPlayerHpValue()

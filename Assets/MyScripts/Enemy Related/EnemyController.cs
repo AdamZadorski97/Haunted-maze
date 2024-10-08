@@ -177,16 +177,25 @@ public class EnemyController : MonoBehaviour
             OnDie();
             return;
         }
+
         animator.SetTrigger("Hit");
 
-        // Add knockback effect here
-        Vector3 knockbackDirection = (transform.position - PlayerController.Instance.transform.position).normalized;
-        StartCoroutine(KnockbackCoroutine(knockbackDirection, (float)LevelManager.Instance.dataManager.GetWeaponKnockback(), 0.2f)); // Adjust force and duration as needed
+        // Check for knockback chance before applying knockback
+        float knockbackChance = (float)LevelManager.Instance.dataManager.GetWeaponKnockbackChance();
+        if (Random.Range(0f, 100f) <= knockbackChance)
+        {
+            // Knockback effect
+            Vector3 knockbackDirection = (transform.position - PlayerController.Instance.transform.position).normalized;
+            StartCoroutine(KnockbackCoroutine(knockbackDirection, (float)LevelManager.Instance.dataManager.GetWeaponKnockback(), 0.2f)); // Adjust force and duration as needed
+        }
 
+        // Slow down the enemy temporarily after the hit
         Sequence hitSequence = DOTween.Sequence();
         hitSequence.AppendCallback(() => navMeshAgent.speed = 0);
         hitSequence.AppendInterval(2f);
         hitSequence.AppendCallback(() => navMeshAgent.speed = enemyProporties.speed);
+
+        // Update health bar
         hpBar.DOFillAmount((float)GetHealthPercent(), 0.25f);
     }
 

@@ -461,7 +461,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 92.03999, y: -235.62749}
+  m_AnchoredPosition: {x: 92.045, y: -254.1459}
   m_SizeDelta: {x: 205.8237, y: 102.0618}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &418569761131447381
@@ -568,6 +568,7 @@ GameObject:
   m_Component:
   - component: {fileID: 418569761203474492}
   - component: {fileID: 418569761203474490}
+  - component: {fileID: 4333383537500210786}
   - component: {fileID: 418569761203474493}
   m_Layer: 5
   m_Name: Upgrade Damage Button Panel
@@ -598,7 +599,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 114.08002, y: -108.229164}
-  m_SizeDelta: {x: 184.08, y: 56.7277}
+  m_SizeDelta: {x: 184.08, y: 98.209}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &418569761203474490
 CanvasRenderer:
@@ -608,6 +609,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 418569761203474495}
   m_CullTransparentMesh: 1
+--- !u!114 &4333383537500210786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418569761203474495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a49f2fd9e61c8b46ade4ee75bd77932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statValue: {fileID: 418569761378819322}
+  upgradeCost: {fileID: 418569759516506125}
+  currentLevel: {fileID: 8665445845432340743}
+  upgradeButton: {fileID: 418569761131447380}
+  upgradeButtonComponent: {fileID: 418569761131447383}
 --- !u!114 &418569761203474493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,10 +673,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55
+  m_fontSize: 50
   m_fontSizeBase: 55
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -733,7 +751,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 92.045, y: -119.231995}
+  m_AnchoredPosition: {x: 91.555, y: -124.45647}
   m_SizeDelta: {x: 184.07, y: 69.5571}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &418569761378819323
@@ -869,7 +887,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.003367424, y: -84.265465}
+  m_AnchoredPosition: {x: -0.48500428, y: -110.387695}
   m_SizeDelta: {x: 184.07, y: 30.7407}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5689605858497225166
@@ -909,8 +927,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294115327
-  m_fontColor: {r: 1, g: 1, b: 0.9490197, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1046,10 +1064,10 @@ MonoBehaviour:
   m_Duration: 0
   m_AutoKill: 1
   m_worldSpace: 0
-  m_elapsedEmitterTime: 16.87664
+  m_elapsedEmitterTime: 14.017054
   m_editorEmitterTime: 0.016296387
   m_MaxParticles: 0
-  m_numberOfParticles: 35
+  m_numberOfParticles: 32
   m_ParticlesPerEmission: 1
   m_EmitterRate: 100
   m_EmitterSpread: 0

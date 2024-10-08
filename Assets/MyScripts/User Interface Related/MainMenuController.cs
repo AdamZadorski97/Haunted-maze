@@ -24,6 +24,7 @@ public class MainMenuController : MonoBehaviour
     public TMP_InputField inputTextNickName;
     public SaveLoadDataManager saveLoadDataManager;
 
+    public GameObject topPanelUpgrade;
     public GameObject weaponsParrent;
     public GameObject charactersParrent;
 
@@ -67,6 +68,7 @@ public class MainMenuController : MonoBehaviour
         Shop.SetActive(false);
         ShopPlayer.SetActive(false);
         audioSource.PlayOneShot(backToMenuAudioClip);
+        topPanelUpgrade.SetActive(false);
     }
 
     public void OpenOptions()
@@ -79,6 +81,7 @@ public class MainMenuController : MonoBehaviour
         Shop.SetActive(false);
         ShopPlayer.SetActive(false);
         audioSource.PlayOneShot(optionsAudioClip);
+        topPanelUpgrade.SetActive(false);
     }
 
     public void OpenChooseLevel()
@@ -89,6 +92,7 @@ public class MainMenuController : MonoBehaviour
         Shop.SetActive(false);
         ShopPlayer.SetActive(false);
         audioSource.PlayOneShot(choseLevelAudioClip);
+        topPanelUpgrade.SetActive(false);
     }
 
     public void OpenShopPlayer()
@@ -102,6 +106,7 @@ public class MainMenuController : MonoBehaviour
         ShopPlayer.SetActive(true);
         shopController.UpdateShopItemValues();
         audioSource.PlayOneShot(choseLevelAudioClip);
+        topPanelUpgrade.SetActive(true);
     }
 
     public void OpenShop()
@@ -116,6 +121,7 @@ public class MainMenuController : MonoBehaviour
         shopController.GetPricesList();
         shopController.UpdateShopItemValues();
         audioSource.PlayOneShot(choseLevelAudioClip);
+        topPanelUpgrade.SetActive(true);
     }
 
     public void OpenLiblaryLevel()

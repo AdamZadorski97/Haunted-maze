@@ -214,6 +214,10 @@ public class DataManager : MonoBehaviour
     {
         return saveLoadDataManager.GetWeaponKnockbackValue(currentWeaponID);
     }
+    public double GetWeaponKnockbackChance()
+    {
+        return saveLoadDataManager.GetWeaponKnockbackChanceValue(currentWeaponID);
+    }
     public double GetKillMultipler()
     {
         if (CurrentKilledUnits > 0)
