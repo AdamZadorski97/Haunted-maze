@@ -2671,12 +2671,13 @@ RectTransform:
   - {fileID: 1255195155}
   - {fileID: 506752}
   - {fileID: 1196280396}
+  - {fileID: 766509098}
   m_Father: {fileID: 1227548622}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: -400, y: 231.44592}
-  m_SizeDelta: {x: 1702.7002, y: 462.89}
+  m_SizeDelta: {x: 1950.9702, y: 462.89}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &460984710
 MonoBehaviour:
@@ -4664,6 +4665,145 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 743345327}
   m_CullTransparentMesh: 1
+--- !u!1001 &766509097
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 460984709}
+    m_Modifications:
+    - target: {fileID: 418569761131447383, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 184.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 89.2593
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1858.9302
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -73.629654
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474493, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_text
+      value: 'Critical
+
+        Factor'
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474493, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_fontSize
+      value: 44.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474493, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 418569761203474495, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_Name
+      value: Upgrade Critical Factor Button Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377473954986438494, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_numberOfParticles
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377473954986438494, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+      propertyPath: m_elapsedEmitterTime
+      value: 18.877892
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+--- !u!224 &766509098 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 418569761203474492, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+  m_PrefabInstance: {fileID: 766509097}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &766509099 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4333383537500210786, guid: f21de36ef16143b4da790ed380e17bf2, type: 3}
+  m_PrefabInstance: {fileID: 766509097}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a49f2fd9e61c8b46ade4ee75bd77932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &792557133
 GameObject:
   m_ObjectHideFlags: 0
@@ -9194,6 +9334,7 @@ MonoBehaviour:
   knockbackUpgrade: {fileID: 2132427375}
   knockbackChanceUpgrade: {fileID: 506751}
   criticalChanceUpgrade: {fileID: 1196280395}
+  criticalFactorUpgrade: {fileID: 766509099}
   hpUpgrade: {fileID: 1815998955}
   sprintTimeUpgrade: {fileID: 1906752090}
   sprintReloadSpeedUpgrade: {fileID: 2093459842}
@@ -15744,10 +15885,10 @@ MonoBehaviour:
   m_Duration: 0
   m_AutoKill: 1
   m_worldSpace: 1
-  m_elapsedEmitterTime: 0.019999992
+  m_elapsedEmitterTime: 0.1823549
   m_editorEmitterTime: 0.005859375
   m_MaxParticles: 400
-  m_numberOfParticles: 10
+  m_numberOfParticles: 20
   m_ParticlesPerEmission: 10
   m_EmitterRate: 10
   m_EmitterSpread: 20

@@ -47,6 +47,7 @@ public class WeaponDataUpgrades
     public int knockbackUpgradeLevel;
     public int knockbackChanceUpgradeLevel;
     public int criticalChanceUpgradeLevel;
+    public int criticalFactorUpgradeLevel;
 }
 
 [Serializable]

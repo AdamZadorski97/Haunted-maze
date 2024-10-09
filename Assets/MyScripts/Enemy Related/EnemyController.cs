@@ -173,7 +173,7 @@ public class EnemyController : MonoBehaviour
         // Check if critical hit occurs
         if (Random.Range(0f, 100f) <= criticalChance)
         {
-            hitValue *= 2;  // Double the damage for critical hit
+            hitValue *= (float)LevelManager.Instance.dataManager.GetWeaponCriticalFactor();  // Double the damage for critical hit
             Debug.Log("Critical Hit! Damage: " + hitValue);  // Optional: Log for testing
         }
 

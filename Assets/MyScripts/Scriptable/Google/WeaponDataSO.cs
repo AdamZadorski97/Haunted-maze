@@ -20,6 +20,8 @@ public class WeaponData
     public double knockbackChanceUpgradeCost;
     public double ctriticalChanceValue;
     public double criticalChanceUpgradeCost;
+    public double criticalFactorValue;
+    public double criticalFactorUpgradeCost;
 }
 
 

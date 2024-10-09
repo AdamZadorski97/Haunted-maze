@@ -222,6 +222,10 @@ public class DataManager : MonoBehaviour
     {
         return saveLoadDataManager.GetWeaponCriticalChanceValue(currentWeaponID);
     }
+    public double GetWeaponCriticalFactor()
+    {
+        return saveLoadDataManager.GetWeaponCriticalFactorValue(currentWeaponID);
+    }
     public double GetKillMultipler()
     {
         if (CurrentKilledUnits > 0)

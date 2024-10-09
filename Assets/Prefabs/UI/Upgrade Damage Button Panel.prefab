@@ -624,8 +624,10 @@ MonoBehaviour:
   statValue: {fileID: 418569761378819322}
   upgradeCost: {fileID: 418569759516506125}
   currentLevel: {fileID: 8665445845432340743}
-  upgradeButton: {fileID: 418569761131447380}
+  upgradeButtonImage: {fileID: 418569761131447380}
   upgradeButtonComponent: {fileID: 418569761131447383}
+  canUpdateSprite: {fileID: 21300000, guid: b5157d0e35a60b54b825c6ca49d0e0d0, type: 3}
+  cantUpdateSprite: {fileID: 21300000, guid: ae80e15f4cf21da4d8b70f72a1185f89, type: 3}
 --- !u!114 &418569761203474493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -673,7 +675,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 72
   m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1064,10 +1066,10 @@ MonoBehaviour:
   m_Duration: 0
   m_AutoKill: 1
   m_worldSpace: 0
-  m_elapsedEmitterTime: 14.017054
+  m_elapsedEmitterTime: 1.2599809
   m_editorEmitterTime: 0.016296387
   m_MaxParticles: 0
-  m_numberOfParticles: 32
+  m_numberOfParticles: 16
   m_ParticlesPerEmission: 1
   m_EmitterRate: 100
   m_EmitterSpread: 0
