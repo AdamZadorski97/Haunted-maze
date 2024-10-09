@@ -4834,11 +4834,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1665270287}
   - {fileID: 1227548622}
   - {fileID: 1544888996}
   - {fileID: 629064837}
   - {fileID: 1769471914}
+  - {fileID: 1665270287}
   m_Father: {fileID: 51096959}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -12641,6 +12641,7 @@ GameObject:
   - component: {fileID: 1665270287}
   - component: {fileID: 1665270289}
   - component: {fileID: 1665270288}
+  - component: {fileID: 1665270290}
   m_Layer: 5
   m_Name: Image Weapon Render
   m_TagString: Untagged
@@ -12681,7 +12682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: c18dca34cde696e468cc589eee5c2da0, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -12705,6 +12706,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665270286}
   m_CullTransparentMesh: 1
+--- !u!114 &1665270290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665270286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e42373ae62f914b41a1801b1d89cd4bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponTransform: {fileID: 2808030522863839546}
+  rotationSpeed: 20
+  inertiaDamping: 0.95
+  returnSpeed: 2
+  defaultRotationSpeed: 20
 --- !u!1001 &1668328048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12874,7 +12892,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1683795700}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0e296cf2eb4db9449df8f3e9d44e956, type: 3}
   m_Name: 
@@ -15885,7 +15903,7 @@ MonoBehaviour:
   m_Duration: 0
   m_AutoKill: 1
   m_worldSpace: 1
-  m_elapsedEmitterTime: 0.1823549
+  m_elapsedEmitterTime: 0.2
   m_editorEmitterTime: 0.005859375
   m_MaxParticles: 400
   m_numberOfParticles: 20
@@ -16896,7 +16914,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3293239972809716608}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0e296cf2eb4db9449df8f3e9d44e956, type: 3}
   m_Name: 
